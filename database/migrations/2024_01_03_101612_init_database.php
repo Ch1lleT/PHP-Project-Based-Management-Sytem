@@ -109,14 +109,16 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('org_id');
             
-            $table->primary(['user_id', 'org_id']);
+            $table->foreign('user_id')->reference('user_id')->on('user')->onDelete('cascade');
+            $table->foreign('org_id')->reference('org_id')->on('organization')->onDelete('cascade');
         });
 
         Schema::create('have_sub_orgs', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('sub_org_id');
             
-            $table->primary(['user_id', 'sub_org_id']);
+            $table->foreign('user_id')->reference('user_id')->on('user')->onDelete('cascade');
+            $table->foreign('sub_org_id')->reference('sub_org_id')->on('Sub_Organization')->onDelete('cascade');
         });
 
         Schema::create('logs', function (Blueprint $table) {
@@ -135,7 +137,8 @@ return new class extends Migration
             $table->string('project_id');
             $table->float('percent');
             
-            $table->primary(['user_id', 'project_id']);
+            $table->foreign('user_id')->reference('user_id')->on('user')->onDelete('cascade');
+            $table->foreign('project_id')->reference('project_id')->on('project')->onDelete('cascade');
         });
     }
 
