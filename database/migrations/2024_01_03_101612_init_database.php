@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('targets', function (Blueprint $table) {
+        Schema::create('target', function (Blueprint $table) {
             $table->string('target_id');
             $table->string('target_name');
             $table->string('stg_id');
@@ -38,14 +38,14 @@ return new class extends Migration
             $table->primary(['act_id']);
         });
 
-        Schema::create('actual_targets', function (Blueprint $table) {
+        Schema::create('actual_target', function (Blueprint $table) {
             $table->string('acttarget_id');
             $table->string('acttarget_type');
 
             $table->primary(['acttarget_id']);
         });
 
-        Schema::create('actual_target_snapshots', function (Blueprint $table) {
+        Schema::create('actual_target_snapshot', function (Blueprint $table) {
             $table->string('snap_id');
             $table->integer('month');
             $table->integer('acttar01');
@@ -64,14 +64,14 @@ return new class extends Migration
             $table->primary(['snap_id']);
         });
 
-        Schema::create('balances', function (Blueprint $table) {
+        Schema::create('balance', function (Blueprint $table) {
             $table->string('balance_id');
             $table->string('balance_type');
             
             $table->primary(['balance_id']);
         });
 
-        Schema::create('balance_snapshots', function (Blueprint $table) {
+        Schema::create('balance_snapshot', function (Blueprint $table) {
             $table->string('snap_id');
             $table->integer('month');
             $table->integer('balance01');
@@ -90,14 +90,14 @@ return new class extends Migration
             $table->primary(['snap_id']);
         });
 
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('organization', function (Blueprint $table) {
             $table->string('org_id');
             $table->string('org_name');
 
             $table->primary(['org_id']);
         });
 
-        Schema::create('sub_organizations', function (Blueprint $table) {
+        Schema::create('sub_organization', function (Blueprint $table) {
             $table->string('sub_org_id');
             $table->string('main_org');
             $table->string('org_name');
@@ -105,7 +105,7 @@ return new class extends Migration
             $table->primary(['sub_org_id']);
         });
 
-        Schema::create('have_orgs', function (Blueprint $table) {
+        Schema::create('have_org', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('org_id');
             
@@ -113,7 +113,7 @@ return new class extends Migration
             $table->foreign('org_id')->reference('org_id')->on('organization')->onDelete('cascade');
         });
 
-        Schema::create('have_sub_orgs', function (Blueprint $table) {
+        Schema::create('have_sub_org', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('sub_org_id');
             
@@ -121,7 +121,7 @@ return new class extends Migration
             $table->foreign('sub_org_id')->reference('sub_org_id')->on('Sub_Organization')->onDelete('cascade');
         });
 
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('log', function (Blueprint $table) {
             $table->date('date');
             $table->time('time');
             $table->string('user_id');
@@ -132,7 +132,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('assign_tos', function (Blueprint $table) {
+        Schema::create('assign_to', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('project_id');
             $table->float('percent');
@@ -147,17 +147,17 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('targets');
+        Schema::dropIfExists('target');
         Schema::dropIfExists('comments');
-        Schema::dropIfExists('actual_targets');
-        Schema::dropIfExists('actual_target_snapshots');
-        Schema::dropIfExists('balances');
-        Schema::dropIfExists('balance_snapshots');
-        Schema::dropIfExists('organizations');
-        Schema::dropIfExists('sub_organizations');
-        Schema::dropIfExists('have_orgs');
-        Schema::dropIfExists('have_sub_orgs');
-        Schema::dropIfExists('logs');
-        Schema::dropIfExists('assign_tos');
+        Schema::dropIfExists('actual_target');
+        Schema::dropIfExists('actual_target_snapshot');
+        Schema::dropIfExists('balance');
+        Schema::dropIfExists('balance_snapshot');
+        Schema::dropIfExists('organization');
+        Schema::dropIfExists('sub_organization');
+        Schema::dropIfExists('have_org');
+        Schema::dropIfExists('have_sub_org');
+        Schema::dropIfExists('log');
+        Schema::dropIfExists('assign_to');
     }
 };
