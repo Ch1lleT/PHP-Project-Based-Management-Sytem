@@ -5,11 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Have_Org extends Model
+class Plan extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'user_id',
-        'org_id',
+        'plan_id',
+        'plan_name',
+        'stg_id',
+        'type',
+        'desc',
+        'weight'
+        
     ];
-    // use HasFactory;
 }

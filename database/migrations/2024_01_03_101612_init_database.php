@@ -236,7 +236,7 @@ return new class extends Migration
 
         Schema::create("group", function(Blueprint $table){
             $table->string("user_id");
-            $table->json("groub_json");
+            $table->json("group_json");
 
             $table->foreign("user_id")->references("user_id")->on("user");
         });

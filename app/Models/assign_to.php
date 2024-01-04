@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class assign_to extends Model
+class Assign_To extends Model
 {
     protected $fillable = [
         'user_id',
