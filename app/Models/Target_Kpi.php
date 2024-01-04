@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Have_Org extends Model
+class Target_Kpi extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'user_id',
-        'org_id',
+        'targetkpi_id',
+        'targetkpi_type',
     ];
-    // use HasFactory;
 }

@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Have_Org extends Model
+class Request_Close_Activity extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'user_id',
-        'org_id',
+        'req_id',
+        'act_id',
+        'approvedby',
     ];
-    // use HasFactory;
 }

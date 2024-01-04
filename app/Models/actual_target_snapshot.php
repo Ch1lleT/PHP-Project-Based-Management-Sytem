@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class actual_target_snapshot extends Model
+class Actual_Target_Snapshot extends Model
 {
     protected $fillable = [
         'snap_id',

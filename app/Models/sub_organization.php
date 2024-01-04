@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class sub_organization extends Model
+class Sub_Organization extends Model
 {
     protected $fillable = [
         'sub_org_id',
