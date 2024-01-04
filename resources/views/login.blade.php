@@ -7,6 +7,7 @@
     <title>Login | page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,500;0,700;1,100&family=Sarabun:wght@100;200&display=swap');
 
@@ -36,7 +37,8 @@
 
         .left-area {
             background-color: #164863;
-            border-radius: 5px;
+            border-radius: 5px 0px 0px 5px;
+
         }
 
         .right-area {
