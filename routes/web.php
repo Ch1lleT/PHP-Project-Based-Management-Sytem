@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('/layout', function () {
     return view('layout');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
