@@ -12,6 +12,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,500;0,700;1,100&family=Sarabun:wght@100;200&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    {{-- <link href="/resources/css/sidebars.css" rel="stylesheet"> --}}
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
     <style>
         html,body{
         height: 100%;
@@ -71,6 +73,10 @@
             padding-left: 1.5rem;
             margin: 0;
         }
+        img{
+            height: 20px;
+            align-items: 
+        }
     </style>
 </head>
 <body>
@@ -102,7 +108,7 @@
                 </div>
             </a>
             <hr>
-            <ul class="mynav nav nav-pills flex-column mb-auto">
+            {{-- <ul class="mynav nav nav-pills flex-column mb-auto">
                 <li class="nav-item mb-1">
                     <a href="#">
                         <div class="logo"></div>
@@ -138,7 +144,61 @@
                         <p>Report</p>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                    Home
+                  </button>
+                  <div class="collapse" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-dark rounded">Overview</a></li>
+                      <li><a href="#" class="link-dark rounded">Updates</a></li>
+                      <li><a href="#" class="link-dark rounded">Reports</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                    Dashboard
+                  </button>
+                  <div class="collapse" id="dashboard-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-dark rounded">Overview</a></li>
+                      <li><a href="#" class="link-dark rounded">Weekly</a></li>
+                      <li><a href="#" class="link-dark rounded">Monthly</a></li>
+                      <li><a href="#" class="link-dark rounded">Annually</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                    Orders
+                  </button>
+                  <div class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-dark rounded">New</a></li>
+                      <li><a href="#" class="link-dark rounded">Processed</a></li>
+                      <li><a href="#" class="link-dark rounded">Shipped</a></li>
+                      <li><a href="#" class="link-dark rounded">Returned</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="border-top my-3"></li>
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Account
+                  </button>
+                  <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-dark rounded">New...</a></li>
+                      <li><a href="#" class="link-dark rounded">Profile</a></li>
+                      <li><a href="#" class="link-dark rounded">Settings</a></li>
+                      <li><a href="#" class="link-dark rounded">Sign out</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             <hr>
             <div class="d-flex">
                 <span>
@@ -149,15 +209,15 @@
     </div>
 
     <div class="bg-light" style="width: 100%;">
-        <div class="p-2 d-md d-flex text-white bg-secondary" style="height: 3rem;">
-            <a href="#" class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
-                <i class='bx bx-menu-alt-left text-white d-md-none' style="font-size: 1.85rem;"></i>
-            </a>
+        <div class="p-2 d-md d-flex text-white bg-secondary align-items-center" style="height: 3rem; ">
+            @yield('nav')
         </div>
         <main>
             @yield('main')
         </main> 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    
+    
 </body>
 </html>
