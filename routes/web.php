@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\STGController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/layout', function () {
     return view('layout');
 });
 
-Route::get('/stg_dashboard', function () {
-    return view('stg_dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
+
+Route::get('/stg', [STGController::class, 'index']);
