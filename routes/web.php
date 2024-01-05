@@ -20,6 +20,6 @@ Route::get('/layout', function () {
     return view('layout');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+Route::get('/stg_dashboard', function () {
+    return view('stg_dashboard');
+});

@@ -149,24 +149,13 @@
             <ul class="mynav nav nav-pills flex-column mb-auto">
                 <hr>
                 <h5>Project base management</h5>
-
-                <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#project-collapse"  aria-expanded="true"><p>โครงการ</p></a>
-                    <div class="collapse" id="project-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">Overview</a></li>
-                        <li><a href="#" class="rounded">Updates</a></li>
-                        <li><a href="#" class="rounded">Reports</a></li>
-                      </ul>
-                    </div>
-                </li>
                 <li class="mb-1">
                     <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false" ><p>สำหรับผู้ดูแลระบบ</p></a>
                     <div class="collapse" id="admin-collapse">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">Overview</a></li>
-                        <li><a href="#" class="rounded">Updates</a></li>
-                        <li><a href="#" class="rounded">Reports</a></li>
+                        <li><a href="#" class="rounded">ระดับผู้ใช้งาน</a></li>
+                        <li><a href="#" class="rounded">หน่วยงาน</a></li>
+                        <li><a href="#" class="rounded">ผู้ใช้งาน</a></li>
                       </ul>
                     </div>
                 </li>
@@ -174,9 +163,8 @@
                     <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#executive-collapse"  aria-expanded="false"><p>สำหรับผู้บริหาร</p></a>
                     <div class="collapse" id="executive-collapse">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">Overview</a></li>
-                        <li><a href="#" class="rounded">Updates</a></li>
-                        <li><a href="#" class="rounded">Reports</a></li>
+                        <li><a href="#" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
+                        <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
                       </ul>
                     </div>
                 </li>
@@ -184,9 +172,8 @@
                     <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#staff-collapse"  aria-expanded="false"><p>สำหรับเจ้าหน้าที่</p></a>
                     <div class="collapse" id="staff-collapse">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">Overview</a></li>
-                        <li><a href="#" class="rounded">Updates</a></li>
-                        <li><a href="#" class="rounded">Reports</a></li>
+                        <li><a href="#" class="rounded">ปีงบประมาณ</a></li>
+                        <li><a href="#" class="rounded">เพิ่มโครงการ</a></li>
                       </ul>
                     </div>
                 </li>
@@ -210,36 +197,19 @@
                     </span>
                 </div>
         </div>
-
-        <div class="bg-light" style="width: 100%;">
-            <div class="p-2 d-md d-flex text-white bg-secondary" style="height: 3rem;">
+        <div class="bg-light " style="width: 100%;">
+            <div class="p-2 d-md d-flex text-white bg-secondary align-items-center" style="height: 3rem;">
                 <a href="#" class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
                     <i class='bx bx-menu-alt-left text-white d-md-none' style="font-size: 1.85rem;"></i>
                 </a>
+                <h3 class="">
+                    @yield('header')
+                </h3>
             </div>
-            <main>
-                @yield('main')
+            <main class="container">
+                @yield('content')
             </main>
         </div>
-        {{-- <script>
-            /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-            var dropdown = document.getElementsByClassName("dropdown-btn");
-            var i;
-            for (i = 0; i < dropdown.length; i++) {
-                dropdown[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var dropdownContent = this.getElementsByClassName("dropdown-container")[
-                    0]; // Access the first element in the collection
-                    console.log("เข้าถึง dropdown-container แล้ว");
-                    if (dropdownContent.style.display === "block") {
-                        dropdownContent.style.transitionDelay = 1s;
-                        dropdownContent.style.display = "none";
-                    } else {
-                        dropdownContent.style.display = "block";
-                    }
-                });
-            }
-        </script> --}}
 </body>
 
 </html>
