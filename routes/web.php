@@ -21,8 +21,11 @@ Route::get('/layout', function () {
     return view('layout');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/stg_dashboard', function () {
+    return view('stg_dashboard');
+});
+Route::get('/okr_kpi_manage', function () {
+    return view('okr_kpi_manage');
 });
 
 Route::get('/stg', [STGController::class, 'index']);

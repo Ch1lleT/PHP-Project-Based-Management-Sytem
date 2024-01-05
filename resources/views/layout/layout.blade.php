@@ -22,6 +22,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
+    {{-- meter grade --}}
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
     <style>
         html,
         body {
@@ -92,22 +95,46 @@
             padding-left: 8px;
             transition-delay: 1s;
         }
+
         li {
             list-style: none;
         }
 
-        .collapse ul li a{
-            color: white;
+        .collapse ul li a {
+            color: white; 
             /* padding-left: 3rem; */
         }
+
+        .test_text {
+            font-size: 15px;
+        }
+
+        /* @media (min-width: 576px) {.test_text {
+            font-size: 10px;
+        }}
+
+        @media (min-width: 768px) {.test_text {
+            font-size: 15px;
+        }}
+
+        @media (min-width: 992px) {.test_text {
+            font-size: 200px;
+        }}
+
+        @media (min-width: 1200px) {.test_text {
+            font-size: 500px;
+        }}
+
+        @media (min-width: 1400px) {.test_text {
+            font-size: 800px;
+        }} */
     </style>
 </head>
 
 <body>
 
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div id="bdSidebar"
-            class="d-flex flex-column flex-shrink-0 p-3 bg-primary text-white offcanvas-md offcanvas-start"
+        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-md offcanvas-start"
             style="width: 280px;">
             <a href="#" class="navbar-brand row d-flex align-items-center">
                 <div class="col-3 ps-3">
@@ -142,51 +169,74 @@
                     <p>National Institute of Metrology (Thailand)</p>
                 </div>
             </a>
-            
-           
- 
+
+
+
             <hr>
             <ul class="mynav nav nav-pills flex-column mb-auto">
                 <hr>
                 <h5>Project base management</h5>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false" ><p>สำหรับผู้ดูแลระบบ</p></a>
+                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#admin-collapse" aria-expanded="false">
+                        <p>สำหรับผู้ดูแลระบบ</p>
+                    </a>
                     <div class="collapse" id="admin-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">ระดับผู้ใช้งาน</a></li>
-                        <li><a href="#" class="rounded">หน่วยงาน</a></li>
-                        <li><a href="#" class="rounded">ผู้ใช้งาน</a></li>
-                      </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="#" class="rounded">ระดับผู้ใช้งาน</a></li>
+                            <li><a href="#" class="rounded">หน่วยงาน</a></li>
+                            <li><a href="#" class="rounded">ผู้ใช้งาน</a></li>
+                        </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#executive-collapse"  aria-expanded="false"><p>สำหรับผู้บริหาร</p></a>
+                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#executive-collapse" aria-expanded="false">
+                        <p>สำหรับผู้บริหาร</p>
+                    </a>
                     <div class="collapse" id="executive-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
-                        <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
-                      </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="#" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
+                            <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
+                        </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#staff-collapse"  aria-expanded="false"><p>สำหรับเจ้าหน้าที่</p></a>
+                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#staff-collapse" aria-expanded="false">
+                        <p>สำหรับเจ้าหน้าที่</p>
+                    </a>
                     <div class="collapse" id="staff-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">ปีงบประมาณ</a></li>
-                        <li><a href="#" class="rounded">เพิ่มโครงการ</a></li>
-                      </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="#" class="rounded">ปีงบประมาณ</a></li>
+                            <li><a href="#" class="rounded">เพิ่มโครงการ</a></li>
+                        </ul>
                     </div>
                 </li>
-                
+
                 <h5>OKR/ KPI</h5>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse" data-bs-target="#report-collapse"  aria-expanded="false"><p>Report</p></a>
+                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#report-collapse" aria-expanded="false">
+                        <p>Report</p>
+                    </a>
                     <div class="collapse" id="report-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                        <li><a href="#" class="rounded">Overview</a></li>
-                        <li><a href="#" class="rounded">Updates</a></li>
-                        <li><a href="#" class="rounded">Reports</a></li>
-                      </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="#" class="rounded">Overview</a></li>
+                            <li><a href="#" class="rounded">Updates</a></li>
+                            <li><a href="#" class="rounded">Reports</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#okr-collapse" aria-expanded="false">
+                        <p>OKR / KPI Manage</p>
+                    </a>
+                    <div class="collapse" id="okr-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="#" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR</a></li>
+                        </ul>
                     </div>
                 </li>
                 <hr>
@@ -197,19 +247,22 @@
                     </span>
                 </div>
         </div>
-        <div class="bg-light " style="width: 100%;">
-            <div class="p-2 d-md d-flex text-white bg-secondary align-items-center" style="height: 3rem;">
-                <a href="#" class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
+        <div class="bg-light" style="width: 100% ">
+            <div class="p-2 d-md d-flex text-white align-items-center"
+                style="height: 3.5rem; background-color: #a3a3a3;">
+                <a href="#" class=" align-items-center" data-bs-toggle="offcanvas"
+                    data-bs-target="#bdSidebar">
                     <i class='bx bx-menu-alt-left text-white d-md-none' style="font-size: 1.85rem;"></i>
                 </a>
-                <h3 class="">
+                <h3 class="d-flex align-items-center">
                     @yield('header')
                 </h3>
             </div>
-            <main class="container">
+            <main class="min-vh-100 p-3">
                 @yield('content')
             </main>
         </div>
+        @yield('script')
 </body>
 
 </html>
