@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create("role", function(Blueprint $table){
             $table->string("role_id");
             $table->string("role_name");
-            $table->json("permisson"); // will change
     
             $table->primary(["role_id"]);
         });
