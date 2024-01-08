@@ -106,7 +106,7 @@
         }
 
         .test_text {
-            font-size: 15px;
+            font-size: 20px;
         }
 
         /* @media (min-width: 576px) {.test_text {
@@ -134,8 +134,7 @@
 <body>
 
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-md offcanvas-start"
-            style="width: 280px;">
+        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-xl offcanvas-start">
             <a href="#" class="navbar-brand row d-flex align-items-center">
                 <div class="col-3 ps-3">
                     <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
@@ -169,9 +168,6 @@
                     <p>National Institute of Metrology (Thailand)</p>
                 </div>
             </a>
-
-
-
             <hr>
             <ul class="mynav nav nav-pills flex-column mb-auto">
                 <hr>
@@ -247,16 +243,15 @@
                     </span>
                 </div>
         </div>
-        <div class="bg-light" style="width: 100% ">
-            <div class="p-2 d-md d-flex text-white align-items-center"
-                style="height: 3.5rem; background-color: #a3a3a3;">
+        <div class="bg-light w-100" >
+            <div class="p-2 d-md d-flex text-white align-items-center" style="height: 3.5rem; background-color: #a3a3a3;">
                 <a href="#" class=" align-items-center" data-bs-toggle="offcanvas"
                     data-bs-target="#bdSidebar">
-                    <i class='bx bx-menu-alt-left text-white d-md-none' style="font-size: 1.85rem;"></i>
+                    <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;"></i>
                 </a>
-                <h3 class="d-flex align-items-center">
+                <div class="fs-3 d-flex align-items-center m-0" style="width: 100%">
                     @yield('header')
-                </h3>
+                </div>
             </div>
             <main class="min-vh-100 p-3">
                 @yield('content')

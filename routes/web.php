@@ -27,5 +27,8 @@ Route::get('/stg_dashboard', function () {
 Route::get('/okr_kpi_manage', function () {
     return view('okr_kpi_manage');
 });
+Route::get('/fiscal_years', function () {
+    return view('fiscal_years');
+});
 
 Route::get('/stg', [STGController::class, 'index']);
