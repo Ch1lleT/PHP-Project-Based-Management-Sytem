@@ -146,14 +146,26 @@
                 </div>
                 <div class="row align-items-start content">
                     <div class="col-12">
-                        <div class="form-label">Username</div>
-                        <input type="text" class="form-control" placeholder="Username" name="Username">
-                        <div class="form-label input-group">Password</div>
-                        <input type="text" class="form-control" placeholder="Password" name="Password">
-                        <div class="d-flex justify-content-end mt-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
+                        <form action="/login" method="post">
+                            @csrf
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                            <label for="password" class="form-label input-group">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
                     </div>
+
+                    @if ($errors->any())
+                        <ul>
+                        @foreach ($errors->all() as $err )
+                            <li>{{$err}}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+
                 </div>
             </div>
         </div>
