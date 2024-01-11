@@ -150,18 +150,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 p-4 right-area d-lfex align-items-center">
-                <div>
-                    <div class=" text-center mb-3" style="font-size: 100px">Login</div>
-                    <div class="login-form ">
-                        <label for="inputPassword5" class="form-label">Username</label>
-                        <input type="text" id="inputUsername" class="form-control"
-                            aria-describedby="passwordHelpBlock">
-                        <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" id="inputPassword" class="form-control"
-                            aria-describedby="passwordHelpBlock">
+            <div class="col p-4 right-area">
+                <div class="header text-center row align-items-center">
+                    <h1 class="col display-1">Login</h1>
+                </div>
+                <div class="row align-items-start content">
+                    <div class="col-12">
+                        <form action="/login" method="post">
+                            @csrf
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                            <label for="password" class="form-label input-group">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="text-end mt-4"><button class="btn btn-primary ">Login</button></div>
+
+                    @if ($errors->any())
+                        <ul>
+                        @foreach ($errors->all() as $err )
+                            <li>{{$err}}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+
                 </div>
             </div>
         </div>
