@@ -101,7 +101,7 @@
         }
 
         .collapse ul li a {
-            color: white; 
+            color: white;
             /* padding-left: 3rem; */
         }
 
@@ -109,32 +109,13 @@
             font-size: 20px;
         }
 
-        /* @media (min-width: 576px) {.test_text {
-            font-size: 10px;
-        }}
-
-        @media (min-width: 768px) {.test_text {
-            font-size: 15px;
-        }}
-
-        @media (min-width: 992px) {.test_text {
-            font-size: 200px;
-        }}
-
-        @media (min-width: 1200px) {.test_text {
-            font-size: 500px;
-        }}
-
-        @media (min-width: 1400px) {.test_text {
-            font-size: 800px;
-        }} */
     </style>
 </head>
 
 <body>
-
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-xl offcanvas-start">
+        <div id="bdSidebar"
+            class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-xl offcanvas-start">
             <a href="#" class="navbar-brand row d-flex align-items-center">
                 <div class="col-3 ps-3">
                     <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
@@ -243,17 +224,18 @@
                     </span>
                 </div>
         </div>
-        <div class="bg-light w-100" >
-            <div class="p-2 d-md d-flex text-white align-items-center" style="height: 3.5rem; background-color: #a3a3a3;">
+        <div class="bg-light w-100">
+            <div class="p-2 d-md d-flex text-white align-items-center w-100"
+                style="height: 3.5rem; background-color: #a3a3a3;">
                 <a href="#" class=" align-items-center" data-bs-toggle="offcanvas"
                     data-bs-target="#bdSidebar">
                     <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;"></i>
                 </a>
-                <div class="fs-3 d-flex align-items-center m-0" style="width: 100%">
+                <div class="fs-3 d-flex align-items-center m-0 w-100">
                     @yield('header')
                 </div>
             </div>
-            <main class="min-vh-100 p-3">
+            <main class="min-vh-100 p-3 w-100">
                 @yield('content')
             </main>
         </div>

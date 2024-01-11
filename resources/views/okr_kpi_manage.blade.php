@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row w-100 d-flex justify-content-center gap-5">
-        <div class="col-12 col-xl-6 row d-flex align-self-stretch gap-4">
+        <div class="col-12 col-xl-6 row d-flex align-self-stretch gap-4 p-0">
             <form class="d-flex">
                 <div class="row gap-2 border border-2 p-3 rounded">
                     <h3>Add OKR & KPI</h3>

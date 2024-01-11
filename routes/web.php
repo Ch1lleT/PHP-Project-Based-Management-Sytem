@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('login');
 });
 Route::get('/layout', function () {
-    return view('layout');
+    return view('layout/layout');
 });
 
 Route::get('/stg_dashboard', function () {

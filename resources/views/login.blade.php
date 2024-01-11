@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | page</title>
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
@@ -25,7 +25,7 @@
 
         .form {
             width: 100%;
-            height: 75%;
+            height: 55%;
             border-radius: 5px;
         }
 
@@ -36,7 +36,7 @@
 
         .left-area {
             background-color: #164863;
-            border-radius: 5px;
+            border-radius: 5px 0px 0px 5px;
         }
 
         .right-area {
@@ -60,16 +60,26 @@
             background-color: #164863;
             border: none;
         }
+        @media (min-width: 992px){
+            .btn{
+                /* display: block; */
+            }
+        }
+        @media (min-width: 100px){
+            .left-area{
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container d-flex align-items-center justify-content-center">
-        <div class=" form shadow-lg row">
-            <div class="col left-area d-flex align-items-center justify-content-center ">
-                <div class="row align-items-center text-center">
-                    <div class="col-12">
-                        <svg width="403" height="300" viewBox="0 0 403 532" fill="none"
+        <div class="form shadow-lg row">
+            <div class="col-lg-6 d-none d-lg-block left-area d-flex align-items-center justify-content-center p-3">
+                <div class="h-100  text-center">
+                    <div>
+                        <svg width="203" height="300" viewBox="0 0 403 532" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g filter="url(#filter0_d_69_2)">
                                 <path d="M209 0L265 229H14L104.288 147L209 0Z" fill="#EA1B21" />
@@ -132,7 +142,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="col-12">
+                    <div>
                         <div class="nimt">
                             <h1>สถาบันมาตรวิทยาแห่งชาติ</h1>
                             <p>National Institute of Metrology (Thailand)</p>
@@ -140,20 +150,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col p-4 right-area">
-                <div class="header text-center row align-items-center">
-                    <h1 class="col display-1">Login</h1>
-                </div>
-                <div class="row align-items-start content">
-                    <div class="col-12">
-                        <div class="form-label">Username</div>
-                        <input type="text" class="form-control" placeholder="Username" name="Username">
-                        <div class="form-label input-group">Password</div>
-                        <input type="text" class="form-control" placeholder="Password" name="Password">
-                        <div class="d-flex justify-content-end mt-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
+            <div class="col-lg-6 col-md-12 p-4 right-area d-lfex align-items-center">
+                <div>
+                    <div class=" text-center mb-3" style="font-size: 100px">Login</div>
+                    <div class="login-form ">
+                        <label for="inputPassword5" class="form-label">Username</label>
+                        <input type="text" id="inputUsername" class="form-control"
+                            aria-describedby="passwordHelpBlock">
+                        <label for="inputPassword5" class="form-label">Password</label>
+                        <input type="password" id="inputPassword" class="form-control"
+                            aria-describedby="passwordHelpBlock">
                     </div>
+                    <div class="text-end mt-4"><button class="btn btn-primary ">Login</button></div>
                 </div>
             </div>
         </div>
