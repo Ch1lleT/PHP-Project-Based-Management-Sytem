@@ -40,7 +40,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ / แผน 2567</h1>
+                        <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
@@ -59,13 +59,13 @@
                         <div class="mb-3 row text-end">
                             <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="cost">
+                                <input type="number" class="form-control" id="cost">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,8 @@
         <div class="col-3">
             <div class="header d-flex justify-content-between align-items-center">
                 <div class="h4 m-0">แผน</div>
-                <a href="">
+                <a href="" data-bs-toggle="modal"
+                data-bs-target="#add_plane">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
                         <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
                         <g fill="#fff">
@@ -122,6 +123,40 @@
                         </g>
                     </svg>
                 </a>
+            </div>
+            <div class="modal fade" id="add_plane" tabindex="-1" aria-labelledby="add_plane_label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="add_plane_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="mb-3 row ">
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="plane">
+                                </div>
+                            </div>
+                            <div class="mb-3 row text-end">
+                                <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="cost">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="content">
@@ -282,13 +317,29 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3 row px-3">
-                                        <label for="name" class="col-sm-3 col-form-label">งบประมาณ</label>
+                                        <label for="name" class="col-sm-3 col-form-label">ผู้ร่วมโครงการ</label>
                                         <div class="col-sm-7">
-                                                <input type="number" class="form-control" id="name">
+                                                <input type="text" class="form-control" id="name">
                                         </div>
                                         <button class="col-sm-2 btn btn-primary"> Add</button>
                                     </div>
-                                    <div class="overflow-y-scroll px-3">
+                                    <div class="overflow-y-scroll px-3" style="height: 500px;">
+                                        <div class="row">
+                                            <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
+                                            <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                            <div class="col-sm-2">
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <div class="row">
+                                            <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
+                                            <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                            <div class="col-sm-2">
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                            </div>
+                                            <hr>
+                                        </div>
                                         <div class="row">
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
@@ -367,7 +418,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-success">Save changes</button>
                         </div>
                     </div>
                 </div>

@@ -37,6 +37,12 @@ Route::get('/okr_kpi_manage', function () {
 Route::get('/fiscal_years', function () {
     return view('fiscal_years');
 });
+Route::get('/user_list', function () {
+    return view('user_list');
+});
+Route::get('/agency', function () {
+    return view('agency');
+});
 
 
 
