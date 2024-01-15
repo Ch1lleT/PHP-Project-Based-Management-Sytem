@@ -29,7 +29,7 @@ Route::get('/layout', function () {
 
 Route::get('/stg_dashboard', function () {
     return view('stg_dashboard');
-})->middleware('auth');
+});
 
 Route::get('/okr_kpi_manage', function () {
     return view('okr_kpi_manage');
