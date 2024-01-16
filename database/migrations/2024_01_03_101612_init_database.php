@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -195,15 +194,6 @@ return new class extends Migration
             $table->primary(["sub_act_id"]);
         });
 
-        Schema::create('have_org', function (Blueprint $table) {
-            $table->string('user_id');
-            $table->string('org_id');
-            
-            $table->foreign('user_id')->references('user_id')->on('user');
-            $table->foreign('org_id')->references('org_id')->on('organization');
-
-        });
-
         Schema::create('have_sub_org', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('sub_org_id');
@@ -320,8 +310,6 @@ return new class extends Migration
         Schema::dropIfExists('organization');
         
         Schema::dropIfExists('sub_organization');
-        
-        Schema::dropIfExists('have_org');
         
         Schema::dropIfExists('have_sub_org');
         
