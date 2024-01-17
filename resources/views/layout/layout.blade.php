@@ -114,8 +114,7 @@
 
 <body>
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div id="bdSidebar"
-            class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white offcanvas-xl offcanvas-start">
+        <div style="background-color: #337ab7;" id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white offcanvas-start" >
             <a href="#" class="navbar-brand row d-flex align-items-center">
                 <div class="col-3 ps-3">
                     <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
