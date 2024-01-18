@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string("phone",10);
             $table->string("address");
             $table->string("role_id");
+            $table->boolean("is_active");
 
 
             $table->foreign("role_id")->references("role_id")->on("role");
@@ -114,6 +115,7 @@ return new class extends Migration
         Schema::create('organization', function (Blueprint $table) {
             $table->string('org_id');
             $table->string('org_name');
+            $table->boolean("is_active");
 
             $table->primary(['org_id']);
         });
@@ -122,6 +124,7 @@ return new class extends Migration
             $table->string('sub_org_id');
             $table->string('main_org');
             $table->string('org_name');
+            $table->boolean("is_active");
             
             $table->primary(['sub_org_id']);
         });
@@ -130,6 +133,7 @@ return new class extends Migration
             $table->string("stg_id");
             $table->string("name");
             $table->string("desc");
+            $table->boolean("is_active");
 
             $table->primary(['stg_id']);
         });
@@ -141,6 +145,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("desc")->nullable();
             $table->float("weight");
+            $table->boolean("is_active");
             
             $table->foreign("stg_id")->references("stg_id")->on("strategy");
             $table->primary(['plan_id']);
@@ -158,6 +163,7 @@ return new class extends Migration
             $table->string("desc");
             $table->integer("balance");
             $table->float("weight");
+            $table->boolean("is_active");
             
             
             $table->foreign("plan_id")->references("plan_id")->on("plan");
@@ -170,28 +176,17 @@ return new class extends Migration
 
         Schema::create("activity", function(Blueprint $table){
             $table->string("act_id");
+            $table->string("act_ref");
             $table->string("act_name");
             $table->string("type");
             $table->string("project_id");
             $table->string("desc");
             $table->integer("balance");
             $table->float("weight");
+            $table->boolean("is_active");
             
             $table->foreign("project_id")->references("project_id")->on("project");
             $table->primary(["act_id"]);
-        });
-        
-        Schema::create("sub_activity", function(Blueprint $table){
-            $table->string("sub_act_id");
-            $table->string("sub_act_name");
-            $table->string("act_id");
-            $table->string("type");
-            $table->string("desc");
-            $table->integer("balance");
-            $table->float("weight");
-            
-            $table->foreign("act_id")->references("act_id")->on("activity");
-            $table->primary(["sub_act_id"]);
         });
 
         Schema::create('have_sub_org', function (Blueprint $table) {
@@ -224,10 +219,13 @@ return new class extends Migration
         });
 
         Schema::create("group", function(Blueprint $table){
-            $table->string("user_id");
+            $table->string("group_id");
+            $table->string("editor");
+            $table->string("group_type");
+            $table->string("group_name");
             $table->json("group_json");
 
-            $table->foreign("user_id")->references("user_id")->on("user");
+            $table->primary(["group_id"]);
         });
         
         Schema::create("setting", function(Blueprint $table){
@@ -330,8 +328,6 @@ return new class extends Migration
         Schema::dropIfExists("project");
         
         Schema::dropIfExists("activity");
-        
-        Schema::dropIfExists("sub_activity");
         
         Schema::dropIfExists("role");
         
