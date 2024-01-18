@@ -43,6 +43,9 @@ Route::get('/user_list', function () {
 Route::get('/agency', function () {
     return view('agency');
 });
+Route::get('/org_chart', function () {
+    return view('org_chart');
+});
 
 
 

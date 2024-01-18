@@ -112,8 +112,7 @@
         <div class="col-3">
             <div class="header d-flex justify-content-between align-items-center">
                 <div class="h4 m-0">แผน</div>
-                <a href="" data-bs-toggle="modal"
-                data-bs-target="#add_plane">
+                <a href="" data-bs-toggle="modal" data-bs-target="#add_plane">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
                         <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
                         <g fill="#fff">
@@ -128,7 +127,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="add_plane_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
                             <div class="mb-3 row ">
@@ -173,6 +173,30 @@
                         <tr>
                             <td>โครงการ</td>
                         </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
+                        <tr>
+                            <td>โครงการ</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -204,14 +228,15 @@
                                 <div class="col-6">
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">ชื่อ</label>
-                                        <div class="col-sm-9" >
+                                        <div class="col-sm-9">
                                             <input type="text" class="form-control" id="name">
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-end">
                                         <label for="stg" class="col-sm-3 col-form-label">ยุทธศาสตร์</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -222,7 +247,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">ผลผลิต</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -233,13 +259,14 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">งบประมาณ</label>
                                         <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="name">
+                                            <input type="number" class="form-control" id="name">
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">ประเภทงบ</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -250,7 +277,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">งบจาก</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -261,7 +289,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">หน่วยงาน</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -272,7 +301,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -283,7 +313,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">Advisor</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -294,7 +325,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">Supervisor</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -305,7 +337,8 @@
                                     <div class="mb-3 row text-end">
                                         <label for="name" class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -318,7 +351,7 @@
                                     <div class="mb-3 row px-3">
                                         <label for="name" class="col-sm-3 col-form-label">ผู้ร่วมโครงการ</label>
                                         <div class="col-sm-7">
-                                                <input type="text" class="form-control" id="name">
+                                            <input type="text" class="form-control" id="name">
                                         </div>
                                         <button class="col-sm-2 btn btn-primary"> Add</button>
                                     </div>
@@ -327,7 +360,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -335,7 +373,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -343,7 +386,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -351,7 +399,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -359,7 +412,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -367,7 +425,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -375,7 +438,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -383,7 +451,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -391,7 +464,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -399,7 +477,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -407,7 +490,12 @@
                                             <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
                                             <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
                                             <div class="col-sm-2">
-                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32"><path fill="#FC0005" d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z"></path></svg></a>
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                        height="40" viewBox="0 0 32 32">
+                                                        <path fill="#FC0005"
+                                                            d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                        </path>
+                                                    </svg></a>
                                             </div>
                                             <hr>
                                         </div>
@@ -423,67 +511,149 @@
                 </div>
             </div>
             <hr>
-            <div class="content overflow-x-scroll">
-                <table class="table ">
+            <div class="content">
+                <table id="myTable" class="table" style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col">ชื่อโครงการ</th>
-                            <th scope="col">ผู้ดูแลโครงการ</th>
-                            <th scope="col">งบจาก</th>
-                            <th scope="col">งบประเภท</th>
-                            <th scope="col">งบประมาณ</th>
-                            <th scope="col">หน่วยงาน</th>
-                            <th scope="col">แก้ไข</th>
+                            <th>ชื่อโครงการ</th>
+                            <th>ผู้ดูแลโครงการ</th>
+                            <th>งบจาก</th>
+                            <th>จบประเภท</th>
+                            <th>งบประมาณ</th>
+                            <th>หน่วยงาน</th>
+                            <th>แก้ไข</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">โครงการ</th>
-                            <td>ศิวพล</td>
-                            <td>เมีย</td>
-                            <td>เบี้ยครองชีพ</td>
-                            <td>10</td>
-                            <td>ครอบครัว</td>
-                            <td><a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                        viewBox="0 0 12 12">
-                                        <path fill="#000000"
-                                            d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                        </path>
-                                    </svg>
-                                </a></td>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
                         </tr>
                         <tr>
-                            <th scope="row">โครงการ</th>
-                            <td>ศิวพล</td>
-                            <td>เมีย</td>
-                            <td>เบี้ยครองชีพ</td>
-                            <td>10</td>
-                            <td>ครอบครัว</td>
-                            <td><a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                        viewBox="0 0 12 12">
-                                        <path fill="#000000"
-                                            d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                        </path>
-                                    </svg>
-                                </a></td>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
                         </tr>
                         <tr>
-                            <th scope="row">โครงการ</th>
-                            <td>ศิวพล</td>
-                            <td>เมีย</td>
-                            <td>เบี้ยครองชีพ</td>
-                            <td>10</td>
-                            <td>ครอบครัว</td>
-                            <td><a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                        viewBox="0 0 12 12">
-                                        <path fill="#000000"
-                                            d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                        </path>
-                                    </svg>
-                                </a></td>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรเจค</td>
+                            <td>นันทกร</td>
+                            <td>มว</td>
+                            <td>ลงทุน</td>
+                            <td>1150</td>
+                            <td>กฟอ.</td>
+                            <td>
+                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path></svg>                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -491,4 +661,8 @@
         </div>
     </div>
     </div>
+    <script>
+        new DataTable('#myTable');
+    </script>
+
 @endsection
