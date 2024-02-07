@@ -40,13 +40,19 @@ Route::get('/fiscal_years', function () {
 Route::get('/user_list', function () {
     return view('user_list');
 });
-Route::get('/agency', function () {
-    return view('agency');
+Route::get('/org', function () {
+    return view('org');
 });
 Route::get('/org_chart', function () {
     return view('org_chart');
 });
+Route::get('/edit_profile', function () {
+    return view('edit_profile');
+});
 
-
+//fiscal_years, org, user_list
 
 Route::get('/stg', [STGController::class, 'index']);
+
+//fix edit_profile, fiscal_years, org
+//build org_chart, stg_dashboard

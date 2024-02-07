@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -22,7 +22,15 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    
+
+    <link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity=
+"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
@@ -86,9 +94,11 @@
             margin: 0;
             font-weight: 800;
             font-size: 17px;
-
+           
         }
-
+        a{
+            text-decoration: none;
+        }
         h5 {
             font-weight: bold;
         }
@@ -117,13 +127,20 @@
             font-size: 20px;
         }
 
+        @media screen and (max-width: 1200px) {
+
+            #bdSidebar
+             {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div style="background-color: #337ab7;" id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white offcanvas-start" >
-            <a href="#" class="navbar-brand row d-flex align-items-center">
+        <div style="background-color: #337ab7;" id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white offcanvas-start">
+            <a href="#" class="navbar-brand row d-flex align-items-center" >
                 <div class="col-3 ps-3">
                     <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -155,6 +172,7 @@
                     <p>สถาบันมาตรวิทยาแห่งชาติ</p>
                     <p>National Institute of Metrology (Thailand)</p>
                 </div>
+
             </a>
             <hr>
             <ul class="mynav nav nav-pills flex-column mb-auto">
@@ -229,6 +247,7 @@
                         <h6 class="mt-1 mb-0">NIMT</h6>
                         <small>NIMT@NIMT.COM</small>
                     </span>
+
                 </div>
         </div>
         <div class="bg-light w-100">

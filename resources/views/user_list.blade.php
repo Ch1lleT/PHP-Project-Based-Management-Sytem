@@ -112,18 +112,13 @@
                                 </path>
                             </svg>
                         </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                <path fill="#FC0005"
-                                    d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z">
-                                </path>
-                            </svg>
-                        </a>
                     </div>
                 </td>
                 <td>
-                    <span>
-                        <div id="circle" style="width: 500px; height: 500px; border-radius: 100%; background-color: green;border: 1px black solid;"></div>                            
+                    <span class="d-flex justify-content-center">
+                        <div id="circle"
+                            style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;">
+                        </div>
                     </span>
                 </td>
             </tr>
@@ -139,18 +134,13 @@
                                 </path>
                             </svg>
                         </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                <path fill="#FC0005"
-                                    d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z">
-                                </path>
-                            </svg>
-                        </a>
                     </div>
                 </td>
-                <td>
+                <td class="d-flex justify-content-center">
                     <span>
-                        <div id="circle" style="width: 50px; height: 50px; border-radius: 100%; background-color: green;border: 1px black solid;"></div>                            
+                        <div id="circle"
+                            style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;">
+                        </div>
                     </span>
                 </td>
             </tr>
@@ -166,18 +156,13 @@
                                 </path>
                             </svg>
                         </a>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                <path fill="#FC0005"
-                                    d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z">
-                                </path>
-                            </svg>
-                        </a>
                     </div>
                 </td>
                 <td>
-                    <span>
-                        <div id="circle" style="width: 50px; height: 50px; border-radius: 100%; background-color: green;border: 1px black solid;"></div>                            
+                    <span class="d-flex justify-content-center">
+                        <div id="circle"
+                            style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;">
+                        </div>
                     </span>
                 </td>
             </tr>
@@ -186,13 +171,22 @@
     </div>
     <script>
         new DataTable('#myTable');
-        const circle = document.getElementById("circle");
-      circle.addEventListener("click", () => {
-        if (circle.style.backgroundColor =='red') {
-            circle.style.backgroundColor ='green';
-        }else{
-            circle.style.backgroundColor ='red';
+
+        //this is a circle color change Active and disable
+        function toggleColor(circle) {
+            if (circle.style.backgroundColor === 'red') {
+                circle.style.backgroundColor = 'green';
+            } else {
+                circle.style.backgroundColor = 'red';
+            }
         }
-      });
+
+        const circles = document.querySelectorAll('#circle');
+
+        circles.forEach(circle => {
+            circle.addEventListener("click", () => {
+                toggleColor(circle);
+            });
+        });
     </script>
 @endsection
