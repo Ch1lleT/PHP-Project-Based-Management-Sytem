@@ -9,6 +9,9 @@ class Setting extends Model
 {
     use HasFactory;
 
+    protected $table = 'setting';
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
         'setting_json',

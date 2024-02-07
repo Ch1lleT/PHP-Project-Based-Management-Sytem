@@ -9,6 +9,9 @@ class Target_Snapshot extends Model
 {
     use HasFactory;
 
+    protected $table = 'target_snapshot';
+    public $timestamps = false;
+
     protected $fillable = [
         'snap_id',
         'month',

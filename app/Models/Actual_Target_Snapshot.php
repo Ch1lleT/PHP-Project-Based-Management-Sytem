@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actual_Target_Snapshot extends Model
 {
+
+    protected $table = 'actual_target_snapshot';
+    
+    public $timestamps = false;
+
     protected $fillable = [
         'snap_id',
         'month',

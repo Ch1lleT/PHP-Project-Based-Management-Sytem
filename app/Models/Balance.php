@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Balance extends Model
 {
+    protected $table = 'balance';
+    public $timestamps = false;
+
     protected $fillable = [
         'balance_id',
         'balance_type',

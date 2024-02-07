@@ -9,6 +9,9 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $table = 'project';
+    public $timestamps = false;
+
     protected $fillable = [
         'project_id',
         'project_name',

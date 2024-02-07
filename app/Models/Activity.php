@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
+    
+    protected $table = 'activity';
+    public $timestamps = false;
 
     protected $fillable = [
         'act_id',

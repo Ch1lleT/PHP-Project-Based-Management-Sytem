@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Balance_Snapshot extends Model
 {
+    protected $table = 'balance_snapshot';
+    public $timestamps = false;
+
     protected $fillable = [
         'snap_id',
         'month',

@@ -9,6 +9,9 @@ class HaveRole extends Model
 {
     use HasFactory;
 
+    protected $table = 'have_role';
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
         'role_id',

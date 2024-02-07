@@ -9,6 +9,9 @@ class Target_Kpi extends Model
 {
     use HasFactory;
 
+    protected $table = 'target_kpi';
+    public $timestamps = false;
+
     protected $fillable = [
         'targetkpi_id',
         'targetkpi_type',

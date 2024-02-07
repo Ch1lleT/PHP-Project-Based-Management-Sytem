@@ -9,6 +9,9 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $table = 'group';
+    public $timestamps = false;
+
     protected $fillable = [
         'group_id',
         'editor',

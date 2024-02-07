@@ -9,6 +9,9 @@ class Request_Close_Activity extends Model
 {
     use HasFactory;
 
+    protected $table = 'request_close_activity';
+    public $timestamps = false;
+
     protected $fillable = [
         'req_id',
         'act_id',
