@@ -65,6 +65,7 @@ return new class extends Migration
             $table->string('acttarget_type');
 
             $table->primary(['acttarget_id']);
+
         });
 
         Schema::create('actual_target_snapshot', function (Blueprint $table) {
@@ -84,6 +85,7 @@ return new class extends Migration
             $table->integer('acttar12');
 
             $table->primary(['snap_id']);
+
         });
 
         Schema::create('balance', function (Blueprint $table) {
