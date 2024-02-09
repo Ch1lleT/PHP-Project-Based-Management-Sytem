@@ -42,24 +42,6 @@ return new class extends Migration
             $table->primary(['user_id']);
         });
         
-        Schema::create('comments', function (Blueprint $table) {
-            $table->string('act_id');
-            $table->string('comment01');
-            $table->string('comment02');
-            $table->string('comment03');
-            $table->string('comment04');
-            $table->string('comment05');
-            $table->string('comment06');
-            $table->string('comment07');
-            $table->string('comment08');
-            $table->string('comment09');
-            $table->string('comment10');
-            $table->string('comment11');
-            $table->string('comment12');
-
-            $table->primary(['act_id']);
-        });
-
         Schema::create('actual_target', function (Blueprint $table) {
             $table->string('acttarget_id');
             $table->string('acttarget_type');
@@ -71,18 +53,18 @@ return new class extends Migration
         Schema::create('actual_target_snapshot', function (Blueprint $table) {
             $table->string('snap_id');
             $table->integer('month');
-            $table->integer('acttar01');
-            $table->integer('acttar02');
-            $table->integer('acttar03');
-            $table->integer('acttar04');
-            $table->integer('acttar05');
-            $table->integer('acttar06');
-            $table->integer('acttar07');
-            $table->integer('acttar08');
-            $table->integer('acttar09');
-            $table->integer('acttar10');
-            $table->integer('acttar11');
-            $table->integer('acttar12');
+            $table->integer('acttar01')->nullable()->default(null);
+            $table->integer('acttar02')->nullable()->default(null);
+            $table->integer('acttar03')->nullable()->default(null);
+            $table->integer('acttar04')->nullable()->default(null);
+            $table->integer('acttar05')->nullable()->default(null);
+            $table->integer('acttar06')->nullable()->default(null);
+            $table->integer('acttar07')->nullable()->default(null);
+            $table->integer('acttar08')->nullable()->default(null);
+            $table->integer('acttar09')->nullable()->default(null);
+            $table->integer('acttar10')->nullable()->default(null);
+            $table->integer('acttar11')->nullable()->default(null);
+            $table->integer('acttar12')->nullable()->default(null);
 
             $table->primary(['snap_id']);
 
@@ -98,18 +80,18 @@ return new class extends Migration
         Schema::create('balance_snapshot', function (Blueprint $table) {
             $table->string('snap_id');
             $table->integer('month');
-            $table->integer('balance01');
-            $table->integer('balance02');
-            $table->integer('balance03');
-            $table->integer('balance04');
-            $table->integer('balance05');
-            $table->integer('balance06');
-            $table->integer('balance07');
-            $table->integer('balance08');
-            $table->integer('balance09');
-            $table->integer('balance10');
-            $table->integer('balance11');
-            $table->integer('balance12');
+            $table->integer('balance01')->nullable()->default(null);
+            $table->integer('balance02')->nullable()->default(null);
+            $table->integer('balance03')->nullable()->default(null);
+            $table->integer('balance04')->nullable()->default(null);
+            $table->integer('balance05')->nullable()->default(null);
+            $table->integer('balance06')->nullable()->default(null);
+            $table->integer('balance07')->nullable()->default(null);
+            $table->integer('balance08')->nullable()->default(null);
+            $table->integer('balance09')->nullable()->default(null);
+            $table->integer('balance10')->nullable()->default(null);
+            $table->integer('balance11')->nullable()->default(null);
+            $table->integer('balance12')->nullable()->default(null);
 
             $table->primary(['snap_id']);
         });
@@ -117,7 +99,7 @@ return new class extends Migration
         Schema::create('organization', function (Blueprint $table) {
             $table->string('org_id');
             $table->string('org_name');
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
 
             $table->primary(['org_id']);
         });
@@ -126,9 +108,10 @@ return new class extends Migration
             $table->string('sub_org_id');
             $table->string('main_org');
             $table->string('org_name');
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
             
             $table->primary(['sub_org_id']);
+            $table->foreign("main_org")->references("org_id")->on("organization");
         });
 
         Schema::create("strategy" , function(Blueprint $table){
@@ -191,6 +174,24 @@ return new class extends Migration
             $table->primary(["act_id"]);
         });
 
+        Schema::create('comments', function (Blueprint $table) {
+            $table->string('act_id');
+            $table->string('comment01')->nullable()->default(null);
+            $table->string('comment02')->nullable()->default(null);
+            $table->string('comment03')->nullable()->default(null);
+            $table->string('comment04')->nullable()->default(null);
+            $table->string('comment05')->nullable()->default(null);
+            $table->string('comment06')->nullable()->default(null);
+            $table->string('comment07')->nullable()->default(null);
+            $table->string('comment08')->nullable()->default(null);
+            $table->string('comment09')->nullable()->default(null);
+            $table->string('comment10')->nullable()->default(null);
+            $table->string('comment11')->nullable()->default(null);
+            $table->string('comment12')->nullable()->default(null);
+
+            $table->foreign(['act_id'])->references("act_id")->on('activity');
+        });
+
         Schema::create('have_sub_org', function (Blueprint $table) {
             $table->string('user_id');
             $table->string('sub_org_id');
@@ -223,11 +224,12 @@ return new class extends Migration
         Schema::create("group", function(Blueprint $table){
             $table->string("group_id");
             $table->string("editor");
-            $table->string("group_type");
+            $table->enum("group_type",["Plan","Strategy","Project","Activity"]);
             $table->string("group_name");
             $table->json("group_json");
 
             $table->primary(["group_id"]);
+            $table->foreign("editor")->references("user_id")->on('user');
         });
         
         Schema::create("setting", function(Blueprint $table){
@@ -261,23 +263,24 @@ return new class extends Migration
 
             $table->primary(["targetkpi_id"]);
         });
-
+        
         Schema::create("target_snapshot", function(Blueprint $table){
             $table->string("snap_id"); // composit key from targetkpi_type + targetkpi_id
             $table->integer("month",false,true);
-            $table->integer("target1");
-            $table->integer("target2");
-            $table->integer("target3");
-            $table->integer("target4");
-            $table->integer("target5");
-            $table->integer("target6");
-            $table->integer("target7");
-            $table->integer("target8");
-            $table->integer("target9");
-            $table->integer("target10");
-            $table->integer("target11");
-            $table->integer("target12");
-
+            $table->integer("target1")->nullable()->default(null);
+            $table->integer("target2")->nullable()->default(null);
+            $table->integer("target3")->nullable()->default(null);
+            $table->integer("target4")->nullable()->default(null);
+            $table->integer("target5")->nullable()->default(null);
+            $table->integer("target6")->nullable()->default(null);
+            $table->integer("target7")->nullable()->default(null);
+            $table->integer("target8")->nullable()->default(null);
+            $table->integer("target9")->nullable()->default(null);
+            $table->integer("target10")->nullable()->default(null);
+            $table->integer("target11")->nullable()->default(null);
+            $table->integer("target12")->nullable()->default(null);
+            
+            $table->primary(["snap_id"]);
         });
 
         Schema::create("request_close_activity", function(Blueprint $table){
@@ -298,7 +301,9 @@ return new class extends Migration
         Schema::dropIfExists('target');
 
         Schema::dropIfExists('comments');
-        
+
+        Schema::dropIfExists("request_close_activity");
+
         Schema::dropIfExists('actual_target');
 
         Schema::dropIfExists('actual_target_snapshot');
@@ -307,11 +312,11 @@ return new class extends Migration
 
         Schema::dropIfExists('balance_snapshot');
         
-        Schema::dropIfExists('organization');
-        
         Schema::dropIfExists('have_sub_org');
         
         Schema::dropIfExists('sub_organization');
+        
+        Schema::dropIfExists('organization');
         
         Schema::dropIfExists('log');
         
@@ -326,9 +331,7 @@ return new class extends Migration
         Schema::dropIfExists("target_kpi");
         
         Schema::dropIfExists("target_snapshot");
-        
-        Schema::dropIfExists("request_close_activity");
-        
+                
         Schema::dropIfExists("activity");
         
         Schema::dropIfExists("project");

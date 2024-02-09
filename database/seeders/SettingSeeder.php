@@ -2,25 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class SettingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-
     public function run(): void
     {
-        Role::create([
-            'role_id' => '01',
-            'role_name'=> 'tester1',
+        Setting::create([
+            'user_id' => '1',
+            'setting_json' => '{}',
         ]);
-        Role::create([
-            'role_id' => '02',
-            'role_name'=> 'tester2',
+        Setting::create([
+            'user_id' => '2',
+            'setting_json' => '{}',
         ]);
     }
 }

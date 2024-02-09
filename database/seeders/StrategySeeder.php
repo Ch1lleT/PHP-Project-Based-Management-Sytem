@@ -14,19 +14,19 @@ class StrategySeeder extends Seeder
     public function run(): void
     {
         Strategy::create([
-            'stg_id' => '001',
+            'stg_id' => '01',
             'name' => 'Strategy No.1',
             'desc' => 'This is Strategy No.1',
             'is_active' => true,
         ]);
         Strategy::create([
-            'stg_id' => '002',
+            'stg_id' => '02',
             'name' => 'Strategy No.2',
             'desc' => 'This is Strategy No.2',
             'is_active' => true,
         ]);
         Strategy::create([
-            'stg_id' => '003',
+            'stg_id' => '03',
             'name' => 'Strategy No.3',
             'desc' => 'This is Strategy No.3',
             'is_active' => true,

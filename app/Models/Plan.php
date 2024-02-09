@@ -19,6 +19,5 @@ class Plan extends Model
         'type',
         'desc',
         'weight'
-        
     ];
 }
