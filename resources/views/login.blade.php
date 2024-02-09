@@ -70,6 +70,11 @@
                 display: none;
             }
         }
+        @media (max-width: 993px){
+            .right-area{
+                border-radius: 5px;
+            }
+        }
     </style>
 </head>
 
