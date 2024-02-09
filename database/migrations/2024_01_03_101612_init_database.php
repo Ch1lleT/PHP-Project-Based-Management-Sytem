@@ -157,15 +157,15 @@ return new class extends Migration
             $table->string("project_id");
             $table->string("project_name");
             $table->string("plan_id");
-            $table->string("executive");
-            $table->string("advisor");
-            $table->string("supervisor");
+            $table->string("executive")->nullable();
+            $table->string("advisor")->nullable();
+            $table->string("supervisor")->nullable();
             $table->string("project_head");
             $table->string("type");
-            $table->string("desc");
+            $table->string("desc")->nullable();
             $table->integer("balance");
             $table->float("weight");
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
             
             
             $table->foreign("plan_id")->references("plan_id")->on("plan");
@@ -178,7 +178,7 @@ return new class extends Migration
 
         Schema::create("activity", function(Blueprint $table){
             $table->string("act_id");
-            $table->string("act_ref");
+            $table->string("act_ref")->nullable()->default(null);
             $table->string("act_name");
             $table->string("type");
             $table->string("project_id");
@@ -309,30 +309,18 @@ return new class extends Migration
         
         Schema::dropIfExists('organization');
         
-        Schema::dropIfExists('sub_organization');
-        
         Schema::dropIfExists('have_sub_org');
+        
+        Schema::dropIfExists('sub_organization');
         
         Schema::dropIfExists('log');
         
         Schema::dropIfExists('assign_to');
         
-        Schema::dropIfExists("user");
-        
-        Schema::dropIfExists("strategy");
-        
-        Schema::dropIfExists("plan");
-        
         Schema::dropIfExists("group");
         
         Schema::dropIfExists("setting");
-        
-        Schema::dropIfExists("project");
-        
-        Schema::dropIfExists("activity");
-        
-        Schema::dropIfExists("role");
-        
+                
         Schema::dropIfExists("have_role");
         
         Schema::dropIfExists("target_kpi");
@@ -340,5 +328,18 @@ return new class extends Migration
         Schema::dropIfExists("target_snapshot");
         
         Schema::dropIfExists("request_close_activity");
+        
+        Schema::dropIfExists("activity");
+        
+        Schema::dropIfExists("project");
+        
+        Schema::dropIfExists("plan");
+        
+        Schema::dropIfExists("strategy");
+        
+        Schema::dropIfExists("user");
+        
+        Schema::dropIfExists("role");
     }
 };
+
