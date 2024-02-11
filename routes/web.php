@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('login/login');
 })->name("login");
 
 Route::post('/login', [LoginController::class,'authenticate']);
@@ -28,27 +28,32 @@ Route::get('/layout', function () {
 });
 
 Route::get('/stg_dashboard', function () {
-    return view('stg_dashboard');
-});
+    return view('stg/stg_dashboard');
+})->name("stg_dashboard");
 
 Route::get('/okr_kpi_manage', function () {
-    return view('okr_kpi_manage');
-});
+    return view('okr_kpi_manage/okr_kpi_manage');
+})->name("okr_kpi_manage");
+
 Route::get('/fiscal_years', function () {
-    return view('fiscal_years');
-});
+    return view('fiscal_years/fiscal_years');
+})->name("fiscal_years");
+
 Route::get('/user_list', function () {
-    return view('user_list');
-});
+    return view('user_list/user_list');
+})->name("user_list");
+
 Route::get('/org', function () {
-    return view('org');
-});
+    return view('org/org');
+})->name("org");
+
 Route::get('/org_chart', function () {
-    return view('org_chart');
-});
+    return view('org/org_chart');
+})->name("org_chart");
+
 Route::get('/edit_profile', function () {
-    return view('edit_profile');
-});
+    return view('edit_profile/edit_profile');
+})->name("edit_profile");
 
 //fiscal_years, org, user_list
 
