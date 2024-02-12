@@ -27,11 +27,18 @@ class AppServiceProvider extends ServiceProvider
         View::composer('staff/fiscal_years', function ($view) {
             // Data to be shared
             $STGAll = STGController::getAll()->getData()['stgAll'];
+            $STG = null; 
+            
+            // // Check if 'id' exists in the request
+            // if (request()->has('id')) {
+            //     $STG = STGController::get(request())->getData()['STG'];
+            // }
+
             $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
             $PlanAll = PlanController::getAll()->getData()['PlanAll'];
 
             // Passing data to the view
-            $view->with(compact('STGAll','ProjectAll','PlanAll'));
+            $view->with(compact('STGAll', 'STG', 'ProjectAll', 'PlanAll'));
         });
     }
 }

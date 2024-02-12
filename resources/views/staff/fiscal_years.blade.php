@@ -73,18 +73,14 @@
     </div>
     <div class="row row-cols-3 gap-2 px-3">
         @foreach($STGAll as $strategy)
-            <a class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
-        @endforeach   
-        {{-- <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a> --}}
+            <a href="{{ route('fiscal_years', ['id' => $strategy['id']]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
+        @endforeach
     </div>
 
 
     <div class="h4 my-3">
-        ยุทธศาสตร์ :
-    </div>
+        ยุทธศาสตร์ : {{ isset($STG->name) ? $STG->name : '' }}
+    </div>        
     <div class="row row-cols-auto">
         <div class="col-12 col-lg-5 ">
             <div class="header d-flex justify-content-between align-items-center">
