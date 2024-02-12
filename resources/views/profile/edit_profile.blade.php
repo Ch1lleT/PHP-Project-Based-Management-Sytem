@@ -38,21 +38,27 @@
             แก้ไขข้อมูลส่วนตัว
         </span>
         <div class="my-3 row form">
+            <label for="name" class="col-sm-2 col-form-label p-0 pt-2">โปรไฟล์</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control" id="image" value="{{ $User['image'] }}">
+            </div>
+        </div>
+        <div class="my-3 row form">
             <label for="name" class="col-sm-2 col-form-label p-0 pt-2">ชื่อ</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="name">
+                <input type="text" class="form-control" id="name" value="{{ $User['fname'] }}">
             </div>
         </div>
         <div class="mb-3 row form">
             <label for="last_name" class="col-sm-2 col-form-label p-0 pt-2 ">นามสกุล</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="last_name">
+                <input type="text" class="form-control" id="last_name" value="{{ $User['lname'] }}">
             </div>
         </div>
         <div class="mb-3 row form">
             <label for="Email" class="col-sm-2 col-form-label p-0 pt-2">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="Email">
+                <input type="email" class="form-control" id="Email" value="{{ $User['email'] }}">
             </div>
         </div>
         <div class="text-end">

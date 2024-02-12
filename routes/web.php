@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\STGController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,13 +52,16 @@ Route::get('/level', function () {
     return view('addmin/level');
 })->name("level");
 
-Route::get('/edit_profile', function () {
-    return view('profile/edit_profile');
-})->name("edit_profile");
+// Route::get('/edit_profile', function () {
+//     return view('profile/edit_profile');
+// })->name("edit_profile");
+Route::get('/edit_profile', [UserController::class, 'get'])->name("edit_profile");;
+
+Route::post('/login', [UserController::class,'authenticate']);
 
 //fiscal_years, org, user_list
 
-Route::get('/stg', [STGController::class, 'index']);
+Route::get('/stg', [STGController::class, 'get']);
 
 //fix edit_profile, fiscal_years, org
 //build org_chart, stg_dashboard

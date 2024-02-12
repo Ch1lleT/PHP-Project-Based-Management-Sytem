@@ -72,11 +72,13 @@
 
     </div>
     <div class="row row-cols-3 gap-2 px-3">
+        @foreach($STGAll as $strategy)
+            <a class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
+        @endforeach   
+        {{-- <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
         <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
         <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
-        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
+        <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a> --}}
     </div>
 
 
@@ -146,97 +148,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                1
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                2
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                3
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                4
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                5
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                6
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                7
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                8
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                9
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-
+                        @foreach($PlanAll as $Plan)
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    {{ $loop->index + 1 }}
+                                </td>
+                                <td><a href="#" class="text-black text-wrap w-100">
+                                        {{ $Plan['Plan_name'] }}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach   
                     </tbody>
                 </table>
             </div>
@@ -624,31 +546,33 @@
                         <th>ชื่อโครงการ</th>
                         <th>ผู้ดูแลโครงการ</th>
                         <th>งบจาก</th>
-                        <th>จบประเภท</th>
+                        <th>งบประเภท</th>
                         <th>งบประมาณ</th>
                         <th>หน่วยงาน</th>
                         <th>แก้ไข</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="#" class="text-black">โปรเจค</a></td>
-                        <td><a href="#" class="text-black">นันทกร</a></td>
-                        <td>มว</td>
-                        <td>ลงทุน</td>
-                        <td>1150</td>
-                        <td>กฟอ.</td>
-                        <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
-                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20"
-                                    height="20" viewBox="0 0 24 24">
-                                    <path fill="#000000"
-                                        d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z">
-                                    </path>
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach($ProjectAll as $Project)
+                        <tr>
+                            <td><a href="#" class="text-black">{{ $Project['Project_name'] }}</a></td>
+                            <td><a href="#" class="text-black">{{ $Project['project_head'] }}</a></td>
+                            <td>{{ $Project['butter_sourc'] }}</td>
+                            <td>{{ $Project['balance_type'] }}</td>
+                            <td>{{ $Project['balance'] }}</td>
+                            <td>{{ $Project['org_name'] }}</td>
+                            <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
+                                    <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="#000000"
+                                            d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach 
                 </tbody>
             </table>
         </div>
