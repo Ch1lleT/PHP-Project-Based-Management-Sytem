@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -22,7 +23,15 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-    
+
+    <link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity=
+"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
@@ -33,6 +42,7 @@
     {{-- meter grade --}}
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.candy.js"></script>
+    @yield('style')
     <style>
         html,
         body {
@@ -89,6 +99,10 @@
 
         }
 
+        a {
+            text-decoration: none;
+        }
+
         h5 {
             font-weight: bold;
         }
@@ -117,12 +131,32 @@
             font-size: 20px;
         }
 
+        #profile {
+            height: 50px;
+            border-radius: 100%;
+            /* border: 1px #222 solid; */
+        }
+
+        #dropdown-icon i {
+            /* transform: scaleY(-1); */
+            transform: rotate(180deg);
+            transition: transform 0.25s ease-in-out
+        }
+
+        @media screen and (max-width: 1200px) {
+
+            #bdSidebar {
+                display: none !important;
+            }
+        }
     </style>
+
 </head>
 
 <body>
     <div class="container-fluid p-0 d-flex min-vh-100 ">
-        <div style="background-color: #337ab7;" id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white offcanvas-start" >
+        <div style="background-color: #337ab7;" id="bdSidebar"
+            class="d-flex flex-column flex-shrink-0 p-3 text-white offcanvas-start">
             <a href="#" class="navbar-brand row d-flex align-items-center">
                 <div class="col-3 ps-3">
                     <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
@@ -155,28 +189,53 @@
                     <p>สถาบันมาตรวิทยาแห่งชาติ</p>
                     <p>National Institute of Metrology (Thailand)</p>
                 </div>
+
             </a>
-            <hr>
             <ul class="mynav nav nav-pills flex-column mb-auto">
-                <hr>
+                <li>
+                    <div class="profile d-flex align-items-center my-3">
+                        <a href="#"
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false" id="dropdown-icon">
+                            <div class="img d-flex align-items-center">
+                                <img src="{{ asset('image/profile.png') }}" alt="" srcset=""
+                                    id="profile">
+                                    <p class="ps-3">Siwapon sungsang</p>
+                            </div>
+                            <i class='bx bxs-chevron-down' ></i>
+                        </a>
+                    </div>
+                    <div class="collapse" id="profile-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="{{route('edit_profile')}}" class="rounded">แก้ไขข้อมูลส่วนตัว✅</a></li>
+                            
+                            <li><a href="#" class="rounded">สรุปค่างาน</a></li>
+                            <li><a href="{{route('login')}}" class="rounded">ออกจากระบบ✅</a></li>
+                        </ul>
+                    </div>
+                </li>
                 <h5>Project base management</h5>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#admin-collapse" aria-expanded="false">
+                    <a href="" class="nav-item rounded collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        data-bs-target="#admin-collapse" aria-expanded="false" id="dropdown-icon">
                         <p>สำหรับผู้ดูแลระบบ</p>
+                        <i class='bx bxs-chevron-down'></i>
+
                     </a>
                     <div class="collapse" id="admin-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                             <li><a href="#" class="rounded">ระดับผู้ใช้งาน</a></li>
-                            <li><a href="#" class="rounded">หน่วยงาน</a></li>
-                            <li><a href="#" class="rounded">ผู้ใช้งาน</a></li>
+                            <li><a href="{{route('org')}}" class="rounded">หน่วยงาน✅</a></li>
+                            <li><a href="{{route('user_list')}}" class="rounded">ผู้ใช้งาน✅</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#executive-collapse" aria-expanded="false">
+                    <a href="" class="nav-item rounded collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        data-bs-target="#executive-collapse" aria-expanded="false" id="dropdown-icon">
                         <p>สำหรับผู้บริหาร</p>
+                        <i class='bx bxs-chevron-down' ></i>
+
                     </a>
                     <div class="collapse" id="executive-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
@@ -186,40 +245,48 @@
                     </div>
                 </li>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#staff-collapse" aria-expanded="false">
+                    <a href="" class="nav-item rounded collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        data-bs-target="#staff-collapse" aria-expanded="false" id="dropdown-icon">
                         <p>สำหรับเจ้าหน้าที่</p>
+                        <i class='bx bxs-chevron-down' ></i>
+
                     </a>
                     <div class="collapse" id="staff-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">ปีงบประมาณ</a></li>
-                            <li><a href="#" class="rounded">เพิ่มโครงการ</a></li>
+                            <li><a href="{{route('fiscal_years')}}" class="rounded">ปีงบประมาณ✅</a></li>
+                            <li><a href="{{route('fiscal_years')}}" class="rounded">เพิ่มโครงการ ✅</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <h5>OKR/ KPI</h5>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#report-collapse" aria-expanded="false">
-                        <p>Report</p>
+                    <a href="" class="nav-item rounded collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        data-bs-target="#report-collapse" aria-expanded="false" id="dropdown-icon">
+                        <p>OKR/KPI</p>
+                        <i class='bx bxs-chevron-down' ></i>
+
                     </a>
                     <div class="collapse" id="report-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">Overview</a></li>
-                            <li><a href="#" class="rounded">Updates</a></li>
-                            <li><a href="#" class="rounded">Reports</a></li>
+                            <li><a href="#" class="rounded">NIMT</a></li>
+                            <li><a href="#" class="rounded">NIMT OKR Chart</a></li>
+                            <li><a href="#" class="rounded">Dept</a></li>
+                            <li><a href="{{route('okr_kpi_manage')}}" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR✅</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <a href="" class="nav-item rounded collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#okr-collapse" aria-expanded="false">
-                        <p>OKR / KPI Manage</p>
+                    <a href="" class="nav-item rounded collapsed d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        data-bs-target="#okr-collapse" aria-expanded="false" id="dropdown-icon">
+                        <p>Report</p>
+                        <i class='bx bxs-chevron-down' ></i>
+
                     </a>
                     <div class="collapse" id="okr-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR</a></li>
+                            <li><a href="#" class="rounded">Summary report technic</a></li>
+                            <li><a href="#" class="rounded">Summary report technic</a></li>
                         </ul>
                     </div>
                 </li>
@@ -229,6 +296,7 @@
                         <h6 class="mt-1 mb-0">NIMT</h6>
                         <small>NIMT@NIMT.COM</small>
                     </span>
+
                 </div>
         </div>
         <div class="bg-light w-100">
@@ -247,6 +315,26 @@
             </main>
         </div>
         @yield('script')
+
+        <script>
+            function dropdown(arrow,check) {
+                if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
+                    arrow.style.transform = 'rotate(180deg)';
+                }else {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            const drops = document.querySelectorAll('#dropdown-icon');
+
+            drops.forEach(drop => {
+                drop.addEventListener("click", () => {
+                    const arrow = drop.querySelector('i');
+                    const check = drop.getAttribute('aria-expanded')
+                    dropdown(arrow,check);
+                });
+            });
+        </script>
 </body>
 
 </html>

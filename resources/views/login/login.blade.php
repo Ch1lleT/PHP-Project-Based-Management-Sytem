@@ -55,7 +55,12 @@
         .content {
             height: 50%;
         }
-
+        #error{
+            list-style-type:none;
+            margin: 0;
+            padding: 0;
+            color: red
+        }
         .btn-primary {
             background-color: #164863;
             border: none;
@@ -68,6 +73,11 @@
         @media (min-width: 100px){
             .left-area{
                 display: none;
+            }
+        }
+        @media (max-width: 993px){
+            .right-area{
+                border-radius: 5px;
             }
         }
     </style>
@@ -160,21 +170,25 @@
                             @csrf
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                            @error('username')
+                                <p id="error">{{$message}}</p>
+                            @enderror
                             <label for="password" class="form-label input-group">Password</label>
                             <input type="password" class="form-control" placeholder="Password" id="password" name="password">
-                            <div class="d-flex justify-content-end mt-3">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
+                                <div class="row row-cols-2 align-items-start">
+                                    <div class="col">
+                                        @error('password')
+                                            <p id="error">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col text-end mt-2">
+                                        <button type="submit" class="btn btn-primary text-end">Login</button>
+                                    </div>
+                                </div>
                         </form>
                     </div>
 
-                    @if ($errors->any())
-                        <ul>
-                        @foreach ($errors->all() as $err )
-                            <li>{{$err}}</li>
-                        @endforeach
-                        </ul>
-                    @endif
+                
 
                 </div>
             </div>

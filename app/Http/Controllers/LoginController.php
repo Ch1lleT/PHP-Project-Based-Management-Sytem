@@ -10,9 +10,16 @@ class LoginController extends Controller
 {
     public function authenticate(Request $request) {
         $credentials = $request->validate([
-            "username" => ["required", "string", "min:3"],
+            "username" => ["required", "string", "min:3" ],
             "password" => ["required", "string", "min:6"],
-        ]);
+        ],
+        [
+            "username.required" => "กรุณากรอกชื่อผู้ใช้",
+            "password.required" => "กรุณากรอกรหัสผ่าน",
+            "username.min" => "น้อยเกิ้น",
+            "password.min" => "มากกว่านี้หน่อย",
+        ]
+    );
 
         $user = User::where('username', $credentials['username'])->first();
 
