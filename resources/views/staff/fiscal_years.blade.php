@@ -555,10 +555,10 @@
                 <tbody>
                     @foreach($ProjectAll as $Project)
                         <tr>
-                            <td><a href="#" class="text-black">{{ $Project['Project_name'] }}</a></td>
+                            <td><a href="#" class="text-black">{{ $Project['project_name'] }}</a></td>
                             <td><a href="#" class="text-black">{{ $Project['project_head'] }}</a></td>
-                            <td>{{ $Project['butter_sourc'] }}</td>
-                            <td>{{ $Project['balance_type'] }}</td>
+                            <td>{{ $Project['budget_source'] }}</td>
+                            <td>{{ $Project['budget_type'] }}</td>
                             <td>{{ $Project['balance'] }}</td>
                             <td>{{ $Project['org_name'] }}</td>
                             <td>

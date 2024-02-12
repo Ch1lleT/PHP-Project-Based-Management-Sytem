@@ -25,7 +25,7 @@ class ProjectSeeder extends Seeder
             'desc' => null,
             'budget_source' => 'มว',
             'budget_type' => 'งบลงทุน',
-            'balance' => 0,
+            'balance' => 300000000,
             'weight' => 1.0,
         ]);
 
@@ -36,12 +36,12 @@ class ProjectSeeder extends Seeder
             'executive' => null,
             'advisor'=> null,
             'supervisor' => null,
-            'project_head' => "1",
+            'project_head' => "2",
             'type' => "None",
             'desc' => null,
-            'budget_source' => 'มว',
+            'budget_source' => 'มก',
             'budget_type' => 'งบลงทุน',
-            'balance' => 0,
+            'balance' => 25000000,
             'weight' => 1.0,
         ]);
 
@@ -52,12 +52,12 @@ class ProjectSeeder extends Seeder
             'executive' => null,
             'advisor'=> null,
             'supervisor' => null,
-            'project_head' => "1",
+            'project_head' => "2",
             'type' => "None",
             'desc' => null,
-            'budget_source' => 'มว',
+            'budget_source' => 'มส',
             'budget_type' => 'งบลงทุน',
-            'balance' => 0,
+            'balance' => 1000001,
             'weight' => 1.0,
         ]);
     }
