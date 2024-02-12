@@ -73,7 +73,7 @@
     </div>
     <div class="row row-cols-3 gap-2 px-3">
         @foreach($STGAll as $strategy)
-            <a href="{{ route('fiscal_years', ['id' => $strategy['id']]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
+            <a href="{{ route('fiscal_years', ['stg_id' => $strategy['stg_id']]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
         @endforeach
     </div>
 
@@ -150,7 +150,7 @@
                                     {{ $loop->index + 1 }}
                                 </td>
                                 <td><a href="#" class="text-black text-wrap w-100">
-                                        {{ $Plan['Plan_name'] }}
+                                        {{ $Plan['plan_name'] }}
                                     </a>
                                 </td>
                             </tr>

@@ -30,9 +30,11 @@ class AppServiceProvider extends ServiceProvider
             $STG = null; 
             
             // // Check if 'id' exists in the request
-            // if (request()->has('id')) {
-            //     $STG = STGController::get(request())->getData()['STG'];
-            // }
+            if (request()->has('stg_id')) {
+                // $STG = STGController::get(request())->getData()['STG'];
+                $STGData = STGController::get(request())->getData();
+                $STG = $STGData->STG;
+            }
 
             $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
             $PlanAll = PlanController::getAll()->getData()['PlanAll'];
