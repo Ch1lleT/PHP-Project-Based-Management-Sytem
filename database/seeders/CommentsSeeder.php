@@ -14,19 +14,24 @@ class CommentsSeeder extends Seeder
     public function run(): void
     {
         Comments::create([
-            'act_id' => '001'
+            'act_id' => '001',
+            'comment01' => 'ดูดีมาก',
         ]);
         Comments::create([
-            'act_id' => '002'
+            'act_id' => '002',
+            'comment04' => 'มีการพัฒนาที่ดีมากครับ',
         ]);
         Comments::create([
-            'act_id' => '003'
+            'act_id' => '003',
+            'comment06' => 'งานมีคุณภาพ',
         ]);
         Comments::create([
-            'act_id' => '004'
+            'act_id' => '004',
+            'comment01' => 'ดูดีมาก',
         ]);
         Comments::create([
-            'act_id' => '005'
+            'act_id' => '005',
+            'comment10' => 'ดูดีมาก',
         ]);
     }
 }
