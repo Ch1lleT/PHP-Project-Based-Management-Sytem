@@ -35,20 +35,24 @@ Route::get('/okr_kpi_manage', function () {
     return view('okr_kpi/okr_kpi_manage');
 })->name("okr_kpi_manage");
 
+Route::get('/dept', function () {
+    return view('okr_kpi/dept');
+})->name("dept");
+
 Route::get('/fiscal_years', function () {
     return view('staff/fiscal_years');
 })->name("fiscal_years");
 
 Route::get('/user_list', function () {
-    return view('addmin/user_list');
+    return view('admin/user_list');
 })->name("user_list");
 
 Route::get('/org', function () {
-    return view('addmin/org');
+    return view('admin/org');
 })->name("org");
 
 Route::get('/level', function () {
-    return view('addmin/level');
+    return view('admin/level');
 })->name("level");
 
 Route::get('/edit_profile', function () {

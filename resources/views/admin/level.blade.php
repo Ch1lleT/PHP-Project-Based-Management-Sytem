@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        <table class="table" style="width: 30%;">
+        <table class="table" style="width: 20%; background-color:">
             <thead>
                 <tr>
                     <th>ระดับผู้ใช้งาน</th>
