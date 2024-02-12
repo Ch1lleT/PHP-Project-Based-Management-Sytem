@@ -50,9 +50,9 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                            <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="plane">
+                                <input type="text" class="form-control" id="plan">
                             </div>
                         </div>
                         <div class="mb-3 row text-end">
@@ -551,11 +551,11 @@
                 <tbody>
                     @foreach($ProjectAll as $Project)
                         <tr>
-                            <td><a href="#" class="text-black">{{ $Project['Project_name'] }}</a></td>
+                            <td><a href="#" class="text-black">{{ $Project['project_name'] }}</a></td>
                             <td><a href="#" class="text-black">{{ $Project['project_head'] }}</a></td>
-                            <td>{{ $Project['butter_sourc'] }}</td>
-                            <td>{{ $Project['balance_type'] }}</td>
-                            <td>{{ $Project['balance'] }}</td>
+                            <td>{{ $Project['budget_source'] }}</td>
+                            <td>{{ $Project['budget_type'] }}</td>
+                            <td>{{ number_format($Project['balance']) }}</td>
                             <td>{{ $Project['org_name'] }}</td>
                             <td>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
