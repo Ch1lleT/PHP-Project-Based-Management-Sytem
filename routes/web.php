@@ -32,27 +32,27 @@ Route::get('/stg_dashboard', function () {
 })->name("stg_dashboard");
 
 Route::get('/okr_kpi_manage', function () {
-    return view('okr_kpi_manage/okr_kpi_manage');
+    return view('okr_kpi/okr_kpi_manage');
 })->name("okr_kpi_manage");
 
 Route::get('/fiscal_years', function () {
-    return view('fiscal_years/fiscal_years');
+    return view('staff/fiscal_years');
 })->name("fiscal_years");
 
 Route::get('/user_list', function () {
-    return view('user_list/user_list');
+    return view('addmin/user_list');
 })->name("user_list");
 
 Route::get('/org', function () {
-    return view('org/org');
+    return view('addmin/org');
 })->name("org");
 
-Route::get('/org_chart', function () {
-    return view('org/org_chart');
-})->name("org_chart");
+Route::get('/level', function () {
+    return view('addmin/level');
+})->name("level");
 
 Route::get('/edit_profile', function () {
-    return view('edit_profile/edit_profile');
+    return view('profile/edit_profile');
 })->name("edit_profile");
 
 //fiscal_years, org, user_list

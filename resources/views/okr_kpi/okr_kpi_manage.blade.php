@@ -166,9 +166,9 @@
                     </thead>
                     <tbody class="bg"> 
                         <tr >
-                            <th scope="row" id="bg">
+                            <td scope="row" id="bg">
                                 ตรวจสอบภายใน
-                            </th>
+                            </td>
                             <td class="w-25 ">
                                 <input type="text" class="form-control" id="bg">
                             </td>
@@ -177,9 +177,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" id="bg">
+                            <td scope="row" id="bg">
                                 ฝ่ายบริหารกลาง
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control" id="bg">
                             </td>
@@ -188,9 +188,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" id="bg">
+                            <td scope="row" id="bg">
                                 ฝ่ายนโยบายและยุทธสาสตร์
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -199,9 +199,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 กลุ่มงานสารบรรณและการประชุม
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -210,9 +210,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 ฝ่ายมาตรวิทยาเชิงกล
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -221,9 +221,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 ฝ่ายมาตรวิทยามิติ
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -232,9 +232,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 ฝ่ายมาตรวิทยาไฟฟ้า
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -243,9 +243,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 ฝ่ายมาตรวิทยาอุณภูมิและแสง
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -254,9 +254,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 ฝ่ายมาตรวิทยาเคมีและชีวภาพ
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -265,9 +265,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 กลุ่มงานเสียงและการสั่นสะท้อน
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>
@@ -276,9 +276,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <td scope="row">
                                 กลุ่มงานนวัตกรรมและพัฒนาเครื่องมือวัด
-                            </th>
+                            </td>
                             <td class="w-25">
                                 <input type="text" class="form-control">
                             </td>

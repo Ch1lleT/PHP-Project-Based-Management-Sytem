@@ -134,6 +134,7 @@
         #profile {
             height: 50px;
             border-radius: 100%;
+            /* border: 1px #222 solid; */
         }
 
         #dropdown-icon i {
@@ -316,16 +317,6 @@
         @yield('script')
 
         <script>
-            // const textElement = document.getElementById('dropdown-icon');
-
-            // textElement.addEventListener('click', () => {
-            //     if (textElement.style.color === 'red') {
-            //         textElement.style.color = 'green';
-            //     } else {
-            //         textElement.style.color = 'red';
-            //     }
-            // });
-
             function dropdown(arrow,check) {
                 if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
                     arrow.style.transform = 'rotate(180deg)';
@@ -343,30 +334,6 @@
                     dropdown(arrow,check);
                 });
             });
-        
-
-            // function dropdown(drop) {
-            //     // if (drop.style.transform === '0') {
-            //     //     drop.style.transform = 'scaleY(-1)';
-            //     //     // transform: scaleY(-1);
-            //     // } else {
-            //     //     drop.style.transform = '0';
-            //     // }
-            //     if (textElement.style.color === 'red') {
-            //         textElement.style.color = 'green';
-            //     } else {
-            //         textElement.style.color = 'red';
-            //     }
-            // }
-
-            // const drops = document.querySelectorAll('#dropdown-icon');
-
-            // drops.forEach(drop => {
-            //     drop.addEventListener("click", () => {
-            //         dropdown(drop);
-            //     });
-            // });
-        
         </script>
 </body>
 

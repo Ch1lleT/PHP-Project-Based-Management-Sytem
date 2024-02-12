@@ -5,8 +5,7 @@
 @section('header')
     <div class="fs-5">หน่วยงาน</div>
 @endsection
-@section('style')
-@endsection
+
 @section('content')
     <div class="modal fade" id="add_user" tabindex="-1" aria-labelledby="add_userModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -116,8 +115,7 @@
                         </li>
                     </ul>
                 </td>
-                <td>
-                    <div class="icon col-3 text-end">
+                <td class="align-middle text-center">
                         <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_user">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
                                 <path fill="#000000"
@@ -132,7 +130,6 @@
                                 </path>
                             </svg>
                         </a>
-                    </div>
                 </td>
             </tr>
         </tbody>
