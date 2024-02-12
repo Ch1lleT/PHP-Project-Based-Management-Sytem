@@ -21,6 +21,7 @@ return new class extends Migration
         
         Schema::create("user", function(Blueprint $table){
             $table->string("user_id");
+            $table->string("email");
             $table->string("prefix");
             $table->string("username")->unique();
             $table->string("password");
@@ -74,7 +75,7 @@ return new class extends Migration
             $table->string('balance_id');
             $table->string('balance_type');
             
-            $table->primary(['balance_id']);
+            // $table->primary(['balance_id']);
         });
 
         Schema::create('balance_snapshot', function (Blueprint $table) {
@@ -147,10 +148,12 @@ return new class extends Migration
             $table->string("type");
             $table->string("desc")->nullable();
             $table->integer("balance");
+            $table->string("budget_source");
+            $table->string("budget_type");
             $table->float("weight");
             $table->boolean("is_active")->default(true);
-            
-            
+
+
             $table->foreign("plan_id")->references("plan_id")->on("plan");
             $table->foreign("executive")->references("user_id")->on("user");
             $table->foreign("advisor")->references("user_id")->on("user");

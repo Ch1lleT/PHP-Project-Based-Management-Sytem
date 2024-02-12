@@ -23,6 +23,8 @@ class Project extends Model
         'type',
         'desc',
         'balance',
+        'budget_source',
+        'budget_type',
         'weight',
     ];
 }

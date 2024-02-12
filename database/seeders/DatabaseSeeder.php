@@ -17,12 +17,15 @@ class DatabaseSeeder extends Seeder
             SubOrganizationSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            HaveRoleSeeder::class,
+            HaveSubOrgSeeder::class,
             SettingSeeder::class,
             StrategySeeder::class,
             PlanSeeder::class,
             ProjectSeeder::class,
             ActivitySeeder::class,
             CommentsSeeder::class,
+            BalanceSeeder::class,
         ]);
     }
 }
