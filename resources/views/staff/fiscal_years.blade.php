@@ -559,7 +559,7 @@
                             <td><a href="#" class="text-black">{{ $Project['project_head'] }}</a></td>
                             <td>{{ $Project['budget_source'] }}</td>
                             <td>{{ $Project['budget_type'] }}</td>
-                            <td>{{ $Project['balance'] }}</td>
+                            <td>{{ number_format($Project['balance']) }}</td>
                             <td>{{ $Project['org_name'] }}</td>
                             <td>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
