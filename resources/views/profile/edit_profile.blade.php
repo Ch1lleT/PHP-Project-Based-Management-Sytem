@@ -38,7 +38,7 @@
             แก้ไขข้อมูลส่วนตัว
         </span>
         <div class="my-3 row form">
-            <label for="name" class="col-sm-2 col-form-label p-0 pt-2">โปรไฟล์</label>
+            <label for="name" class="col-sm-2 col-form-label p-0 pt-2">รูปโปรไฟล์</label>
             <div class="col-sm-10">
                 <input type="file" class="form-control" id="image" value="{{ $User['image'] }}">
             </div>

@@ -37,6 +37,10 @@ Route::get('/okr_kpi_manage', function () {
     return view('okr_kpi/okr_kpi_manage');
 })->name("okr_kpi_manage");
 
+Route::get('/dept', function () {
+    return view('okr_kpi/dept');
+})->name("dept");
+
 Route::get('/fiscal_years', function () {
     return view('staff/fiscal_years');
 })->name("fiscal_years");
@@ -47,7 +51,7 @@ Route::get('/user_list',[UserController::class,'getAll']
 Route::get('/org',[OrgController::class,'getAll'])->name("org");
 
 Route::get('/level', function () {
-    return view('addmin/level');
+    return view('admin/level');
 })->name("level");
 
 // Route::get('/edit_profile', function () {
