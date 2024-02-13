@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrgController;
 use App\Http\Controllers\STGController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +44,7 @@ Route::get('/fiscal_years', function () {
 Route::get('/user_list',[UserController::class,'getAll']
 )->name("user_list");
 
-Route::get('/org', function () {
-    return view('addmin/org');
-})->name("org");
+Route::get('/org',[OrgController::class,'getAll'])->name("org");
 
 Route::get('/level', function () {
     return view('addmin/level');

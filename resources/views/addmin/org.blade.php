@@ -6,7 +6,9 @@
     <div class="fs-5">หน่วยงาน</div>
 @endsection
 
+
 @section('content')
+    {{-- {{dd($Organizations)}} --}}
     <div class="modal fade" id="add_user" tabindex="-1" aria-labelledby="add_userModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -100,19 +102,20 @@
             </tr>
         </thead>
         <tbody>
+           
+            @foreach ($Organizations as $org )
             <tr>
-                <td>กฟผ.</td>
+                {{-- {{dd($org)}} --}}
+                
+                <td>{{$org['org_name']}}</td>
                 <td>
+                    
                     <ul class="m-0 p-0">
+                        @foreach ($org['sub_org'] as $so )
                         <li>
-                            หน่วยงานย่อยที่ 1
+                            {{$so['org_name']}}
                         </li>
-                        <li>
-                            หน่วยงานย่อยที่ 2
-                        </li>
-                        <li>
-                            หน่วยงานย่อยที่ 3
-                        </li>
+                        @endforeach
                     </ul>
                 </td>
                 <td class="align-middle text-center">
@@ -131,7 +134,8 @@
                             </svg>
                         </a>
                 </td>
-            </tr>
+            </tr>         
+            @endforeach
         </tbody>
     </table>
     <script>
