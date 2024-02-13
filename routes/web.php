@@ -40,9 +40,8 @@ Route::get('/fiscal_years', function () {
     return view('staff/fiscal_years');
 })->name("fiscal_years");
 
-Route::get('/user_list', function () {
-    return view('addmin/user_list');
-})->name("user_list");
+Route::get('/user_list',[UserController::class,'getAll']
+)->name("user_list");
 
 Route::get('/org', function () {
     return view('addmin/org');
