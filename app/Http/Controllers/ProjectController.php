@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plan;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -43,4 +44,13 @@ class ProjectController extends Controller
         }
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);
     }
+
+    public static function UpdateProject(Request $request, $project_id) {
+        $project = new Project();
+        $project::where('project_id', $project_id)
+                ->update(['project_name' => $request->input('project_name'), 'balance' => $request->input('balance')]);
+    
+        return redirect('/fiscal_years')->with('success', 'Project updated successfully');
+    }    
+    
 }

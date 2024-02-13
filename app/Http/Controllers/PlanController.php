@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Strategy;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -24,9 +25,9 @@ class PlanController extends Controller
             if (isset($stg_id)) {
                 $PlanAtAll = Plan::where('stg_id', $stg_id)->get();
             }else {
-                $Plan = Plan::first();
-                $planId = $Plan->plan_id;
-                $PlanAtAll = Plan::where('plan_id', $planId)->get();                
+                $STG = Strategy::first();
+                $STGid = $STG->stg_id;
+                $PlanAtAll = Plan::where('stg_id', $STGid)->get();                
             }
             return response()->json(['PlanAtAll' => $PlanAtAll]);
         }
