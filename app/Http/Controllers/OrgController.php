@@ -45,7 +45,7 @@ class OrgController extends Controller
         
         // $Orgs = Sub_Organization::where('main_org','=','001')->get();
 
-        return view('addmin.org')->with('Organizations',$Orgs);
+        return view('admin.org')->with('Organizations',$Orgs);
 
     }
 }

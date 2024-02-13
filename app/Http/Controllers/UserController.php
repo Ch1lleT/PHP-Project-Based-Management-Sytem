@@ -24,6 +24,6 @@ class UserController extends Controller
 
         $users = User::all();
 
-        return view('addmin.user_list',compact('users'));
+        return view('admin.user_list',compact('users'));
     }
 }
