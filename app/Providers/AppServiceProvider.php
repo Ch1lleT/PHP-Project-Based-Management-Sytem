@@ -37,19 +37,19 @@ class AppServiceProvider extends ServiceProvider
             // // Check if 'id' exists in the request
             // if (request()->has('stg_id')) {
                 // $STG = STGController::get(request())->getData()['STG'];
-                $STGData = STGController::get(request())->getData();
-                $STG = $STGData->STG;
-
-                $PlanAtAllData = PlanController::getAtAll(request())->getData();
-                $PlanAtAll = $PlanAtAllData->PlanAtAll;
-
-                $ProjectAtAllData = ProjectController::getAtAll(request())->getData();
-                $ProjectAtAll = $ProjectAtAllData->ProjectAtAll;               
             // }
+            $STGData = STGController::get(request())->getData();
+            $STG = $STGData->STG;
+
+            $PlanAtAllData = PlanController::getAtAll(request())->getData();
+            $PlanAtAll = $PlanAtAllData->PlanAtAll;
+
+            $ProjectAtAllData = ProjectController::getAtAll(request())->getData();
+            $ProjectAtAll = $ProjectAtAllData->ProjectAtAll;               
 
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG', 'PlanAtAll'));
+            $view->with(compact('STGAll', 'STG', 'PlanAtAll', 'ProjectAtAll'));
         });
     }
 }

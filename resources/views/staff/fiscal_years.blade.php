@@ -562,7 +562,8 @@
                                 <td>{{ $ProjectAt->budget_source }}</td>
                                 <td>{{ $ProjectAt->budget_type }}</td>
                                 <td>{{ number_format($ProjectAt->balance) }}</td>
-                                <td>{{ $ProjectAt->org_name }}</td>
+                                {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
+                                <td>ไม่รู้ รอคุย</td>
                                 <td>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
                                         <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20"

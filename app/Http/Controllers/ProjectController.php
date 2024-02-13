@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -27,12 +29,17 @@ class ProjectController extends Controller
 
     public static function getAtAll(Request $request) {
         $plan_id = $request->plan_id;
+        $stg_id = $request->stg_id;
         if(isset($plan_id)){
             $ProjectAtAll = Project::where('plan_id', $plan_id)->get();
-        }else{
-            $Project = Project::first();
-            $ProjectId = $Project->project_id;
-            $ProjectAtAll = Project::where('project_id', $ProjectId)->get();        
+        }else if(isset($stg_id)){
+            $Plan = Plan::where('stg_id',$stg_id)->first();
+            $PlanId = $Plan->plan_id;
+            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();        
+        }else {
+            $Plan = Plan::first();
+            $PlanId = $Plan->plan_id;
+            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();   
         }
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);
     }
