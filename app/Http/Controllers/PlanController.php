@@ -17,6 +17,18 @@ class PlanController extends Controller
             // ];
 
         return view('staff/fiscal_years', compact('PlanAll'));
-        
-    }
+        }
+
+        public static function getAtAll(Request $request) {
+            $stg_id = $request->stg_id;
+            if (isset($stg_id)) {
+                $PlanAtAll = Plan::where('stg_id', $stg_id)->get();
+            }else {
+                $Plan = Plan::first();
+                $planId = $Plan->plan_id;
+                $PlanAtAll = Plan::where('plan_id', $planId)->get();                
+            }
+            return response()->json(['PlanAtAll' => $PlanAtAll]);
+        }
+           
 }
