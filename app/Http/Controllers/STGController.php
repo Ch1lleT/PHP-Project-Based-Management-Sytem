@@ -37,7 +37,11 @@ class STGController extends Controller
 
     public static function get(Request $request) {
         $stg_id = $request->stg_id;
-        $STG = Strategy::where('stg_id', $stg_id)->first();
+        if(isset($stg_id)) {
+            $STG = Strategy::where('stg_id', $stg_id)->first();
+        }else {
+            $STG = Strategy::first();
+        }
         return response()->json(['STG' => $STG]);
     }    
     

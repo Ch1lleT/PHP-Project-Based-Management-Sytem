@@ -24,4 +24,16 @@ class ProjectController extends Controller
 
         return view('staff/fiscal_years', compact('ProjectAll'));
     }
+
+    public static function getAtAll(Request $request) {
+        $plan_id = $request->plan_id;
+        if(isset($plan_id)){
+            $ProjectAtAll = Project::where('plan_id', $plan_id)->get();
+        }else{
+            $Project = Project::first();
+            $ProjectId = $Project->project_id;
+            $ProjectAtAll = Project::where('project_id', $ProjectId)->get();        
+        }
+        return response()->json(['ProjectAtAll' => $ProjectAtAll]);
+    }
 }

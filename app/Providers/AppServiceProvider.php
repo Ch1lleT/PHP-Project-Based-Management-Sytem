@@ -26,21 +26,30 @@ class AppServiceProvider extends ServiceProvider
         // View Composer for 'fiscal_years.blade.php'
         View::composer('staff/fiscal_years', function ($view) {
             // Data to be shared
-            $STGAll = STGController::getAll()->getData()['stgAll'];
             $STG = null; 
+            $PlanAtAll = null;
+            $ProjectAtAll = null;
+
+            $STGAll = STGController::getAll()->getData()['stgAll'];
+            // $PlanAll = PlanController::getAll()->getData()['PlanAll'];
+            // $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
             
             // // Check if 'id' exists in the request
-            if (request()->has('stg_id')) {
+            // if (request()->has('stg_id')) {
                 // $STG = STGController::get(request())->getData()['STG'];
                 $STGData = STGController::get(request())->getData();
                 $STG = $STGData->STG;
-            }
 
-            $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
-            $PlanAll = PlanController::getAll()->getData()['PlanAll'];
+                $PlanAtAllData = PlanController::getAtAll(request())->getData();
+                $PlanAtAll = $PlanAtAllData->PlanAtAll;
+
+                $ProjectAtAllData = ProjectController::getAtAll(request())->getData();
+                $ProjectAtAll = $ProjectAtAllData->ProjectAtAll;               
+            // }
+
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG', 'ProjectAll', 'PlanAll'));
+            $view->with(compact('STGAll', 'STG', 'PlanAtAll'));
         });
     }
 }
