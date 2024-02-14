@@ -320,8 +320,8 @@
                                     </div>
                                     <div class="overflow-y-scroll px-3" style="height: 500px;">
                                         <div class="row">
-                                            <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
-                                            <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                            <label for="name" class="col-sm-5 col-form-label">นายศิวพล</label>
+                                            <label for="name" class="col-sm-5 col-form-label">ใจซื่อ</label>
                                             <div class="col-sm-2">
                                                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
                                                         height="40" viewBox="0 0 32 32">
@@ -333,8 +333,8 @@
                                             <hr>
                                         </div>
                                         <div class="row">
-                                            <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
-                                            <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                            <label for="name" class="col-sm-5 col-form-label">นายนันทกร</label>
+                                            <label for="name" class="col-sm-5 col-form-label">ธิดี</label>
                                             <div class="col-sm-2">
                                                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40"
                                                         height="40" viewBox="0 0 32 32">
@@ -381,7 +381,7 @@
                                 <td>{{ $ProjectAt->budget_type }}</td>
                                 <td>{{ number_format($ProjectAt->balance) }}</td>
                                 {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
-                                <td>ไม่รู้ รอคุย</td>
+                                <td>มว.</td>
                                 <td>
                                     <a href="#" data-bs-toggle="modal"  onclick="setProjectOn({{ $loop->index }})" data-bs-target="#edit_project_{{ $loop->index }}" >
                                         <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -537,8 +537,8 @@
                                                         </div>
                                                         <div class="overflow-y-scroll px-3" style="height: 500px;">
                                                             <div class="row">
-                                                                <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
-                                                                <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                                                <label for="name" class="col-sm-5 col-form-label">นายศิวพล</label>
+                                                                <label for="name" class="col-sm-5 col-form-label">ใจซื่อ</label>
                                                                 <div class="col-sm-2">
                                                                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="40" height="40" viewBox="0 0 32 32">
@@ -550,8 +550,8 @@
                                                                 <hr>
                                                             </div>
                                                             <div class="row">
-                                                                <label for="name" class="col-sm-5 col-form-label">นายสมหมอย</label>
-                                                                <label for="name" class="col-sm-5 col-form-label">นำหอยหมี</label>
+                                                                <label for="name" class="col-sm-5 col-form-label">นายนันทกร</label>
+                                                                <label for="name" class="col-sm-5 col-form-label">ธิดี</label>
                                                                 <div class="col-sm-2">
                                                                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="40" height="40" viewBox="0 0 32 32">
