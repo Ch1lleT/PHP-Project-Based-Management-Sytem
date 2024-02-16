@@ -26,49 +26,49 @@
                     <div class="w-100">
                         <div class="row row-cols-2 p-3">
                             <div class="mb-3 row d-flex align-items-center">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
+                                <label class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
                                 <div class="col-sm-8">
-                                    <input type="file" placeholder="เลือกไฟล์">
+                                    <input type="file" placeholder="เลือกไฟล์" name="profile">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="name" name="first_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
+                                <label for="last_name" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="last_name" name="last_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
+                                <label for="username" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
+                                <label for="password" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="password" name="password">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
+                                <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="email" name="email">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane"
+                                <label for="level"
                                     class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
                                 <div class="col-sm-8">
-                                    <select class="form-select form-select-md" aria-label="Large select example">
+                                    <select class="form-select form-select-md" aria-label="Large select example" name="level">
                                         <option value="1" selected>One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
@@ -76,116 +76,14 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
+                                <label for="org" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
                                 
                                 <div id="org_grid">
                                     <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
+                                        <input type="checkbox" class="me-2" name="org">กฟผ
                                         <ul>
                                             <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
+                                                <input type="checkbox" class="me-2" name="sub_org">กกน
                                             </li>
                                         </ul>
                                     </div>
@@ -213,49 +111,49 @@
                     <div class="w-100">
                         <div class="row row-cols-2 p-3">
                             <div class="mb-3 row d-flex align-items-center">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
+                                <label class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
                                 <div class="col-sm-8">
-                                    <input type="file" placeholder="เลือกไฟล์">
+                                    <input type="file" placeholder="เลือกไฟล์" name="profile">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="name" name="first_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
+                                <label for="last_name" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="last_name" name="last_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
+                                <label for="username" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
+                                <label for="password" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="password" name="password">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
+                                <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="email" name="email">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plane"
+                                <label for="level"
                                     class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
                                 <div class="col-sm-8">
-                                    <select class="form-select form-select-md" aria-label="Large select example">
+                                    <select class="form-select form-select-md" aria-label="Large select example" name="level">
                                         <option value="1" selected>One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
@@ -263,116 +161,14 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label for="plane" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
+                                <label for="org" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
                                 
                                 <div id="org_grid">
                                     <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
+                                        <input type="checkbox" class="me-2" name="org">กฟผ
                                         <ul>
                                             <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <input type="checkbox" class="me-2">กฟผ
-                                        <ul>
-                                            <li>
-                                                <input type="checkbox" class="me-2">กกน
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" class="me-2">อบต
+                                                <input type="checkbox" class="me-2" name="sub_org">กกน
                                             </li>
                                         </ul>
                                     </div>

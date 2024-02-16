@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo.png') }}"/>
     <title>@yield('title')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -52,7 +53,7 @@
         /* Track */
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
-            
+
         }
 
         /* Handle */
@@ -66,6 +67,8 @@
         body {
             height: 100%;
             font-family: 'Sarabun', sans-serif;
+            /* transform: scale(2);
+            transform-origin: 0 0; */
         }
 
         .mynav {
@@ -494,6 +497,25 @@
                 </a>
                 <div class="fs-3 d-flex align-items-center m-0 w-100">
                     @yield('header')
+                </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#help">
+                    Zoom
+                </button>
+
+                <div class="modal fade" id="help" tabindex="-1" aria-labelledby="helpModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                           
+                            <div class="modal-body">
+                                <h2 class="text-dark">กด Ctrl ค้าง แล้วกด + เพื่อซูมเข้า</h2>
+                                <h2 class="text-dark">กด Ctrl ค้าง แล้วกด - เพื่อซูมออก</h2>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
             <main class="min-vh-100 p-3 w-100">

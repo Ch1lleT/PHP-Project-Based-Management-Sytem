@@ -17,9 +17,9 @@
                 <div class="modal-body">
                     <div class="w-100">
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="plan" name="name_org">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -53,9 +53,9 @@
                 <div class="modal-body">
                     <div class="w-100">
                             <div class="mb-3 row">
-                                <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="plane">
+                                    <input type="text" class="form-control" id="plan" name="name_org">
                                 </div>
                             </div>
                             <div class="mb-3 row">
