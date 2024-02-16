@@ -103,7 +103,7 @@ return new class extends Migration
             $table->boolean("is_active")->default(true);
 
             $table->primary(['org_id']);
-        });
+            });
 
         Schema::create('sub_organization', function (Blueprint $table) {
             $table->string('sub_org_id');
@@ -123,16 +123,27 @@ return new class extends Migration
 
             $table->primary(['stg_id']);
         });
+
+        Schema::create('target', function (Blueprint $table) {
+            $table->string('target_id');
+            $table->string('target_name');
+            $table->string('stg_id');
+
+            $table->foreign('stg_id')->references('stg_id')->on('strategy');
+            $table->primary(['target_id']);
+        });
         
         Schema::create("plan",function(Blueprint $table){
             $table->string("plan_id");
             $table->string("plan_name")->nullable(false);
             $table->string("stg_id");
+            $table->string("target_id");
             $table->string("type");
             $table->string("desc")->nullable();
             $table->float("weight");
             $table->boolean("is_active");
             
+            $table->foreign("target_id")->references("target_id")->on("target");
             $table->foreign("stg_id")->references("stg_id")->on("strategy");
             $table->primary(['plan_id']);
         });
@@ -250,14 +261,6 @@ return new class extends Migration
             $table->foreign("role_id")->references("role_id")->on("role");
         });
 
-        Schema::create('target', function (Blueprint $table) {
-            $table->string('target_id');
-            $table->string('target_name');
-            $table->string('stg_id');
-
-            $table->foreign('stg_id')->references('stg_id')->on('strategy');
-            $table->primary(['target_id']);
-        });
 
 
         Schema::create("target_kpi", function(Blueprint $table){
@@ -301,7 +304,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('target');
 
         Schema::dropIfExists('comments');
 
@@ -338,9 +340,11 @@ return new class extends Migration
         Schema::dropIfExists("activity");
         
         Schema::dropIfExists("project");
-        
+                
         Schema::dropIfExists("plan");
         
+        Schema::dropIfExists('target');
+
         Schema::dropIfExists("strategy");
         
         Schema::dropIfExists("user");

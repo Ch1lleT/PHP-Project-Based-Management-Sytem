@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             HaveSubOrgSeeder::class,
             SettingSeeder::class,
             StrategySeeder::class,
+            TargetSeeder::class,
             PlanSeeder::class,
             ProjectSeeder::class,
             ActivitySeeder::class,
