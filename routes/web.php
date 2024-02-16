@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
+Debugbar::disable();
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +48,7 @@ Route::get('/fiscal_years', function () {
     return view('staff/fiscal_years');
 })->name("fiscal_years");
 
-Route::put('projects/{project_id}', [ProjectController::class, 'UpdateProject'])->name('project.update');
+Route::patch('projects/{project_id}', [ProjectController::class, 'UpdateProject'])->name('project.update');
 
 Route::get('/user_list',[UserController::class,'getAll']
 )->name("user_list");
