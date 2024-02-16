@@ -43,6 +43,13 @@ Route::get('/okr_kpi_manage', function () {
 Route::get('/dept', function () {
     return view('okr_kpi/dept');
 })->name("dept");
+Route::get('/org_chart', function () {
+    return view('okr_kpi/org_chart');
+})->name("org_chart");
+
+Route::get('/report', function () {
+    return view('okr_kpi/report/report');
+})->name("report");
 
 Route::get('/fiscal_years', function () {
     return view('staff/fiscal_years');

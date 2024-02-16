@@ -26,7 +26,7 @@
                                 <label for="No" class="form-label">No.</label>
                             </div>
                             <div class="col-9 input">
-                                <input type="text" class="form-control" id="No" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="No" name="No">
                             </div>
                         </div>
                         <div class="row d-flex align-items-center">
@@ -34,7 +34,7 @@
                                 <label for="OKR/KPI" class="form-label">Name OKR/KPI</label>
                             </div>
                             <div class="col-9 input">
-                                <input type="text" class="form-control" id="OKR/KPI" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="OKR/KPI" name="okr_kpi">
                             </div>
                         </div>
                         <div class="row d-flex align-items-center">
@@ -43,7 +43,7 @@
                                 <label for="Select Catagory" class="form-label">Select Catagory</label>
                             </div>
                             <div class="col-9 input">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="select_catagory">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -86,7 +86,7 @@
                                 <label for="Select-OKR/KPI" class="form-label">Select OKR/KPI</label>
                             </div>
                             <div class="col-9 input">
-                                <input type="text" class="form-control" id="Select-OKR/KPI" aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="Select-OKR/KPI" name="okr_kpi">
                             </div>
                         </div>
                         <div class="row d-flex align-items-center">
@@ -94,7 +94,7 @@
                                 <label for="No." class="form-label">No.</label>
                             </div>
                             <div class="col-9 input">
-                                <input type="text" class="form-control" id="No." aria-describedby="emailHelp">
+                                <input type="text" class="form-control" id="No." name="No">
                             </div>
                         </div>
                         <div class="row d-flex align-items-center">
@@ -102,7 +102,7 @@
                                 <label for="Name-OKR/KPI" class="form-label">Name OKR/KPI</label>
                             </div>
                             <div class="col-9 input">
-                                <input type="email" class="form-control" id="Name-OKR/KPI" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" id="Name-OKR/KPI" name="name_okr_kpi">
                             </div>
                         </div>
                         <div class="row d-flex align-items-center">
@@ -111,7 +111,7 @@
                                 <label for="Select-Catagory." class="form-label">Select Catagory</label>
                             </div>
                             <div class="col-9 input">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="select_catagory">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -170,10 +170,10 @@
                                 ตรวจสอบภายใน
                             </td>
                             <td class="w-25 ">
-                                <input type="text" class="form-control" id="bg">
+                                <input type="text" class="form-control" id="bg" name="consider_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control" id="bg">
+                                <input type="text" class="form-control" id="bg" name="consider_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -181,10 +181,10 @@
                                 ฝ่ายบริหารกลาง
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control" id="bg">
+                                <input type="text" class="form-control" id="bg" name="cad_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control" id="bg">
+                                <input type="text" class="form-control" id="bg" name="cad_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -192,10 +192,10 @@
                                 ฝ่ายนโยบายและยุทธสาสตร์
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="pas_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="pas_okr">
                             </td>
                         </tr>
                         <tr>
@@ -203,10 +203,10 @@
                                 กลุ่มงานสารบรรณและการประชุม
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="cmw_group_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="cmw_group_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -214,10 +214,10 @@
                                 ฝ่ายมาตรวิทยาเชิงกล
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="mechanical_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="mechanical_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -225,10 +225,10 @@
                                 ฝ่ายมาตรวิทยามิติ
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="dimension_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="dimension_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -236,10 +236,10 @@
                                 ฝ่ายมาตรวิทยาไฟฟ้า
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="electricity_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="electricity_okr">
                             </td>
                         </tr>
                         <tr>
@@ -247,10 +247,10 @@
                                 ฝ่ายมาตรวิทยาอุณภูมิและแสง
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="tl_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="tl_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -258,10 +258,10 @@
                                 ฝ่ายมาตรวิทยาเคมีและชีวภาพ
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="cb_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="cb_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -269,10 +269,10 @@
                                 กลุ่มงานเสียงและการสั่นสะท้อน
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="se_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="se_kpi">
                             </td>
                         </tr>
                         <tr>
@@ -280,10 +280,10 @@
                                 กลุ่มงานนวัตกรรมและพัฒนาเครื่องมือวัด
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="inno_okr">
                             </td>
                             <td class="w-25">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="inno_kpi">
                             </td>
                         </tr>
                     </tbody>

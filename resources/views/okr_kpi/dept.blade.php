@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
     <style>
-        .dt-buttons {
-            border: red;
+        tr td a{
+            color: black;
         }
     </style>
 @endsection
@@ -23,37 +23,47 @@
     <div class="p-3">
         <h4>แสดงข้อมูล : ฝ่ายนโยบายและยุทธสาสตร์</h4>
         <div class="overflow-x-auto">
-            <table class="table display" style="width:100%">
+            <table class="table display table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">ชื่อโครงการ</th>
-                        <th scope="col">ผู้ดูแลโครงการ</th>
-                        <th scope="col">งบจาก</th>
-                        <th scope="col">จบประเภท</th>
-                        <th scope="col">งบประมาณ</th>
-                        <th scope="col">หน่วยงาน</th>
-                        <th scope="col">แก้ไข</th>
+                        <th scope="col">STG</th>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Target(KR)</th>
+                        <th scope="col">Actual(KR)</th>
+                        <th scope="col">Target(KPI)</th>
+                        <th scope="col">Actual(KPI)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><a href="#" class="text-black">โปรเจค</a></th>
-                        <td><a href="#" class="text-black">นันทกร</a></td>
-                        <td>มว</td>
-                        <td>ลงทุน</td>
-                        <td>1150</td>
-                        <td>กฟอ.</td>
-                        <td>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project">
-                                <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20"
-                                    height="20" viewBox="0 0 24 24">
-                                    <path fill="#000000"
-                                        d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z">
-                                    </path>
-                                </svg>
-                            </a>
-                        </td>
+                        <th scope="row">stg 1</th>
+                        <td>kpi 1.0</td>
+                        <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nulla voluptas adipisci cupiditate sit dolores.</a></td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>0</td>
+                        <td>0</td>
                     </tr>
+                    <tr>
+                        <th scope="row">stg 2</th>
+                        <td>kpi 1.0</td>
+                        <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolorum, quam placeat eligendi dicta quis possimus enim quia perferendis ipsa!</a></td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">stg 3</th>
+                        <td>kpi 1.0</td>
+                        <td><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus consequatur est excepturi nihil? Veniam hic, necessitatibus consequuntur officia facere possimus, consequatur neque repellendus velit reprehenderit unde sapiente ipsam temporibus excepturi nam aliquam facilis nemo dicta ea culpa omnis nesciunt assumenda. Eius beatae aliquam voluptatibus, repellat ea nostrum blanditiis delectus vero?</a></td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+    
 
                 </tbody>
             </table>
