@@ -37,39 +37,42 @@
         <div class="modal fade" id="add_stg" tabindex="-1" aria-labelledby="add_stg_label" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="mb-3 row ">
-                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="stg_name">
+                    <form method="POST" action="{{ url('/STGAdd') }}">
+                    @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="mb-3 row ">
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
+                                        <option selected>เลือกแผนการ</option>
+                                        <option value="ผลผลิต">ผลผลิต</option>
+                                        <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                        <option value="ผลกระทบ">ผลกระทบ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row text-end">
+                                <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="cost" name="cost">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
-                                    <option selected>เลือกแผนการ</option>
-                                    <option value="ผลผลิต">ผลผลิต</option>
-                                    <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                    <option value="ผลกระทบ">ผลกระทบ</option>
-                                </select>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
-                        <div class="mb-3 row text-end">
-                            <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="cost" name="cost">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -137,97 +140,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                1
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                2
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                3
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                4
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                5
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                6
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                7
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                8
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; vertical-align: middle;">
-                                9
-                            </td>
-                            <td><a href="#" class="text-black text-wrap w-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ab error cupiditate qui
-                                    consequuntur natus odit, sint repudiandae quos, laboriosam dolorum ducimus? Molestiae
-                                    cum odit unde nisi, hic quos cumque?</a>
-                            </td>
-                        </tr>
-
+                        @if(isset($TargetAtAll))
+                            @foreach($TargetAtAll as $TargetAt)
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        {{$TargetAt->target_id}}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => $TargetAt->target_id]) }}" class="text-black text-wrap w-100">
+                                            {{ $TargetAt->target_name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -290,12 +216,12 @@
                                 ลำดับ
                             </th>
                             <th>
-                                ชื่อเป้า
+                                ชื่อแผน
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(isset($PlanAtAll) || !isset($stg_id))
+                        @if(isset($PlanAtAll) || isset($stg_id))
                             @foreach($PlanAtAll as $PlanAt)
                                 @if(is_object($PlanAt))
                                     <tr>
@@ -303,7 +229,7 @@
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'plan_id' => $PlanAt->plan_id]) }}" class="text-black text-wrap w-100">
+                                            <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => request()->query('stg_id'),'plan_id' => $PlanAt->plan_id]) }}" class="text-black text-wrap w-100">
                                                 {{ $PlanAt->plan_name }}
                                             </a>
                                         </td>

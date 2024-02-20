@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Http\Controllers\STGController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\TargetController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $STG = null; 
             $PlanAtAll = null;
             $ProjectAtAll = null;
+            $TargetAtAll = null;
 
             $STGAll = STGController::getAll()->getData()['stgAll'];
             // $PlanAll = PlanController::getAll()->getData()['PlanAll'];
@@ -41,6 +43,9 @@ class AppServiceProvider extends ServiceProvider
             $STGData = STGController::get(request())->getData();
             $STG = $STGData->STG;
 
+            $TargetAtAllData = TargetController::getAtAll(request())->getData();
+            $TargetAtAll = $TargetAtAllData->TargetAtAll;
+
             $PlanAtAllData = PlanController::getAtAll(request())->getData();
             $PlanAtAll = $PlanAtAllData->PlanAtAll;
 
@@ -49,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
 
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG', 'PlanAtAll', 'ProjectAtAll'));
+            $view->with(compact('STGAll', 'STG','TargetAtAll', 'PlanAtAll', 'ProjectAtAll'));
         });
     }
 }

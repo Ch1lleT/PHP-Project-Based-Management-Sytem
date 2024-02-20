@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Strategy;
 use Illuminate\Http\Request;
-use stdClass;
+use Illuminate\Support\Str;
 
 class STGController extends Controller
 {
@@ -18,6 +18,27 @@ class STGController extends Controller
         ];
 
         return view('stg', compact('stg'));
+    }
+
+    public static function Add(Request $request){
+
+        $request->validate([
+            'name' => 'required',
+            // 'desc' => 'required'
+        ]);
+
+        $uuid = Str::uuid()->toString();
+
+        $STG = new Strategy();
+        $STG->stg_id = $uuid;
+        $STG->name = $request->input('name');
+        $STG->desc = "งานยากมากครับ";
+        $STG->is_active = true;
+
+        $STG->save();
+
+        return redirect('/fiscal_years')->with('success', 'Data added successfully');
+
     }
 
     public static function getAll() {

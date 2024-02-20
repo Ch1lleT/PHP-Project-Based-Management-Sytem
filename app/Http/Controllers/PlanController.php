@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use App\Models\Strategy;
+use App\Models\Target;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -21,13 +22,25 @@ class PlanController extends Controller
         }
 
         public static function getAtAll(Request $request) {
+            $target_id = $request->target_id;
             $stg_id = $request->stg_id;
-            if (isset($stg_id)) {
-                $PlanAtAll = Plan::where('stg_id', $stg_id)->get();
-            }else {
-                $STG = Strategy::first();
-                $STGid = $STG->stg_id;
-                $PlanAtAll = Plan::where('stg_id', $STGid)->get();                
+            if (isset($target_id)) {
+                $PlanAtAll = Plan::where('target_id', $target_id)->get();                
+            }else if(isset($stg_id)){
+                try {
+                    //code...
+                    $TG = Target::where('stg_id', $stg_id)->first();
+                    $target_id = $TG->target_id;
+                    $PlanAtAll = Plan::where('target_id', $target_id)->get();
+                } catch (\Throwable $th) {
+                    //throw $th;
+                    return response()->json(['PlanAtAll' => null]);
+                }
+            }
+            else {
+                $TG = Target::first();
+                $target_id = $TG->target_id;
+                $PlanAtAll = Plan::where('target_id', $target_id)->get();
             }
             return response()->json(['PlanAtAll' => $PlanAtAll]);
         }

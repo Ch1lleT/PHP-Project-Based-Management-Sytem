@@ -36,9 +36,14 @@ class ProjectController extends Controller
         if(isset($plan_id)){
             $ProjectAtAll = Project::where('plan_id', $plan_id)->get();
         }else if(isset($stg_id)){
-            $Plan = Plan::where('stg_id',$stg_id)->first();
-            $PlanId = $Plan->plan_id;
-            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();        
+            try {
+                //code...
+                $Plan = Plan::where('stg_id',$stg_id)->first();
+                $PlanId = $Plan->plan_id;
+                $ProjectAtAll = Project::where('plan_id', $PlanId)->get();        
+            } catch (\Throwable $th) {
+                return response()->json(['ProjectAtAll' => null]);
+            }
         }else {
             $Plan = Plan::first();
             $PlanId = $Plan->plan_id;
