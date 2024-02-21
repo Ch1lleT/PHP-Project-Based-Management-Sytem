@@ -7,10 +7,52 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class ProjectController extends Controller
 {
+
+    public static function Add(Request $request, $plan_id){
+        $request->validate([
+            $request->project_name => 'request',
+            $request->executive => 'request',
+            $request->advisor => 'request',
+            $request->supervisor => 'request',
+            $request->project_head => 'request',
+            $request->balance => 'request',
+            $request->budget_type => 'request',
+            $request->budget_source => 'request',
+        ]);
+
+        if(isset($plan_id)){
+            $uuid = Str::uuid()->toString();
+    
+            $Project = new Project();
+            $Project->project_id = $uuid;
+            $Project->project_name = $request->input('project_name');
+            $Project->plan_id = $plan_id;
+            $Project->executive = $request->input('executive');
+            $Project->advisor = $request->input('advisor');
+            $Project->supervisor = $request->input('supervisor');
+            $Project->project_head = $request->input('project_head');
+            $Project->type = "";
+            $Project->desc = "";
+            $Project->balance =  $request->input('balance');
+            $Project->budget_source = $request->input('budget_source');
+            $Project->budget_type = $request->input('budget_type');
+            $Project->weight = 1;
+            $Project->is_active = true;
+    
+            $Project->save();
+    
+            return redirect()->back()->with('success', 'Data added successfully');
+        }else if ($plan_id == ''){
+            return response()->json(['error' => null]);
+        }
+
+    }
+
     public static function getAll() {
 
         $ProjectAll = Project::all();

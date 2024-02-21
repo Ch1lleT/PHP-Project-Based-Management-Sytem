@@ -59,6 +59,7 @@ Route::get('/fiscal_years', function () {
 Route::post('/STGAdd', [STGController::class, 'Add']);
 Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
 Route::post('/PlanAdd/{stg_id}/{target_id}', [PlanController::class, 'Add']);
+Route::post('/ProjectAdd/{plan_id}', [ProjectController::class, 'Add']);
 
 Route::patch('projects/{project_id}', [ProjectController::class, 'UpdateProject'])->name('project.update');
 
