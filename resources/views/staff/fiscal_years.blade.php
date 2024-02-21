@@ -92,36 +92,41 @@
         <div class="col-12 col-lg-6 ">
             <div class="header d-flex justify-content-between align-items-center">
                 <div class="h4 m-0">เป้า : </div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#add_target">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
+                @if (request()->has('stg_id'))
+                    <a href="" data-bs-toggle="modal" data-bs-target="#add_target">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                @endif
             </div>
             <div class="modal fade " id="add_target" tabindex="-1" aria-labelledby="add_target_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="add_target_label">เพิ่มเป้า ปีงบประมาณ : 2567</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body row">
-                            <div class="mb-3 row ">
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้า</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="target_name">
+                        <form method="POST" action="{{ url('/TGAdd/' . request('stg_id')) }}">
+                            @csrf
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="add_target_label">เพิ่มเป้า ปีงบประมาณ : 2567</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้า</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" name="target_name">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -144,7 +149,7 @@
                             @foreach($TargetAtAll as $TargetAt)
                                 <tr>
                                     <td style="text-align: center; vertical-align: middle;">
-                                        {{$TargetAt->target_id}}
+                                        {{$loop->index + 1}}
                                     </td>
                                     <td>
                                         <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => $TargetAt->target_id]) }}" class="text-black text-wrap w-100">
@@ -161,48 +166,52 @@
         <div class="col-12 col-lg-6 ">
             <div class="header d-flex justify-content-between align-items-center">
                 <div class="h4 m-0">แผน : </div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#add_plan">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
+                @if (request()->has('target_id'))
+                    <a href="" data-bs-toggle="modal" data-bs-target="#add_plan">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                @endif
             </div>
             <div class="modal fade " id="add_plan" tabindex="-1" aria-labelledby="add_plan_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="add_plan_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body row">
-                            <div class="mb-3 row ">
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผน</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="plan_name">
+                        <form method="POST" action="{{ url('/PlanAdd/' . request('stg_id').'/'.request('target_id')) }}">
+                            @csrf
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="add_plan_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผน</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" name="plan_name">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
+                                            <option selected>เลือกแผนการ</option>
+                                            <option value="ผลผลิต">ผลผลิต</option>
+                                            <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                            <option value="ผลกระทบ">ผลกระทบ</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
-                                        <option selected>เลือกแผนการ</option>
-                                        <option value="ผลผลิต">ผลผลิต</option>
-                                        <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                        <option value="ผลกระทบ">ผลกระทบ</option>
-                                    </select>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -245,15 +254,17 @@
         <div class="col-12 col-lg-12 ">
             <div class="header d-flex justify-content-between align-items-center">
                 <div class="h4 m-0">โครงการ : </div>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#add_project">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
+                @if (request()->has('plan_id'))
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#add_project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                @endif
             </div>
             <div class="modal fade" id="add_project" tabindex="-1" aria-labelledby="add_project_label"
                 aria-hidden="true">

@@ -5,10 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Strategy;
 use App\Models\Target;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TargetController extends Controller
 {
     //
+    public static function Add(Request $request, $stg_id){
+        $request->validate([
+            $request->target_name => 'request'
+        ]);
+
+        if(isset($stg_id)){
+            $uuid = Str::uuid()->toString();
+    
+            $TG = new Target();
+            $TG->target_id = $uuid;
+            $TG->target_name = $request->input('target_name');
+            $TG->stg_id = $stg_id;
+            // $TG->is_active = true;
+    
+            $TG->save();
+    
+            return redirect()->back()->with('success', 'Data added successfully');
+        }else if ($stg_id == ''){
+            return response()->json(['error' => null]);
+        }
+
+    }
+
     public static function getAll() {
         $TGAll = Target::all();
         return response()->json(['TGAll' => $TGAll]);

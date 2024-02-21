@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Plan;
 use App\Models\Project;
 use App\Models\User;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 

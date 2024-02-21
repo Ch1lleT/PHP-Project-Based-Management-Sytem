@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrgController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\STGController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TargetController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,6 +57,8 @@ Route::get('/fiscal_years', function () {
 })->name("fiscal_years");
 
 Route::post('/STGAdd', [STGController::class, 'Add']);
+Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
+Route::post('/PlanAdd/{stg_id}/{target_id}', [PlanController::class, 'Add']);
 
 Route::patch('projects/{project_id}', [ProjectController::class, 'UpdateProject'])->name('project.update');
 
