@@ -499,6 +499,12 @@
                     @yield('header')
                 </div>
 
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">
+                        logout
+                    </button>
+                </form>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#help">
                     Zoom

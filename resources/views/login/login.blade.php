@@ -166,7 +166,7 @@
                 </div>
                 <div class="row align-items-start content">
                     <div class="col-12">
-                        <form action="/login" method="post">
+                        <form action="{{route('login.post')}}" method="post">
                             @csrf
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" placeholder="Username" id="username" name="username">

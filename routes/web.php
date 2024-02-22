@@ -19,11 +19,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login/login');
-})->name("login");
 
-Route::post('/login', [LoginController::class,'authenticate']);
+Route::post('/login', [LoginController::class,'authenticate'])->name('login.post');
+Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+
+Route::group(['middleware' => ['web']],function(){
+    
+
+    Route::get('/', function () {
+        return view('login/login');
+    })->name("login");
+
+    Route::get('/fiscal_years', function () {
+         
+        $user = auth()->user();
+
+        return view('staff/fiscal_years',['user'=>$user]);
+    })->middleware('auth')->name("fiscal_years");
+
+});
 
 // Route::middleware('guest')->
 
@@ -50,9 +64,6 @@ Route::get('/report', function () {
     return view('okr_kpi/report/report');
 })->name("report");
 
-Route::get('/fiscal_years', function () {
-    return view('staff/fiscal_years');
-})->name("fiscal_years");
 
 Route::post('/STGAdd', [STGController::class, 'Add']);
 
@@ -72,8 +83,6 @@ Route::get('/level', function () {
 //     return view('profile/edit_profile');
 // })->name("edit_profile");
 Route::get('/edit_profile', [UserController::class, 'get'])->name("edit_profile");;
-
-Route::post('/login', [UserController::class,'authenticate']);
 
 //fiscal_years, org, user_list
 
