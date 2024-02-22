@@ -24,7 +24,7 @@
         <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal"
             data-bs-target="#add_stg">
             <div class="h4 me-3 my-0">
-                ยุทธศาสตร์
+                ยุทธศาสตร์ {{$user->first_name}}
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
                 <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>

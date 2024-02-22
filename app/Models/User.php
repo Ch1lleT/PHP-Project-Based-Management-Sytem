@@ -15,8 +15,6 @@ class User extends Authenticatable
 
     protected $table = 'user';
     
-    protected $guard = 'user';
-
     protected $dates = [
         'birth_date'
     ];
@@ -34,7 +32,6 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'user_id',
         'email',
         'prefix',
         'username',
