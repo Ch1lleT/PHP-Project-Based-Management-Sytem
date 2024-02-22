@@ -238,7 +238,7 @@
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => request()->query('plan_id'),'plan_id' => $PlanAt->plan_id]) }}" class="text-black text-wrap w-100">
+                                            <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => request()->query('target_id'),'plan_id' => $PlanAt->plan_id]) }}" class="text-black text-wrap w-100">
                                                 {{ $PlanAt->plan_name }}
                                             </a>
                                         </td>
