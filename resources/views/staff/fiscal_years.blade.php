@@ -1,7 +1,26 @@
 @extends('/layout/layout')
 
 @section('title', 'ปีงบประมาณ')
+@section('style')
+    <style>
+        .my-table tbody tr td{
+            background-color: #F8F9FA;
+            border: none;
+        }
+        .my-table {
+            display: flex;
+        }
 
+        .my-table td:nth-child(2) {
+            flex-grow: 1;
+        }
+
+        .my-table td:nth-child(1),
+        .my-table td:nth-child(3) {
+            flex-shrink: 0;
+        } 
+    </style>
+@endsection
 @section('header')
 
     <div class="w-100 d-flex align-items-center">
@@ -20,61 +39,47 @@
 @endsection
 
 @section('content')
-    <div class="mb-3">
-        <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal"
-            data-bs-target="#add_stg">
-            <div class="h4 me-3 my-0">
-                ยุทธศาสตร์
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                <g fill="#fff">
-                    <path d="M21 14h6v20h-6z"></path>
-                    <path d="M14 21h20v6H14z"></path>
-                </g>
-            </svg>
-        </a>
-        <div class="modal fade" id="add_stg" tabindex="-1" aria-labelledby="add_stg_label" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="mb-3 row ">
-                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="stg_name">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
-                                    <option selected>เลือกแผนการ</option>
-                                    <option value="ผลผลิต">ผลผลิต</option>
-                                    <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                    <option value="ผลกระทบ">ผลกระทบ</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3 row text-end">
-                            <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="cost" name="cost">
-                            </div>
+    <div class="modal fade" id="add_stg" tabindex="-1" aria-labelledby="add_stg_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="mb-3 row ">
+                        <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="stg_name">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                    <div class="mb-3 row">
+                        <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select"
+                                name="target_plan">
+                                <option selected>เลือกแผนการ</option>
+                                <option value="ผลผลิต">ผลผลิต</option>
+                                <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                <option value="ผลกระทบ">ผลกระทบ</option>
+                            </select>
+                        </div>
                     </div>
+                    <div class="mb-3 row text-end">
+                        <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="cost" name="cost">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </div>
-
     </div>
+
     <div class="row row-cols-3 gap-2 px-3">
         <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
         <a class="col-xl-2 col btn btn-secondary text-white">ยุทธศาสตร์ที่ 1</a>
@@ -84,23 +89,53 @@
     </div>
 
 
-    <div class="h4 my-3">
-        ยุทธศาสตร์ :
-    </div>
-    <div class="row row-cols-auto">
-        <div class="col-12 col-lg-6 ">
-            <div class="header d-flex justify-content-between align-items-center">
-                <div class="h4 m-0">เป้า : </div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#add_target">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
-            </div>
+    <table class="table mt-3 my-table" >
+        <tbody >
+            <tr >
+                <td class="h4 px-0">
+                    <div style="width: 124px">ยุทศาสตร์:</div>
+                </td>
+                <td class="h4">dasdas</td>
+                <td class="px-0 d-flex justify-content-end">
+                    <a href="#" class="d-flex align-items-center text-decoration-none text-black"
+                        data-bs-toggle="modal" data-bs-target="#add_stg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row row-cols-auto " style="border-top: 2px #DEE2E6 solid">
+        <div class="col-12 col-lg-6">
+            <table class="table mt-3 my-table" >
+                <tbody >
+                    <tr >
+                        <td class="h4 px-0">
+                            <div style="width: 124px">เป้าหมาย:</div>
+                        </td>
+                        <td class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit itaque dolores dolore
+                            veniam cum? Cupiditate!</td>
+                        <td class="px-0">
+                            <a href="#" class="d-flex align-items-center text-decoration-none text-black"
+                                data-bs-toggle="modal" data-bs-target="#add_target">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                    <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                    <g fill="#fff">
+                                        <path d="M21 14h6v20h-6z"></path>
+                                        <path d="M14 21h20v6H14z"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="modal fade " id="add_target" tabindex="-1" aria-labelledby="add_target_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -119,7 +154,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary">Add</button>
                         </div>
                     </div>
                 </div>
@@ -134,7 +169,7 @@
                                 ลำดับ
                             </th>
                             <th>
-                                ชื่อเป้า
+                                ชื่อเป้าหมาย
                             </th>
                         </tr>
                     </thead>
@@ -234,19 +269,30 @@
                 </table>
             </div>
         </div>
-        <div class="col-12 col-lg-6 ">
-            <div class="header d-flex justify-content-between align-items-center">
-                <div class="h4 m-0">แผน : </div>
-                <a href="" data-bs-toggle="modal" data-bs-target="#add_plan">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
-            </div>
+        <div class="col-12 col-lg-6">
+            <table class="table mt-3 my-table" >
+                <tbody >
+                    <tr >
+                        <td class="h4 px-0">
+                            <div style="width: 124px">แผนการ:</div>
+                        </td>
+                        <td class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit itaque dolores dolore
+                            veniam cum? Cupiditate!</td>
+                        <td class="px-0">
+                            <a href="#" class="d-flex align-items-center text-decoration-none text-black"
+                                data-bs-toggle="modal" data-bs-target="#add_plan">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                    <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                    <g fill="#fff">
+                                        <path d="M21 14h6v20h-6z"></path>
+                                        <path d="M14 21h20v6H14z"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="modal fade " id="add_plan" tabindex="-1" aria-labelledby="add_plan_label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -265,7 +311,8 @@
                             <div class="mb-3 row">
                                 <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select"
+                                        name="target_plan">
                                         <option selected>เลือกแผนการ</option>
                                         <option value="ผลผลิต">ผลผลิต</option>
                                         <option value="ผลลัพธ์">ผลลัพธ์</option>
@@ -277,7 +324,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary">Add</button>
                         </div>
                     </div>
                 </div>
@@ -292,7 +339,7 @@
                                 ลำดับ
                             </th>
                             <th>
-                                ชื่อแผน
+                                ชื่อแผนการ
                             </th>
                         </tr>
                     </thead>
@@ -393,18 +440,29 @@
             </div>
         </div>
         <div class="col-12 col-lg-12 ">
-            <div class="header d-flex justify-content-between align-items-center">
-                <div class="h4 m-0">โครงการ : </div>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#add_project">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
-                </a>
-            </div>
+            <table class="table mt-3 my-table" >
+                <tbody >
+                    <tr >
+                        <td class="h4 px-0">
+                            <div style="width: 124px">โครงการ:</div>
+                        </td>
+                        <td class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit itaque dolores dolore
+                            veniam cum? Cupiditate!</td>
+                        <td class="px-0">
+                            <a href="#" class="d-flex align-items-center text-decoration-none text-black"
+                                data-bs-toggle="modal" data-bs-target="#add_project">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                    <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                    <g fill="#fff">
+                                        <path d="M21 14h6v20h-6z"></path>
+                                        <path d="M14 21h20v6H14z"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="modal fade" id="add_project" tabindex="-1" aria-labelledby="add_project_label"
                 aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -420,7 +478,8 @@
                                     <div class="mb-3 row text-start">
                                         <label for="name" class="col-sm-3 col-form-label">ชื่อ</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="name" name="project_name">
+                                            <input type="text" class="form-control" id="name"
+                                                name="project_name">
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
@@ -542,7 +601,8 @@
                                     <div class="mb-3 row px-3">
                                         <label for="name" class="col col-form-label">ผู้ร่วมโครงการ</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" id="name" name="Project_participants">
+                                            <input type="text" class="form-control" id="name"
+                                                name="Project_participants">
                                         </div>
                                         <button class="col btn btn-primary"> Add</button>
                                     </div>
@@ -579,7 +639,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Create</button>
+                            <button type="button" class="btn btn-success">Add</button>
                         </div>
                     </div>
                 </div>
@@ -603,7 +663,8 @@
                                         <div class="mb-3 row text-start">
                                             <label for="name" class="col-sm-3 col-form-label">ชื่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="name" name="project_name">
+                                                <input type="text" class="form-control" id="name"
+                                                    name="project_name">
                                             </div>
                                         </div>
                                         <div class="mb-3 row text-start">
@@ -633,7 +694,8 @@
                                         <div class="mb-3 row text-start">
                                             <label for="name" class="col-sm-3 col-form-label">งบประมาณ</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="name" name="cost">
+                                                <input type="number" class="form-control" id="name"
+                                                    name="cost">
                                             </div>
                                         </div>
                                         <div class="mb-3 row text-start">
@@ -726,7 +788,8 @@
                                         <div class="mb-3 row px-3">
                                             <label for="name" class="col col-form-label">ผู้ร่วมโครงการ</label>
                                             <div class="col">
-                                                <input type="text" class="form-control" id="name" name="project_participants">
+                                                <input type="text" class="form-control" id="name"
+                                                    name="project_participants">
                                             </div>
                                             <button class="col btn btn-primary"> Add</button>
                                         </div>
@@ -756,7 +819,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overflow-x-auto p-3">
+            <div class="overflow-x-auto p-0">
 
                 <table id="Project-Table" class="table display " style="width:100%">
                     <thead>

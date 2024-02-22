@@ -37,6 +37,10 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
+
+    <script src="{{ asset('/chart/BALKAN_OrgChartJS_FREE_8.14.01/orgchart.js') }}"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
@@ -48,6 +52,7 @@
         ::-webkit-scrollbar {
             width: 10px;
             height: 5px;
+             
         }
 
         /* Track */
@@ -421,7 +426,7 @@
                     </a>
                     <div class="collapse" id="executive-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
+                            <li><a href="{{ route('stg_overview')}}" class="rounded">ภาพรวมยุทธศาสตร์✅</a></li>
                             <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
                         </ul>
                     </div>
@@ -456,7 +461,7 @@
                     <div class="collapse" id="report-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                             <li><a href="#" class="rounded">NIMT</a></li>
-                            <li><a href="#" class="rounded">NIMT OKR Chart</a></li>
+                            <li><a href="{{ route('org_chart')}}" class="rounded">NIMT OKR Chart✅</a></li>
                             <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
                             <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR✅</a>
                             </li>
@@ -475,7 +480,7 @@
                     <div class="collapse" id="okr-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                             <li><a href="#" class="rounded" id="test">Summary report technic</a></li>
-                            <li><a href="#" class="rounded">Summary report technic</a></li>
+                            <li><a href="#" class="rounded">Summary report support</a></li>
                         </ul>
                     </div>
                 </li>

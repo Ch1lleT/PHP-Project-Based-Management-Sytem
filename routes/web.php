@@ -66,6 +66,10 @@ Route::get('/edit_profile', function () {
     return view('profile/edit_profile');
 })->name("edit_profile");
 
+Route::get('/stg_overview', function () {
+    return view('executive/stg_overview');
+})->name("stg_overview");
+
 //fiscal_years, org, user_list
 
 Route::get('/stg', [STGController::class, 'index']);
