@@ -10,27 +10,39 @@ class LoginController extends Controller
 {
     public function authenticate(Request $request) {
         $credentials = $request->validate([
-            "username" => ["required", "string", "min:3" ],
-            "password" => ["required", "string", "min:6"],
-        ],
-        [
-            "username.required" => "กรุณากรอกชื่อผู้ใช้",
-            "password.required" => "กรุณากรอกรหัสผ่าน",
-            "username.min" => "น้อยเกิ้น",
-            "password.min" => "มากกว่านี้หน่อย",
+            // "username" => ["required", "string", "min:3" ],
+            // "password" => ["required", "string", "min:6"],
+            "username" => ["required", "string"],
+            "password" => ["required", "string"],
         ]
+        // ,
+        // [
+        //     "username.required" => "กรุณากรอกชื่อผู้ใช้",
+        //     "password.required" => "กรุณากรอกรหัสผ่าน",
+        //     "username.min" => "น้อยเกิ้น",
+        //     "password.min" => "มากกว่านี้หน่อย",
+        // ]
     );
 
-        $user = User::where('username', $credentials['username'])->first();
+        // $user = User::where('username', $credentials['username'])->first();
 
-        if ($user && password_verify($credentials['password'], $user->password)) {
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect()->intended('dashboard');
-            }
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect('/fiscal_years');
         }
 
         return redirect()->route('login')->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']);
+    }
+
+    public function logout()
+    {
+        
+        session()->invalidate();
+        session()->flush();
+        session()->regenerate();
+
+        return redirect()->route('login');
     }
 }
 
