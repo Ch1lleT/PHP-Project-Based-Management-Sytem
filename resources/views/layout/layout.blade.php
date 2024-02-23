@@ -255,6 +255,7 @@
                             <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                             <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                            <li><a href="{{ route('log')}}" class="rounded">log✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -412,6 +413,7 @@
                             <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                             <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                            <li><a href="{{ route('log')}}" class="rounded">log✅</a></li>
                         </ul>
                     </div>
                 </li>

@@ -83,6 +83,9 @@ Route::get('/org',[OrgController::class,'getAll'])->name("org");
 Route::get('/level', function () {
     return view('admin/level');
 })->name("level");
+Route::get('/log', function () {
+    return view('admin/log');
+})->name("log");
 
 // Route::get('/edit_profile', function () {
 //     return view('profile/edit_profile');
