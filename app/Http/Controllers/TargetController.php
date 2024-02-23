@@ -10,6 +10,16 @@ use Illuminate\Support\Str;
 class TargetController extends Controller
 {
     //
+    public static function get(Request $request) {
+        $target_id = $request->target_id;
+        if(isset($target_id)) {
+            $Target = Target::where('target_id', $target_id)->first();
+        }else {
+            $Target = Target::first();
+        }
+        return response()->json(['Target' => $Target]);
+    }  
+
     public static function Add(Request $request, $stg_id){
         $request->validate([
             $request->target_name => 'request'
@@ -34,7 +44,7 @@ class TargetController extends Controller
     }
 
     public static function getAll() {
-        $TGAll = Target::all();
+        $TGAll = Target::where('is_active',true)->get();
         return response()->json(['TGAll' => $TGAll]);
     }
     

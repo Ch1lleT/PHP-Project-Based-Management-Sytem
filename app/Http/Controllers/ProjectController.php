@@ -13,6 +13,17 @@ use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
 
+    public static function NotActive(Request $request) {
+        $project_id = $request->project_id;
+    
+        $project = Project::find($project_id);
+    
+        if ($project) {
+            $project->is_active = false;
+            $project->save();
+        }
+    }    
+
     public static function Add(Request $request, $plan_id){
         $request->validate([
             $request->project_name => 'request',
@@ -59,7 +70,7 @@ class ProjectController extends Controller
 
     public static function getAll() {
 
-        $ProjectAll = Project::all();
+        $ProjectAll = Project::where('is_active',true)->get();
 
         // $ProjectAll = [
         //     [

@@ -11,6 +11,16 @@ use Illuminate\Support\Str;
 class PlanController extends Controller
 {
 
+    public static function get(Request $request) {
+        $plan_id = $request->plan_id;
+        if(isset($plan_id)) {
+            $Plan = Plan::where('plan_id', $plan_id)->first();
+        }else {
+            $Plan = Plan::first();
+        }
+        return response()->json(['Plan' => $Plan]);
+    } 
+
     public static function Add(Request $request,$stg_id, $target_id)
     {
         $request->validate([
@@ -40,7 +50,7 @@ class PlanController extends Controller
     }
     public static function getAll()
     {
-        $PlanAll = Plan::all();
+        $PlanAll = Plan::where('is_active',true)->get();
 
         // $PlanAll = [
         //     [

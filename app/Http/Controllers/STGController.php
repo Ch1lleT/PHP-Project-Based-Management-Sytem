@@ -42,7 +42,7 @@ class STGController extends Controller
     }
 
     public static function getAll() {
-        $stgAll = Strategy::all();
+        $stgAll = Strategy::where('is_active', true)->get();
 
         // $stgAll = [
         //     ["id" => "1","name" => "ยุทธศาสตร์ที่ 1"],

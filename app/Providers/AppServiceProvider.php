@@ -28,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('staff/fiscal_years', function ($view) {
             // Data to be shared
             $STG = null; 
+            $Target = null;
+            $Plan = null; 
+            $Project = null; 
             $PlanAtAll = null;
             $ProjectAtAll = null;
             $TargetAtAll = null;
@@ -42,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
             // }
             $STGData = STGController::get(request())->getData();
             $STG = $STGData->STG;
+            $TargetData = TargetController::get(request())->getData();
+            $Target = $TargetData->Target;
+            $PlanData = PlanController::get(request())->getData();
+            $Plan = $PlanData->Plan;
 
             $TargetAtAllData = TargetController::getAtAll(request())->getData();
             $TargetAtAll = $TargetAtAllData->TargetAtAll;
@@ -54,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
 
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG','TargetAtAll', 'PlanAtAll', 'ProjectAtAll'));
+            $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll'));
         });
     }
 }
