@@ -26,6 +26,7 @@ class Project extends Model
         'balance',
         'budget_source',
         'budget_type',
+        'org_id',
         'weight',
     ];
 }
