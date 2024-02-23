@@ -56,23 +56,6 @@
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="plane" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
-                                    <option selected>เลือกแผนการ</option>
-                                    <option value="ผลผลิต">ผลผลิต</option>
-                                    <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                    <option value="ผลกระทบ">ผลกระทบ</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-3 row text-end">
-                            <label for="cost" class="col-sm-2 col-form-label p-0 pt-2">งบประมาณ</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="cost" name="cost">
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -95,7 +78,7 @@
         <tbody >
             <tr >
                 <td class="h4 px-0">
-                    <div style="width: 124px">ยุทศาสตร์:</div>
+                    <div style="width: 124px">ยุทธศาสตร์:</div>
                 </td>
                 <td class="h4">{{ isset($STG->name) ? $STG->name : '' }}</td>
                 <td class="px-0 d-flex justify-content-end">
@@ -141,7 +124,7 @@
                 </tbody>
             </table>
             <div class="modal fade " id="add_target" tabindex="-1" aria-labelledby="add_target_label" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="POST" action="{{ url('/TGAdd/' . request('stg_id')) }}">
                             @csrf
@@ -152,7 +135,13 @@
                         </div>
                         <div class="modal-body row">
                             <div class="mb-3 row ">
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้า</label>
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์ :</label>
+                                <div class="col-sm-10 d-flex align-items-end">
+                                    <p class="m-0">ยุทธศาสตร์ ที่ 1</p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row ">
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="name" name="target_name">
                                 </div>
@@ -161,6 +150,38 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade " id="edit_target" tabindex="-1" aria-labelledby="edit_target_label" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form method="POST" action="{{ url('/TGAdd/' . request('stg_id')) }}">
+                            @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="edit_target_label">แก้ไขเป้าหมาย</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="mb-3 row ">
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์ :</label>
+                                <div class="col-sm-10 d-flex align-items-end">
+                                    <p class="m-0">ยุทธศาสตร์ ที่ 1</p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row ">
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="target_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Change</button>
                         </div>
                     </form>
                     </div>
@@ -178,6 +199,12 @@
                             <th>
                                 ชื่อเป้าหมาย
                             </th>
+                            <th>
+                                แก้ไข
+                            </th>
+                            <th>
+                                ลบ
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -190,6 +217,20 @@
                                     <td>
                                         <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => $TargetAt->target_id]) }}" class="text-black text-wrap w-100">
                                             {{ $TargetAt->target_name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_target">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
+                                                <path fill="#000000"
+                                                    d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 0, 0);transform: ;msFilter:;"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg>
                                         </a>
                                     </td>
                                 </tr>
@@ -226,7 +267,7 @@
                 </tbody>
             </table>
             <div class="modal fade " id="add_plan" tabindex="-1" aria-labelledby="add_plan_label" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form method="POST" action="{{ url('/PlanAdd/' . request('stg_id').'/'.request('target_id')) }}">
                             @csrf
@@ -237,13 +278,25 @@
                         </div>
                         <div class="modal-body row">
                             <div class="mb-3 row ">
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผน</label>
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์ :</label>
+                                    <div class="col-sm-10 d-flex align-items-end">
+                                        <p class="m-0">ยุทธศาสตร์ ที่ 1</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย :</label>
+                                    <div class="col-sm-10 d-flex align-items-end">
+                                        <p class="m-0">เป้าหมาย ที่ 1</p>
+                                    </div>
+                                </div>
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="name" name="plan_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">แผนการ</label>
+                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
                                         <option selected>เลือกแผนการ</option>
@@ -263,7 +316,56 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade " id="edit_plan" tabindex="-1" aria-labelledby="edit_plan_label" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form method="POST">
+                            @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="edit_plan_label">แก้ไขแผนงาน</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="mb-3 row ">
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์ :</label>
+                                    <div class="col-sm-10 d-flex align-items-end">
+                                        <p class="m-0">ยุทธศาสตร์ ที่ 1</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย :</label>
+                                    <div class="col-sm-10 d-flex align-items-end">
+                                        <p class="m-0">เป้าหมาย ที่ 1</p>
+                                    </div>
+                                </div>
+                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="plan_name">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select" name="target_plan">
+                                        <option selected>เลือกแผนการ</option>
+                                        <option value="ผลผลิต">ผลผลิต</option>
+                                        <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                        <option value="ผลกระทบ">ผลกระทบ</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Change</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <hr>
             <div class="content">
                 <table class="table display" style="width: 100%">
@@ -274,6 +376,15 @@
                             </th>
                             <th>
                                 ชื่อแผนการ
+                            </th>
+                            <th>
+                                ประเภทแผนการ
+                            </th>
+                            <th>
+                                แก้ไข
+                            </th>
+                            <th>
+                                ลบ
                             </th>
                         </tr>
                     </thead>
@@ -288,6 +399,23 @@
                                         <td>
                                             <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'),'target_id' => request()->query('target_id'),'plan_id' => $PlanAt->plan_id]) }}" class="text-black text-wrap w-100">
                                                 {{ $PlanAt->plan_name }}
+                                            </a>
+                                        </td>
+                                        <td class="text-danger">
+                                            รอคุย
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_plan">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
+                                                    <path fill="#000000"
+                                                        d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 0, 0);transform: ;msFilter:;"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg>
                                             </a>
                                         </td>
                                     </tr>
@@ -522,6 +650,7 @@
                         <th>งบประมาณ</th>
                         <th>หน่วยงาน</th>
                         <th>แก้ไข</th>
+                        <th>ลบ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -535,11 +664,19 @@
                                 <td>{{ number_format($ProjectAt->balance) }}</td>
                                 {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
                                 <td>มว.</td>
+    
                                 <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit_project_{{ $loop->index }}" >
-                                        <svg class="d-flex align-items-center" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                            <path fill="#000000" d="m11.4 18.161l7.396-7.396a10.289 10.289 0 0 1-3.326-2.234a10.29 10.29 0 0 1-2.235-3.327L5.839 12.6c-.577.577-.866.866-1.114 1.184a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.362 4.083a1.06 1.06 0 0 0 1.342 1.342l4.083-1.362c.775-.258 1.162-.387 1.526-.56c.43-.205.836-.456 1.211-.749c.318-.248.607-.537 1.184-1.114m9.448-9.448a3.932 3.932 0 0 0-5.561-5.561l-.887.887l.038.111a8.754 8.754 0 0 0 2.092 3.32a8.754 8.754 0 0 0 3.431 2.13z"></path>
+                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_project_{{$loop->index}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
+                                            <path fill="#000000"
+                                                d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
+                                            </path>
                                         </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 0, 0);transform: ;msFilter:;"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg>
                                     </a>
                                 </td>
                             </tr>
