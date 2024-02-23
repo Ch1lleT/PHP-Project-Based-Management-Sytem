@@ -27,15 +27,19 @@ class ProjectController extends Controller
 
         if(isset($plan_id)){
             $uuid = Str::uuid()->toString();
-    
+            $firstChunk = substr($uuid, 0, 8);
             $Project = new Project();
-            $Project->project_id = $uuid;
+            $Project->project_id = $firstChunk;
             $Project->project_name = $request->input('project_name');
             $Project->plan_id = $plan_id;
-            $Project->executive = $request->input('executive');
-            $Project->advisor = $request->input('advisor');
-            $Project->supervisor = $request->input('supervisor');
-            $Project->project_head = $request->input('project_head');
+            // $Project->executive = $request->input('executive');
+            // $Project->advisor = $request->input('advisor');
+            // $Project->supervisor = $request->input('supervisor');
+            // $Project->project_head = $request->input('project_head');
+            $Project->executive = null;
+            $Project->advisor = null;
+            $Project->supervisor = null;
+            $Project->project_head = 1;
             $Project->type = "";
             $Project->desc = "";
             $Project->balance =  $request->input('balance');

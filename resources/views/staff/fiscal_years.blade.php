@@ -370,15 +370,15 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">งบประมาณ</label>
+                                        <label for="balance" class="col-sm-3 col-form-label">งบประมาณ</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="name" name="cost">
+                                            <input type="number" class="form-control" id="balance" name="balance">
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">ประเภทงบ</label>
+                                        <label for="budget_type" class="col-sm-3 col-form-label">ประเภทงบ</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="budget_type" name="budget_type"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -388,9 +388,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">งบจาก</label>
+                                        <label for="budget_source" class="col-sm-3 col-form-label">งบจาก</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="budget_source" name="budget_source"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -412,9 +412,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
+                                        <label for="project_head" class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="project_head" name="project_head"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -424,9 +424,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">Advisor</label>
+                                        <label for="advisor" class="col-sm-3 col-form-label">Advisor</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="advisor" name="advisor"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -436,9 +436,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">Supervisor</label>
+                                        <label for="supervisor" class="col-sm-3 col-form-label">Supervisor</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="supervisor" name="supervisor"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -448,9 +448,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row text-start">
-                                        <label for="name" class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
+                                        <label for="executive" class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
                                         <div class="col-sm-9">
-                                            <select class="form-select" id="floatingSelect"
+                                            <select class="form-select" id="executive" name="executive"
                                                 aria-label="Floating label select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -554,7 +554,7 @@
                                             @method('PATCH')
                                         
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="edit_project_label_{{ $index }}">แก้ไขโครงการ ... ปีงบประมาณ : 2567</h1>
+                                                <h1 class="modal-title fs-5" id="edit_project_label_{{ $index }}">แก้ไขโครงการ {{ $ProjectAt->project_name }} ปีงบประมาณ : 2567</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
