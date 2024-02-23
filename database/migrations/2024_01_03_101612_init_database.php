@@ -161,6 +161,7 @@ return new class extends Migration
             $table->integer("balance");
             $table->string("budget_source");
             $table->string("budget_type");
+            $table->string("org_id")->nullable(); 
             $table->float("weight");
             $table->boolean("is_active")->default(true);
 
@@ -169,6 +170,7 @@ return new class extends Migration
             // $table->foreign("executive")->references("user_id")->on("user");
             $table->foreign("executive")->references("id")->on("user");
             $table->foreign("advisor")->references("id")->on("user");
+            $table->foreign("org_id")->references("sub_org_id")->on("sub_organization");
             $table->foreign("supervisor")->references("id")->on("user");
             $table->foreign("project_head")->references("id")->on("user");
             $table->primary(["project_id"]);
