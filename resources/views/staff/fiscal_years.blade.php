@@ -40,19 +40,6 @@
 
 @section('content')
     <div class="mb-3">
-        <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal"
-            data-bs-target="#add_stg">
-            <div class="h4 me-3 my-0">
-                ยุทธศาสตร์ {{$user->first_name}}
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                <g fill="#fff">
-                    <path d="M21 14h6v20h-6z"></path>
-                    <path d="M14 21h20v6H14z"></path>
-                </g>
-            </svg>
-        </a>
         <div class="modal fade" id="add_stg" tabindex="-1" aria-labelledby="add_stg_label" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -104,13 +91,13 @@
     </div>
 
 
-    <table class="table mt-3 my-table" >
+    <table class="table mt-3 mb-0 my-table" >
         <tbody >
             <tr >
                 <td class="h4 px-0">
-                    <div style="width: 124px">ยุทศาสตร์: {{ isset($STG->name) ? $STG->name : '' }}</div>
+                    <div style="width: 124px">ยุทศาสตร์:</div>
                 </td>
-                <td class="h4">dasdas</td>
+                <td class="h4">{{ isset($STG->name) ? $STG->name : '' }}</td>
                 <td class="px-0 d-flex justify-content-end">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-black"
                         data-bs-toggle="modal" data-bs-target="#add_stg">
