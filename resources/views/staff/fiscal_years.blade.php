@@ -407,7 +407,7 @@
                                             <div class="col">
                                                 <input type="text" class="form-control" id="name" name="Project_participants">
                                             </div>
-                                            <button class="col btn btn-primary"> Add</button>
+                                            <button type="button" class="col btn btn-primary"> Add</button>
                                         </div>
                                         <div class="overflow-y-scroll px-3" style="height: 500px;">
                                             <div class="row">
@@ -627,7 +627,7 @@
                                                             <div class="col-sm-7">
                                                                 <input type="text" class="form-control" id="name">
                                                             </div>
-                                                            <button class="col-sm-2 btn btn-primary"> Add</button>
+                                                            <button type="button" class="col-sm-2 btn btn-primary"> Add</button>
                                                         </div>
                                                         <div class="overflow-y-scroll px-3" style="height: 500px;">
                                                             <div class="row">
