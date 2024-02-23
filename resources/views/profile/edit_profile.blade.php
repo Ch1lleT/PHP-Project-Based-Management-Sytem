@@ -33,7 +33,9 @@
 @endsection
 
 @section('content')
-    <div class="contrain">
+<div class="row row-cols-auto">
+
+    <div class="col profile_data">
         <span class="fw-bolder">
             แก้ไขข้อมูลส่วนตัว
         </span>
@@ -88,6 +90,13 @@
             <div class="btn btn-primary text-end" type="submit">Save</div>
         </div>
     </div>
+    <div class="col">
+        <div class="img d-flex justify-content-center">
+            <img src="{{ asset('image/defult-profile/profile.svg') }}" alt="" style="height: 500px; width:500px; ">
+        </div>
+    </div>
+</div>
+
     <script>
         function show() {
             var new_pass = document.getElementById("password_new");
