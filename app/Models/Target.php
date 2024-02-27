@@ -13,7 +13,7 @@ class Target extends Model
 
     
     protected $primaryKey = 'target_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'target_id',

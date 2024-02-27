@@ -14,7 +14,7 @@ class Strategy extends Model
 
     
     protected $primaryKey = 'stg_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'stg_id',

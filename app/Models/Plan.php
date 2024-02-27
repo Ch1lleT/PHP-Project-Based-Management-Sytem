@@ -13,7 +13,7 @@ class Plan extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'plan_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'plan_id',

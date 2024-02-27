@@ -12,7 +12,7 @@ class Organization extends Model
     public $timestamps = false;
     
     protected $primaryKey = 'org_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'org_id',

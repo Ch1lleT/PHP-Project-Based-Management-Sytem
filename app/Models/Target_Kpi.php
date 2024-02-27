@@ -13,7 +13,7 @@ class Target_Kpi extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'targetkpi_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'targetkpi_id',

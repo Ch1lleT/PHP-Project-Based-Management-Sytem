@@ -11,7 +11,7 @@ class Balance extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'balance_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'balance_id',

@@ -11,7 +11,7 @@ class Actual_Target extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'acttarget_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'acttarget_id',

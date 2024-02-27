@@ -14,7 +14,7 @@ class Group extends Model
 
 
     protected $primaryKey = 'group_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'group_id',

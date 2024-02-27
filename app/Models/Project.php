@@ -13,7 +13,7 @@ class Project extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'project_id';
-    protected $incrementing = false;
+    public $incrementing = false;
     
     protected $fillable = [
         'project_id',

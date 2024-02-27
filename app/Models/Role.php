@@ -14,7 +14,7 @@ class Role extends Model
 
     
     protected $primaryKey = 'role_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'role_id',

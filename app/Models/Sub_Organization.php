@@ -12,7 +12,7 @@ class Sub_Organization extends Model
 
     
     protected $primaryKey = 'sub_org_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'sub_org_id',

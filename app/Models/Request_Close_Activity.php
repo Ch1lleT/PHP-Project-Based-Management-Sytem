@@ -13,7 +13,7 @@ class Request_Close_Activity extends Model
     public $timestamps = false;
     
     protected $primaryKey = 'req_id';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'req_id',

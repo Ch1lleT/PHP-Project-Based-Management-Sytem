@@ -12,7 +12,7 @@ class Activity extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'act_id';
-    protected $incrementing = false;
+    public $incrementing = false;
     
     protected $fillable = [
         'act_id',
