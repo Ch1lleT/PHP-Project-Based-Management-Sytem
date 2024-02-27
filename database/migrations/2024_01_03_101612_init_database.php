@@ -128,6 +128,7 @@ return new class extends Migration
             $table->string('target_id');
             $table->string('target_name');
             $table->string('stg_id');
+            $table->boolean('is_active')->default(true);
 
             $table->foreign('stg_id')->references('stg_id')->on('strategy');
             $table->primary(['target_id']);
