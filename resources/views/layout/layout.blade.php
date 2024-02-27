@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="{{ asset('image/logo.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('image/logo.png') }}" />
     <title>@yield('title')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -52,7 +52,7 @@
         ::-webkit-scrollbar {
             width: 10px;
             height: 5px;
-             
+
         }
 
         /* Track */
@@ -255,7 +255,7 @@
                             <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                             <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                            <li><a href="{{ route('log')}}" class="rounded">log✅</a></li>
+                            <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -286,8 +286,8 @@
                     </a>
                     <div class="collapse" id="staff-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('fiscal_years') }}" class="rounded">ปีงบประมาณ✅</a></li>
-                            <li><a href="{{ route('fiscal_years') }}" class="rounded">เพิ่มโครงการ ✅</a></li>
+                            <li><a href="{{ route('fiscal_years_list') }}" class="rounded">ปีงบประมาณ✅</a></li>
+                            <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -394,7 +394,6 @@
                             <li><a href="{{ route('edit_profile') }}" class="rounded">แก้ไขข้อมูลส่วนตัว✅</a></li>
 
                             <li><a href="#" class="rounded">สรุปค่างาน</a></li>
-                            <li><a href="{{ route('login') }}" class="rounded">ออกจากระบบ✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -413,7 +412,7 @@
                             <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                             <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                            <li><a href="{{ route('log')}}" class="rounded">log✅</a></li>
+                            <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -428,7 +427,7 @@
                     </a>
                     <div class="collapse" id="executive-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('stg_overview')}}" class="rounded">ภาพรวมยุทธศาสตร์✅</a></li>
+                            <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์✅</a></li>
                             <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
                         </ul>
                     </div>
@@ -444,8 +443,8 @@
                     </a>
                     <div class="collapse" id="staff-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('fiscal_years') }}" class="rounded">ปีงบประมาณ✅</a></li>
-                            <li><a href="{{ route('fiscal_years') }}" class="rounded">เพิ่มโครงการ ✅</a></li>
+                            <li><a href="{{ route('fiscal_years_list') }}" class="rounded">ปีงบประมาณ✅</a></li>
+                            <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -463,7 +462,7 @@
                     <div class="collapse" id="report-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                             <li><a href="#" class="rounded">NIMT</a></li>
-                            <li><a href="{{ route('org_chart')}}" class="rounded">NIMT OKR Chart✅</a></li>
+                            <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart✅</a></li>
                             <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
                             <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR✅</a>
                             </li>
@@ -486,6 +485,13 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <a href="{{ route('login') }}" type="submit" class="rounded">ออกจากระบบ✅</a>
+                    </form>
+                    
+                </li>
                 <hr>
                 <div class="d-flex">
                     <span>
@@ -506,14 +512,8 @@
                     @yield('header')
                 </div>
 
-                <form action="{{route('logout')}}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">
-                        logout
-                    </button>
-                </form>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#help">
+                
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help">
                     Zoom
                 </button>
 
@@ -521,12 +521,12 @@
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                           
+
                             <div class="modal-body">
                                 <h2 class="text-dark">กด Ctrl ค้าง แล้วกด + เพื่อซูมเข้า</h2>
                                 <h2 class="text-dark">กด Ctrl ค้าง แล้วกด - เพื่อซูมออก</h2>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
