@@ -5,7 +5,7 @@
         <div class="fs-5 me-2">
             รายงานผล OKR/KPI
         </div>
-        <a class="btn btn-secondary py-1" href="{{route('fiscal_years')}}">Back</a>
+        <a class="btn btn-secondary py-1" href="{{ route('fiscal_years') }}">Back</a>
     </div>
 @endsection
 @section('style')
@@ -33,36 +33,31 @@
             border-radius: 4px;
         }
 
-        .table thead tr th{
-            padding:0 5px;
+        .table thead tr th {
+            padding: 0 5px;
             /* display: flex; */
+        }
+        tr td a:hover{
+            cursor: pointer;
         }
     </style>
 @endsection
 @section('content')
     {{-- start modal --}}
-    <div class="modal fade" id="comment" tabindex="-1" aria-labelledby="comment_label" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="comment" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ url('/STGAdd') }}">
-                    @csrf
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="mb-3 row ">
-                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </form>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="commentModalLabel">Comment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea style="width: 100%;" name="comment"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
             </div>
         </div>
     </div>
@@ -144,61 +139,61 @@
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
                             <p type="number" contenteditable="true">1</p>
-                            <div><i class='bx bxs-envelope'></i></div>
+                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
 
                         </td>
                         <td>
