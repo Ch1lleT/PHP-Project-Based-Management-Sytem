@@ -384,7 +384,7 @@
                             <div class="img d-flex align-items-center">
                                 <img src="{{ asset('image/profile.png') }}" alt="" srcset=""
                                     id="profile">
-                                <p class="ps-3">Siwapon sungsang</p>
+                                    <p class="ps-3">{{auth()->user()->first_name.' '.auth()->user()->last_name}}</p>
                             </div>
                             <i class='bx bxs-chevron-down'></i>
                         </a>

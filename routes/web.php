@@ -7,7 +7,11 @@ use App\Http\Controllers\STGController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TargetController;
+use App\Utilities\UUID;
 use Illuminate\Support\Facades\Route;
+
+use App\Models\Project;
+
 
 
 /*
@@ -25,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [LoginController::class,'authenticate'])->name('login.post');
 Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 
+
 Route::group(['middleware' => ['web']],function(){
     
 
@@ -33,19 +38,17 @@ Route::group(['middleware' => ['web']],function(){
     })->name("login");
 
     Route::get('/fiscal_years', function () {
-         
-        $user = auth()->user();
-
-        return view('staff/fiscal_years',['user'=>$user]);
+        return view('staff/fiscal_years');
+        // return view('staff/fiscal_years',['user'=>$user]);
     })->middleware('auth')->name("fiscal_years");
 
 });
 
 // Route::middleware('guest')->
 
-Route::get('/layout', function () {
-    return view('layout/layout');
-});
+// Route::get('/layout', function () {
+//     return view('layout/layout');
+// });
 
 Route::get('/stg_dashboard', function () {
     return view('stg/stg_dashboard');
@@ -109,6 +112,11 @@ Route::get('/stg_overview', function () {
 //fiscal_years, org, user_list
 
 Route::get('/stg', [STGController::class, 'get']);
+
+Route::get('/test',function()
+{
+    return UUID::uuid(Project::class);
+});
 
 //fix edit_profile, fiscal_years, org
 //build org_chart, stg_dashboard
