@@ -66,6 +66,13 @@ Route::get('/report', function () {
     return view('okr_kpi/report/report');
 })->name("report");
 
+Route::get('/fiscal_years_list', function () {
+    return view('staff/fiscal_years_list');
+})->name("fiscal_years_list");
+
+Route::get('/activity_page', function () {
+    return view('user/activity_page');
+})->name("activity_page");
 
 Route::post('/STGAdd', [STGController::class, 'Add']);
 Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
