@@ -12,6 +12,10 @@ class Group extends Model
     protected $table = 'group';
     public $timestamps = false;
 
+
+    protected $primaryKey = 'group_id';
+    protected $incrementing = false;
+
     protected $fillable = [
         'group_id',
         'editor',

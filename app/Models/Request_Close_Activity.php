@@ -11,6 +11,9 @@ class Request_Close_Activity extends Model
 
     protected $table = 'request_close_activity';
     public $timestamps = false;
+    
+    protected $primaryKey = 'req_id';
+    protected $incrementing = false;
 
     protected $fillable = [
         'req_id',

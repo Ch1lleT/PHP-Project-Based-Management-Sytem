@@ -11,6 +11,10 @@ class Target extends Model
     protected $table = 'target';
     public $timestamps = false;
 
+    
+    protected $primaryKey = 'target_id';
+    protected $incrementing = false;
+
     protected $fillable = [
         'target_id',
         'target_name',

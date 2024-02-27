@@ -10,6 +10,9 @@ class Balance extends Model
     protected $table = 'balance';
     public $timestamps = false;
 
+    protected $primaryKey = 'balance_id';
+    protected $incrementing = false;
+
     protected $fillable = [
         'balance_id',
         'balance_type',

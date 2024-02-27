@@ -11,6 +11,8 @@ class Sub_Organization extends Model
     public $timestamps = false;
 
     
+    protected $primaryKey = 'sub_org_id';
+    protected $incrementing = false;
 
     protected $fillable = [
         'sub_org_id',

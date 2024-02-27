@@ -9,6 +9,10 @@ class Actual_Target extends Model
 {
     protected $table = 'actual_target';
     public $timestamps = false;
+
+    protected $primaryKey = 'acttarget_id';
+    protected $incrementing = false;
+
     protected $fillable = [
         'acttarget_id',
         'acttarget_type',

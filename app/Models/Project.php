@@ -10,11 +10,13 @@ class Project extends Model
     use HasFactory;
 
     protected $table = 'project';
-    protected $primaryKey = 'project_id';
     public $timestamps = false;
 
+    protected $primaryKey = 'project_id';
+    protected $incrementing = false;
+    
     protected $fillable = [
-        // 'project_id',
+        'project_id',
         'project_name',
         'plan_id',
         'executive',

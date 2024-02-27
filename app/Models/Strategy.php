@@ -12,6 +12,9 @@ class Strategy extends Model
     protected $table = 'strategy';
     public $timestamps = false;
 
+    
+    protected $primaryKey = 'stg_id';
+    protected $incrementing = false;
 
     protected $fillable = [
         'stg_id',
