@@ -164,7 +164,8 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST" action="{{ url('/TGAdd/' . request('stg_id')) }}">
+                            <form method="POST" action="{{ url('/targets/update/' . $target->target_id) }}">
+                                @method('PUT')
                                 @csrf
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="edit_target_label">แก้ไขเป้าหมาย</h1>
@@ -188,8 +189,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Change</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save changes</button>
                                 </div>
                             </form>
                         </div>
@@ -316,11 +318,9 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="plan"
-                                        class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                    <label for="type" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" id="floatingSelect"
-                                            aria-label="Floating label select" name="target_plan">
+                                        <select class="form-select" id="type" aria-label="Floating label select" name="type">
                                             <option selected>เลือกแผนการ</option>
                                             <option value="ผลผลิต">ผลผลิต</option>
                                             <option value="ผลลัพธ์">ผลลัพธ์</option>
@@ -338,64 +338,68 @@
                     </div>
                 </div>
             </div>
-            @foreach ($PlanAtAll as $index => $plan)
-                <div class="modal fade " id="edit_plan_{{$index}}" tabindex="-1" aria-labelledby="edit_plan_label_{{$index}}"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <form method="POST">
-                                @csrf
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="edit_plan_label">แก้ไขแผนงาน</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body row">
-                                    <div class="mb-3 row ">
+            @if(isset($PlanAtAll))
+                @foreach ($PlanAtAll as $index => $plan)
+                    <div class="modal fade " id="edit_plan_{{$index}}" tabindex="-1" aria-labelledby="edit_plan_label_{{$index}}"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ url('/plan/update/' . $plan->plan_id) }}">
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="edit_plan_label">แก้ไขแผนงาน</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body row">
                                         <div class="mb-3 row ">
-                                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
-                                                :</label>
-                                            <div class="col-sm-10 d-flex align-items-end">
-                                                <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
+                                            <div class="mb-3 row ">
+                                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
+                                                    :</label>
+                                                <div class="col-sm-10 d-flex align-items-end">
+                                                    <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row ">
+                                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
+                                                    :</label>
+                                                <div class="col-sm-10 d-flex align-items-end">
+                                                    <p class="m-0">{{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
+                                                </div>
+                                            </div>
+                                            <label for="name"
+                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="name" name="plan_name" value="{{$plan->plan_name}}">
                                             </div>
                                         </div>
-                                        <div class="mb-3 row ">
-                                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
-                                                :</label>
-                                            <div class="col-sm-10 d-flex align-items-end">
-                                                <p class="m-0">{{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
+                                        <div class="mb-3 row">
+                                            <label for="plan"
+                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" id="floatingSelect"
+                                                    aria-label="Floating label select" name="type">
+                                                    <option selected>เลือกแผนการ</option>
+                                                    <option value="ผลผลิต">ผลผลิต</option>
+                                                    <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                                    <option value="ผลกระทบ">ผลกระทบ</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <label for="name"
-                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="plan_name" value="{{$plan->plan_name}}">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="plan"
-                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select" id="floatingSelect"
-                                                aria-label="Floating label select" name="target_plan">
-                                                <option selected>เลือกแผนการ</option>
-                                                <option value="ผลผลิต">ผลผลิต</option>
-                                                <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                                <option value="ผลกระทบ">ผลกระทบ</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Change</button>
-                                </div>
-                            </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
             <hr>
             <div class="content">
                 <table class="table display" style="width: 100%">
@@ -681,10 +685,6 @@
                 </div>
             </div>
             <hr>
-
-            @if (isset($success))
-                {{ $success }}
-            @endif
             <table id="Project-Table" class="table display" style="width:100%">
                 <thead>
                     <tr>
@@ -702,7 +702,7 @@
                     @if (isset($ProjectAtAll))
                         @foreach ($ProjectAtAll as $ProjectAt)
                             <tr>
-                                <td><a href="#" class="text-black">{{ $ProjectAt->project_name }}</a></td>
+                                <td><a href="/report?project_id{{$ProjectAt->project_id}}" class="text-black">{{ $ProjectAt->project_name }}</a></td>
                                 <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
                                 <td>{{ $ProjectAt->budget_source }}</td>
                                 <td>{{ $ProjectAt->budget_type }}</td>
@@ -737,10 +737,9 @@
                                 aria-labelledby="edit_project_label_{{ $index }}" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
-                                        <form action="{{ route('project.update', $ProjectAt->project_id) }}"
-                                            method="POST">
+                                        <form method="POST" action="{{ url('projects/update/'. $ProjectAt->project_id) }}">
+                                            @method('PUT')
                                             @csrf
-                                            @method('PATCH')
 
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="edit_project_label_{{ $index }}">
@@ -788,19 +787,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">งบประมาณ</label>
+                                                            <label for="balance" class="col-sm-3 col-form-label">งบประมาณ</label>
                                                             <div class="col-sm-9">
-                                                                <input type="number" class="form-control" id="balance"
-                                                                    value="{{ $ProjectAt->balance }}">
+                                                                <input type="number" class="form-control" id="balance" name="balance"  value="{{ $ProjectAt->balance }}">
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">ประเภทงบ</label>
+                                                            <label for="budget_type" class="col-sm-3 col-form-label">ประเภทงบ</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    aria-label="Floating label select example">
+                                                                <select class="form-select" id="budget_type" name="budget_type" aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
                                                                     <option value="2">Two</option>
@@ -809,11 +804,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">งบจาก</label>
+                                                            <label for="budget_source" class="col-sm-3 col-form-label">งบจาก</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    aria-label="Floating label select example">
+                                                                <select class="form-select" id="budget_source" name="budget_source" aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
                                                                     <option value="2">Two</option>
@@ -822,11 +815,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">หน่วยงาน</label>
+                                                            <label for="org_id" class="col-sm-3 col-form-label">หน่วยงาน</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    aria-label="Floating label select example">
+                                                                <select class="form-select" id="org_id" name="org_id" aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
                                                                     <option value="2">Two</option>
@@ -835,11 +826,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
+                                                            <label for="project_head" class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    aria-label="Floating label select example">
+                                                                <select class="form-select" id="project_head" name="project_head" aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
                                                                     <option value="2">Two</option>
@@ -848,10 +837,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
+                                                            <label for="advisor"
                                                                 class="col-sm-3 col-form-label">Advisor</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
+                                                                <select class="form-select" id="advisor" name="advisor"
                                                                     aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
@@ -861,10 +850,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
+                                                            <label for="supervisor"
                                                                 class="col-sm-3 col-form-label">Supervisor</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
+                                                                <select class="form-select" id="supervisor" name="supervisor"
                                                                     aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>
@@ -874,10 +863,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3 row text-end">
-                                                            <label for="name"
+                                                            <label for="executive"
                                                                 class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
                                                             <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
+                                                                <select class="form-select" id="executive" name="executive"
                                                                     aria-label="Floating label select example">
                                                                     <option selected>Open this select menu</option>
                                                                     <option value="1">One</option>

@@ -109,16 +109,38 @@ class ProjectController extends Controller
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);
     }
 
-    public static function UpdateProject(Request $request, $project_id) {
+    public static function Update(Request $request) {
+        $project_id = $request->project_id;
 
-        // Debugbar::info(request());
-        $project = new Project();
-        $project::where('project_id', $project_id)
-                ->update(['project_name' => $request->input('project_name'), 'balance' => $request->input('balance')]);
+        $request->validate([
+            'project_name' => 'required',
+            'balance' => 'required',
+            'budget_type' => 'required',
+            'budget_source' => 'required',
+            'org_id' => 'required',
+            'project_head' => 'required',
+            'advisor' => 'required',
+            'supervisor' => 'required',
+            'executive' => 'required',
+        ]);
 
-            
+        if(isset($project_id)){
+            $project = Project::find($project_id);
+            $project->project_name = $request->input('project_name');
+            $project->balance = $request->input('balance');
+            $project->budget_type = $request->input('budget_type');
+            $project->budget_source = $request->input('budget_source');
+            $project->org_id = $request->input('org_id');
+            $project->project_head = $request->input('project_head');
+            $project->advisor = $request->input('advisor');
+            $project->supervisor = $request->input('supervisor');
+            $project->executive = $request->input('executive');
+
+            $project->save();
+            return redirect()->back()->with('success', 'Data Update successfully');
+        }
     
-        return response()->json(['success'=> 'Project updated successfully', 'request' => $request->input()]);
+        return redirect()->back()->with('error', 'project ID is missing');
     }    
     
 }

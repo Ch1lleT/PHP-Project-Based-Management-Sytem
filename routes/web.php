@@ -72,10 +72,11 @@ Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
 Route::post('/PlanAdd/{stg_id}/{target_id}', [PlanController::class, 'Add']);
 Route::post('/ProjectAdd/{plan_id}', [ProjectController::class, 'Add']);
 
+Route::put('/targets/update/{target_id}', [TargetController::class, 'Update']);
+Route::put('/plan/update/{plan_id}', [PlanController::class, 'Update']);
+Route::put('projects/update/{project_id}', [ProjectController::class, 'Update']);
+
 Route::post('project/notactive/{project_id}', [ProjectController::class, 'NotActive']);
-
-Route::patch('projects/{project_id}', [ProjectController::class, 'UpdateProject'])->name('project.update');
-
 
 Route::get('/user_list',[UserController::class,'getAll']
 )->name("user_list");

@@ -7,13 +7,33 @@ use App\Models\Target;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use App\Utilities\UUID;
+
 class TargetController extends Controller
 {
     //
+    public static function Update(Request $request){
+        $target_id = $request->target_id;
+        
+        if(isset($target_id)){
+            $request->validate([
+                'target_name' => 'required'
+            ]);
+            
+            $target = Target::find($target_id);
+            $target->target_name = $request->input('target_name');
+            $target->save();
+    
+            return redirect()->back()->with('success', 'Data Update successfully');
+        }
+    
+        return redirect()->back()->with('error', 'Target ID is missing');
+    }    
+
     public static function get(Request $request) {
         $target_id = $request->target_id;
         if(isset($target_id)) {
-            $Target = Target::where('target_id', $target_id)->first();
+            $Target = Target::find($target_id);
         }else {
             $Target = Target::first();
         }
@@ -26,10 +46,10 @@ class TargetController extends Controller
         ]);
 
         if(isset($stg_id)){
-            $uuid = Str::uuid()->toString();
-    
+            // $uuid = Str::uuid()->toString();
+            
             $TG = new Target();
-            $TG->target_id = $uuid;
+            $TG->target_id = UUID::uuid(Target::class);
             $TG->target_name = $request->input('target_name');
             $TG->stg_id = $stg_id;
             // $TG->is_active = true;
