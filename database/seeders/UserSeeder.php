@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Utilities\UUID;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
+            "user_id"=>'1',
             "email" => "test1@gmail.com",
             "prefix" => "mr.",
             "username" => "test1",
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
             'is_active' => true,
         ]);
         User::create([
+            "user_id"=>'2',
             "email" => "test2@gmail.com",
             "prefix" => "mrs.",
             "username" => "test2",

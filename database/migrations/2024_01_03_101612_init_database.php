@@ -20,7 +20,7 @@ return new class extends Migration
         });
         
         Schema::create("user", function(Blueprint $table){
-            $table->id();
+            $table->string("user_id");
             $table->string("email");
             $table->string("prefix");
             $table->string("username")->unique();
@@ -40,7 +40,7 @@ return new class extends Migration
 
             $table->foreign("role_id")->references("role_id")->on("role");
             // $table->index("user_id");
-            // $table->primary(['id']);
+            $table->primary(['user_id']);
         });
         
         Schema::create('actual_target', function (Blueprint $table) {
@@ -152,10 +152,10 @@ return new class extends Migration
             $table->string("project_id");
             $table->string("project_name");
             $table->string("plan_id");
-            $table->unsignedBigInteger("executive")->nullable();
-            $table->unsignedBigInteger("advisor")->nullable();
-            $table->unsignedBigInteger("supervisor")->nullable();
-            $table->unsignedBigInteger("project_head");
+            $table->string("executive")->nullable();
+            $table->string("advisor")->nullable();
+            $table->string("supervisor")->nullable();
+            $table->string("project_head");
             $table->string("type");
             $table->string("desc")->nullable();
             $table->integer("balance");
@@ -167,12 +167,10 @@ return new class extends Migration
 
 
             $table->foreign("plan_id")->references("plan_id")->on("plan");
-            // $table->foreign("executive")->references("user_id")->on("user");
-            $table->foreign("executive")->references("id")->on("user");
-            $table->foreign("advisor")->references("id")->on("user");
-            $table->foreign("org_id")->references("sub_org_id")->on("sub_organization");
-            $table->foreign("supervisor")->references("id")->on("user");
-            $table->foreign("project_head")->references("id")->on("user");
+            $table->foreign("executive")->references("user_id")->on("user");
+            $table->foreign("advisor")->references("user_id")->on("user");
+            $table->foreign("supervisor")->references("user_id")->on("user");
+            $table->foreign("project_head")->references("user_id")->on("user");
             $table->primary(["project_id"]);
         });
 
@@ -210,57 +208,57 @@ return new class extends Migration
         });
 
         Schema::create('have_sub_org', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('sub_org_id');
             
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('user_id')->on('user');
             $table->foreign('sub_org_id')->references('sub_org_id')->on('sub_organization');
         });
 
         Schema::create('log', function (Blueprint $table) {
             $table->date('date');
             $table->time('time');
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('action');
             $table->string('desc');
             $table->string('ip');
             $table->timestamps();
 
-            $table->foreign("user_id")->references("id")->on('user');
+            $table->foreign("user_id")->references("user_id")->on('user');
         });
 
         Schema::create('assign_to', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('project_id');
             $table->float('percent');
             
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('user_id')->on('user');
             $table->foreign('project_id')->references('project_id')->on('project');
         });
 
         Schema::create("group", function(Blueprint $table){
             $table->string("group_id");
-            $table->unsignedBigInteger("editor");
+            $table->string("editor");
             $table->enum("group_type",["Plan","Strategy","Project","Activity"]);
             $table->string("group_name");
             $table->json("group_json");
 
             $table->primary(["group_id"]);
-            $table->foreign("editor")->references("id")->on('user');
+            $table->foreign("editor")->references("user_id")->on('user');
         });
         
         Schema::create("setting", function(Blueprint $table){
-            $table->unsignedBigInteger("user_id");
+            $table->string("user_id");
             $table->json("setting_json");
 
-            $table->foreign("user_id")->references("id")->on("user");
+            $table->foreign("user_id")->references("user_id")->on("user");
         });
         
         Schema::create("have_role", function(Blueprint $table){
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('role_id');
             
-            $table->foreign("user_id")->references("id")->on("user");
+            $table->foreign("user_id")->references("user_id")->on("user");
             $table->foreign("role_id")->references("role_id")->on("role");
         });
 
