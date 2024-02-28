@@ -15,19 +15,19 @@ class CommentsSeeder extends Seeder
     {
         Comments::create([
             'act_id' => '001',
-            'comment01' => 'ดูดีมาก',
+            'comment1' => 'ดูดีมาก',
         ]);
         Comments::create([
             'act_id' => '002',
-            'comment04' => 'มีการพัฒนาที่ดีมากครับ',
+            'comment4' => 'มีการพัฒนาที่ดีมากครับ',
         ]);
         Comments::create([
             'act_id' => '003',
-            'comment06' => 'งานมีคุณภาพ',
+            'comment6' => 'งานมีคุณภาพ',
         ]);
         Comments::create([
             'act_id' => '004',
-            'comment01' => 'ดูดีมาก',
+            'comment1' => 'ดูดีมาก',
         ]);
         Comments::create([
             'act_id' => '005',
