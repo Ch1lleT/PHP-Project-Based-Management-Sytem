@@ -15,11 +15,11 @@ class HaveRoleSeeder extends Seeder
     {
         Have_Role::create([
             'user_id' => '1',
-            'role_id' => '01',
+            'role_id' => '1',
         ]);
         Have_Role::create([
             'user_id' => '2',
-            'role_id' => '02',
+            'role_id' => '2',
         ]);
     }
 }

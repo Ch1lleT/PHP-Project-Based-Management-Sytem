@@ -20,7 +20,7 @@ return new class extends Migration
         });
         
         Schema::create("user", function(Blueprint $table){
-            $table->string("user_id");
+            $table->string("user_id",8);
             $table->string("email");
             $table->string("prefix");
             $table->string("username")->unique();
@@ -29,13 +29,13 @@ return new class extends Migration
             $table->string("last_name");
             $table->string("citizen_id");
             $table->string("position");
-            $table->string("gender");
+            $table->enum("gender",['ชาย','หญิง','ไม่ระบุ']);
             $table->date("birth_date");
             $table->string("card_code");
             $table->string("phone",10);
             $table->string("address");
             $table->string("role_id");
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
 
 
             $table->foreign("role_id")->references("role_id")->on("role");
@@ -119,7 +119,7 @@ return new class extends Migration
             $table->string("stg_id");
             $table->string("name");
             $table->string("desc");
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
 
             $table->primary(['stg_id']);
         });
@@ -142,7 +142,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("desc")->nullable();
             $table->float("weight");
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
             
             $table->foreign("target_id")->references("target_id")->on("target");
             $table->foreign("stg_id")->references("stg_id")->on("strategy");
@@ -184,7 +184,7 @@ return new class extends Migration
             $table->string("desc");
             $table->integer("balance");
             $table->float("weight");
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(true);
             
             $table->foreign("project_id")->references("project_id")->on("project");
             $table->primary(["act_id"]);
