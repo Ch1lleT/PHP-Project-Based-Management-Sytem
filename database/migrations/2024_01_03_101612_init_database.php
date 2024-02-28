@@ -192,15 +192,15 @@ return new class extends Migration
 
         Schema::create('comments', function (Blueprint $table) {
             $table->string('act_id');
-            $table->string('comment01')->nullable()->default(null);
-            $table->string('comment02')->nullable()->default(null);
-            $table->string('comment03')->nullable()->default(null);
-            $table->string('comment04')->nullable()->default(null);
-            $table->string('comment05')->nullable()->default(null);
-            $table->string('comment06')->nullable()->default(null);
-            $table->string('comment07')->nullable()->default(null);
-            $table->string('comment08')->nullable()->default(null);
-            $table->string('comment09')->nullable()->default(null);
+            $table->string('comment1')->nullable()->default(null);
+            $table->string('comment2')->nullable()->default(null);
+            $table->string('comment3')->nullable()->default(null);
+            $table->string('comment4')->nullable()->default(null);
+            $table->string('comment5')->nullable()->default(null);
+            $table->string('comment6')->nullable()->default(null);
+            $table->string('comment7')->nullable()->default(null);
+            $table->string('comment8')->nullable()->default(null);
+            $table->string('comment9')->nullable()->default(null);
             $table->string('comment10')->nullable()->default(null);
             $table->string('comment11')->nullable()->default(null);
             $table->string('comment12')->nullable()->default(null);
