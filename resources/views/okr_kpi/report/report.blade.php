@@ -44,23 +44,25 @@
 @endsection
 @section('content')
     {{-- start modal --}}
-    <div class="modal fade" id="comment" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="commentModalLabel">Comment</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <textarea style="width: 100%;" name="comment"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
+    @for ($x = 1; $x <= 12; $x++)
+        <div class="modal fade" id="comment_{{ $x }}" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="commentModalLabel">Comment {{$x}}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea style="width: 100%;" name="comment"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endfor
     {{-- end modal --}}
     <div class="p-3">
         <h4>Name : KPI 1.3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt odit quis ab quo assumenda
@@ -137,65 +139,12 @@
                         <td>
                             20
                         </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
-                        <td>
-                            <p type="number" contenteditable="true">1</p>
-                            <a data-bs-toggle="modal" data-bs-target="#comment"><i class='bx bxs-envelope'></i></a>
-
-                        </td>
+                        @for ($x = 1; $x <= 12; $x++)
+                            <td>
+                                <p type="number" contenteditable="true">{{$x}}</p>
+                                <a data-bs-toggle="modal" data-bs-target="#comment_{{ $x }}"><i class='bx bxs-envelope'></i></a>
+                            </td>
+                        @endfor
                         <td>
                             <p>20 (100%)</p>
                         </td>
