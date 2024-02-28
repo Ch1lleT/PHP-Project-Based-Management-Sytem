@@ -5,7 +5,7 @@
         <div class="fs-5 me-2">
             รายงานผล OKR/KPI
         </div>
-        <a class="btn btn-secondary py-1" href="{{ route('fiscal_years') }}">Back</a>
+        <a class="btn btn-secondary py-1" href="{{ route('dept') }}">Back</a>
     </div>
 @endsection
 @section('style')
@@ -81,13 +81,14 @@
                     <div class="row row-cols-3 align-items-center">
                         <div class="col-12">จำนวนรายการที่สำเร็จ : 1</div>
                         <div class="col-12 d-flex my-2 align-items-center">
-                            <label for="fileInput">
+                            <label for="fileInput" class="bg-secondary">
                                 <span>
                                     แนบไฟล์
                                     <i class='bx bxs-file-blank'></i>
                                 </span>
                             </label>
-                            <input type="file" id="fileInput" style="display: none;">
+                            <input type="file" id="fileInput" style="display: none;" disabled>
+                            <h2 class="ms-1 text-danger">ปุ่มนี้งดใช้งาน</h2>
                         </div>
                         <button class="col-2 btn btn-success p-0 ms-3" type="submit">upload</button>
                         <div class="col-9 pe-0">Allow File Type - pptx, xlsx, xls, docx, doc, pdf, jpg, peg, png, gif</div>
@@ -95,12 +96,12 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="w-100 overflow-x-auto">
-            <table class="table border-top ">
-                <thead>
+            <table class="table border-top">
+                <thead class="">
                     <tr>
-                        <th>No.</th>
+                        <th>No. (งาน)</th>
                         <th>
                             <div class="text-center" style="width: 200px">
                                 Sub.(OKR/KPI)
@@ -184,6 +185,7 @@
                     </tr>
                 </tbody>
             </table>
+
         </div>
 
     </div>

@@ -1,27 +1,37 @@
 @extends('/layout/layout')
 @section('title', 'Dept')
 @section('header')
-    <div class="fs-5">
-        <span class="border-end">
+    <div class="fs-5 d-flex">
+        <span class="border-end pe-2">
             NIMT OKR & KPI ประจำปี 2566
         </span>
-        <span class="ps-2">
-            ฝก. กน. อบต. กยก. คสช.
-        </span>
+        <div class="ps-2">
+            <select class="form-select w-70" aria-label="Default select example">
+                <option value="1" selected>กกน.</option>
+                <option value="2">คห.</option>
+                <option value="3">นนห.</option>
+                <option value="3">คสช.</option>
+                <option value="3">อบต.</option>
+            </select>
+        </div>
+        <div class="d-flex align-items-center ms-2">
+
+            <span>เลือกหน่วยงาน</span>
+        </div>
     </div>
 @endsection
 @section('style')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
     <style>
-        tr td a{
+        tr td a {
             color: black;
         }
     </style>
 @endsection
 @section('content')
     <div class="p-3">
-        <h4>แสดงข้อมูล : ฝ่ายนโยบายและยุทธสาสตร์</h4>
+        <h4>แสดงข้อมูล : ชื่อหน่วยงาน</h4>
         <div class="overflow-x-auto">
             <table class="table display table-striped" style="width:100%">
                 <thead>
@@ -39,7 +49,8 @@
                     <tr>
                         <th scope="row">stg 1</th>
                         <td>kpi 1.0</td>
-                        <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nulla voluptas adipisci cupiditate sit dolores.</a></td>
+                        <td><a href="{{ route('report') }}">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Laboriosam nulla voluptas adipisci cupiditate sit dolores.</a></td>
                         <td>10</td>
                         <td>10</td>
                         <td>0</td>
@@ -48,7 +59,8 @@
                     <tr>
                         <th scope="row">stg 2</th>
                         <td>kpi 1.0</td>
-                        <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolorum, quam placeat eligendi dicta quis possimus enim quia perferendis ipsa!</a></td>
+                        <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolorum, quam
+                                placeat eligendi dicta quis possimus enim quia perferendis ipsa!</a></td>
                         <td>10</td>
                         <td>10</td>
                         <td>0</td>
@@ -57,13 +69,17 @@
                     <tr>
                         <th scope="row">stg 3</th>
                         <td>kpi 1.0</td>
-                        <td><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus consequatur est excepturi nihil? Veniam hic, necessitatibus consequuntur officia facere possimus, consequatur neque repellendus velit reprehenderit unde sapiente ipsam temporibus excepturi nam aliquam facilis nemo dicta ea culpa omnis nesciunt assumenda. Eius beatae aliquam voluptatibus, repellat ea nostrum blanditiis delectus vero?</a></td>
+                        <td><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
+                                consequatur est excepturi nihil? Veniam hic, necessitatibus consequuntur officia facere
+                                possimus, consequatur neque repellendus velit reprehenderit unde sapiente ipsam temporibus
+                                excepturi nam aliquam facilis nemo dicta ea culpa omnis nesciunt assumenda. Eius beatae
+                                aliquam voluptatibus, repellat ea nostrum blanditiis delectus vero?</a></td>
                         <td>10</td>
                         <td>10</td>
                         <td>0</td>
                         <td>0</td>
                     </tr>
-    
+
 
                 </tbody>
             </table>

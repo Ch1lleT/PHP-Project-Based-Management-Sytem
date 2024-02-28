@@ -702,7 +702,7 @@
                     @if (isset($ProjectAtAll))
                         @foreach ($ProjectAtAll as $ProjectAt)
                             <tr>
-                                <td><a href="/report?project_id={{$ProjectAt->project_id}}" class="text-black">{{ $ProjectAt->project_name }}</a></td>
+                                <td><a  class="text-black">{{ $ProjectAt->project_name }}</a></td>
                                 <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
                                 <td>{{ $ProjectAt->budget_source }}</td>
                                 <td>{{ $ProjectAt->budget_type }}</td>
