@@ -17,18 +17,21 @@ class StrategySeeder extends Seeder
             'stg_id' => '01',
             'name' => 'Strategy No.1',
             'desc' => 'This is Strategy No.1',
+            'year_code' => 1,
             'is_active' => true,
         ]);
         Strategy::create([
             'stg_id' => '02',
             'name' => 'Strategy No.2',
             'desc' => 'This is Strategy No.2',
+            'year_code' => 1,
             'is_active' => true,
         ]);
         Strategy::create([
             'stg_id' => '03',
             'name' => 'Strategy No.3',
             'desc' => 'This is Strategy No.3',
+            'year_code' => 1,
             'is_active' => true,
         ]);
     }

@@ -103,16 +103,16 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $genders = ['ชาย','หญิง','ไม่ระบุ'];
-
+        $prefixes = ['นาย','นาง' ,'นางสาว'];
         return [
             'user_id' => UUID::uuid(User::class),
             'email' => fake()->unique()->safeEmail(),
-            'prefix' => 'นาย',
+            'prefix' => $prefixes[mt_rand(0,count($prefixes)-1)],
             'username' => fake()->unique()->userName(),
             'password' => Hash::make('test'),
             'first_name' => fake()->firstName(),
             'last_name'=> fake()->lastName(),
-            'citizen_id' => '000000000',
+            'citizen_id' => strval(fake()->randomNumber(8)).strval(fake()->randomNumber(5)),
             'position' => 'tester',
             'gender' => $genders[mt_rand(0,count($genders)-1)],
             'birth_date' => Carbon::now(),

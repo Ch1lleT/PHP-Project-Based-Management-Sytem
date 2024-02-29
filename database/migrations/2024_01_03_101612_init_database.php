@@ -1,5 +1,6 @@
 <?php
 
+use Brick\Math\BigInteger;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,6 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::create("fiscal_year", function(Blueprint $table){
+            $table->id();
+            $table->string('year',4)->unique();
+            $table->timestamps();
+
+        });
 
         Schema::create("role", function(Blueprint $table){
             $table->string("role_id");
@@ -27,7 +35,7 @@ return new class extends Migration
             $table->string("password");
             $table->string("first_name");
             $table->string("last_name");
-            $table->string("citizen_id");
+            $table->string("citizen_id",13);
             $table->string("position");
             $table->enum("gender",['ชาย','หญิง','ไม่ระบุ']);
             $table->date("birth_date");
@@ -44,7 +52,7 @@ return new class extends Migration
         });
         
         Schema::create('actual_target', function (Blueprint $table) {
-            $table->string('acttarget_id');
+            $table->string('acttarget_id',8);
             $table->string('acttarget_type');
 
             $table->primary(['acttarget_id']);
@@ -98,7 +106,7 @@ return new class extends Migration
         });
 
         Schema::create('organization', function (Blueprint $table) {
-            $table->string('org_id');
+            $table->string('org_id',8);
             $table->string('org_name');
             $table->boolean("is_active")->default(true);
 
@@ -106,7 +114,7 @@ return new class extends Migration
             });
 
         Schema::create('sub_organization', function (Blueprint $table) {
-            $table->string('sub_org_id');
+            $table->string('sub_org_id',8);
             $table->string('main_org');
             $table->string('org_name');
             $table->boolean("is_active")->default(true);
@@ -116,18 +124,20 @@ return new class extends Migration
         });
 
         Schema::create("strategy" , function(Blueprint $table){
-            $table->string("stg_id");
+            $table->string("stg_id",8);
             $table->string("name");
             $table->string("desc");
+            $table->unsignedBigInteger('year_code')->default(1);
             $table->boolean("is_active")->default(true);
 
+            $table->foreign('year_code')->references('id')->on('fiscal_year');
             $table->primary(['stg_id']);
         });
 
         Schema::create('target', function (Blueprint $table) {
-            $table->string('target_id');
+            $table->string('target_id',8);
             $table->string('target_name');
-            $table->string('stg_id');
+            $table->string('stg_id',8);
             $table->boolean('is_active')->default(true);
 
             $table->foreign('stg_id')->references('stg_id')->on('strategy');
@@ -135,10 +145,10 @@ return new class extends Migration
         });
         
         Schema::create("plan",function(Blueprint $table){
-            $table->string("plan_id");
+            $table->string("plan_id",8);
             $table->string("plan_name")->nullable(false);
-            $table->string("stg_id");
-            $table->string("target_id");
+            $table->string("stg_id",8);
+            $table->string("target_id",8);
             $table->string("type");
             $table->string("desc")->nullable();
             $table->float("weight");
@@ -150,19 +160,19 @@ return new class extends Migration
         });
 
         Schema::create("project", function(Blueprint $table){
-            $table->string("project_id");
+            $table->string("project_id",8);
             $table->string("project_name");
-            $table->string("plan_id");
-            $table->string("executive")->nullable();
-            $table->string("advisor")->nullable();
-            $table->string("supervisor")->nullable();
-            $table->string("project_head");
+            $table->string("plan_id",8);
+            $table->string("executive",8)->nullable();
+            $table->string("advisor",8)->nullable();
+            $table->string("supervisor",8)->nullable();
+            $table->string("project_head",8);
             $table->string("type");
             $table->string("desc")->nullable();
             $table->integer("balance");
             $table->string("budget_source");
             $table->string("budget_type");
-            $table->string("org_id")->nullable(); 
+            $table->string("org_id",8)->nullable(); 
             $table->float("weight");
             $table->boolean("is_active")->default(true);
 
@@ -176,8 +186,8 @@ return new class extends Migration
         });
 
         Schema::create("activity", function(Blueprint $table){
-            $table->string("act_id");
-            $table->string("act_ref")->nullable()->default(null);
+            $table->string("act_id",8);
+            $table->string("act_ref",8)->nullable()->default(null);
             $table->string("act_name");
             $table->string("type");
             $table->string("project_id");
@@ -191,7 +201,7 @@ return new class extends Migration
         });
 
         Schema::create('comments', function (Blueprint $table) {
-            $table->string('act_id');
+            $table->string('act_id',8)->unique();
             $table->string('comment1')->nullable()->default(null);
             $table->string('comment2')->nullable()->default(null);
             $table->string('comment3')->nullable()->default(null);
@@ -209,8 +219,8 @@ return new class extends Migration
         });
 
         Schema::create('have_sub_org', function (Blueprint $table) {
-            $table->string('user_id');
-            $table->string('sub_org_id');
+            $table->string('user_id',8);
+            $table->string('sub_org_id',8);
             
             $table->foreign('user_id')->references('user_id')->on('user');
             $table->foreign('sub_org_id')->references('sub_org_id')->on('sub_organization');
@@ -219,18 +229,18 @@ return new class extends Migration
         Schema::create('log', function (Blueprint $table) {
             $table->date('date');
             $table->time('time');
-            $table->string('user_id');
+            $table->string('user_id',8);
             $table->string('action');
             $table->string('desc');
-            $table->string('ip');
+            $table->string('ip',15);
             $table->timestamps();
 
             $table->foreign("user_id")->references("user_id")->on('user');
         });
 
         Schema::create('assign_to', function (Blueprint $table) {
-            $table->string('user_id');
-            $table->string('project_id');
+            $table->string('user_id',8);
+            $table->string('project_id',8);
             $table->float('percent');
             
             $table->foreign('user_id')->references('user_id')->on('user');
@@ -238,8 +248,8 @@ return new class extends Migration
         });
 
         Schema::create("group", function(Blueprint $table){
-            $table->string("group_id");
-            $table->string("editor");
+            $table->string("group_id",8);
+            $table->string("editor",8);
             $table->enum("group_type",["Plan","Strategy","Project","Activity"]);
             $table->string("group_name");
             $table->json("group_json");
@@ -249,14 +259,14 @@ return new class extends Migration
         });
         
         Schema::create("setting", function(Blueprint $table){
-            $table->string("user_id");
+            $table->string("user_id",8)->unique();
             $table->json("setting_json");
 
-            $table->foreign("user_id")->references("user_id")->on("user");
+            $table->foreign("user_id",8)->references("user_id")->on("user");
         });
         
         Schema::create("have_role", function(Blueprint $table){
-            $table->string('user_id');
+            $table->string('user_id',8);
             $table->string('role_id');
             
             $table->foreign("user_id")->references("user_id")->on("user");
@@ -292,8 +302,8 @@ return new class extends Migration
         });
 
         Schema::create("request_close_activity", function(Blueprint $table){
-            $table->string("req_id");
-            $table->string("act_id");
+            $table->string("req_id",8);
+            $table->string("act_id",8);
             $table->string("approvedby");
             
             $table->foreign("act_id")->references("act_id")->on("activity");
@@ -352,6 +362,8 @@ return new class extends Migration
         Schema::dropIfExists("user");
         
         Schema::dropIfExists("role");
+
+        Schema::dropIfExists("fiscal_year");
     }
 };
 
