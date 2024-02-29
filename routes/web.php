@@ -11,8 +11,7 @@ use App\Utilities\UUID;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Project;
-
-
+use App\Models\Target;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,7 +114,7 @@ Route::get('/stg', [STGController::class, 'get']);
 
 Route::get('/test',function()
 {
-    return UUID::uuid(Project::class);
+    return Target::factory()->count(2)->create();
 });
 
 //fix edit_profile, fiscal_years, org

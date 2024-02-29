@@ -149,9 +149,9 @@ return new class extends Migration
             $table->string("plan_name")->nullable(false);
             $table->string("stg_id",8);
             $table->string("target_id",8);
-            $table->string("type");
+            $table->enum("type",['ผลผลิต','ผลลัพท์','ผลกระทบ']);
             $table->string("desc")->nullable();
-            $table->float("weight");
+            $table->float("weight",4,2);
             $table->boolean("is_active")->default(true);
             
             $table->foreign("target_id")->references("target_id")->on("target");
@@ -173,7 +173,7 @@ return new class extends Migration
             $table->string("budget_source");
             $table->string("budget_type");
             $table->string("org_id",8)->nullable(); 
-            $table->float("weight");
+            $table->float("weight",4,2);
             $table->boolean("is_active")->default(true);
 
 
@@ -193,7 +193,7 @@ return new class extends Migration
             $table->string("project_id");
             $table->string("desc");
             $table->integer("balance");
-            $table->float("weight");
+            $table->float("weight",4,2);
             $table->boolean("is_active")->default(true);
             
             $table->foreign("project_id")->references("project_id")->on("project");

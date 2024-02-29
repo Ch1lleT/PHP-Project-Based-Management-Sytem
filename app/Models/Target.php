@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Target extends Model
 {
+    use HasFactory;
 
     protected $table = 'target';
     public $timestamps = false;
@@ -20,5 +21,4 @@ class Target extends Model
         'target_name',
         'stg_id',
     ];
-    // use HasFactory;
 }
