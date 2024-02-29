@@ -19,7 +19,8 @@ class Strategy extends Model
     protected $fillable = [
         'stg_id',
         'name',
-        'desc'
+        'desc',
+        'year_code',
     ];
 
 }
