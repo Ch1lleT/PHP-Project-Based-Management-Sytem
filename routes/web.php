@@ -11,7 +11,8 @@ use App\Utilities\UUID;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Project;
-use App\Models\Target;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,14 @@ Route::get('/fiscal_years_list', function () {
     return view('staff/fiscal_years_list');
 })->name("fiscal_years_list");
 
+Route::get('/report_support', function () {
+    return view('okr_kpi/report_support');
+})->name("report_support");
+
+Route::get('/report_technic', function () {
+    return view('okr_kpi/report_technic');
+})->name("report_technic");
+
 Route::get('/activity_page', function () {
     return view('user/activity_page');
 })->name("activity_page");
@@ -115,7 +124,7 @@ Route::get('/stg', [STGController::class, 'get']);
 
 Route::get('/test',function()
 {
-    return Target::factory()->count(2)->create();
+    return UUID::uuid(Project::class);
 });
 
 //fix edit_profile, fiscal_years, org

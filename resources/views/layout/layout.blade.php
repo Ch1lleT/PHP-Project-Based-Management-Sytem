@@ -480,8 +480,8 @@
                     </a>
                     <div class="collapse" id="okr-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded" id="test">Summary report technic</a></li>
-                            <li><a href="#" class="rounded">Summary report support</a></li>
+                            <li><a href="{{ route('report_technic')}}" class="rounded" id="report_technic">Summary report technic✅</a></li>
+                            <li><a href="{{ route('report_support')}}" class="rounded" id="report_support">Summary report support✅</a></li>
                         </ul>
                     </div>
                 </li>
