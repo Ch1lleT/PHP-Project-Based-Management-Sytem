@@ -114,6 +114,7 @@
     </div>
 
     <script>
+        // show and hide password
         function show() {
             var new_pass = document.getElementById("password_new");
             var old_pass = document.getElementById("password_old");
@@ -125,14 +126,17 @@
                 old_pass.type = "password";
             }
         }
-
+        // image preview
         const profilePictureInput = document.getElementById('image');
         const previewImage = document.querySelector('#preview-img');
-
         profilePictureInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
-
+            // Check if file isn't img will show alert
             if (file) {
+                if (!isValidImageFile(file)) {
+                    alertFail()
+                    return;
+                }
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     previewImage.src = e.target.result;
@@ -142,5 +146,34 @@
                 previewImage.src = "#";
             }
         });
+        // alert
+        function alertFail() {
+            Swal.fire({
+                icon: "error",
+                title: "อุ๊ปส์...",
+                html: `<div class="py-2">ดูเหมือนว่าที่ใส่มาจะไม่ใช่รูปภาพนะ</div>`,
+                confirmButtonText: "OK",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                }
+            })
+        }
+        // File Support
+        function isValidImageFile(file) {
+            const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/svg'];
+            return allowedMimeTypes.includes(file.type);
+        }
+        // After Check will run this func
+        const success = (text) => {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `${text}`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
+
 @endsection

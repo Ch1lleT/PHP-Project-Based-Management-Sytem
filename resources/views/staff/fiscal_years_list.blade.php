@@ -29,21 +29,21 @@
                                 </select>
                             </div>
                             <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อ</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="plan_name">
-                                </div>
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="plan_name">
-                                </div>
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="plan_name">
-                                </div>
-                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ผู้ดูแล</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="plan_name">
-                                </div>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="plan_name">
+                            </div>
+                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="plan_name">
+                            </div>
+                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="plan_name">
+                            </div>
+                            <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ผู้ดูแล</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="plan_name">
+                            </div>
                         </div>
 
                     </div>
@@ -128,8 +128,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 style="fill: rgb(255, 0, 0);transform: ;msFilter:;">
                                 <path
-                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
+                                    d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z">
                                 </path>
+                                <path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
                             </svg>
                         </a>
                     </td>
@@ -158,7 +159,8 @@
                         ระกำงำเงย
                     </td>
                     <td>
-                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_target">
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#edit_target">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
                                 <path fill="#000000"
                                     d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
@@ -171,8 +173,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 style="fill: rgb(255, 0, 0);transform: ;msFilter:;">
                                 <path
-                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
+                                    d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z">
                                 </path>
+                                <path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
                             </svg>
                         </a>
                     </td>
@@ -201,7 +204,8 @@
                         ระกำงำเงย
                     </td>
                     <td>
-                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_target">
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#edit_target">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
                                 <path fill="#000000"
                                     d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
@@ -214,8 +218,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 style="fill: rgb(255, 0, 0);transform: ;msFilter:;">
                                 <path
-                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
+                                    d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z">
                                 </path>
+                                <path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
                             </svg>
                         </a>
                     </td>

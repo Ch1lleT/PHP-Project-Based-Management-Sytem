@@ -34,11 +34,6 @@
                 </tr>
                 <tr>
                     <td>
-                        Editer
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         User
                     </td>
                 </tr>

@@ -3,6 +3,10 @@
 @section('title', 'ปีงบประมาณ')
 @section('style')
     <style>
+        /* *{
+                padding: 0;
+                margin: 0;
+            } */
         .my-table tbody tr td {
             background-color: #F8F9FA;
             border: none;
@@ -19,6 +23,17 @@
         .my-table td:nth-child(1),
         .my-table td:nth-child(3) {
             flex-shrink: 0;
+        }
+
+        .edit:hover,
+        .del:hover,
+        .select:hover {
+            cursor: pointer;
+        }
+        @media screen and (max-width: 992px){
+            .plan{
+                overflow: auto !important;
+            }
         }
     </style>
 @endsection
@@ -71,7 +86,8 @@
 
     <div class="row row-cols-3 gap-2 px-3">
         @foreach ($STGAll as $strategy)
-            <a href="{{ route('fiscal_years', ['stg_id' => $strategy['stg_id']]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
+            <a href="{{ route('fiscal_years', ['stg_id' => $strategy['stg_id']]) }}"
+                class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
         @endforeach
         <a href="#" class="col-xl-1" data-bs-toggle="modal" data-bs-target="#add_stg">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
@@ -84,14 +100,43 @@
         </a>
     </div>
 
+    <div class="modal fade" id="edit_stg" tabindex="-1" aria-labelledby="edit_stgLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="edit_stgLabel">แก้ไขชื่อยุทธศาสตร์</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">ชื่อยุทธศาสตร์ ใหม่ :</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <table class="table mt-3 mb-0 my-table">
         <tbody>
             <tr>
                 <td class="h4 px-0">
-                    <div style="width: 150px">ยุทธศาสตร์ :</div>
+                    <div style="width: 150px">ยุทธศาสตร์:</div>
                 </td>
-                <td class="h4">{{ isset($STG->name) ? $STG->name : '' }}</td>
+                <td class="h4" data-bs-toggle="modal" data-bs-target="#edit_stg">{{ isset($STG->name) ? $STG->name : '' }}
+                    <a href="#" class="text-decoration-none">
+                        <i class='bx bx-pencil text-dark'></i>
+                    </a>
+                    <a href="#" class="text-decoration-none" onclick="checkDel()">
+                        <i class='bx bx-trash text-danger'></i>
+                    </a>
+                </td>
                 <td class="px-0 d-flex justify-content-end">
 
                 </td>
@@ -106,8 +151,10 @@
                         <td class="h4 px-0">
                             <div style="width: 124px">เป้าหมาย:</div>
                         </td>
-                        <td class="h4">{{ isset($Target->target_name) ? $Target->target_name : '' }}</td>
-                        <td class="px-0">
+                        <td class="h4">
+                            {{ isset($Target->target_name) ? $Target->target_name : '' }}
+                        </td>
+                        <td class="px-0 pt-2">
                             @if (request()->has('stg_id'))
                                 <a href="#" class="d-flex align-items-center text-decoration-none text-black"
                                     data-bs-toggle="modal" data-bs-target="#add_target">
@@ -160,8 +207,8 @@
                 </div>
             </div>
             @foreach ($TargetAtAll as $index => $target)
-                <div class="modal fade " id="edit_target_{{$index}}" tabindex="-1" aria-labelledby="edit_target_label_{{$index}}"
-                    aria-hidden="true">
+                <div class="modal fade " id="edit_target_{{ $index }}" tabindex="-1"
+                    aria-labelledby="edit_target_label_{{ $index }}" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <form method="POST" action="{{ url('/targets/update/' . $target->target_id) }}">
@@ -184,7 +231,8 @@
                                         <label for="name"
                                             class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="target_name" value="{{$target->target_name}}">
+                                            <input type="text" class="form-control" id="name" name="target_name"
+                                                value="{{ $target->target_name }}">
                                         </div>
                                     </div>
                                 </div>
@@ -225,14 +273,15 @@
                                     <td style="text-align: center; vertical-align: middle;">
                                         {{ $loop->index + 1 }}
                                     </td>
-                                    <td>
+                                    <td class="select">
                                         <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
                                             class="text-black text-wrap w-100">
                                             {{ $TargetAt->target_name }}
                                         </a>
                                     </td>
-                                    <td>
-                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_target_{{$loop->index}}">
+                                    <td class="edit">
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                            data-bs-target="#edit_target_{{ $loop->index }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 12 12">
                                                 <path fill="#000000"
@@ -241,14 +290,9 @@
                                             </svg>
                                         </a>
                                     </td>
-                                    <td>
+                                    <td onclick="checkDel()" class="del">
                                         <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" style="fill: rgb(255, 0, 0);transform: ;msFilter:;">
-                                                <path
-                                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
-                                                </path>
-                                            </svg>
+                                            <i class='bx bx-trash text-danger'></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -266,7 +310,7 @@
                             <div style="width: 124px">แผนการ:</div>
                         </td>
                         <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
-                        <td class="px-0">
+                        <td class="px-0 pt-2">
                             @if (request()->has('target_id'))
                                 <a href="#" class="d-flex align-items-center text-decoration-none text-black"
                                     data-bs-toggle="modal" data-bs-target="#add_plan">
@@ -308,7 +352,8 @@
                                         <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
                                             :</label>
                                         <div class="col-sm-10 d-flex align-items-end">
-                                            <p class="m-0">{{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
+                                            <p class="m-0">
+                                                {{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
                                         </div>
                                     </div>
                                     <label for="name"
@@ -318,9 +363,11 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="type" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                    <label for="type"
+                                        class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
                                     <div class="col-sm-10">
-                                        <select class="form-select" id="type" aria-label="Floating label select" name="type">
+                                        <select class="form-select" id="type" aria-label="Floating label select"
+                                            name="type">
                                             <option selected>เลือกแผนการ</option>
                                             <option value="ผลผลิต">ผลผลิต</option>
                                             <option value="ผลลัพธ์">ผลลัพธ์</option>
@@ -338,10 +385,10 @@
                     </div>
                 </div>
             </div>
-            @if(isset($PlanAtAll))
+            @if (isset($PlanAtAll))
                 @foreach ($PlanAtAll as $index => $plan)
-                    <div class="modal fade " id="edit_plan_{{$index}}" tabindex="-1" aria-labelledby="edit_plan_label_{{$index}}"
-                        aria-hidden="true">
+                    <div class="modal fade " id="edit_plan_{{ $index }}" tabindex="-1"
+                        aria-labelledby="edit_plan_label_{{ $index }}" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <form method="POST" action="{{ url('/plan/update/' . $plan->plan_id) }}">
@@ -355,23 +402,27 @@
                                     <div class="modal-body row">
                                         <div class="mb-3 row ">
                                             <div class="mb-3 row ">
-                                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
+                                                <label for="name"
+                                                    class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
                                                     :</label>
                                                 <div class="col-sm-10 d-flex align-items-end">
                                                     <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row ">
-                                                <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
+                                                <label for="name"
+                                                    class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
                                                     :</label>
                                                 <div class="col-sm-10 d-flex align-items-end">
-                                                    <p class="m-0">{{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
+                                                    <p class="m-0">
+                                                        {{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
                                                 </div>
                                             </div>
                                             <label for="name"
                                                 class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="name" name="plan_name" value="{{$plan->plan_name}}">
+                                                <input type="text" class="form-control" id="name"
+                                                    name="plan_name" value="{{ $plan->plan_name }}">
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
@@ -401,7 +452,7 @@
                 @endforeach
             @endif
             <hr>
-            <div class="content">
+            <div class="overflow-x-hidden plan">
                 <table class="table display" style="width: 100%">
                     <thead>
                         <tr>
@@ -441,7 +492,7 @@
                                         </td>
                                         <td>
                                             <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                                data-bs-target="#edit_plan_{{$loop->index}}">
+                                                data-bs-target="#edit_plan_{{ $loop->index }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 12 12">
                                                     <path fill="#000000"
@@ -450,15 +501,9 @@
                                                 </svg>
                                             </a>
                                         </td>
-                                        <td>
+                                        <td onclick="checkDel()">
                                             <a href="#">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24"
-                                                    style="fill: rgb(255, 0, 0);transform: ;msFilter:;">
-                                                    <path
-                                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
-                                                    </path>
-                                                </svg>
+                                                <i class='bx bx-trash text-danger'></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -685,261 +730,282 @@
                 </div>
             </div>
             <hr>
-            <table id="Project-Table" class="table display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ชื่อโครงการ</th>
-                        <th>ผู้ดูแลโครงการ</th>
-                        <th>งบจาก</th>
-                        <th>งบประเภท</th>
-                        <th>งบประมาณ</th>
-                        <th>หน่วยงาน</th>
-                        <th>แก้ไข</th>
-                        <th>ลบ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (isset($ProjectAtAll))
-                        @foreach ($ProjectAtAll as $ProjectAt)
-                            <tr>
-                                <td><a  class="text-black">{{ $ProjectAt->project_name }}</a></td>
-                                <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
-                                <td>{{ $ProjectAt->budget_source }}</td>
-                                <td>{{ $ProjectAt->budget_type }}</td>
-                                <td>{{ number_format($ProjectAt->balance) }}</td>
-                                {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
-                                <td>มว.</td>
+            <div class="overflow-x-auto">
+                <table id="Project-Table" class="table display " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ชื่อโครงการ</th>
+                            <th>ผู้ดูแลโครงการ</th>
+                            <th>งบจาก</th>
+                            <th>งบประเภท</th>
+                            <th>งบประมาณ</th>
+                            <th>หน่วยงาน</th>
+                            <th>แก้ไข</th>
+                            <th>ลบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (isset($ProjectAtAll))
+                            @foreach ($ProjectAtAll as $ProjectAt)
+                                <tr>
+                                    <td><a class="text-black">{{ $ProjectAt->project_name }}</a></td>
+                                    <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
+                                    <td>{{ $ProjectAt->budget_source }}</td>
+                                    <td>{{ $ProjectAt->budget_type }}</td>
+                                    <td>{{ number_format($ProjectAt->balance) }}</td>
+                                    {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
+                                    <td>มว.</td>
 
-                                <td>
-                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                        data-bs-target="#edit_project_{{ $loop->index }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 12 12">
-                                            <path fill="#000000"
-                                                d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" onclick="event.preventDefault(); document.getElementById('notactive-form').submit();">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 0, 0); transform: ; msFilter:;">
-                                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z">
-                                            </path>
-                                        </svg>
-                                    </a>                                   
-                                </td>
-                            </tr>
-                        @endforeach
+                                    <td>
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                            data-bs-target="#edit_project_{{ $loop->index }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 12 12">
+                                                <path fill="#000000"
+                                                    d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#"
+                                            onclick="checkDel();event.preventDefault(); document.getElementById('notactive-form').submit();">
+                                            <i class='bx bx-trash text-danger'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                        @foreach ($ProjectAtAll as $index => $ProjectAt)
-                            <div class="modal fade" id="edit_project_{{ $index }}" tabindex="-1"
-                                aria-labelledby="edit_project_label_{{ $index }}" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <form method="POST" action="{{ url('projects/update/'. $ProjectAt->project_id) }}">
-                                            @method('PUT')
-                                            @csrf
+                            @foreach ($ProjectAtAll as $index => $ProjectAt)
+                                <div class="modal fade" id="edit_project_{{ $index }}" tabindex="-1"
+                                    aria-labelledby="edit_project_label_{{ $index }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <form method="POST"
+                                                action="{{ url('projects/update/' . $ProjectAt->project_id) }}">
+                                                @method('PUT')
+                                                @csrf
 
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="edit_project_label_{{ $index }}">
-                                                    แก้ไขโครงการ {{ $ProjectAt->project_name }} ปีงบประมาณ : 2567</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">ชื่อ</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control"
-                                                                    id="project_name" name="project_name"
-                                                                    value="{{ $ProjectAt->project_name }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="stg"
-                                                                class="col-sm-3 col-form-label">ยุทธศาสตร์</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    name="stg"
-                                                                    aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">ผลผลิต</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="floatingSelect"
-                                                                    aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="balance" class="col-sm-3 col-form-label">งบประมาณ</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="number" class="form-control" id="balance" name="balance"  value="{{ $ProjectAt->balance }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="budget_type" class="col-sm-3 col-form-label">ประเภทงบ</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="budget_type" name="budget_type" aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="budget_source" class="col-sm-3 col-form-label">งบจาก</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="budget_source" name="budget_source" aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="org_id" class="col-sm-3 col-form-label">หน่วยงาน</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="org_id" name="org_id" aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="project_head" class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="project_head" name="project_head" aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="advisor"
-                                                                class="col-sm-3 col-form-label">Advisor</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="advisor" name="advisor"
-                                                                    aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="supervisor"
-                                                                class="col-sm-3 col-form-label">Supervisor</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="supervisor" name="supervisor"
-                                                                    aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row text-end">
-                                                            <label for="executive"
-                                                                class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-select" id="executive" name="executive"
-                                                                    aria-label="Floating label select example">
-                                                                    <option selected>Open this select menu</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="mb-3 row px-3">
-                                                            <label for="name"
-                                                                class="col-sm-3 col-form-label">ผู้ร่วมโครงการ</label>
-                                                            <div class="col-sm-7">
-                                                                <input type="text" class="form-control"
-                                                                    id="name">
-                                                            </div>
-                                                            <button type="button" class="col-sm-2 btn btn-primary">
-                                                                Add</button>
-                                                        </div>
-                                                        <div class="overflow-y-scroll px-3" style="height: 500px;">
-                                                            <div class="row">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5"
+                                                        id="edit_project_label_{{ $index }}">
+                                                        แก้ไขโครงการ {{ $ProjectAt->project_name }} ปีงบประมาณ : 2567</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="mb-3 row text-end">
                                                                 <label for="name"
-                                                                    class="col-sm-5 col-form-label">นายศิวพล</label>
-                                                                <label for="name"
-                                                                    class="col-sm-5 col-form-label">ใจซื่อ</label>
-                                                                <div class="col-sm-2">
-                                                                    <a href="#"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="40" height="40"
-                                                                            viewBox="0 0 32 32">
-                                                                            <path fill="#FC0005"
-                                                                                d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
-                                                                            </path>
-                                                                        </svg></a>
+                                                                    class="col-sm-3 col-form-label">ชื่อ</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control"
+                                                                        id="project_name" name="project_name"
+                                                                        value="{{ $ProjectAt->project_name }}">
                                                                 </div>
-                                                                <hr>
                                                             </div>
-                                                            <div class="row">
-                                                                <label for="name"
-                                                                    class="col-sm-5 col-form-label">นายนันทกร</label>
-                                                                <label for="name"
-                                                                    class="col-sm-5 col-form-label">ธิดี</label>
-                                                                <div class="col-sm-2">
-                                                                    <a href="#"><svg
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="40" height="40"
-                                                                            viewBox="0 0 32 32">
-                                                                            <path fill="#FC0005"
-                                                                                d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
-                                                                            </path>
-                                                                        </svg></a>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="stg"
+                                                                    class="col-sm-3 col-form-label">ยุทธศาสตร์</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="floatingSelect"
+                                                                        name="stg"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
                                                                 </div>
-                                                                <hr>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="name"
+                                                                    class="col-sm-3 col-form-label">ผลผลิต</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="floatingSelect"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="balance"
+                                                                    class="col-sm-3 col-form-label">งบประมาณ</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="number" class="form-control"
+                                                                        id="balance" name="balance"
+                                                                        value="{{ $ProjectAt->balance }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="budget_type"
+                                                                    class="col-sm-3 col-form-label">ประเภทงบ</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="budget_type"
+                                                                        name="budget_type"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="budget_source"
+                                                                    class="col-sm-3 col-form-label">งบจาก</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="budget_source"
+                                                                        name="budget_source"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="org_id"
+                                                                    class="col-sm-3 col-form-label">หน่วยงาน</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="org_id"
+                                                                        name="org_id"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="project_head"
+                                                                    class="col-sm-3 col-form-label">หัวหน้าโครงการ</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="project_head"
+                                                                        name="project_head"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="advisor"
+                                                                    class="col-sm-3 col-form-label">Advisor</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="advisor"
+                                                                        name="advisor"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="supervisor"
+                                                                    class="col-sm-3 col-form-label">Supervisor</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="supervisor"
+                                                                        name="supervisor"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row text-end">
+                                                                <label for="executive"
+                                                                    class="col-sm-3 col-form-label">ผู้บริหารกำกับดูแล</label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="form-select" id="executive"
+                                                                        name="executive"
+                                                                        aria-label="Floating label select example">
+                                                                        <option selected>Open this select menu</option>
+                                                                        <option value="1">One</option>
+                                                                        <option value="2">Two</option>
+                                                                        <option value="3">Three</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="mb-3 row px-3">
+                                                                <label for="name"
+                                                                    class="col-sm-3 col-form-label">ผู้ร่วมโครงการ</label>
+                                                                <div class="col-sm-7">
+                                                                    <input type="text" class="form-control"
+                                                                        id="name">
+                                                                </div>
+                                                                <button type="button" class="col-sm-2 btn btn-primary">
+                                                                    Add</button>
+                                                            </div>
+                                                            <div class="overflow-y-scroll px-3" style="height: 500px;">
+                                                                <div class="row">
+                                                                    <label for="name"
+                                                                        class="col-sm-5 col-form-label">นายศิวพล</label>
+                                                                    <label for="name"
+                                                                        class="col-sm-5 col-form-label">ใจซื่อ</label>
+                                                                    <div class="col-sm-2">
+                                                                        <a href="#"><svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="40" height="40"
+                                                                                viewBox="0 0 32 32">
+                                                                                <path fill="#FC0005"
+                                                                                    d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                                                </path>
+                                                                            </svg></a>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label for="name"
+                                                                        class="col-sm-5 col-form-label">นายนันทกร</label>
+                                                                    <label for="name"
+                                                                        class="col-sm-5 col-form-label">ธิดี</label>
+                                                                    <div class="col-sm-2">
+                                                                        <a href="#"><svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="40" height="40"
+                                                                                viewBox="0 0 32 32">
+                                                                                <path fill="#FC0005"
+                                                                                    d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                                                                </path>
+                                                                            </svg></a>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-success">Save changes</button>
-                                            </div>
-                                        </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
 
-                    @endif
-                </tbody>
-            </table>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
     </div>
@@ -952,6 +1018,25 @@
                 [3, 5, 10, 15, 20]
             ]
         })
+        const checkDel = () => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
     </script>
 
 @endsection
