@@ -7,7 +7,7 @@ use App\Models\Strategy;
 use App\Models\User;
 use App\Models\Target;
 use App\Models\Plan;
-
+use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -39,13 +39,24 @@ class BigDataSeeder extends Seeder
         
         }
 
-        $target_id = Target::pluck('target_id');
 
         foreach($stg_id as $id)
         {
-            Plan::factory()->count(mt_rand(3,6-1))->create([
-                'stg_id' => $id,
-                'target_id' => $target_id[mt_rand(3,count($target_id)-1)]
+            $target_id = Target::where('stg_id',$id)->pluck('target_id');
+            foreach($target_id as $target)
+            {
+
+                Plan::factory()->count(mt_rand(3,6-1))->create([
+                    'stg_id' => $id,
+                    'target_id' => $target
+                ]);
+            }
+        }
+        $plans = Plan::pluck('plan_id');
+        foreach($plans as $plan)
+        {
+            Project::factory()->count(mt_rand(2,10))->create([
+                'plan_id' => $plans[mt_rand(0,count($plans)-1)]
             ]);
         }
 
