@@ -13,19 +13,6 @@ use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
 
-    // public static function Active(Request $request) {
-    //     $project_id = $request->id;
-    //     $project = Project::find($project_id);
-    
-    //     if ($project) {
-    //         $project->is_active = !$project->is_active;
-    //         $project->save();
-    //         return redirect()->back()->with('success', 'Data Update successfully');
-    //     }
-    
-    //     return redirect()->back()->with('error', 'project ID is missing');
-    // }
-
     public static function Active(Request $request) {
         $project_id = $request->id;
         $project = Project::find($project_id);
@@ -106,13 +93,13 @@ class ProjectController extends Controller
         $plan_id = $request->plan_id;
         $stg_id = $request->stg_id;
         if(isset($plan_id)){
-            $ProjectAtAll = Project::where('plan_id', $plan_id)->get();
+            $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active',true)->get();
         }else if(isset($stg_id)){
             try {
                 //code...
-                $Plan = Plan::where('stg_id',$stg_id)->first();
+                $Plan = Plan::where('stg_id',$stg_id)->where('is_active',true)->first();
                 $PlanId = $Plan->plan_id;
-                $ProjectAtAll = Project::where('plan_id', $PlanId)->get();        
+                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active',true)->get();        
             } catch (\Throwable $th) {
                 return response()->json(['ProjectAtAll' => null]);
             }

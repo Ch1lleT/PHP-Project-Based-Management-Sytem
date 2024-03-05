@@ -9,6 +9,20 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+
+    public static function Active(Request $request) {
+        $plan_id = $request->id;
+        $Plan = Plan::find($plan_id);
+
+        if ($Plan) {
+            $Plan->is_active = !$Plan->is_active;
+            $Plan->save();
+            return response()->json(['success' => 'Data updated successfully'], 200);
+        }
+
+        return response()->json(['error' => 'Plan ID is missing'], 400);
+    }
+
     public static function Update(Request $request){
         $plan_id = $request->plan_id;
 
@@ -50,7 +64,7 @@ class PlanController extends Controller
             $plan = new Plan();
             $plan->plan_id = UUID::uuid(Plan::class);
             $plan->plan_name = $request->input('plan_name');
-            $plan->type = "Balance";
+            $plan->type = $request->input('type');;
             $plan->desc = "This is Balance plan for Plan";
             $plan->weight = 1;
             $plan->target_id = $target_id;

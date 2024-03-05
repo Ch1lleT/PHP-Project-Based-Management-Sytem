@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\STGController;
+use App\Http\Controllers\TargetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::put('Strategy/active', [STGController::class, 'Active']);
+Route::put('target_id/active', [TargetController::class, 'Active']);
+Route::put('plan/active', [PlanController::class, 'Active']);
 Route::put('project/active', [ProjectController::class, 'Active']);

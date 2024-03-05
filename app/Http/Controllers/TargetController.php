@@ -33,9 +33,12 @@ class TargetController extends Controller
     public static function get(Request $request) {
         $target_id = $request->target_id;
         if(isset($target_id)) {
-            $Target = Target::find($target_id);
+            $Target = Target::where('target_id',$target_id)->where('is_active',true)->get();
+            if (isset($Target)) {
+                return response()->json(['Target' => 'No target found']);
+            }
         }else {
-            $Target = Target::first();
+            $Target = Target::where('is_active',true)->first();
         }
         return response()->json(['Target' => $Target]);
     }  
@@ -71,13 +74,26 @@ class TargetController extends Controller
     public static function getAtAll(Request $request){
         $stg_id = $request->stg_id;
         if(isset($stg_id)) {
-            $TargetAtAll = Target::where('stg_id', $stg_id)->get();
+            $TargetAtAll = Target::where('stg_id', $stg_id)->where('is_active',true)->get();
         }else {
             $STG = Strategy::first();
             $stg_id = $STG->stg_id;
-            $TargetAtAll = Target::where('stg_id', $stg_id)->get();
+            $TargetAtAll = Target::where('stg_id', $stg_id)->where('is_active',true)->get();
         }
         
         return response()->json(['TargetAtAll' => $TargetAtAll]);
+    }
+
+    public static function Active(Request $request) {
+        $target_id = $request->id;
+        $target = Target::find($target_id);
+
+        if ($target) {
+            $target->is_active = !$target->is_active;
+            $target->save();
+            return response()->json(['success' => 'Data updated successfully'], 200);
+        }
+
+        return response()->json(['error' => 'target_id ID is missing'], 400);
     }
 }
