@@ -13,16 +13,32 @@ use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
 
-    public static function NotActive(Request $request) {
-        $project_id = $request->project_id;
+    // public static function Active(Request $request) {
+    //     $project_id = $request->id;
+    //     $project = Project::find($project_id);
     
+    //     if ($project) {
+    //         $project->is_active = !$project->is_active;
+    //         $project->save();
+    //         return redirect()->back()->with('success', 'Data Update successfully');
+    //     }
+    
+    //     return redirect()->back()->with('error', 'project ID is missing');
+    // }
+
+    public static function Active(Request $request) {
+        $project_id = $request->id;
         $project = Project::find($project_id);
-    
+
         if ($project) {
-            $project->is_active = false;
+            $project->is_active = !$project->is_active;
             $project->save();
+            return response()->json(['success' => 'Data updated successfully'], 200);
         }
-    }    
+
+        return response()->json(['error' => 'project ID is missing'], 400);
+    }
+
 
     public static function Add(Request $request, $plan_id){
         $request->validate([
@@ -141,6 +157,6 @@ class ProjectController extends Controller
         }
     
         return redirect()->back()->with('error', 'project ID is missing');
-    }    
+    }
     
 }
