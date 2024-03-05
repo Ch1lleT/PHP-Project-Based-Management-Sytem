@@ -94,7 +94,7 @@ Route::put('/targets/update/{target_id}', [TargetController::class, 'Update']);
 Route::put('/plan/update/{plan_id}', [PlanController::class, 'Update']);
 Route::put('projects/update/{project_id}', [ProjectController::class, 'Update']);
 
-Route::post('project/notactive/{project_id}', [ProjectController::class, 'NotActive']);
+Route::put('project/active/{project_id}', [ProjectController::class, 'Active']);
 Route::put('user/active/{user_id}', [UserController::class, 'Active']);
 
 Route::get('/user_list',[UserController::class,'getAll']

@@ -768,10 +768,9 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#"
-                                            onclick="checkDel();event.preventDefault(); document.getElementById('notactive-form').submit();">
+                                        <a href="#" onclick="checkDel('project',{{$ProjectAt->project_id}}); ">
                                             <i class='bx bx-trash text-danger'></i>
-                                        </a>
+                                        </a>                                      
                                     </td>
                                 </tr>
                             @endforeach
@@ -1018,7 +1017,12 @@
                 [3, 5, 10, 15, 20]
             ]
         })
-        const checkDel = () => {
+        const checkDel = (type, id) => {
+            let data = {
+                "id": id
+            };
+            console.log(data);
+
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -1029,14 +1033,35 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
+                    fetch('http://127.0.0.1:8000/api/'+type+'/active', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with your fetch operation:', error);
                     });
                 }
             });
-        }
+        };
+
+
     </script>
 
 @endsection

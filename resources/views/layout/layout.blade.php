@@ -227,7 +227,7 @@
                             <div class="img d-flex align-items-center">
                                 <img src="{{ asset('image/profile.png') }}" alt="" srcset="" id="profile"
                                     class="rounded-circle object-fit-cover" style="width:50px; height:50px">
-                                <p class="ps-3">Siwapon sungsang</p>
+                                <p class="ps-3">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</p>
                             </div>
                             <i class='bx bxs-chevron-down'></i>
                         </a>

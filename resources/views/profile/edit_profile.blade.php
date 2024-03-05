@@ -55,25 +55,25 @@
                 <div class="my-3 row form">
                     <label for="name" class="col-sm-2 col-form-label p-0 pt-2">รูปโปรไฟล์</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="image" value="{{ $User['image'] }}">
+                        <input type="file" class="form-control" id="image" value="ยังไม่มีฟิล์ดไว้ใส่รูปเลยง่ะ">
                     </div>
                 </div>
                 <div class="my-3 row form">
                     <label for="name" class="col-sm-2 col-form-label p-0 pt-2">ชื่อ</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" value="{{ $User['fname'] }}">
+                        <input type="text" class="form-control" id="name" value="{{ auth()->user()->first_name }}">
                     </div>
                 </div>
                 <div class="mb-3 row form">
                     <label for="last_name" class="col-sm-2 col-form-label p-0 pt-2 ">นามสกุล</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="last_name" value="{{ $User['lname'] }}">
+                        <input type="text" class="form-control" id="last_name" value="{{ auth()->user()->last_name }}">
                     </div>
                 </div>
                 <div class="mb-3 row form">
                     <label for="Email" class="col-sm-2 col-form-label p-0 pt-2">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="Email" value="{{ $User['email'] }}">
+                        <input type="email" class="form-control" id="Email" value="{{ auth()->user()->email }}">
                     </div>
                 </div>
                 <div class="text-end">
@@ -107,8 +107,7 @@
 
         <div class="col-12 col-lg-6 ">
             <div class="img h-100 d-flex align-items-center justify-content-center">
-                <img id="preview-img" class="rounded-circle object-fit-cover"
-                    src="{{ asset('image/defult-profile/profile.svg') }}">
+                <img id="preview-img" class="rounded-circle object-fit-cover" src="{{ asset('image/defult-profile/profile.svg') }}">
             </div>
         </div>
     </div>
