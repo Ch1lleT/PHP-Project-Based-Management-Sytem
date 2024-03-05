@@ -74,12 +74,16 @@ Route::get('/fiscal_years_list', function () {
 })->name("fiscal_years_list");
 
 Route::get('/report_support', function () {
-    return view('okr_kpi/report_support');
+    return view('okr_kpi/report/report_support');
 })->name("report_support");
 
 Route::get('/report_technic', function () {
-    return view('okr_kpi/report_technic');
+    return view('okr_kpi/report/report_technic');
 })->name("report_technic");
+
+Route::get('/efficiency', function () {
+    return view('executive/efficiency');
+})->name("efficiency");
 
 Route::get('/activity_page', function () {
     return view('user/activity_page');

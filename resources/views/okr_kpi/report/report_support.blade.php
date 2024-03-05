@@ -18,7 +18,7 @@
     <div class="">
         <h4 class="mx-2">แสดงข้อมูล : ฝ่ายนโยบายและยุทธสาสตร์</h4>
         <div class="w-100 d-flex align-items-center">
-            <div class="dropdown fs-6 d-flex align-items-center" style="width: 200px">
+            <div class="dropdown fs-6 d-flex align-items-center " style="width: 200px">
                 <span class="fs-5 mx-2 w-50">หน่วยงาน</span>
                 <select class="form-select p-0 px-5 h-50 w-50" id="floatingSelect"
                     style="padding: 0rem 1.7rem 0rem 1rem !important;">
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="overflow-x-auto">
-            <table class="table display " style="width:100%" id="table_report">
+            <table class="table display" style="width:100%" id="table_report">
                 <thead>
                     <tr>
                         <th scope="col">Catagory</th>

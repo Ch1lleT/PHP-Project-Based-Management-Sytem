@@ -269,8 +269,8 @@
                     </a>
                     <div class="collapse" id="executive-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
-                            <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
+                            <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
+                            <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                         </ul>
                     </div>
                 </li>
@@ -443,7 +443,7 @@
                         <div class="collapse" id="executive-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                 <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
-                                <li><a href="#" class="rounded">สรุปประสิทธิภาพการทำงาน</a></li>
+                                <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                             </ul>
                         </div>
                     </li>
