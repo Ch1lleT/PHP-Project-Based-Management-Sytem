@@ -28,11 +28,6 @@
                 </select>
             </div>
         </div>
-        <div class="m-2">
-            <a href="" class="link-underline">Export to excel</a>
-            |
-            <a href="" class="link-underline">Export to clipboard</a>
-        </div>
         <div class="overflow-x-auto">
             <table class="table display " style="width:100%" id="table_report">
                 <thead>

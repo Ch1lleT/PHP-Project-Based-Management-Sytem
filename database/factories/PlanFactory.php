@@ -27,7 +27,7 @@ class PlanFactory extends Factory
             'plan_name' => fake()->sentence(),
             'stg_id' => Strategy::pluck('stg_id')[0],
             'type' => $plan_types[mt_rand(0,count($plan_types)-1)],
-            'desc' => fake()->paragraph(),
+            'desc' => fake()->paragraph(1),
             'weight' => fake()->randomFloat(1,0,1),
         ];
     }

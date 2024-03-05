@@ -113,6 +113,8 @@
                   <label for="recipient-name" class="col-form-label">ชื่อยุทธศาสตร์ ใหม่ :</label>
                   <input type="text" class="form-control" id="recipient-name">
                 </div>
+                
+                
               </form>
             </div>
             <div class="modal-footer">
@@ -775,7 +777,15 @@
                                 </tr>
                             @endforeach
 
-                            @foreach ($ProjectAtAll as $index => $ProjectAt)
+                            
+
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        @foreach ($ProjectAtAll as $index => $ProjectAt)
                                 <div class="modal fade" id="edit_project_{{ $index }}" tabindex="-1"
                                     aria-labelledby="edit_project_label_{{ $index }}" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
@@ -940,54 +950,39 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
-                                                            <div class="mb-3 row px-3">
-                                                                <label for="name"
-                                                                    class="col-sm-3 col-form-label">ผู้ร่วมโครงการ</label>
-                                                                <div class="col-sm-7">
-                                                                    <input type="text" class="form-control"
-                                                                        id="name">
-                                                                </div>
-                                                                <button type="button" class="col-sm-2 btn btn-primary">
-                                                                    Add</button>
-                                                            </div>
-                                                            <div class="overflow-y-scroll px-3" style="height: 500px;">
-                                                                <div class="row">
-                                                                    <label for="name"
-                                                                        class="col-sm-5 col-form-label">นายศิวพล</label>
-                                                                    <label for="name"
-                                                                        class="col-sm-5 col-form-label">ใจซื่อ</label>
-                                                                    <div class="col-sm-2">
-                                                                        <a href="#"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="40" height="40"
-                                                                                viewBox="0 0 32 32">
-                                                                                <path fill="#FC0005"
-                                                                                    d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
-                                                                                </path>
-                                                                            </svg></a>
-                                                                    </div>
-                                                                    <hr>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <label for="name"
-                                                                        class="col-sm-5 col-form-label">นายนันทกร</label>
-                                                                    <label for="name"
-                                                                        class="col-sm-5 col-form-label">ธิดี</label>
-                                                                    <div class="col-sm-2">
-                                                                        <a href="#"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="40" height="40"
-                                                                                viewBox="0 0 32 32">
-                                                                                <path fill="#FC0005"
-                                                                                    d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
-                                                                                </path>
-                                                                            </svg></a>
-                                                                    </div>
-                                                                    <hr>
-                                                                </div>
-                                                            </div>
+                                                            <table class="table display">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            ชื่อ
+                                                                        </th>
+                                                                        <th>
+                                                                            องค์กร
+                                                                        </th>
+                                                                        <th>
+                                                                            สถานะ
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            test
+                                                                        </td>
+                                                                        <td>
+                                                                            อบต
+                                                                        </td>
+                                                                        <td class="text-center">
+                                                                            <div class="form-check form-switch">
+                                                                                <input class="form-check-input" type="checkbox" role="switch">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -999,13 +994,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
     </div>
     </div>
     </div>
