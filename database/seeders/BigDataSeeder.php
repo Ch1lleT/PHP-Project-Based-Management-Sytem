@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Activity;
 use App\Models\FiscalYear;
 use App\Models\Strategy;
 use App\Models\User;
@@ -60,6 +61,13 @@ class BigDataSeeder extends Seeder
             ]);
         }
 
-        
+        $Projects = Project::pluck('project_id');
+
+        foreach($Projects as $Project)
+        {
+            Activity::factory()->count(mt_rand(3,10))->create([
+                'project_id' => $Project
+            ]);
+        }
     }
 }
