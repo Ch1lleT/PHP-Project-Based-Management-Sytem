@@ -40,31 +40,25 @@ class STGController extends Controller
 
     }
 
-    public static function getAll() {
-        $stgAll = Strategy::where('is_active', true)->get();
+    public static function getAll(Request $request) {
+        $year_code = $request->year;
+        if (isset($year_code)){
+            $stgAll = Strategy::where('is_active', true)->where('year_code',$year_code)->get();
+            return response()->json(['stgAll' => $stgAll]);
+        }
+        return response()->json(['stgAll' => null]);
 
-        // $stgAll = [
-        //     ["id" => "1","name" => "ยุทธศาสตร์ที่ 1"],
-        //     ["id" => "2","name" => "ยุทธศาสตร์ที่ 2"],
-        //     ["id" => "3","name" => "ยุทธศาสตร์ที่ 3"],
-        //     ["id" => "4","name" => "ยุทธศาสตร์ที่ 4"],
-        //     ["id" => "5","name" => "ยุทธศาสตร์ที่ 5"],
-        //     ["id" => "6","name" => "ยุทธศาสตร์ที่ 6"]
-        // ];
-
-        return view('staff/fiscal_years', compact('stgAll'));
+        // return view('staff/fiscal_years', compact('stgAll'));
     }
 
     public static function get(Request $request) {
         $stg_id = $request->stg_id;
         if(isset($stg_id)) {
-            $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->get();
-            if ($STG->isEmpty()){
-                return response()->json(['error' => null]);
-            }
+            $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
         }else {
             $STG = Strategy::first();
         }
+        // dd($STG);
         return response()->json(['STG' => $STG]);
     }    
 

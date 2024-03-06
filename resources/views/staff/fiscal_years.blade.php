@@ -43,11 +43,11 @@
     <div class="w-100 d-flex align-items-center">
         <div class="dropdown fs-6 d-flex align-items-center">
             <span class="fs-5 mx-2">ปีงบประมาณ</span>
-            <select class="form-select p-0 px-5 h-50" id="floatingSelect" style="padding: 0rem 1.7rem 0rem 1rem !important;">
+            <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;" name="Year">
                 {{-- <option >Open this select menu</option> --}}
-                <option value="1" selected>2565</option>
-                <option value="2">2564</option>
-                <option value="3">2563</option>
+                @foreach ($YearAll as $Year)
+                    <option value="{{$Year->id}}" {{$Year->year == request()->query('year', date("Y")) ? 'selected' : ''}}>{{$Year->year + 543}}</option>
+                @endforeach            
             </select>
             {{-- <label for="floatingSelect">ปีงบประมาณ</label> --}}
         </div>
@@ -86,10 +86,13 @@
     </div>
 
     <div class="row row-cols-3 gap-2 px-3">
-        @foreach ($STGAll as $strategy)
-            <a href="{{ route('fiscal_years', ['stg_id' => $strategy['stg_id']]) }}"
-                class="col-xl-2 col btn btn-secondary text-white">{{ $strategy['name'] }}</a>
-        @endforeach
+        @if ($STGAll != null)
+            @foreach ($STGAll as $strategy)
+                <a href="{{ route('fiscal_years',['year' => request()->query('year'), 'stg_id' => $strategy->stg_id]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy->name }}</a>
+            @endforeach
+        @else
+            No data
+        @endif
         <a href="#" class="col-xl-1" data-bs-toggle="modal" data-bs-target="#add_stg">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
                 <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
@@ -114,8 +117,6 @@
                             <label for="recipient-name" class="col-form-label">ชื่อยุทธศาสตร์ ใหม่ :</label>
                             <input type="text" class="form-control" id="recipient-name">
                         </div>
-
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -132,10 +133,11 @@
                 <td class="h4 px-0">
                     <div style="width: 150px">ยุทธศาสตร์:</div>
                 </td>
-                <td class="h4" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                <td class="h4">
                     {{ isset($STG->name) ? $STG->name : '' }}
+                    {{-- {{$STG[0]->name}} --}}
                     @if (isset($STG))
-                        <a href="#" class="text-decoration-none">
+                        <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#edit_stg">
                             <i class='bx bx-pencil text-dark'></i>
                         </a>
                         <a href="#" class="text-decoration-none" onclick="checkDel('{{isset($STG->name) ? 'Strategy' : '' }}','{{ isset($STG->id) ? $STG->stg_id : '' }}')">
@@ -281,7 +283,7 @@
                                         {{ $loop->index + 1 }}
                                     </td>
                                     <td class="select">
-                                        <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
+                                        <a href="{{ route('fiscal_years', ['year' => request()->query('year'),'stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
                                             class="text-black text-wrap w-100">
                                             {{ $TargetAt->target_name }}
                                         </a>
@@ -489,7 +491,7 @@
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('fiscal_years', ['stg_id' => request()->query('stg_id'), 'target_id' => request()->query('target_id'), 'plan_id' => $PlanAt->plan_id]) }}"
+                                            <a href="{{ route('fiscal_years', ['year' => request()->query('year'),'stg_id' => request()->query('stg_id'), 'target_id' => request()->query('target_id'), 'plan_id' => $PlanAt->plan_id]) }}"
                                                 class="text-black text-wrap w-100">
                                                 {{ $PlanAt->plan_name }}
                                             </a>
@@ -992,11 +994,22 @@
                 [3, 5, 10, 15, 20]
             ]
         })
+
+
+        $(document).ready(function() {
+            $("#Year").change(function() {
+                var selectedValue = $(this).val();
+                window.location = 'fiscal_years?year='+selectedValue
+                // console.log(selectedValue);
+            });
+        });
+        
         const checkDel = (type, id) => {
             let data = {
                 "id": id
             };
             console.log(data);
+
 
             Swal.fire({
                 title: "Are you sure?",

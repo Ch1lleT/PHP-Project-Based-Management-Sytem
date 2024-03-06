@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Fiscal_yearsController;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\STGController;
@@ -34,8 +35,15 @@ class AppServiceProvider extends ServiceProvider
             $PlanAtAll = null;
             $ProjectAtAll = null;
             $TargetAtAll = null;
+            $YearAllData = null;
+            $STGAllData = null;
 
-            $STGAll = STGController::getAll()->getData()['stgAll'];
+            $YearAllData = Fiscal_yearsController::getAll()->getData();
+            $YearAll = $YearAllData->Year;
+
+            $STGAllData = STGController::getAll(request())->getData();
+            $STGAll = $STGAllData->stgAll;
+
             // $PlanAll = PlanController::getAll()->getData()['PlanAll'];
             // $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
             
@@ -43,8 +51,11 @@ class AppServiceProvider extends ServiceProvider
             // if (request()->has('stg_id')) {
                 // $STG = STGController::get(request())->getData()['STG'];
             // }
+
             $STGData = STGController::get(request())->getData();
             $STG = $STGData->STG;
+
+            // dd($STG);
             $TargetData = TargetController::get(request())->getData();
             $Target = $TargetData->Target;
             $PlanData = PlanController::get(request())->getData();
@@ -61,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
 
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll'));
+            $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll', 'YearAll'));
         });
     }
 }
