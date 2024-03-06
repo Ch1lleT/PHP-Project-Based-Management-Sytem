@@ -330,7 +330,9 @@
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <a href="{{ route('login') }}" type="submit" class="rounded">ออกจากระบบ✅</a>
+                        {{-- <div type="submit" class="rounded">ออกจากระบบ✅</div> --}}
+                        <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
+                        <button type="submit" id="logoutbutton" style="display:none"></button>
                     </form>
                 </li>
                 <hr>
@@ -504,7 +506,8 @@
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <a href="{{ route('login') }}" type="submit" class="rounded">ออกจากระบบ✅</a>
+                        <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
+                        <button type="submit" id="logoutbutton" style="display:none"></button>
                     </form>
                     
                 </li>
@@ -553,6 +556,12 @@
         @yield('script')
 
         <script>
+
+            function logout()
+            {
+                document.getElementById('logoutbutton').click()
+            }
+
             function dropdown(arrow, check) {
                 if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
                     arrow.style.transform = 'rotate(180deg)';
