@@ -35,12 +35,13 @@ class LoginController extends Controller
         return redirect()->route('login')->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        auth()->logout();
+
+        $request->session()->invalidate();
         
-        session()->invalidate();
-        session()->flush();
-        session()->regenerate();
+        $request->session()->regenerate();
 
         return redirect()->route('login');
     }
