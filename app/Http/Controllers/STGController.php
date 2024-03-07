@@ -10,16 +10,6 @@ use Illuminate\Support\Str;
 class STGController extends Controller
 {
     //
-    public function index() {
-        $stg = [
-            ["name" => "ยุทธศาสตร์ที่ 1"],
-            ["name" => "ยุทธศาสตร์ที่ 2"],
-            ["name" => "ยุทธศาสตร์ที่ 3"],
-            // ["name" => "ยุทธศาสตร์ที่ 4"],
-        ];
-
-        return view('stg', compact('stg'));
-    }
 
     public static function Add(Request $request){
 
@@ -36,7 +26,7 @@ class STGController extends Controller
 
         $STG->save();
 
-        return redirect('/fiscal_years')->with('success', 'Data added successfully');
+        return redirect()->back()->with('success', 'Data Update successfully');
 
     }
 

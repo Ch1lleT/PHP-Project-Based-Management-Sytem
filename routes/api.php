@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::put('Strategy/active', [STGController::class, 'Active']);
-Route::put('target_id/active', [TargetController::class, 'Active']);
+Route::put('target/active', [TargetController::class, 'Active']);
 Route::put('plan/active', [PlanController::class, 'Active']);
 Route::put('project/active', [ProjectController::class, 'Active']);
 
