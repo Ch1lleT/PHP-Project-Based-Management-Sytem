@@ -52,7 +52,8 @@ class User extends Authenticatable
         'card_code',
         'phone',
         'address',
-        'role_id'
+        'role_id',
+        'image',
     ];
 
     /**

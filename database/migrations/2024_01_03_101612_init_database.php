@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string("phone",10);
             $table->string("address");
             $table->string("role_id");
+            $table->string('image')->nullable();
             $table->boolean("is_active")->default(true);
 
 

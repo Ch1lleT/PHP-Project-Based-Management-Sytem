@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    <table class="table mt-3 mb-0 my-table">
+    <table class="table mt-3 mb-0 my-table" >
         <tbody>
             <tr>
                 <td class="h4 px-0">
@@ -261,7 +261,7 @@
 
             <hr>
             <div class="content">
-                <table class="table display" style="width: 100%">
+                <table class="table display" style="width: 100%" >
                     <thead>
                         <tr>
                             <th>
@@ -465,7 +465,7 @@
             @endif
             <hr>
             <div class="overflow-x-hidden plan">
-                <table class="table display" style="width: 100%">
+                <table class="table display" style="width: 100%" id="plantable">
                     <thead>
                         <tr>
                             <th>
@@ -989,7 +989,10 @@
     </div>
     </div>
     </div>
+
     <script>
+
+    
         var table = $('table.display').DataTable({
             pageLength: 5,
             lengthMenu: [
