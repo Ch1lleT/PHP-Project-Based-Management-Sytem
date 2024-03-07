@@ -327,8 +327,8 @@
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="post">
+                <li >
+                    <form action="{{ route('logout') }}" method="post" >
                         @csrf
                         {{-- <div type="submit" class="rounded">ออกจากระบบ✅</div> --}}
                         <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>

@@ -44,10 +44,13 @@
         <div class="dropdown fs-6 d-flex align-items-center">
             <span class="fs-5 mx-2">ปีงบประมาณ</span>
             <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;" name="Year">
-                {{-- <option >Open this select menu</option> --}}
                 @foreach ($YearAll as $Year)
-                    <option value="{{$Year->id}}" {{$Year->year == request()->query('year', date("Y")) ? 'selected' : ''}}>{{$Year->year + 543}}</option>
-                @endforeach            
+                    @if (request()->query('year'))
+                        <option value="{{$Year->id}}" {{$Year->id == request()->query('year') ? 'selected' : ''}} >{{$Year->year + 543}}</option>
+                    @else
+                        <option value="{{$Year->id}}" {{$Year->year == date("Y") ? 'selected' : ''}} >{{$Year->year + 543}}</option>
+                    @endif
+                @endforeach                    
             </select>
             {{-- <label for="floatingSelect">ปีงบประมาณ</label> --}}
         </div>

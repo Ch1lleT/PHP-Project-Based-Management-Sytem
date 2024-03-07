@@ -45,6 +45,9 @@ class STGController extends Controller
         if (isset($year_code)){
             $stgAll = Strategy::where('is_active', true)->where('year_code',$year_code)->get();
             return response()->json(['stgAll' => $stgAll]);
+        }else{
+            $stgAll = Strategy::where('is_active', true)->orderBy('year_code', 'desc')->get();
+            return response()->json(['stgAll' => $stgAll]);
         }
         return response()->json(['stgAll' => null]);
 

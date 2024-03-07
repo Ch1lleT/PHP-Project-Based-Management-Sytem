@@ -32,16 +32,22 @@ class TargetController extends Controller
 
     public static function get(Request $request) {
         $target_id = $request->target_id;
+        
         if(isset($target_id)) {
-            $Target = Target::where('target_id',$target_id)->where('is_active',true)->get();
-            if (isset($Target)) {
-                return response()->json(['Target' => 'No target found']);
+            $Target = Target::where('target_id', $target_id)->where('is_active', true)->first();
+            if (!$Target) {
+                return response()->json(['error' => 'No target found'], 404);
             }
-        }else {
-            $Target = Target::where('is_active',true)->first();
+            return response()->json(['Target' => $Target]);
+        } else {
+            $Target = Target::where('is_active', true)->first();
+            if (!$Target) {
+                return response()->json(['error' => 'No active target found'], 404);
+            }
+            return response()->json(['Target' => $Target]);
         }
-        return response()->json(['Target' => $Target]);
-    }  
+    }
+    
 
     public static function Add(Request $request, $stg_id){
         $request->validate([

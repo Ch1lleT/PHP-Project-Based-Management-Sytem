@@ -71,22 +71,18 @@ class ProjectController extends Controller
 
     }
 
+    public static function get(Request $request) {
+        $project_id = $request->project_id;
+        if(isset($project_id)) {
+            $project = Project::find($project_id);
+            return response()->json(['project' => $project],200);
+        }
+        return redirect()->back()->with('error', 'project ID is missing');
+    }
+
     public static function getAll() {
-
         $ProjectAll = Project::where('is_active',true)->get();
-
-        // $ProjectAll = [
-        //     [
-        //         "project_name" => "ผลผลิตการพัฒนาระบบมาตรวิทยา (การเป็นหน่วยงานหลักในการเปรียบเทียบผลการวัดภายในประเทศ/การสนับสนุนกิจกรรมของชมรมมาตรวิทยาสาขาต่างๆ)6702201",
-        //         "project_head" => "	นันทกร",
-        //         "budget_source" => "มว.",  // table users
-        //         "budget_type" => "ลงทุน", // table balance
-        //         "balance" => "1150" ,
-        //         "org_name" => "กฟอ."
-        //     ],
-        // ];
-
-        return view('staff/fiscal_years', compact('ProjectAll'));
+        return response()->json(['ProjectAll' => $ProjectAll]);
     }
 
     public static function getAtAll(Request $request) {
