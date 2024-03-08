@@ -7,17 +7,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public static function get() {
+    public static function get(Request $request) {
+        $user_id = $request->user_id;
 
-        // $id = auth
-        $User = [
-            "image" => "http://127.0.0.1:8000/image/profile.png",
-            "fname" => "Siwapon",
-            "lname" => "sungsang",
-            "email" => "Siwapon@gmail.com",
-        ];
+        if ($user_id) {
+            $User = User::find($user_id);
+            return response()->json(['User' => $User]);
+        }
         
-        return view('profile/edit_profile', compact('User'));
+        return redirect()->back()->with('error', 'User ID is missing');
     }
 
     public static function Active(Request $request) {
@@ -34,9 +32,9 @@ class UserController extends Controller
     }
 
 
-    public function getAll(){
+    public static function getAll(){
 
-        $users = User::all();
-        return view('admin.user_list',compact('users'));
+        $Users = User::all();
+        return response()->json(['Users' => $Users]);
     }
 }

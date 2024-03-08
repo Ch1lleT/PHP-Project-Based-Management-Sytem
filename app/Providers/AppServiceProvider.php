@@ -9,6 +9,7 @@ use App\Http\Controllers\STGController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\TargetController;
+use App\Http\Controllers\UserController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -74,5 +75,16 @@ class AppServiceProvider extends ServiceProvider
             // Passing data to the view
             $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll', 'YearAll'));
         });
+
+        view::composer('admin/user_list' , function ($view) {
+            $UserAllData = null;
+
+            $UserAllData = UserController::getAll()->getData();
+            $UserAll = $UserAllData->Users;
+
+            $view->with(compact('UserAll'));
+
+        });
+
     }
 }
