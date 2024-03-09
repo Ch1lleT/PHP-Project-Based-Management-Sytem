@@ -15,16 +15,22 @@ class ProjectController extends Controller
 
     public static function Active(Request $request) {
         $project_id = $request->id;
-        $project = Project::find($project_id);
-
-        if ($project) {
-            $project->is_active = !$project->is_active;
-            $project->save();
-            return response()->json(['success' => 'Data updated successfully'], 200);
+    
+        if ($project_id) {
+            $project = Project::find($project_id);
+            if ($project) {
+                $project->is_active = !$project->is_active;
+                $project->save();
+                
+                return response()->json(['success' => 'Data updated successfully', 'is_active' => $project->is_active], 200);
+            } else {
+                return response()->json(['error' => 'Project not found'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'Project ID is missing'], 400);
         }
-
-        return response()->json(['error' => 'project ID is missing'], 400);
     }
+    
 
 
     public static function Add(Request $request, $plan_id){
