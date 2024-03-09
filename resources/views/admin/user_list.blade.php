@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    @forEach ($UserAll as $index => $user)
+    @forEach ($users as $index => $user)
         <div class="modal fade" id="edit_user_{{$index}}" tabindex="-1" aria-labelledby="edit_userModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -214,7 +214,7 @@
         </thead>
         <tbody>
             
-            @foreach ($UserAll as $user )
+            @foreach ($users as $user )
                 <tr>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>

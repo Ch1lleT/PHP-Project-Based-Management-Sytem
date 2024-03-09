@@ -44,14 +44,32 @@ class STGController extends Controller
         // return view('staff/fiscal_years', compact('stgAll'));
     }
 
+    // public static function get(Request $request) {
+    //     $stg_id = $request->stg_id;
+    
+    //     if(isset($stg_id)) {
+    //         $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
+    //         return response()->json(['STG' => $STG ],200);
+    //     } else {
+    //         return response()->json(['error' => 'Not found STG' ],404);
+    //     }
+    // }
+
     public static function get(Request $request) {
         $stg_id = $request->stg_id;
-    
+        
         if(isset($stg_id)) {
-            $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
-            return response()->json(['STG' => $STG ,'status'=> 'https://http.cat/200'],200);
+            $STG = Strategy::where('stg_id', $stg_id)->where('is_active', true)->first();
+            if (!$STG) {
+                return response()->json(['error' => 'No Strategy found'], 404);
+            }
+            return response()->json(['STG' => $STG]);
         } else {
-            return response()->json(['error' => 'Not found STG' ,'status'=> 'https://http.cat/404'],404);
+            $STG = Strategy::where('is_active', true)->first();
+            if (!$STG) {
+                return response()->json(['error' => 'No active Strategy found'], 404);
+            }
+            return response()->json(['STG' => $STG]);
         }
     }
     

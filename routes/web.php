@@ -101,12 +101,8 @@ Route::put('projects/update/{project_id}', [ProjectController::class, 'Update'])
 Route::put('project/active/{project_id}', [ProjectController::class, 'Active']);
 Route::put('user/active/{user_id}', [UserController::class, 'Active']);
 
-// Route::get('/user_list',[UserController::class,'getAll']
-// )->name("user_list");
-
-Route::get('/user_list' , function () {
-    return view('admin/user_list');
-})->name('user_list');
+Route::get('/user_list',[UserController::class,'getAll']
+)->name("user_list");
 
 Route::get('/org',[OrgController::class,'getAll'])->name("org");
 

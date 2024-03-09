@@ -53,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
                 // $STG = STGController::get(request())->getData()['STG'];
             // }
 
+
             $STGData = STGController::get(request())->getData();
             $STG = $STGData->STG;
 
