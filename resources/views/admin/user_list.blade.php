@@ -230,15 +230,11 @@
                         </div>
                     </td>
                     <td>
-                        <form action="{{ asset('user/active/'.$user->user_id) }}" method="POST" class="d-flex justify-content-center">
-                            @method('put')
-                            @csrf
-                            @if ($user->is_active)
-                                <button type="submit" class="border border-0" id="circle" onclick="fetchData()" style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
-                            @else
-                                <button type="submit" class="border border-0" id="circle" onclick="fetchData()" style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
-                            @endif
-                        </form>
+                        @if ($user->is_active)
+                            <button type="submit" class="border border-0" id="circle" onclick="checkDel('{{$user->user_id}}')" style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
+                        @else
+                            <button type="submit" class="border border-0" id="circle" onclick="checkDel('{{$user->user_id}}')" style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
+                        @endif
                     </td>
                 </tr>    
             @endforeach
@@ -247,41 +243,74 @@
     </div>
     <script>
         new DataTable('#myTable');
+        const APP_URL = "{{ env('APP_URL') }}";
 
         //this is a circle color change Active and disable
-        function toggleColor(circle) {
-            if (circle.style.backgroundColor === 'red') {
-                circle.style.backgroundColor = 'green';
-            } else {
-                circle.style.backgroundColor = 'red';
-            }
-        }
+        // function toggleColor(circle) {
+        //     if (circle.style.backgroundColor === 'red') {
+        //         circle.style.backgroundColor = 'green';
+        //     } else {
+        //         circle.style.backgroundColor = 'red';
+        //         circle.style.Color = 'red';
+        //     }
+        // }
 
-        function fetchData() {
-            fetch("http://example.com/api/data", {
-                method: "PUT"
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const checkDel = (id) => {
+            let data = {
+                "id": id
+            };
+            console.log(data);
+
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Update it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(APP_URL + '/api/user/active', {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            Swal.fire({
+                                    title: "Update!",
+                                    text: "Your file has been Update.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                .then(() => {
+                                    console.log(data);
+                                    window.location.reload();
+                                })
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with your fetch operation:', error);
+                        });
                 }
-                return response.json();
-            })
-            .then(data => {
-                // ดำเนินการกับข้อมูลที่ได้รับต่อไปที่นี่
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
             });
-        }
+        };
 
-        const circles = document.querySelectorAll('#circle');
+        // const circles = document.querySelectorAll('#circle');
 
-        circles.forEach(circle => {
-            circle.addEventListener("click", () => {
-                toggleColor(circle);
-            });
-        });
+        // circles.forEach(circle => {
+        //     circle.addEventListener("click", () => {
+        //         toggleColor(circle);
+        //     });
+        // });
     </script>
 @endsection
