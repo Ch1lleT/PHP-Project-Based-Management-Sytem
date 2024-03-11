@@ -15,26 +15,27 @@ class UserController extends Controller
             return response()->json(['User' => $User]);
         }
         
-        return redirect()->back()->with('error', 'User ID is missing');
+        return response()->json('error', 'User ID is missing');
     }
 
     public static function Active(Request $request) {
-        $user_id = $request->user_id;
-
-        if ($user_id) {
-            $user = User::find($user_id);
+        $user_id = $request->id;
+        $user = User::find($user_id);
+        if ($user) {
             $user->is_active = !$user->is_active;
             $user->save();
-            return redirect()->back()->with('success', 'Data update successfully');
+            return response()->json(['success' => 'Data updated successfully','is_active' => $user->is_active,'status'=> 'https://http.cat/200'], 200);
+        } else {
+            return response()->json(['error' => 'user not found','status'=> 'https://http.cat/404'], 404);
         }
 
-        return redirect()->back()->with('error', 'user ID is missing');
+        return response()->json(['error' => 'user ID is missing'], 400);
     }
 
 
     public static function getAll(){
 
         $Users = User::all();
-        return response()->json(['Users' => $Users]);
+        return response()->json(['Users' => $Users],200);
     }
 }

@@ -8,7 +8,7 @@
 
 
 @section('content')
-    {{-- {{dd($Organizations)}} --}}
+    {{-- {{dd($OrgAll)}} --}}
     <div class="modal fade" id="add_user" tabindex="-1" aria-labelledby="add_userModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -102,17 +102,17 @@
         </thead>
         <tbody>
 
-            @foreach ($Organizations as $org)
+            @foreach ($OrgAll as $org)
                 <tr>
                     {{-- {{dd($org)}} --}}
 
-                    <td>{{ $org['org_name'] }}</td>
+                    <td>{{ $org->org_name }}</td>
                     <td>
 
                         <ul class="m-0 p-0">
-                            @foreach ($org['sub_org'] as $so)
+                            @foreach ($org->sub_org as $so)
                                 <li>
-                                    {{ $so['org_name'] }}
+                                    {{ $so->org_name }}
                                 </li>
                             @endforeach
                         </ul>

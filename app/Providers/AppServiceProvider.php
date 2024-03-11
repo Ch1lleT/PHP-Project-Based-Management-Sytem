@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Fiscal_yearsController;
+use App\Http\Controllers\OrgController;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\STGController;
@@ -85,6 +86,15 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(compact('UserAll'));
 
+        });
+
+        view::composer('admin/org' , function ($view) {
+            $OrgAll = null;
+
+            $OrgAllData = OrgController::getAll()->getData();
+            $OrgAll = $OrgAllData->Orgs;
+
+            $view->with(compact('OrgAll'));
         });
 
     }
