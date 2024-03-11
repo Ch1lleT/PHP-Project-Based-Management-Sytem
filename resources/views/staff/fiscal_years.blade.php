@@ -990,6 +990,8 @@
     </div>
     </div>
     <script>
+        const APP_URL = "{{ env('APP_URL') }}";
+
         var table = $('table.display').DataTable({
             pageLength: 5,
             lengthMenu: [
@@ -1024,7 +1026,7 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch('http://127.0.0.1:8000/api/' + type + '/active', {
+                    fetch(APP_URL + '/api/' + type + '/active', {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
