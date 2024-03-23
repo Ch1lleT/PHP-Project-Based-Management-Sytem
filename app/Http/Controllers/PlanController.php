@@ -17,7 +17,9 @@ class PlanController extends Controller
         if ($Plan) {
             $Plan->is_active = !$Plan->is_active;
             $Plan->save();
-            return response()->json(['success' => 'Data updated successfully'], 200);
+            return response()->json(['success' => 'Data updated successfully','is_active' => $Plan->is_active], 200);
+        } else {
+            return response()->json(['error' => 'Plan not found'], 404);
         }
 
         return response()->json(['error' => 'Plan ID is missing'], 400);

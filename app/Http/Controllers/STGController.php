@@ -10,16 +10,6 @@ use Illuminate\Support\Str;
 class STGController extends Controller
 {
     //
-    public function index() {
-        $stg = [
-            ["name" => "ยุทธศาสตร์ที่ 1"],
-            ["name" => "ยุทธศาสตร์ที่ 2"],
-            ["name" => "ยุทธศาสตร์ที่ 3"],
-            // ["name" => "ยุทธศาสตร์ที่ 4"],
-        ];
-
-        return view('stg', compact('stg'));
-    }
 
     public static function Add(Request $request){
 
@@ -36,7 +26,7 @@ class STGController extends Controller
 
         $STG->save();
 
-        return redirect('/fiscal_years')->with('success', 'Data added successfully');
+        return redirect()->back()->with('success', 'Data Update successfully');
 
     }
 
@@ -54,16 +44,35 @@ class STGController extends Controller
         // return view('staff/fiscal_years', compact('stgAll'));
     }
 
+    // public static function get(Request $request) {
+    //     $stg_id = $request->stg_id;
+    
+    //     if(isset($stg_id)) {
+    //         $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
+    //         return response()->json(['STG' => $STG ],200);
+    //     } else {
+    //         return response()->json(['error' => 'Not found STG' ],404);
+    //     }
+    // }
+
     public static function get(Request $request) {
         $stg_id = $request->stg_id;
+        
         if(isset($stg_id)) {
-            $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
-        }else {
-            $STG = Strategy::first();
+            $STG = Strategy::where('stg_id', $stg_id)->where('is_active', true)->first();
+            if (!$STG) {
+                return response()->json(['error' => 'No Strategy found'], 404);
+            }
+            return response()->json(['STG' => $STG]);
+        } else {
+            $STG = Strategy::where('is_active', true)->first();
+            if (!$STG) {
+                return response()->json(['error' => 'No active Strategy found'], 404);
+            }
+            return response()->json(['STG' => $STG]);
         }
-        // dd($STG);
-        return response()->json(['STG' => $STG]);
-    }    
+    }
+    
 
     public static function Active(Request $request) {
         $stg_id = $request->id;
@@ -72,7 +81,9 @@ class STGController extends Controller
         if ($STG) {
             $STG->is_active = !$STG->is_active;
             $STG->save();
-            return response()->json(['success' => 'Data updated successfully'], 200);
+            return response()->json(['success' => 'Data updated successfully','is_active' => $STG->is_active,'status'=> 'https://http.cat/200'], 200);
+        } else {
+            return response()->json(['error' => 'STG not found','status'=> 'https://http.cat/404'], 404);
         }
 
         return response()->json(['error' => 'STG ID is missing'], 400);

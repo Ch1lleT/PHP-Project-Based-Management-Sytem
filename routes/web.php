@@ -96,15 +96,19 @@ Route::post('/ProjectAdd/{plan_id}', [ProjectController::class, 'Add']);
 
 Route::put('/targets/update/{target_id}', [TargetController::class, 'Update']);
 Route::put('/plan/update/{plan_id}', [PlanController::class, 'Update']);
-Route::put('projects/update/{project_id}', [ProjectController::class, 'Update']);
+Route::put('/projects/update/{project_id}', [ProjectController::class, 'Update']);
 
-Route::put('project/active/{project_id}', [ProjectController::class, 'Active']);
-Route::put('user/active/{user_id}', [UserController::class, 'Active']);
+// Route::get('/user_list',[UserController::class,'getAll']
+// )->name("user_list");
 
-Route::get('/user_list',[UserController::class,'getAll']
-)->name("user_list");
+Route::get('user_list', function () {
+    return view('admin/user_list');
+})->name('user_list');
 
-Route::get('/org',[OrgController::class,'getAll'])->name("org");
+// Route::get('/org',[OrgController::class,'getAll'])->name("org");
+Route::get('/org', function () {
+    return view('admin/org');
+})->name('org');
 
 Route::get('/level', function () {
     return view('admin/level');
@@ -113,10 +117,10 @@ Route::get('/log', function () {
     return view('admin/log');
 })->name("log");
 
-// Route::get('/edit_profile', function () {
-//     return view('profile/edit_profile');
-// })->name("edit_profile");
-Route::get('/edit_profile', [UserController::class, 'get'])->name("edit_profile");;
+Route::get('/edit_profile', function () {
+    return view('profile/edit_profile');
+})->name("edit_profile");
+// Route::get('/edit_profile', [UserController::class, 'get'])->name("edit_profile");
 
 Route::get('/stg_overview', function () {
     return view('executive/stg_overview');

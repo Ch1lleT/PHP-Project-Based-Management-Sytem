@@ -8,30 +8,29 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public static function get() {
-
-        // $id = auth
-        $User = [
-            "image" => "http://127.0.0.1:8000/image/profile.png",
-            "fname" => "Siwapon",
-            "lname" => "sungsang",
-            "email" => "Siwapon@gmail.com",
-        ];
-        
-        return view('profile/edit_profile', compact('User'));
-    }
-
-    public static function Active(Request $request) {
+    public static function get(Request $request) {
         $user_id = $request->user_id;
 
         if ($user_id) {
-            $user = User::find($user_id);
+            $User = User::find($user_id);
+            return response()->json(['User' => $User]);
+        }
+        
+        return response()->json('error', 'User ID is missing');
+    }
+
+    public static function Active(Request $request) {
+        $user_id = $request->id;
+        $user = User::find($user_id);
+        if ($user) {
             $user->is_active = !$user->is_active;
             $user->save();
-            return redirect()->back()->with('success', 'Data update successfully');
+            return response()->json(['success' => 'Data updated successfully','is_active' => $user->is_active,'status'=> 'https://http.cat/200'], 200);
+        } else {
+            return response()->json(['error' => 'user not found','status'=> 'https://http.cat/404'], 404);
         }
 
-        return redirect()->back()->with('error', 'user ID is missing');
+        return response()->json(['error' => 'user ID is missing'], 400);
     }
 
     public function editUserProfile(Request $request)
@@ -95,9 +94,9 @@ class UserController extends Controller
     }
 
 
-    public function getAll(){
+    public static function getAll(){
 
-        $users = User::all();
-        return view('admin.user_list',compact('users'));
+        $Users = User::all();
+        return response()->json(['Users' => $Users],200);
     }
 }

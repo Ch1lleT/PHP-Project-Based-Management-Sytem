@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Fiscal_yearsController;
+use App\Http\Controllers\OrgController;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\STGController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\TargetController;
+use App\Http\Controllers\UserController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
                 // $STG = STGController::get(request())->getData()['STG'];
             // }
 
+
             $STGData = STGController::get(request())->getData();
             $STG = $STGData->STG;
 
@@ -74,5 +77,25 @@ class AppServiceProvider extends ServiceProvider
             // Passing data to the view
             $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll', 'YearAll'));
         });
+
+        view::composer('admin/user_list' , function ($view) {
+            $UserAllData = null;
+
+            $UserAllData = UserController::getAll()->getData();
+            $UserAll = $UserAllData->Users;
+
+            $view->with(compact('UserAll'));
+
+        });
+
+        view::composer('admin/org' , function ($view) {
+            $OrgAll = null;
+
+            $OrgAllData = OrgController::getAll()->getData();
+            $OrgAll = $OrgAllData->Orgs;
+
+            $view->with(compact('OrgAll'));
+        });
+
     }
 }

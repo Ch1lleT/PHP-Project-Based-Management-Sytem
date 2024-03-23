@@ -21,7 +21,7 @@ class PlanFactory extends Factory
     
     public function definition(): array
     {
-        $plan_types = ['ผลผลิต','ผลลัพท์','ผลกระทบ'];
+        $plan_types = ['ผลผลิต','ผลลัพธ์','ผลกระทบ'];
         return [
             'plan_id' => UUID::uuid(Plan::class),
             'plan_name' => fake()->sentence(),

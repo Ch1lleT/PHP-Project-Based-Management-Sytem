@@ -12,7 +12,7 @@ class PlanSeeder extends Seeder
      * Run the database seeds.
      */
 
-    private $plan_types = ['ผลผลิต','ผลลัพท์','ผลกระทบ'];
+    private $plan_types = ['ผลผลิต','ผลลัพธ์','ผลกระทบ'];
 
 
     public function run(): void

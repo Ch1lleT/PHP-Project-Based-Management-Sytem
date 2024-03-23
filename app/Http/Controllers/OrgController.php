@@ -13,7 +13,7 @@ class OrgController extends Controller
     
 
 
-    public function getAll(){
+    public static function getAll(){
         
         $Orgs = array();
         $Organizations = Organization::all();
@@ -45,7 +45,8 @@ class OrgController extends Controller
         
         // $Orgs = Sub_Organization::where('main_org','=','001')->get();
 
-        return view('admin.org')->with('Organizations',$Orgs);
+        return response()->json(['Orgs' => $Orgs]);
+        // return view('admin.org')->with('Organizations',$Orgs);
 
     }
 }

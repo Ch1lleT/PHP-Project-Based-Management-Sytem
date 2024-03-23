@@ -150,7 +150,7 @@ return new class extends Migration
             $table->string("plan_name")->nullable(false);
             $table->string("stg_id",8);
             $table->string("target_id",8);
-            $table->enum("type",['ผลผลิต','ผลลัพท์','ผลกระทบ']);
+            $table->enum("type",['ผลผลิต','ผลลัพธ์','ผลกระทบ']);
             $table->string("desc")->nullable();
             $table->float("weight",4,2);
             $table->boolean("is_active")->default(true);

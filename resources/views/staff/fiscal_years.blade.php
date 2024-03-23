@@ -143,7 +143,7 @@
                         <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#edit_stg">
                             <i class='bx bx-pencil text-dark'></i>
                         </a>
-                        <a href="#" class="text-decoration-none" onclick="checkDel('{{isset($STG->name) ? 'Strategy' : '' }}','{{ isset($STG->id) ? $STG->stg_id : '' }}')">
+                        <a href="#" class="text-decoration-none" onclick="checkDel('Strategy','{{$STG->stg_id}}')">
                             <i class='bx bx-trash text-danger'></i>
                         </a>
                     @endif
@@ -302,7 +302,7 @@
                                             </svg>
                                         </a>
                                     </td>
-                                    <td onclick="checkDel('target_id','{{ $TargetAt->target_id }}')" class="del">
+                                    <td onclick="checkDel('target','{{ $TargetAt->target_id }}')" class="del">
                                         <a href="#">
                                             <i class='bx bx-trash text-danger'></i>
                                         </a>
@@ -991,8 +991,8 @@
     </div>
 
     <script>
+        const APP_URL = "{{ env('APP_URL') }}";
 
-    
         var table = $('table.display').DataTable({
             pageLength: 5,
             lengthMenu: [
@@ -1027,7 +1027,7 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch('http://127.0.0.1:8000/api/' + type + '/active', {
+                    fetch(APP_URL + '/api/' + type + '/active', {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',

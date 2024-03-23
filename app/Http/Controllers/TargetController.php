@@ -97,7 +97,9 @@ class TargetController extends Controller
         if ($target) {
             $target->is_active = !$target->is_active;
             $target->save();
-            return response()->json(['success' => 'Data updated successfully'], 200);
+            return response()->json(['success' => 'Data updated successfully','is_active' => $target->is_active], 200);
+        } else {
+            return response()->json(['error' => 'Target not found'], 404);
         }
 
         return response()->json(['error' => 'target_id ID is missing'], 400);
