@@ -28,98 +28,82 @@ class UserFactory extends Factory
 
     protected $model = User::class;
 
-    public function admin():Factory
+    public function admin(): Factory
     {
-        return $this->state(function (array $attributes)
-        {
+        return $this->state(function (array $attributes) {
             return [
-                'role_id' => '1'
-            ];
-        });
-    }
-    
-    public function powerUser():Factory
-    {
-        return $this->state(function (array $attributes)
-        {
-            return [
-                'role_id' => '2'
+                'role' => 'admin'
             ];
         });
     }
 
-    public function supervisor():Factory
+    public function powerUser(): Factory
     {
-        return $this->state(function (array $attributes)
-        {
+        return $this->state(function (array $attributes) {
             return [
-                'role_id' => '3'
+                'role' => 'powerUser'
             ];
         });
     }
 
-    public function executive():Factory
+    public function supervisor(): Factory
     {
-        return $this->state(function (array $attributes)
-        {
+        return $this->state(function (array $attributes) {
             return [
-                'role_id' => '4'
+                'role' => 'supervisor'
             ];
         });
     }
 
-    public function editor():Factory
+    public function executive(): Factory
     {
-        return $this->state(function (array $attributes)
-        {
+        return $this->state(function (array $attributes) {
             return [
-                'role_id' => '5'
+                'role' => 'executive'
             ];
         });
     }
 
-    public function randRole():Factory
+    public function editor(): Factory
     {
-        return $this->state(function (array $attributes)
-        {
-            $Roles = ['1','2','3','4','5'];
+        return $this->state(function (array $attributes) {
             return [
-                'role_id' => $Roles[mt_rand(0,count($Roles)-1)]
+                'role' => 'user'
             ];
         });
     }
 
-    public function configure(): static
+    public function randRole(): Factory
     {
-        return $this->afterCreating(function (User $user) {
-            Have_Role::create([
-                'user_id' => $user->user_id,
-                'role_id' => $user->role_id,
-            ]);
+        return $this->state(function (array $attributes) {
+            $Roles = ['admin', 'powerUser', 'supervisor', 'executive', 'user'];
+            return [
+                'role' => $Roles[mt_rand(0, count($Roles) - 1)]
+            ];
         });
     }
-    
+
 
     public function definition(): array
     {
-        $genders = ['ชาย','หญิง','ไม่ระบุ'];
-        $prefixes = ['นาย','นาง' ,'นางสาว'];
+        $genders = ['ชาย', 'หญิง', 'ไม่ระบุ'];
+        $prefixes = ['นาย', 'นาง', 'นางสาว'];
         return [
             'user_id' => UUID::uuid(User::class),
-            'email' => fake()->unique()->safeEmail(),
-            'prefix' => $prefixes[mt_rand(0,count($prefixes)-1)],
+            // 'email' => fake()->unique()->safeEmail(),
+            'prefix' => $prefixes[mt_rand(0, count($prefixes) - 1)],
             'username' => fake()->unique()->userName(),
             'password' => Hash::make('test'),
             'first_name' => fake()->firstName(),
-            'last_name'=> fake()->lastName(),
-            'citizen_id' => strval(fake()->randomNumber(8)).strval(fake()->randomNumber(5)),
-            'position' => 'tester',
-            'gender' => $genders[mt_rand(0,count($genders)-1)],
-            'birth_date' => Carbon::now(),
+            'last_name' => fake()->lastName(),
+            // 'citizen_id' => strval(fake()->randomNumber(8)).strval(fake()->randomNumber(5)),
+            // 'position' => 'tester',
+            'gender' => $genders[mt_rand(0, count($genders) - 1)],
+            // 'birth_date' => Carbon::now(),
             'card_code' => strval(fake()->randomNumber(5)),
-            'phone' => '0'.strval(fake()->randomNumber(9)),
-            'address' => 'Bangkok',
-            'role_id' => '2',
+            // 'phone' => '0'.strval(fake()->randomNumber(9)),
+            // 'address' => 'Bangkok',
+            'role' => 'powerUser',
             'is_active' => true
         ];
     }
