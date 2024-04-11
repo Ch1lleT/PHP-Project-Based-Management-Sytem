@@ -56,15 +56,15 @@
                     @csrf
                     <input style="display:none" name="id" value="{{auth()->user()->user_id}}">
                     <div class="my-3 row form">
-                        <label for="name" class="col-sm-2 col-form-label p-0 pt-2">รูปโปรไฟล์</label>
+                        <label for="image" class="col-sm-2 col-form-label p-0 pt-2">รูปโปรไฟล์</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="image" name="image" value="ยังไม่มีฟิล์ดไว้ใส่รูปเลยง่ะ">
+                            <input type="file" class="form-control" id="image" name="image" >
                         </div>
                     </div>
                     <div class="my-3 row form">
-                        <label for="name" class="col-sm-2 col-form-label p-0 pt-2">ชื่อ</label>
+                        <label for="first_name" class="col-sm-2 col-form-label p-0 pt-2">ชื่อ</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" name="first_name" value="{{ auth()->user()->first_name }}">
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ auth()->user()->first_name }}">
                         </div>
                     </div>
                     <div class="mb-3 row form">
@@ -73,12 +73,12 @@
                             <input type="text" class="form-control" id="last_name" name="last_name" value="{{ auth()->user()->last_name }}">
                         </div>
                     </div>
-                    <div class="mb-3 row form">
+                    {{-- <div class="mb-3 row form">
                         <label for="Email" class="col-sm-2 col-form-label p-0 pt-2">Email</label>
                         <div class="col-sm-10">
                             <input type="email" class="form-control" id="Email" name="email" value="{{ auth()->user()->email }}">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="text-end">
                         <button class="btn btn-primary text-end" type="submit">Save</button>
                     </div>

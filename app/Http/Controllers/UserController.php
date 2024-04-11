@@ -35,17 +35,21 @@ class UserController extends Controller
 
     public function editUserProfile(Request $request)
     {
-        $profile = $request->validate([
-            'id' => 'required',
+        $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg',
-            'email' => 'required',
         ]);
 
+        $profile = $request->all();
+        
+        // dd($profile);
+        // dd($request->all());
         $path = null;
         $user_id = $profile['id'];
         
+
+
         if($request->hasFile('image'))
         {
             // Actual image data
@@ -55,9 +59,12 @@ class UserController extends Controller
             
             $imageName = $user_id.'.'.$ext;
             
+        
 
-            $path = Storage::putFileAs('profile_images/',$image,$imageName);
+            $path = $request->file('image')->storeAs('/ProfileImage',$imageName,'public');
             
+            // dd(Storage::url($path));
+
             # replace "//" with "/" in $path
             $path = str_replace("//","/",$path);
         }
@@ -69,7 +76,7 @@ class UserController extends Controller
 
             $user->first_name = $profile['first_name'];
             $user->last_name = $profile['last_name'];
-            $user->email = $profile['email'];
+            // $user->email = $profile['email'];
 
             if($path != null)
             {
