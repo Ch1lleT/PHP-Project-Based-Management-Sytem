@@ -13,15 +13,16 @@ use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
 
-    public static function Active(Request $request) {
+    public static function Active(Request $request)
+    {
         $project_id = $request->id;
-    
+
         if ($project_id) {
             $project = Project::find($project_id);
             if ($project) {
                 $project->is_active = !$project->is_active;
                 $project->save();
-                
+
                 return response()->json(['success' => 'Data updated successfully', 'is_active' => $project->is_active], 200);
             } else {
                 return response()->json(['error' => 'Project not found'], 404);
@@ -30,10 +31,11 @@ class ProjectController extends Controller
             return response()->json(['error' => 'Project ID is missing'], 400);
         }
     }
-    
 
 
-    public static function Add(Request $request, $plan_id){
+
+    public static function Add(Request $request, $plan_id)
+    {
         $request->validate([
             $request->project_name => 'request',
             $request->executive => 'request',
@@ -45,7 +47,7 @@ class ProjectController extends Controller
             $request->budget_source => 'request',
         ]);
 
-        if(isset($plan_id)){
+        if (isset($plan_id)) {
             $uuid = Str::uuid()->toString();
             $firstChunk = substr($uuid, 0, 8);
             $Project = new Project();
@@ -67,54 +69,57 @@ class ProjectController extends Controller
             $Project->budget_type = $request->input('budget_type');
             $Project->weight = 1;
             $Project->is_active = true;
-    
+
             $Project->save();
-    
+
             return redirect()->back()->with('success', 'Data added successfully');
-        }else if ($plan_id == ''){
+        } else if ($plan_id == '') {
             return response()->json(['error' => null]);
         }
-
     }
 
-    public static function get(Request $request) {
+    public static function get(Request $request)
+    {
         $project_id = $request->project_id;
-        if(isset($project_id)) {
+        if (isset($project_id)) {
             $project = Project::find($project_id);
-            return response()->json(['project' => $project],200);
+            return response()->json(['project' => $project], 200);
         }
         return redirect()->back()->with('error', 'project ID is missing');
     }
 
-    public static function getAll() {
-        $ProjectAll = Project::where('is_active',true)->get();
+    public static function getAll()
+    {
+        $ProjectAll = Project::where('is_active', true)->get();
         return response()->json(['ProjectAll' => $ProjectAll]);
     }
 
-    public static function getAtAll(Request $request) {
+    public static function getAtAll(Request $request)
+    {
         $plan_id = $request->plan_id;
         $stg_id = $request->stg_id;
-        if(isset($plan_id)){
-            $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active',true)->get();
-        }else if(isset($stg_id)){
+        if (isset($plan_id)) {
+            $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active', true)->get();
+        } else if (isset($stg_id)) {
             try {
                 //code...
-                $Plan = Plan::where('stg_id',$stg_id)->where('is_active',true)->first();
+                $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
                 $PlanId = $Plan->plan_id;
-                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active',true)->get();        
+                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
             } catch (\Throwable $th) {
                 return response()->json(['ProjectAtAll' => null]);
             }
-        }else {
+        } else {
             $Plan = Plan::first();
             $PlanId = $Plan->plan_id;
-            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();   
+            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();
         }
-        
+
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);
     }
 
-    public static function Update(Request $request) {
+    public static function Update(Request $request)
+    {
         $project_id = $request->project_id;
 
         $request->validate([
@@ -129,7 +134,7 @@ class ProjectController extends Controller
             'executive' => 'required',
         ]);
 
-        if(isset($project_id)){
+        if (isset($project_id)) {
             $project = Project::find($project_id);
             $project->project_name = $request->input('project_name');
             $project->balance = $request->input('balance');
@@ -144,8 +149,7 @@ class ProjectController extends Controller
             $project->save();
             return redirect()->back()->with('success', 'Data Update successfully');
         }
-    
+
         return redirect()->back()->with('error', 'project ID is missing');
     }
-    
 }

@@ -8,7 +8,7 @@
 
 @section('style')
     <style>
-        #org_grid{
+        #org_grid {
             display: grid;
             grid-template-columns: auto auto auto auto auto;
         }
@@ -32,54 +32,55 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                
+
                             </div>
                             <div class="mb-3 row">
                                 <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="name" name="first_name" >
+                                    <input type="text" class="form-control" id="name" name="first_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="last_name" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="last_name" name="last_name" >
+                                    <input type="text" class="form-control" id="last_name" name="last_name">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="username" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="username" name="username" >
+                                    <input type="text" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="password" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="password" name="password" >
+                                    <input type="text" class="form-control" id="password" name="password">
                                 </div>
                             </div>
-                            <div class="mb-3 row">
+                            {{-- <div class="mb-3 row">
                                 <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="email" name="email" >
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3 row">
                                 <label for="level"
                                     class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
                                 <div class="col-sm-8">
-                                    <select class="form-select form-select-md" aria-label="Large select example" name="level">
-                                        <option value="1" >Admin</option>
-                                        <option value="2" >Power user</option>
-                                        <option value="3" >Supervisor</option>
-                                        <option value="4" >Executive</option>
+                                    <select class="form-select form-select-md" aria-label="Large select example"
+                                        name="level">
+                                        <option value="1">Admin</option>
+                                        <option value="2">Power user</option>
+                                        <option value="3">Supervisor</option>
+                                        <option value="4">Executive</option>
                                         <option value="5" selected>User</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <label for="org" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
-                                
+
                                 <div id="org_grid">
                                     <div class="col mt-2">
                                         <input type="checkbox" class="me-2" name="org">กฟผ
@@ -102,8 +103,9 @@
         </div>
     </div>
 
-    @forEach ($UserAll as $index => $user)
-        <div class="modal fade" id="edit_user_{{$index}}" tabindex="-1" aria-labelledby="edit_userModalLabel" aria-hidden="true">
+    @foreach ($UserAll as $index => $user)
+        <div class="modal fade" id="edit_user_{{ $index }}" tabindex="-1" aria-labelledby="edit_userModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -120,54 +122,72 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    
+
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="name" name="first_name" value="{{$user->first_name}}">
+                                        <input type="text" class="form-control" id="name" name="first_name"
+                                            value="{{ $user->first_name }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="last_name" class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
+                                    <label for="last_name"
+                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{$user->last_name}}">
+                                        <input type="text" class="form-control" id="last_name" name="last_name"
+                                            value="{{ $user->last_name }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="username" class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
+                                    <label for="username"
+                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="username" name="username" value="{{$user->username}}">
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            value="{{ $user->username }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="password" class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
+                                    <label for="password"
+                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="password" name="password" placeholder="New password">
+                                        <input type="text" class="form-control" id="password" name="password"
+                                            placeholder="New password">
                                     </div>
                                 </div>
-                                <div class="mb-3 row">
+                                {{-- <div class="mb-3 row">
                                     <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}">
+                                        <input type="text" class="form-control" id="email" name="email"
+                                            value="{{ $user->email }}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="mb-3 row">
                                     <label for="level"
                                         class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
                                     <div class="col-sm-8">
-                                        <select class="form-select form-select-md" aria-label="Large select example" name="level">
-                                            <option value="1" {{$user->role_id == 1 ? 'selected' : ''}}>Admin</option>
-                                            <option value="2" {{$user->role_id == 2 ? 'selected' : ''}}>Power user</option>
-                                            <option value="3" {{$user->role_id == 3 ? 'selected' : ''}}>Supervisor</option>
-                                            <option value="4" {{$user->role_id == 4 ? 'selected' : ''}}>Executive</option>
-                                            <option value="5" {{$user->role_id == 5 ? 'selected' : ''}}>User</option>
+                                        <select class="form-select form-select-md" aria-label="Large select example"
+                                            name="level">
+                                            <option value="1" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
+                                            </option>
+                                            <option value="2" {{ $user->role == 'powerUser' ? 'selected' : '' }}>
+                                                Power user
+                                            </option>
+                                            <option value="3" {{ $user->role == 'supervisor' ? 'selected' : '' }}>
+                                                Supervisor
+                                            </option>
+                                            <option value="4" {{ $user->role == 'executive' ? 'selected' : '' }}>
+                                                Executive
+                                            </option>
+                                            <option value="5" {{ $user->role == 'user' ? 'selected' : '' }}>User
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label for="org" class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
-                                    
+                                    <label for="org"
+                                        class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
+
                                     <div id="org_grid">
                                         <div class="col mt-2">
                                             <input type="checkbox" class="me-2" name="org">กฟผ
@@ -213,15 +233,17 @@
             </tr>
         </thead>
         <tbody>
-            
-            @foreach ($UserAll as $user )
+
+            @foreach ($UserAll as $user)
                 <tr>
-                    <td>{{$user->first_name}}</td>
-                    <td>{{$user->last_name}}</td>
+                    <td>{{ $user->first_name }}</td>
+                    <td>{{ $user->last_name }}</td>
                     <td>
                         <div class="icon col-3 text-end">
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_user_{{$loop->index}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#edit_user_{{ $loop->index }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 12 12">
                                     <path fill="#000000"
                                         d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
                                     </path>
@@ -231,12 +253,16 @@
                     </td>
                     <td>
                         @if ($user->is_active)
-                            <button type="submit" class="border border-0" id="circle" onclick="checkDel('{{$user->user_id}}')" style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
+                            <button type="submit" class="border border-0" id="circle"
+                                onclick="checkDel('{{ $user->user_id }}')"
+                                style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
                         @else
-                            <button type="submit" class="border border-0" id="circle" onclick="checkDel('{{$user->user_id}}')" style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
+                            <button type="submit" class="border border-0" id="circle"
+                                onclick="checkDel('{{ $user->user_id }}')"
+                                style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
                         @endif
                     </td>
-                </tr>    
+                </tr>
             @endforeach
         </tbody>
     </table>

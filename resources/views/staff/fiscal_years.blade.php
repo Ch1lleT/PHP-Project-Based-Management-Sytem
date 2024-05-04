@@ -4,9 +4,9 @@
 @section('style')
     <style>
         /* *{
-                    padding: 0;
-                    margin: 0;
-                } */
+                                                                                                                                                padding: 0;
+                                                                                                                                                margin: 0;
+                                                                                                                                            } */
         .my-table tbody tr td {
             background-color: #F8F9FA;
             border: none;
@@ -43,14 +43,17 @@
     <div class="w-100 d-flex align-items-center">
         <div class="dropdown fs-6 d-flex align-items-center">
             <span class="fs-5 mx-2">ปีงบประมาณ</span>
-            <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;" name="Year">
+            <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;"
+                name="Year">
                 @foreach ($YearAll as $Year)
                     @if (request()->query('year'))
-                        <option value="{{$Year->id}}" {{$Year->id == request()->query('year') ? 'selected' : ''}} >{{$Year->year + 543}}</option>
+                        <option value="{{ $Year->id }}" {{ $Year->id == request()->query('year') ? 'selected' : '' }}>
+                            {{ $Year->year + 543 }}</option>
                     @else
-                        <option value="{{$Year->id}}" {{$Year->year == date("Y") ? 'selected' : ''}} >{{$Year->year + 543}}</option>
+                        <option value="{{ $Year->id }}" {{ $Year->year == date('Y') ? 'selected' : '' }}>
+                            {{ $Year->year + 543 }}</option>
                     @endif
-                @endforeach                    
+                @endforeach
             </select>
             {{-- <label for="floatingSelect">ปีงบประมาณ</label> --}}
         </div>
@@ -64,6 +67,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form method="POST" action="{{ url('/STGAdd') }}">
+                        {{-- <form onsubmit="groupSTG(event)"> --}}
                         @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
@@ -71,10 +75,10 @@
                         </div>
                         <div class="modal-body row">
                             <div class="mb-3 row ">
-                                <label for="name"
+                                <label for="nameSTG"
                                     class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อยุทธศาสตร์</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" id="nameSTG" name="nameSTG">
                                 </div>
                             </div>
                         </div>
@@ -91,7 +95,8 @@
     <div class="row row-cols-3 gap-2 px-3">
         @if ($STGAll != null)
             @foreach ($STGAll as $strategy)
-                <a href="{{ route('fiscal_years',['year' => request()->query('year'), 'stg_id' => $strategy->stg_id]) }}" class="col-xl-2 col btn btn-secondary text-white">{{ $strategy->name }}</a>
+                <a href="{{ route('fiscal_years', ['year' => request()->query('year'), 'stg_id' => $strategy->stg_id]) }}"
+                    class="col-xl-2 col btn btn-secondary text-white">{{ $strategy->name }}</a>
             @endforeach
         @else
             No data
@@ -140,10 +145,11 @@
                     {{ isset($STG->name) ? $STG->name : '' }}
                     {{-- {{$STG[0]->name}} --}}
                     @if (isset($STG))
-                        <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#edit_stg">
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
                             <i class='bx bx-pencil text-dark'></i>
                         </a>
-                        <a href="#" class="text-decoration-none" onclick="checkDel('Strategy','{{$STG->stg_id}}')">
+                        <a href="#" class="text-decoration-none"
+                            onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
                             <i class='bx bx-trash text-danger'></i>
                         </a>
                     @endif
@@ -286,7 +292,7 @@
                                         {{ $loop->index + 1 }}
                                     </td>
                                     <td class="select">
-                                        <a href="{{ route('fiscal_years', ['year' => request()->query('year'),'stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
+                                        <a href="{{ route('fiscal_years', ['year' => request()->query('year'), 'stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
                                             class="text-black text-wrap w-100">
                                             {{ $TargetAt->target_name }}
                                         </a>
@@ -494,7 +500,7 @@
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('fiscal_years', ['year' => request()->query('year'),'stg_id' => request()->query('stg_id'), 'target_id' => request()->query('target_id'), 'plan_id' => $PlanAt->plan_id]) }}"
+                                            <a href="{{ route('fiscal_years', ['year' => request()->query('year'), 'stg_id' => request()->query('stg_id'), 'target_id' => request()->query('target_id'), 'plan_id' => $PlanAt->plan_id]) }}"
                                                 class="text-black text-wrap w-100">
                                                 {{ $PlanAt->plan_name }}
                                             </a>
@@ -849,8 +855,8 @@
                                             <div class="mb-3 row text-end">
                                                 <label for="balance" class="col-sm-3 col-form-label">งบประมาณ</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" id="balance" name="balance"
-                                                        value="{{ $ProjectAt->balance }}">
+                                                    <input type="number" class="form-control" id="balance"
+                                                        name="balance" value="{{ $ProjectAt->balance }}">
                                                 </div>
                                             </div>
                                             <div class="mb-3 row text-end">
@@ -977,7 +983,8 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-success">Save changes</button>
                                 </div>
                             </form>
@@ -1004,11 +1011,50 @@
         $(document).ready(function() {
             $("#Year").change(function() {
                 var selectedValue = $(this).val();
-                window.location = 'fiscal_years?year='+selectedValue
+                window.location = 'fiscal_years?year=' + selectedValue
                 // console.log(selectedValue);
             });
         });
-        
+
+        const groupSTG = (event) => {
+            let data = {
+                name: document.getElementById('nameSTG').value;
+            };
+
+            Add('strategy', data, event);
+            event.preventDefault();
+
+        };
+
+        const Add = (type, data) => {
+
+            console.log("type : " + type);
+            console.log('data:', data);
+
+
+            // const myHeaders = new Headers();
+            // myHeaders.append("Content-Type", "application/json");
+
+            // if type == 'strategy' || type == 'target' {
+            //     const raw = JSON.stringify({
+            //         "name": data.name
+            //     });
+            // }
+
+            // const requestOptions = {
+            //     method: "POST",
+            //     headers: myHeaders,
+            //     body: raw,
+            //     redirect: "follow"
+            // };
+
+            // fetch(APP_URL + "/api/" + type "/add", requestOptions)
+            //     .then((response) => response.text())
+            //     .then((result) => console.log(result))
+            //     .catch((error) => console.error(error));
+
+        };
+
         const checkDel = (type, id) => {
             let data = {
                 "id": id
