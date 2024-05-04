@@ -402,8 +402,14 @@
                                 data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false"
                                 id="dropdown-icon">
                                 <div class="img d-flex align-items-center">
-                                    <img src="{{ asset('image/profile.png') }}" alt="" srcset=""
-                                        id="profile">
+                                    <img 
+                                    @if (auth()->user()->image == null)
+                                        src="{{ asset('image/defult-profile/profile.svg') }}"
+                                    @else
+                                        src="{{ asset(auth()->user()->image) }}"
+                                    @endif
+                                    alt="" srcset="" id="profile"
+                                    class="rounded-circle object-fit-cover" style="width:50px; height:50px">
                                     <p class="ps-3">
                                         {{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}
                                     </p>

@@ -100,7 +100,8 @@ class ProjectController extends Controller
         $stg_id = $request->stg_id;
         if (isset($plan_id)) {
             $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active', true)->get();
-        } else if (isset($stg_id)) {
+        } 
+        else if (isset($stg_id)) {
             try {
                 //code...
                 $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
@@ -110,9 +111,10 @@ class ProjectController extends Controller
                 return response()->json(['ProjectAtAll' => null]);
             }
         } else {
-            $Plan = Plan::first();
-            $PlanId = $Plan->plan_id;
-            $ProjectAtAll = Project::where('plan_id', $PlanId)->get();
+            return response()->json(['ProjectAtAll' => null]);
+            // $Plan = Plan::first();
+            // $PlanId = $Plan->plan_id;
+            // $ProjectAtAll = Project::where('plan_id', $PlanId)->get();
         }
 
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);

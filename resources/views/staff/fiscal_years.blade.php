@@ -3,6 +3,7 @@
 @section('title', 'ปีงบประมาณ')
 @section('style')
     <style>
+        
         /* *{
                                                                                                                                                 padding: 0;
                                                                                                                                                 margin: 0;
@@ -327,13 +328,15 @@
                         <td class="h4 px-0">
                             <div style="width: 124px">แผนการ:</div>
                         </td>
-                        <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
+                        @if (request()->has('plan_id'))
+                            <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
+                        @else
+                            <td class="h4">กรุณาเลือกแผน</td>
+                        @endif
                         <td class="px-0 pt-2">
                             @if (request()->has('stg_id') and request()->has('target_id'))
-                                <a href="#" class="d-flex align-items-center text-decoration-none text-black"
-                                    data-bs-toggle="modal" data-bs-target="#add_plan">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
-                                        viewBox="0 0 48 48">
+                                <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_plan">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
                                         <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
                                         <g fill="#fff">
                                             <path d="M21 14h6v20h-6z"></path>
@@ -405,7 +408,7 @@
             </div>
             @if (isset($PlanAtAll))
                 @foreach ($PlanAtAll as $index => $plan)
-                    <div class="modal fade " id="edit_plan_{{ $index }}" tabindex="-1"
+                    <div class="modal fade" id="edit_plan_{{ $index }}" tabindex="-1"
                         aria-labelledby="edit_plan_label_{{ $index }}" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -491,7 +494,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                         @if (isset($PlanAtAll) || isset($stg_id))
                             @foreach ($PlanAtAll as $PlanAt)
                                 @if (is_object($PlanAt))
@@ -1019,7 +1022,7 @@
 
         const groupSTG = (event) => {
             let data = {
-                name: document.getElementById('nameSTG').value;
+                name: document.getElementById('nameSTG').value
             };
 
             Add('strategy', data, event);
