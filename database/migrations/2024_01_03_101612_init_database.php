@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string("card_code");
             // $table->string("phone",10);
             // $table->string("address");
+            $table->string("image")->nullable();
             $table->enum("role", ['admin', 'powerUser', 'supervisor', 'executive', 'user']);
             $table->boolean("is_active")->default(true);
 

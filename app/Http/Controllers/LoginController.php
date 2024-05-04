@@ -34,7 +34,11 @@ class LoginController extends Controller
             return redirect('/fiscal_years');
         }
 
+<<<<<<< HEAD
         return redirect('/')->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']);
+=======
+        return redirect()->route('login')->withErrors(['error' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']);
+>>>>>>> 0e89dffd12c2146a78a4eef8ba52302fa66a7de1
     }
 
     public function logout(Request $request)
@@ -45,6 +49,10 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
+<<<<<<< HEAD
         return redirect('/');
+=======
+        return redirect()->route('login');
+>>>>>>> 0e89dffd12c2146a78a4eef8ba52302fa66a7de1
     }
 }

@@ -41,3 +41,10 @@ Route::get('strategy/{stg_id}', [STGController::class, 'get']);
 Route::get('target/{target_id}', [TargetController::class, 'get']);
 Route::get('plan/{plan_id}', [PlanController::class, 'get']);
 Route::get('project/{project_id}', [ProjectController::class, 'get']);
+
+Route::group(['middleware' => ['web']],function(){
+    Route::prefix('edit_profile')->group(function(){
+        Route::post('/profile',[UserController::class,'editUserProfile'])->name('edit_profile.profile');
+        Route::post('/password',[UserController::class,'changePassword'])->name('edit_profile.change_password');
+    });
+});
