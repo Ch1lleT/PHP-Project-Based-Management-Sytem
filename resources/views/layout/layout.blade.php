@@ -246,24 +246,25 @@
                     </div>
                 </li>
                 <h5>Project base management</h5>
-                <li class="mb-1">
-                    <a href=""
+                @if (auth()->user()->role == 'admin')
+                    <li class="mb-1">
+                        <a href=""
                         class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false"
                         id="dropdown-icon">
-                        <p>สำหรับผู้ดูแลระบบ</p>
-                        <i class='bx bxs-chevron-down'></i>
-
-                    </a>
-                    <div class="collapse" id="admin-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
-                            <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
-                            <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                            <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
-                        </ul>
-                    </div>
-                </li>
+                            <p>สำหรับผู้ดูแลระบบ</p>
+                            <i class='bx bxs-chevron-down'></i>
+                        </a>
+                        <div class="collapse" id="admin-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
+                                <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
+                                <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                                <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 <li class="mb-1">
                     <a href=""
                         class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
@@ -427,24 +428,25 @@
                         </div>
                     </li>
                     <h5>Project base management</h5>
-                    <li class="mb-1">
-                        <a href=""
-                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                            data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false"
-                            id="dropdown-icon">
-                            <p>สำหรับผู้ดูแลระบบ</p>
-                            <i class='bx bxs-chevron-down'></i>
-
-                        </a>
-                        <div class="collapse" id="admin-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
-                                <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
-                                <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                                <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    @if (auth()->user()->role == 'admin')
+                        <li class="mb-1">
+                            <a href=""
+                                class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false"
+                                id="dropdown-icon">
+                                <p>สำหรับผู้ดูแลระบบ</p>
+                                <i class='bx bxs-chevron-down'></i>
+                            </a>
+                            <div class="collapse" id="admin-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                    <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
+                                    <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
+                                    <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                                    <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                     <li class="mb-1">
                         <a href=""
                             class="nav-item rounded collapsed d-flex justify-content-between align-items-center"

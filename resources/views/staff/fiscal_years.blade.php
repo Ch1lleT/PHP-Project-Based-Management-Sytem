@@ -541,7 +541,7 @@
                 <tbody>
                     <tr>
                         <td class="h4 px-0">
-                            <div style="width: 124px">โครงการ: @if (request()->has('stg_id') and request()->has('target_id') and request()->has('plan_id'))
+                            <div style="width: 124px">โครงการ: @if (request()->has('plan_id'))
                                     <a href="#" class="" data-bs-toggle="modal"
                                         data-bs-target="#add_project">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
