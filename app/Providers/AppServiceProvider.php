@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\UserController;
+use App\Models\Organization;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -80,11 +81,16 @@ class AppServiceProvider extends ServiceProvider
 
         view::composer('admin/user_list' , function ($view) {
             $UserAllData = null;
+            $OrgAllData = null;
 
+            $OrgAllData = OrgController::getAll()->getData();
+            $OrgAll = $OrgAllData->Orgs;
+            // dd($OrgAll);
+            
             $UserAllData = UserController::getAll()->getData();
             $UserAll = $UserAllData->Users;
 
-            $view->with(compact('UserAll'));
+            $view->with(compact('UserAll' , 'OrgAll'));
 
         });
 

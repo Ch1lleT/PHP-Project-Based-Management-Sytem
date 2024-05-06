@@ -104,8 +104,7 @@
     </div>
 
     @foreach ($UserAll as $index => $user)
-        <div class="modal fade" id="edit_user_{{ $index }}" tabindex="-1" aria-labelledby="edit_userModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="edit_user_{{ $index }}" tabindex="-1" aria-labelledby="edit_userModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,99 +112,116 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="w-100">
-                            <div class="row row-cols-2 p-3">
-                                <div class="mb-3 row d-flex align-items-center">
-                                    <label class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
-                                    <div class="col-sm-8">
-                                        <input type="file" placeholder="เลือกไฟล์" name="profile">
+                        <form method="POST" action="{{ url('api/user/update/'. $user->user_id) }}">
+                            @method('PUT')
+                            @csrf
+                            <div class="w-100">
+                                <div class="row row-cols-2 p-3">
+                                    <div class="mb-3 row d-flex align-items-center">
+                                        <label class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class="form-control" id="image" name="image" >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
+                                    <div class="mb-3 row">
 
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="name" name="first_name"
-                                            value="{{ $user->first_name }}">
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="last_name"
-                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="last_name" name="last_name"
-                                            value="{{ $user->last_name }}">
+                                    <div class="mb-3 row">
+                                        <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="name" name="first_name"
+                                                value="{{ $user->first_name }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="username"
-                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="username" name="username"
-                                            value="{{ $user->username }}">
+                                    <div class="mb-3 row">
+                                        <label for="last_name"
+                                            class="col-sm-4 col-form-label p-0 pt-2 text-end">นามสกุล</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                                value="{{ $user->last_name }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="password"
-                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="password" name="password"
-                                            placeholder="New password">
+                                    <div class="mb-3 row">
+                                        <label for="username"
+                                            class="col-sm-4 col-form-label p-0 pt-2 text-end">username</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="{{ $user->username }}">
+                                        </div>
                                     </div>
-                                </div>
-                                {{-- <div class="mb-3 row">
-                                    <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="email" name="email"
-                                            value="{{ $user->email }}">
+                                    <div class="mb-3 row">
+                                        <label for="password"
+                                            class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="password" name="password" placeholder="New password">
+                                        </div>
                                     </div>
-                                </div> --}}
-                                <div class="mb-3 row">
-                                    <label for="level"
-                                        class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-select form-select-md" aria-label="Large select example"
-                                            name="level">
-                                            <option value="1" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
-                                            </option>
-                                            <option value="2" {{ $user->role == 'powerUser' ? 'selected' : '' }}>
-                                                Power user
-                                            </option>
-                                            <option value="3" {{ $user->role == 'supervisor' ? 'selected' : '' }}>
-                                                Supervisor
-                                            </option>
-                                            <option value="4" {{ $user->role == 'executive' ? 'selected' : '' }}>
-                                                Executive
-                                            </option>
-                                            <option value="5" {{ $user->role == 'user' ? 'selected' : '' }}>User
-                                            </option>
-                                        </select>
+                                    {{-- <div class="mb-3 row">
+                                        <label for="email" class="col-sm-4 col-form-label p-0 pt-2 text-end">email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                value="{{ $user->email }}">
+                                        </div>
+                                    </div> --}}
+                                    <div class="mb-3 row">
+                                        <label for="level"
+                                            class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-select form-select-md" aria-label="Large select example" 
+                                                name="level" value='{{$user->role}}'>
+                                                <option value="1" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
+                                                </option>
+                                                <option value="2" {{ $user->role == 'powerUser' ? 'selected' : '' }}>
+                                                    Power user
+                                                </option>
+                                                <option value="3" {{ $user->role == 'supervisor' ? 'selected' : '' }}>
+                                                    Supervisor
+                                                </option>
+                                                <option value="4" {{ $user->role == 'executive' ? 'selected' : '' }}>
+                                                    Executive
+                                                </option>
+                                                <option value="5" {{ $user->role == 'user' ? 'selected' : '' }}>User
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <label for="org"
-                                        class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
+                                    <div class="col-12">
+                                        <label for="org"
+                                            class="col-sm-4 col-form-label p-0 text-start">เลือกหน่วยงาน</label>
 
-                                    <div id="org_grid">
-                                        <div class="col mt-2">
-                                            <input type="checkbox" class="me-2" name="org">กฟผ
-                                            <ul>
-                                                <li>
-                                                    <input type="checkbox" class="me-2" name="sub_org">กกน
-                                                </li>
-                                            </ul>
+                                        <div id="org_grid">
+                                            <div class="col mt-2">
+                                                @foreach($OrgAll as $org)
+                                                    <ul class="p-0 m-0">
+                                                        <li>
+                                                            <input type="checkbox" class="me-2" name="org" value="{{$org->org_id}}" >{{$org->org_name}}
+                                                        </li>
+                                                        @foreach($org->sub_org as $subOrg)
+                                                        <ul>
+                                                            <li>
+                                                                <input type="checkbox" class="me-2" name="sub_org" value="{{$subOrg->sub_org_id}}">{{$subOrg->org_name}}
+                                                            </li>
+                                                        </ul>
+                                                        @endforeach
+                                                    </ul>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row row-cols-2 p-3 border-top">
+                                    <div class="col-12 d-flex gap-2 p-0">
+                                        <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
+                    {{-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -280,6 +296,45 @@
         //         circle.style.Color = 'red';
         //     }
         // }
+
+        // image preview
+        const profilePictureInput = document.getElementById('image');
+        const previewImage = document.querySelector('#preview-img');
+        profilePictureInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            // Check if file isn't img will show alert
+            if (file) {
+                if (!isValidImageFile(file)) {
+                    alertFail()
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.src = "#";
+            }
+        });
+        // alert
+        function alertFail() {
+            Swal.fire({
+                icon: "error",
+                title: "อุ๊ปส์...",
+                html: `<div class="py-2">ดูเหมือนว่าที่ใส่มาจะไม่ใช่รูปภาพนะ</div>`,
+                confirmButtonText: "OK",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                }
+            })
+        }
+        // File Support
+        function isValidImageFile(file) {
+            const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/svg'];
+            return allowedMimeTypes.includes(file.type);
+        }
 
         const checkDel = (id) => {
             let data = {

@@ -36,7 +36,7 @@ class OrgController extends Controller
             
             $temp_org = [
                 'org_id' => $org->org_id,
-                'org_name' => $org->org_id,
+                'org_name' => $org->org_name,
                 'sub_org' => $sub_org_list,
             ];
             

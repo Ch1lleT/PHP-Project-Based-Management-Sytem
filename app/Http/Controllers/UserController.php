@@ -33,6 +33,50 @@ class UserController extends Controller
         return response()->json(['error' => 'user ID is missing'], 400);
     }
 
+    public function update(Request $request , $user_id) {
+        // $request->validate([
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'image' => 'image|mimes:jpeg,png,jpg',
+        // ]);
+        
+        $path = null;
+        dd($request , $user_id);
+        
+        if($request->image != null)
+        {
+            // Actual image data
+            $image = $request->file('image');
+            // FileExtension (jpg,png,jpeg)
+            $ext = $image->getClientOriginalExtension();
+            
+            $imageName = $user_id.'.'.$ext;
+            
+        
+
+            $path = $request->file('image')->storeAs('/ProfileImage',$imageName,'public');
+            
+            // dd(Storage::url($path));
+
+            # replace "//" with "/" in $path
+            $path = str_replace("//","/",$path);
+        }
+        $user = User::find($user_id);
+        if($user != null) {
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->role = $request->input('role') == null ? $user->role : $request->input('role');
+            if($path != null)
+            {
+                $user->image = $path;
+            }
+            $user->password = $request->input('password') == null ? $user->password : $request->input('password');
+            $user->save();
+            return redirect()->back()->with('success', 'Data Update successfully');
+        };
+        return response()->json(['error' => 'user ID is missing'], 400);
+    }
+
     public function editUserProfile(Request $request)
     {
         $request->validate([

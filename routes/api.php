@@ -27,6 +27,8 @@ Route::get('users', [UserController::class, 'getAll']);
 Route::get('user/{user_id}', [UserController::class, 'get']);
 Route::put('user/active', [UserController::class, 'Active']);
 
+Route::put('user/update/{user_id}', [UserController::class, 'update']);
+
 Route::put('Strategy/active', [STGController::class, 'Active']);
 Route::put('target/active', [TargetController::class, 'Active']);
 Route::put('plan/active', [PlanController::class, 'Active']);
