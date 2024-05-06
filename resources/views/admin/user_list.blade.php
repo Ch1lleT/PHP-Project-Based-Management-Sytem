@@ -112,7 +112,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ url('api/user/update/'. $user->user_id) }}">
+                        <form method="POST" action="{{ url('api/user/update/'. $user->user_id) }}" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="w-100">
