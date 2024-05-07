@@ -8,13 +8,13 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
 
 use Tests\TestCase;
-
+use Illuminate\Support\Carbon;
 
 class LoggerTest extends TestCase
 {
     public function test_file_exist_and_contain_some_init_text(): void
     {
-        $curr_date = date('Y-m-d');
+        $curr_date = Carbon::today()->toDateString();
 
         $logger = new Logger();
         $logger->create_new_log_File($curr_date);
@@ -44,11 +44,11 @@ class LoggerTest extends TestCase
 
     }
 
-    public function test_LogInFailed_Logging_1():void
+    public function test_LogIn_failed_Logging_1():void
     {
         $logger = new Logger();
-        $curr_date = (string) date("Y-m-d");
-        $curr_time = (string) date("H:i:s");
+        $curr_date = Carbon::today()->toDateString();
+        $curr_time = Carbon::now()->format('H:i:s');
         $ip = "127.0.0.1";
         $user_id = '01';
         
@@ -57,17 +57,19 @@ class LoggerTest extends TestCase
         $content = Storage::disk('log')->get($curr_date.'.log');
         
         $expected = "$curr_time :\n"."\ttype : Warning\n";
-        $expected = $expected."\tby : $user_id\n";
+        // $expected = $expected."\tby : $user_id\n";
+        $expected = $expected."\tby : System\n";
         $expected = $expected."\ton : Login\n";
         $expected = $expected."\tmessage : Login failed from $ip ,try to login in to $user_id.\n";
 
         $this->assertStringContainsString($expected,$content);
     }
-    public function test_LogInFailed_Logging_2():void
+    
+    public function test_LogIn_failed_Logging_2():void
     {
         $logger = new Logger();
-        $curr_date = (string) date("Y-m-d");
-        $curr_time = (string) date("H:i:s");
+        $curr_date = Carbon::today()->toDateString();
+        $curr_time = Carbon::now()->format('H:i:s');
         $ip = "127.0.0.1";
         $user_id = '01';
         
@@ -76,7 +78,8 @@ class LoggerTest extends TestCase
         $content = Storage::disk('log')->get($curr_date.'.log');
         
         $expected = "$curr_time :\n"."\ttype : Warning\n";
-        $expected = $expected."\tby : $user_id\n";
+        // $expected = $expected."\tby : $user_id\n";
+        $expected = $expected."\tby : System\n";
         $expected = $expected."\ton : Login\n";
         $expected = $expected."\tmessage : Login failed from $ip ,try to login in to $user_id.\n";
 
@@ -85,5 +88,38 @@ class LoggerTest extends TestCase
         
         $this->assertStringContainsString($expected,$content);
     }
+    
+    public function test_LogInSuccess_must_use_with_info():void
+    {
+        $logger = new Logger();
+        $ip = "127.0.0.1";
+        $user_id = '01';
+        
+        $this->expectException(\Exception::class);
+        $logger->LoginSuccess($ip,$user_id);
+    }
+
+    public function test_LogIn_Success_Logging():void
+    {
+        $logger = new Logger();
+        $curr_date = Carbon::today()->toDateString();
+        $curr_time = Carbon::now()->format('H:i:s');
+        $ip = "127.0.0.1";
+        $user_id = '01';
+        
+        $logger->Info()->LoginSuccess($ip,$user_id)->save();
+        
+        $content = Storage::disk('log')->get($curr_date.'.log');
+        
+        $expected = "$curr_time :\n"."\ttype : Info\n";
+        // $expected = $expected."\tby : $user_id\n";
+        $expected = $expected."\tby : System\n";
+        $expected = $expected."\ton : Login\n";
+        $expected = $expected."\tmessage : User $user_id has login from $ip\n";
+               
+        $this->assertStringContainsString($expected,$content);
+    }
+
+    
     
 }
