@@ -563,7 +563,7 @@
                     Zoom
                 </button>
             </div>
-            <main class="min-vh-100 p-3 w-100">
+            <main class="min-vh-100 p-3">
                 @yield('content')
             </main>
         </div>
