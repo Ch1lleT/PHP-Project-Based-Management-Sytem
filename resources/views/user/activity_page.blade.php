@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        #money {
-            /* display: none; */
-        }
-
 
         @media print {
             body * {
@@ -628,7 +624,6 @@
         }
     </script>
     <script>
-    <script>
         const ctx = document.getElementById('sCurveChart').getContext('2d');
         const sCurveChart = new Chart(ctx, {
             type: 'line',
@@ -637,14 +632,14 @@
                 labels: ['ต.ค.','พ.ย.','ธ.ค.','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.'],
                 datasets: [{
                         label: 'Work Progress',
-                        data: [10, 40, 10, 90, 10, 40, 10],
+                        data: [10, 40, 10, 90, 10, 40, 10,10,10,2,5,6],
                         fill: false,
                         borderColor: 'rgba(75, 192, 192, 1)',
                         tension: 0.4
                     },
                     {
                         label: 'Money Progress',
-                        data: [40, 10, 40, 0, 40, 00, 40],
+                        data: [40, 10, 40, 0, 40, 00, 40,5,6,2,80,100],
                         fill: false,
                         borderColor: 'rgb(192, 75, 91)',
                         tension: 0.4
