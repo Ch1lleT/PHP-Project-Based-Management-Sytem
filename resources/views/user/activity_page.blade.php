@@ -37,7 +37,7 @@
             {{-- <div class="col-3 btn btn-warning text-white mb-3" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" id="btn">แผนเงิน</div> --}}
 
             <div class="col-3 btn btn-success mb-3" id="btn" onclick="window.print()">PDF</div>
-            <div class="col-3 btn btn-success mb-3" id="btn-csv-money" onclick="exportToCSV('table')">CSV</div>
+            <div class="col-3 btn btn-success mb-3" id="btn-csv-money" onclick="exportToCSV()">CSV</div>
         </div>
     </div>
     <div class="d-flex justify-content-center w-100">
@@ -53,7 +53,7 @@
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <table class="table display" id="table">
+                    <table class="table display" id="tableW">
                         <thead>
                             <tr>
                                 <th>
@@ -579,6 +579,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
     <script>
         new DataTable('table.display', {
             paging: false,
@@ -598,18 +599,13 @@
                 document.getElementById('btn').classList.remove('btn-warning');
                 document.getElementById('btn').classList.add('btn-primary');
                 document.getElementById('btn').innerHTML = 'แผนงาน';
-                // document.getElementById('tableM').style.display = 'initial';
             }
         }
 
-        function exportToCSV(plan) {
-            const table = document.getElementById('table');
+        function exportToCSV() {
+            console.log('test');
+            const table = document.getElementById('tableM');
             const rows = Array.from(table.querySelectorAll('tr'));
-            const csvContent = rows.map(row => Array.from(row.children).map(cell => `"${cell.textContent.trim()}"`).join(
-                ',')).join('\n');
-            const blob = new Blob(["\ufeff", csvContent], {
-                type: 'text/csv;charset=utf-8;'
-            }); // Set UTF-8 encoding
             const csvContent = rows.map(row => Array.from(row.children).map(cell => `"${cell.textContent.trim()}"`).join(
                 ',')).join('\n');
             const blob = new Blob(["\ufeff", csvContent], {
@@ -623,6 +619,7 @@
             document.body.removeChild(link);
         }
     </script>
+
     <script>
         const ctx = document.getElementById('sCurveChart').getContext('2d');
         const sCurveChart = new Chart(ctx, {
