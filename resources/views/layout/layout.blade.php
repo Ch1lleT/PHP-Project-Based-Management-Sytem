@@ -557,36 +557,51 @@
                                 <p>OKR/KPI</p>
                                 <i class='bx bxs-chevron-down'></i>
 
-                        </a>
-                        <div class="collapse" id="report-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="#" class="rounded">NIMT</a></li>
-                                <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart✅</a></li>
-                                <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
-                                <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า
-                                        OKR✅</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <a href=""
-                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                            data-bs-toggle="collapse" data-bs-target="#okr-collapse" aria-expanded="false"
-                            id="dropdown-icon">
-                            <p>Report</p>
-                            <i class='bx bxs-chevron-down'></i>
-
-                        </a>
-                        <div class="collapse" id="okr-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="{{ route('report_technic') }}" class="rounded"
-                                        id="report_technic">Summary report technic✅</a></li>
-                                <li><a href="{{ route('report_support') }}" class="rounded"
-                                        id="report_support">Summary report support✅</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                            </a>
+                            <div class="collapse" id="report-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                    @if (in_array(auth()->user()->role, ['admin']))
+                                        <li><a href="#" class="rounded">NIMT</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin']))
+                                        <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
+                                        <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'user']))
+                                        <li><a href="{{ route('okr_kpi_manage') }}"
+                                                class="rounded">เพิ่ม/ลด/กำหนดเป้า
+                                                OKR✅</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
+                        <li class="mb-1">
+                            <a href=""
+                                class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#okr-collapse" aria-expanded="false"
+                                id="dropdown-icon">
+                                <p>Report</p>
+                                <i class='bx bxs-chevron-down'></i>
+                            </a>
+                            <div class="collapse" id="okr-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
+                                        <li><a href="{{ route('report_technic') }}" class="rounded" id="report_technic"></a>Summary report
+                                                technic✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
+                                        <li><a href="{{ route('report_support') }}" class="rounded"
+                                                id="report_support"">Summary report support✅</a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                     <li>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
