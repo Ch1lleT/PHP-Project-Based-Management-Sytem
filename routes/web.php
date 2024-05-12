@@ -89,6 +89,10 @@ Route::get('/activity_page', function () {
     return view('user/activity_page');
 })->name("activity_page");
 
+Route::get('/dashboard_nimt', function () {
+    return view('okr_kpi/dashboard_nimt');
+})->name("dashboard_nimt");
+
 Route::post('/STGAdd', [STGController::class, 'Add']);
 Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
 Route::post('/PlanAdd/{stg_id}/{target_id}', [PlanController::class, 'Add']);

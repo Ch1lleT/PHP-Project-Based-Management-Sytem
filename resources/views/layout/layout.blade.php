@@ -325,7 +325,7 @@
                     </a>
                     <div class="collapse" id="report-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="#" class="rounded">NIMT</a></li>
+                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                             <li><a href="#" class="rounded">NIMT OKR Chart</a></li>
                             <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
                             <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR✅</a>
@@ -515,7 +515,7 @@
                         </a>
                         <div class="collapse" id="report-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="#" class="rounded">NIMT</a></li>
+                                <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                                 <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart✅</a></li>
                                 <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
                                 <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า
@@ -562,7 +562,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="help" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="help" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -573,7 +573,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="bg-light w-100">
             <div class="p-2 d-md d-flex text-white align-items-center w-100 sticky-top" style="height: 3.5rem; background-color: #a3a3a3;">
                 <a  class=" align-items-center hover-shadow" id="#burger_menu" onclick="closeside()">
@@ -585,9 +585,9 @@
                 <div class="fs-3 d-flex align-items-center m-0 w-100 ">
                     @yield('header')
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help">
+                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#help">
                     Zoom
-                </button>
+                </button> --}}
             </div>
             <main class="min-vh-100 p-3">
                 @yield('content')
