@@ -337,10 +337,10 @@
                         </a>
                         <div class="collapse" id="report-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                @if (in_array(auth()->user()->role, ['admin']))
+                                @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                     <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                                 @endif
-                                @if (in_array(auth()->user()->role, ['admin']))
+                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
                                     <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart</a></li>
                                 @endif
                                 @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
@@ -560,10 +560,10 @@
                             </a>
                             <div class="collapse" id="report-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                    @if (in_array(auth()->user()->role, ['admin']))
+                                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                         <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                                     @endif
-                                    @if (in_array(auth()->user()->role, ['admin']))
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
                                         <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart</a></li>
                                     @endif
                                     @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
