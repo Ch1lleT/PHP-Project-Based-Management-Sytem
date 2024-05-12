@@ -225,14 +225,11 @@
                             data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false"
                             id="dropdown-icon">
                             <div class="img d-flex align-items-center">
-                                <img 
-                                    @if (auth()->user()->image == null)
-                                        src="{{ asset('image/defult-profile/profile.svg') }}"
+                                <img @if (auth()->user()->image == null) src="{{ asset('image/defult-profile/profile.svg') }}"
                                     @else
-                                        src="{{ asset(auth()->user()->image) }}"
-                                    @endif
-                                    alt="" srcset="" id="profile"
-                                    class="rounded-circle object-fit-cover" style="width:50px; height:50px">
+                                        src="{{ asset(auth()->user()->image) }}" @endif
+                                    alt="" srcset="" id="profile" class="rounded-circle object-fit-cover"
+                                    style="width:50px; height:50px">
                                 <p class="ps-3">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</p>
                             </div>
                             <i class='bx bxs-chevron-down'></i>
@@ -246,41 +243,57 @@
                     </div>
                 </li>
                 <h5>Project base management</h5>
-                @if (auth()->user()->role == 'admin')
+                @if (in_array(auth()->user()->role, ['admin', '']))
                     <li class="mb-1">
                         <a href=""
-                        class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false"
-                        id="dropdown-icon">
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#admin-collapse" aria-expanded="false"
+                            id="dropdown-icon">
                             <p>สำหรับผู้ดูแลระบบ</p>
                             <i class='bx bxs-chevron-down'></i>
                         </a>
                         <div class="collapse" id="admin-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
-                                <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
-                                <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                                <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                                @if (in_array(auth()->user()->role, ['admin']))
+                                    <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
+                                @endif
+                                @if (in_array(auth()->user()->role, ['admin', 'powerUser']))
+                                    <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
+                                @endif
+                                @if (in_array(auth()->user()->role, ['admin']))
+                                    <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                                @endif
+                                @if (in_array(auth()->user()->role, ['admin']))
+                                    <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                                @endif
                             </ul>
                         </div>
                     </li>
                 @endif
-                <li class="mb-1">
-                    <a href=""
-                        class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                        data-bs-toggle="collapse" data-bs-target="#executive-collapse" aria-expanded="false"
-                        id="dropdown-icon">
-                        <p>สำหรับผู้บริหาร</p>
-                        <i class='bx bxs-chevron-down'></i>
+                @if (in_array(auth()->user()->role, ['admin']))
+                    <li class="mb-1">
+                        <a href=""
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#executive-collapse" aria-expanded="false"
+                            id="dropdown-icon">
+                            <p>สำหรับผู้บริหาร</p>
+                            <i class='bx bxs-chevron-down'></i>
 
-                    </a>
-                    <div class="collapse" id="executive-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
-                            <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
-                        </ul>
-                    </div>
-                </li>
+                        </a>
+                        <div class="collapse" id="executive-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                @if (in_array(auth()->user()->role, ['admin']))
+                                    <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a>
+                                    </li>
+                                @endif
+                                @if (in_array(auth()->user()->role, ['admin']))
+                                    <li><a href="{{ route('efficiency') }}"
+                                            class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 <li class="mb-1">
                     <a href=""
                         class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
@@ -329,13 +342,15 @@
                     </a>
                     <div class="collapse" id="okr-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{route('report_support')}}" class="rounded" id="test">Summary report support✅</a></li>
-                            <li><a href="{{route('report_technic')}}" class="rounded">Summary report technic✅</a></li>
+                            <li><a href="{{ route('report_support') }}" class="rounded" id="test">Summary
+                                    report support✅</a></li>
+                            <li><a href="{{ route('report_technic') }}" class="rounded">Summary report technic✅</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
-                <li >
-                    <form action="{{ route('logout') }}" method="post" >
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
                         @csrf
                         {{-- <div type="submit" class="rounded">ออกจากระบบ✅</div> --}}
                         <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
@@ -403,14 +418,11 @@
                                 data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false"
                                 id="dropdown-icon">
                                 <div class="img d-flex align-items-center">
-                                    <img 
-                                    @if (auth()->user()->image == null)
-                                        src="{{ asset('image/defult-profile/profile.svg') }}"
+                                    <img @if (auth()->user()->image == null) src="{{ asset('image/defult-profile/profile.svg') }}"
                                     @else
-                                        src="{{ asset(auth()->user()->image) }}"
-                                    @endif
-                                    alt="" srcset="" id="profile"
-                                    class="rounded-circle object-fit-cover" style="width:50px; height:50px">
+                                        src="{{ asset(auth()->user()->image) }}" @endif
+                                        alt="" srcset="" id="profile"
+                                        class="rounded-circle object-fit-cover" style="width:50px; height:50px">
                                     <p class="ps-3">
                                         {{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}
                                     </p>
@@ -428,7 +440,7 @@
                         </div>
                     </li>
                     <h5>Project base management</h5>
-                    @if (auth()->user()->role == 'admin')
+                    @if (in_array(auth()->user()->role, ['admin', '']))
                         <li class="mb-1">
                             <a href=""
                                 class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
@@ -439,10 +451,18 @@
                             </a>
                             <div class="collapse" id="admin-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                    <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
-                                    <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
-                                    <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
-                                    <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                                    @if (in_array(auth()->user()->role, ['admin']))
+                                        <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser']))
+                                        <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin']))
+                                        <li><a href="{{ route('user_list') }}" class="rounded">ผู้ใช้งาน✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin']))
+                                        <li><a href="{{ route('log') }}" class="rounded">log✅</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -459,7 +479,8 @@
                         <div class="collapse" id="executive-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                 <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
-                                <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
+                                <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -509,28 +530,30 @@
                             <p>Report</p>
                             <i class='bx bxs-chevron-down'></i>
 
-                    </a>
-                    <div class="collapse" id="okr-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                            <li><a href="{{ route('report_technic')}}" class="rounded" id="report_technic">Summary report technic✅</a></li>
-                            <li><a href="{{ route('report_support')}}" class="rounded" id="report_support">Summary report support✅</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
-                        <button type="submit" id="logoutbutton" style="display:none"></button>
-                    </form>
-                    
-                </li>
-                <hr>
-                <div class="d-flex">
-                    <span>
-                        <h6 class="mt-1 mb-0">NIMT</h6>
-                        <small>NIMT@NIMT.COM</small>
-                    </span>
+                        </a>
+                        <div class="collapse" id="okr-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                <li><a href="{{ route('report_technic') }}" class="rounded"
+                                        id="report_technic">Summary report technic✅</a></li>
+                                <li><a href="{{ route('report_support') }}" class="rounded"
+                                        id="report_support">Summary report support✅</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
+                            <button type="submit" id="logoutbutton" style="display:none"></button>
+                        </form>
+
+                    </li>
+                    <hr>
+                    <div class="d-flex">
+                        <span>
+                            <h6 class="mt-1 mb-0">NIMT</h6>
+                            <small>NIMT@NIMT.COM</small>
+                        </span>
 
                     </div>
 
@@ -570,9 +593,7 @@
         @yield('script')
 
         <script>
-
-            function logout()
-            {
+            function logout() {
                 document.getElementById('logoutbutton').click()
             }
 
