@@ -13,6 +13,7 @@
             /* display: none; */
         }
 
+
         @media print {
             body * {
                 visibility: hidden;
@@ -613,6 +614,11 @@
             const blob = new Blob(["\ufeff", csvContent], {
                 type: 'text/csv;charset=utf-8;'
             }); // Set UTF-8 encoding
+            const csvContent = rows.map(row => Array.from(row.children).map(cell => `"${cell.textContent.trim()}"`).join(
+                ',')).join('\n');
+            const blob = new Blob(["\ufeff", csvContent], {
+                type: 'text/csv;charset=utf-8;'
+            }); // Set UTF-8 encoding
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.setAttribute('download', 'table-export.csv');
@@ -622,11 +628,13 @@
         }
     </script>
     <script>
+    <script>
         const ctx = document.getElementById('sCurveChart').getContext('2d');
         const sCurveChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                // labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                labels: ['ต.ค.','พ.ย.','ธ.ค.','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.'],
                 datasets: [{
                         label: 'Work Progress',
                         data: [10, 40, 10, 90, 10, 40, 10],

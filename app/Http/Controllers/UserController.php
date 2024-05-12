@@ -41,7 +41,7 @@ class UserController extends Controller
         // ]);
         
         $path = null;
-        dd($request , $user_id);
+        // dd($request , $user_id);
         
         if($request->image != null)
         {
