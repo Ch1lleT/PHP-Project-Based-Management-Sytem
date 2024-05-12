@@ -169,15 +169,11 @@
             transform: rotate(180deg);
             transition: transform 0.25s ease-in-out
         }
-
-        a #burger_menu:hover {
+        a #burger_menu:hover{
             cursor: pointer;
         }
-
         @media screen and (max-width: 1200px) {
-
-            #hide-side,
-            #burger_menu {
+            #hide-side,#burger_menu {
                 display: none !important;
             }
         }
@@ -276,7 +272,7 @@
                         </div>
                     </li>
                 @endif
-                @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                @if (in_array(auth()->user()->role, ['admin']))
                     <li class="mb-1">
                         <a href=""
                             class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
@@ -288,11 +284,11 @@
                         </a>
                         <div class="collapse" id="executive-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                @if (in_array(auth()->user()->role, ['admin']))
                                     <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a>
                                     </li>
                                 @endif
-                                @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                @if (in_array(auth()->user()->role, ['admin']))
                                     <li><a href="{{ route('efficiency') }}"
                                             class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                 @endif
@@ -300,84 +296,61 @@
                         </div>
                     </li>
                 @endif
-                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                    <li class="mb-1">
-                        <a href=""
-                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                            data-bs-toggle="collapse" data-bs-target="#staff-collapse" aria-expanded="false"
-                            id="dropdown-icon">
-                            <p>สำหรับเจ้าหน้าที่</p>
-                            <i class='bx bxs-chevron-down'></i>
+                <li class="mb-1">
+                    <a href=""
+                        class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" data-bs-target="#staff-collapse" aria-expanded="false"
+                        id="dropdown-icon">
+                        <p>สำหรับเจ้าหน้าที่</p>
+                        <i class='bx bxs-chevron-down'></i>
 
-                        </a>
-                        <div class="collapse" id="staff-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                                    <li><a href="{{ route('fiscal_years_list') }}" class="rounded">ปีงบประมาณ✅</a>
-                                    </li>
-                                @endif
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'user']))
-                                    <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a></li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
-                @endif
+                    </a>
+                    <div class="collapse" id="staff-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="{{ route('fiscal_years_list') }}" class="rounded">ปีงบประมาณ✅</a></li>
+                            <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a></li>
+                        </ul>
+                    </div>
+                </li>
 
                 <h5>OKR/ KPI</h5>
-                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                    <li class="mb-1">
-                        <a href=""
-                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                            data-bs-toggle="collapse" data-bs-target="#report-collapse" aria-expanded="false"
-                            id="dropdown-icon">
-                            <p>OKR/KPI</p>
-                            <i class='bx bxs-chevron-down'></i>
+                <li class="mb-1">
+                    <a href=""
+                        class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" data-bs-target="#report-collapse" aria-expanded="false"
+                        id="dropdown-icon">
+                        <p>OKR/KPI</p>
+                        <i class='bx bxs-chevron-down'></i>
 
-                        </a>
-                        <div class="collapse" id="report-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                @if (in_array(auth()->user()->role, ['admin']))
-                                    <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
-                                @endif
-                                @if (in_array(auth()->user()->role, ['admin']))
-                                    <li><a href="#" class="rounded">NIMT OKR Chart</a></li>
-                                @endif
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                                    <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
-                                @endif
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'user']))
-                                    <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า
-                                            OKR✅</a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
-                @endif
-                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                    <li class="mb-1">
-                        <a href=""
-                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                            data-bs-toggle="collapse" data-bs-target="#okr-collapse" aria-expanded="false"
-                            id="dropdown-icon">
-                            <p>Report</p>
-                            <i class='bx bxs-chevron-down'></i>
-                        </a>
-                        <div class="collapse" id="okr-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                                    <li><a href="{{ route('report_support') }}" class="rounded"
-                                            id="test">Summary report support✅</a></li>
-                                @endif
-                                @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                                    <li><a href="{{ route('report_technic') }}" class="rounded">Summary report
-                                            technic✅</a></li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
-                @endif
+                    </a>
+                    <div class="collapse" id="report-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
+                            <li><a href="#" class="rounded">NIMT OKR Chart</a></li>
+                            <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
+                            <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า OKR✅</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <a href=""
+                        class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                        data-bs-toggle="collapse" data-bs-target="#okr-collapse" aria-expanded="false"
+                        id="dropdown-icon">
+                        <p>Report</p>
+                        <i class='bx bxs-chevron-down'></i>
+
+                    </a>
+                    <div class="collapse" id="okr-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                            <li><a href="{{ route('report_support') }}" class="rounded" id="test">Summary
+                                    report support✅</a></li>
+                            <li><a href="{{ route('report_technic') }}" class="rounded">Summary report technic✅</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
@@ -496,71 +469,53 @@
                             </div>
                         </li>
                     @endif
-                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                        <li class="mb-1">
-                            <a href=""
-                                class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#executive-collapse" aria-expanded="false"
-                                id="dropdown-icon">
-                                <p>สำหรับผู้บริหาร</p>
-                                <i class='bx bxs-chevron-down'></i>
+                    <li class="mb-1">
+                        <a href=""
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#executive-collapse" aria-expanded="false"
+                            id="dropdown-icon">
+                            <p>สำหรับผู้บริหาร</p>
+                            <i class='bx bxs-chevron-down'></i>
 
-                            </a>
-                            <div class="collapse" id="executive-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                        <li><a href="{{ route('stg_overview') }}"
-                                                class="rounded">ภาพรวมยุทธศาสตร์</a>
-                                        </li>
-                                    @endif
-                                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                        <li><a href="{{ route('efficiency') }}"
-                                                class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
-                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                        <li class="mb-1">
-                            <a href=""
-                                class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#staff-collapse" aria-expanded="false"
-                                id="dropdown-icon">
-                                <p>สำหรับเจ้าหน้าที่</p>
-                                <i class='bx bxs-chevron-down'></i>
+                        </a>
+                        <div class="collapse" id="executive-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                <li><a href="{{ route('stg_overview') }}" class="rounded">ภาพรวมยุทธศาสตร์</a></li>
+                                <li><a href="{{ route('efficiency') }}" class="rounded">สรุปประสิทธิภาพการทำงาน✅</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <a href=""
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#staff-collapse" aria-expanded="false"
+                            id="dropdown-icon">
+                            <p>สำหรับเจ้าหน้าที่</p>
+                            <i class='bx bxs-chevron-down'></i>
 
-                            </a>
-                            <div class="collapse" id="staff-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                                        <li><a href="{{ route('fiscal_years_list') }}"
-                                                class="rounded">ปีงบประมาณ✅</a>
-                                        </li>
-                                    @endif
-                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'user']))
-                                        <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a>
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </li>
-                    @endif
+                        </a>
+                        <div class="collapse" id="staff-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                                <li><a href="{{ route('fiscal_years_list') }}" class="rounded">ปีงบประมาณ✅</a></li>
+                                <li><a href="{{ route('fiscal_years') }}" class="rounded">ยุทธศาสตร์ ✅</a></li>
+                            </ul>
+                        </div>
+                    </li>
 
                     <h5>OKR/ KPI</h5>
-                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive', 'user']))
-                        <li class="mb-1">
-                            <a href=""
-                                class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#report-collapse" aria-expanded="false"
-                                id="dropdown-icon">
-                                <p>OKR/KPI</p>
-                                <i class='bx bxs-chevron-down'></i>
+                    <li class="mb-1">
+                        <a href=""
+                            class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
+                            data-bs-toggle="collapse" data-bs-target="#report-collapse" aria-expanded="false"
+                            id="dropdown-icon">
+                            <p>OKR/KPI</p>
+                            <i class='bx bxs-chevron-down'></i>
 
                         </a>
                         <div class="collapse" id="report-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                <li><a href="#" class="rounded">NIMT</a></li>
+                                <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                                 <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart✅</a></li>
                                 <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
                                 <li><a href="{{ route('okr_kpi_manage') }}" class="rounded">เพิ่ม/ลด/กำหนดเป้า
@@ -620,15 +575,12 @@
             </div>
         </div> --}}
         <div class="bg-light w-100">
-            <div class="p-2 d-md d-flex text-white align-items-center w-100 sticky-top"
-                style="height: 3.5rem; background-color: #a3a3a3;">
-                <a class=" align-items-center hover-shadow" id="#burger_menu" onclick="closeside()">
+            <div class="p-2 d-md d-flex text-white align-items-center w-100 sticky-top" style="height: 3.5rem; background-color: #a3a3a3;">
+                <a  class=" align-items-center hover-shadow" id="#burger_menu" onclick="closeside()">
                     <i class='bx bx-menu-alt-left text-white d-xl me-2' style="font-size: 1.85rem;"></i>
                 </a>
-                <a class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar"
-                    id="hamb">
-                    <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;"
-                        id="hamb-side"></i>
+                <a  class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" id="hamb">
+                    <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;" id="hamb-side"></i>
                 </a>
                 <div class="fs-3 d-flex align-items-center m-0 w-100 ">
                     @yield('header')
@@ -642,51 +594,52 @@
             </main>
         </div>
     </div>
-    @yield('script')
+        @yield('script')
 
-    <script>
-        function closeside() {
-            const side = document.getElementById("hide-side");
-            const menu = document.getElementById("hamb-side");
-            side.remove();
-            document.getElementById('#burger_menu').style.display = 'none';
-            menu.classList.remove("d-xl-none");
-        }
+        <script>
+            function closeside() {
+                const side = document.getElementById("hide-side");
+                const menu = document.getElementById("hamb-side");
+                    side.remove();
+                    document.getElementById('#burger_menu').style.display = 'none';
+                    menu.classList.remove("d-xl-none");
+                }
+                
 
-
-        function logout() {
-            document.getElementById('logoutbutton').click()
-        }
-
-        function dropdown(arrow, check) {
-            if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                arrow.style.transform = 'rotate(0deg)';
+            function logout()
+            {
+                document.getElementById('logoutbutton').click()
             }
-        }
 
-
-        function dropdown(arrow, check) {
-            if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                arrow.style.transform = 'rotate(0deg)';
+            function dropdown(arrow, check) {
+                if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
             }
-        }
 
-        const drops = document.querySelectorAll('#dropdown-icon');
-        drops.forEach(drop => {
-            drop.addEventListener("click", () => {
-                const arrow = drop.querySelector('i');
-                const check = drop.getAttribute('aria-expanded')
-                dropdown(arrow, check);
+
+            function dropdown(arrow, check) {
+                if (arrow.style.transform === 'rotate(0deg)' && check === 'false') {
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            const drops = document.querySelectorAll('#dropdown-icon');
+            drops.forEach(drop => {
+                drop.addEventListener("click", () => {
+                    const arrow = drop.querySelector('i');
+                    const check = drop.getAttribute('aria-expanded')
+                    dropdown(arrow, check);
+                });
             });
-        });
 
-        const hambButton = document.getElementById('hamb');
-        const targetElement = document.getElementById('bdSidebar');
-    </script>
+            const hambButton = document.getElementById('hamb');
+            const targetElement = document.getElementById('bdSidebar');
+        </script>
 </body>
 
 </html>
