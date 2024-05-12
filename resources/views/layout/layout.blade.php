@@ -169,9 +169,11 @@
             transform: rotate(180deg);
             transition: transform 0.25s ease-in-out
         }
-
+        a #burger_menu:hover{
+            cursor: pointer;
+        }
         @media screen and (max-width: 1200px) {
-            #hide-side {
+            #hide-side,#burger_menu {
                 display: none !important;
             }
         }
@@ -338,7 +340,7 @@
                     <form action="{{ route('logout') }}" method="post" >
                         @csrf
                         {{-- <div type="submit" class="rounded">ออกจากระบบ✅</div> --}}
-                        <a class="rounded" onclick="logout()"">ออกจากระบบ✅</a>
+                        <a class="rounded" onclick="logout()">ออกจากระบบ✅</a>
                         <button type="submit" id="logoutbutton" style="display:none"></button>
                     </form>
                 </li>
@@ -550,11 +552,12 @@
             </div>
         </div>
         <div class="bg-light w-100">
-            <div class="p-2 d-md d-flex text-white align-items-center w-100 sticky-top"
-                style="height: 3.5rem; background-color: #a3a3a3;">
-                <a href="#" class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar"
-                    id="hamb">
-                    <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;"></i>
+            <div class="p-2 d-md d-flex text-white align-items-center w-100 sticky-top" style="height: 3.5rem; background-color: #a3a3a3;">
+                <a  class=" align-items-center hover-shadow" id="#burger_menu" onclick="closeside()">
+                    <i class='bx bx-menu-alt-left text-white d-xl me-2' style="font-size: 1.85rem;"></i>
+                </a>
+                <a  class=" align-items-center" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" id="hamb">
+                    <i class='bx bx-menu-alt-left text-white d-xl-none me-2' style="font-size: 1.85rem;" id="hamb-side"></i>
                 </a>
                 <div class="fs-3 d-flex align-items-center m-0 w-100 ">
                     @yield('header')
@@ -567,9 +570,18 @@
                 @yield('content')
             </main>
         </div>
+    </div>
         @yield('script')
 
         <script>
+            function closeside() {
+                const side = document.getElementById("hide-side");
+                const menu = document.getElementById("hamb-side");
+                    side.remove();
+                    document.getElementById('#burger_menu').style.display = 'none';
+                    menu.classList.remove("d-xl-none");
+                }
+                
 
             function logout()
             {

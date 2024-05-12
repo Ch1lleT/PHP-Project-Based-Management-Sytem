@@ -32,6 +32,11 @@
             cursor: pointer;
         }
 
+        .table-border{
+            border: 3px solid rgb(230, 230, 230);
+            border-radius: 5px;
+        }
+
         @media screen and (max-width: 992px) {
             .plan {
                 overflow: auto !important;
@@ -40,7 +45,6 @@
     </style>
 @endsection
 @section('header')
-
     <div class="w-100 d-flex align-items-center">
         <div class="dropdown fs-6 d-flex align-items-center">
             <span class="fs-5 mx-2">ปีงบประมาณ</span>
@@ -139,10 +143,10 @@
     <table class="table mt-3 mb-0 my-table" >
         <tbody>
             <tr>
-                <td class="h4 px-0">
+                <td class="fs-5 px-0">
                     <div style="width: 150px">ยุทธศาสตร์:</div>
                 </td>
-                <td class="h4">
+                <td class="fs-5">
                     {{ isset($STG->name) ? $STG->name : '' }}
                     {{-- {{$STG[0]->name}} --}}
                     @if (isset($STG))
@@ -161,15 +165,16 @@
             </tr>
         </tbody>
     </table>
-    <div class="row row-cols-auto">
-        <div class="col-12 col-lg-6 ">
-            <table class="table mt-3 my-table">
+    <div class="mx-2">
+    <div class="row row-cols-auto gap-2 ">
+        <div class="col-12 col-lg-5 px-2 pb-2 table-border">
+            <table class="table m-0 my-table">
                 <tbody>
                     <tr>
-                        <td class="h4 px-0">
-                            <div style="width: 124px">เป้าหมาย:</div>
+                        <td class="fs-5 px-0">
+                            <div style="width: 90px">เป้าหมาย :</div>
                         </td>
-                        <td class="h4">
+                        <td class="fs-5">
                             {{ isset($Target->target_name) ? $Target->target_name : '' }}
                         </td>
                         <td class="px-0 pt-2">
@@ -265,8 +270,6 @@
                     </div>
                 </div>
             @endforeach
-
-            <hr>
             <div class="content">
                 <table class="table display" style="width: 100%" >
                     <thead>
@@ -321,17 +324,17 @@
                 </table>
             </div>
         </div>
-        <div class="col-12 col-lg-6 ">
-            <table class="table mt-3 my-table">
+        <div class="col-12 col-lg px-2 pb-2 table-border">
+            <table class="table m-0 my-table">
                 <tbody>
                     <tr>
-                        <td class="h4 px-0">
-                            <div style="width: 124px">แผนการ:</div>
+                        <td class="fs-5 px-0">
+                            <div style="width: 90px">แผนการ :</div>
                         </td>
                         @if (request()->has('plan_id'))
-                            <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
+                            <td class="fs-5">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
                         @else
-                            <td class="h4">กรุณาเลือกแผน</td>
+                            <td class="fs-5">กรุณาเลือกแผน</td>
                         @endif
                         <td class="px-0 pt-2">
                             @if (request()->has('stg_id') and request()->has('target_id'))
@@ -472,7 +475,6 @@
                     </div>
                 @endforeach
             @endif
-            <hr>
             <div class="overflow-x-hidden plan">
                 <table class="table display" style="width: 100%" id="plantable">
                     <thead>
@@ -536,14 +538,24 @@
             </div>
         </div>
 
-        <div class="col-12 col-lg-12 ">
-            <table class="table mt-3 my-table">
+        <div class="col-12 col-lg-12 px-2 pb-2 table-border">
+            <table class="table m-0 my-table">
                 <tbody>
                     <tr>
-                        <td class="h4 px-0">
-                            <div style="width: 124px">โครงการ: @if (request()->has('plan_id'))
+                        <td class="fs-5 px-0">
+                            <div style="width: 120px">โครงการ : @if (request()->has('plan_id'))
                                     <a href="#" class="" data-bs-toggle="modal"
                                         data-bs-target="#add_project">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
+                                            viewBox="0 0 48 48">
+                                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                            <g fill="#fff">
+                                                <path d="M21 14h6v20h-6z"></path>
+                                                <path d="M14 21h20v6H14z"></path>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <a href="{{route('addproject')}}" class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
                                             viewBox="0 0 48 48">
                                             <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
@@ -750,7 +762,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
             <div class="overflow-x-auto">
                 <table id="Project-Table" class="table display " style="width:100%">
                     <thead>

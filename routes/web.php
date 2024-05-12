@@ -113,6 +113,11 @@ Route::get('/org', function () {
 Route::get('/level', function () {
     return view('admin/level');
 })->name("level");
+
+Route::get('/add_project', function () {
+    return view('staff/addproject/add_project');
+})->name("addproject");
+
 Route::get('/log', function () {
     return view('admin/log');
 })->name("log");
