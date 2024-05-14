@@ -76,6 +76,7 @@
             /* transform: scale(2);
             transform-origin: 0 0; */
         }
+        
 
         .mynav {
             color: #fff;

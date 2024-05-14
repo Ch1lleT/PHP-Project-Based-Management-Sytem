@@ -164,8 +164,11 @@
     </table>
     <div class="mx-2">
         <div class="row row-cols-auto gap-2 ">
-            <div class="col-12 col-lg-5 px-2 pb-2 table-border">
-                <table class="table m-0 my-table">
+            <div class="col-12 col-lg-5  pb-2 rounded-3" 
+                style="
+                    margin: 5px;
+                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+                <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
                         <tr>
                             <td class="fs-5 px-0">
@@ -545,28 +548,38 @@
                 </div>
             </div>
 
-        <div class="col-12 col-lg-12 px-2 pb-2 table-border">
-            <table class="table m-0 my-table">
-                <tbody>
-                    <tr>
-                        <td class="fs-5 px-0">
-                            <div style="width: 120px">โครงการ : @if (request()->has('plan_id'))
-                                    
-                                    <a href="{{route('addproject')}}" class="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
-                                            viewBox="0 0 48 48">
-                                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                            <g fill="#fff">
-                                                <path d="M21 14h6v20h-6z"></path>
-                                                <path d="M14 21h20v6H14z"></path>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                @endif
-                            </div>
-                        </td>
-                        {{-- <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td> --}}
-                        <td class="px-0">
+            <div class="col-12 col-lg-12 px-2 pb-2 table-border">
+                <table class="table m-0 my-table">
+                    <tbody>
+                        <tr>
+                            <td class="fs-5 px-0">
+                                <div style="width: 120px">โครงการ : @if (request()->has('plan_id'))
+                                        <a href="#" class="" data-bs-toggle="modal"
+                                            data-bs-target="#add_project">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
+                                                viewBox="0 0 48 48">
+                                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                                <g fill="#fff">
+                                                    <path d="M21 14h6v20h-6z"></path>
+                                                    <path d="M14 21h20v6H14z"></path>
+                                                </g>
+                                            </svg>
+                                        </a>
+                                        <a href="{{ route('addproject') }}" class="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
+                                                viewBox="0 0 48 48">
+                                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                                <g fill="#fff">
+                                                    <path d="M21 14h6v20h-6z"></path>
+                                                    <path d="M14 21h20v6H14z"></path>
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    @endif
+                                </div>
+                            </td>
+                            {{-- <td class="h4">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td> --}}
+                            <td class="px-0">
 
                             </td>
                         </tr>

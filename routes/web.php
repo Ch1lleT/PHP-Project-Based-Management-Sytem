@@ -88,9 +88,14 @@ Route::get('/efficiency', function () {
 Route::get('/activity_money_page', function () {
     return view('user/activity_money_page');
 })->name("activity_money_page");
+
 Route::get('/activity_work_page', function () {
     return view('user/activity_work_page');
 })->name("activity_work_page");
+
+Route::get('/activity_page', function () {
+    return view('user/activity_page');
+})->name("activity_page");
 
 Route::get('/dashboard_nimt', function () {
     return view('okr_kpi/dashboard_nimt');
