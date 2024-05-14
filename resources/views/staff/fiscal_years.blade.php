@@ -138,36 +138,47 @@
         </div>
     </div>
 
-    <table class="table mt-3 mb-0 my-table">
-        <tbody>
-            <tr>
-                <td class="fs-5 px-0">
-                    <div style="width: 150px">ยุทธศาสตร์:</div>
-                </td>
-                <td class="fs-5">
-                    {{ isset($STG->name) ? $STG->name : '' }}
-                    {{-- {{$STG[0]->name}} --}}
-                    @if (isset($STG))
-                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
-                            <i class='bx bx-pencil text-dark'></i>
-                        </a>
-                        <a href="#" class="text-decoration-none" onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
-                            <i class='bx bx-trash text-danger'></i>
-                        </a>
-                    @endif
-                </td>
-                <td class="px-0 d-flex justify-content-end">
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="mx-2">
-        <div class="row row-cols-auto gap-2 ">
-            <div class="col-12 col-lg-5  pb-2 rounded-3" 
+    <div class="mx-2 mt-2">
+        <div class="row row-cols-auto gap-2">
+            <div class="col-12 col-lg  pb-2 rounded-3"
                 style="
                     margin: 5px;
-                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
+                                rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+            <table class="table m-0 my-table" style="padding: 5px;">
+                <tbody>
+                    <tr>
+                        <td class="fs-5 p-0">
+                            <div style="width: 100px">ยุทธศาสตร์ : </div>
+                        </td>
+                        <td class="fs-5 p-0">
+                            {{ isset($STG->name) ? $STG->name : '' }}
+                            {{-- {{$STG[0]->name}} --}}
+                            @if (isset($STG))
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                                    <i class='bx bx-pencil text-dark'></i>
+                                </a>
+                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
+                                    <i class='bx bx-trash text-danger'></i>
+                                </a>
+                            @endif
+                        </td>
+                        <td class="px-0 d-flex justify-content-end">
+        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="mx-2">
+        <div class="row row-cols-auto gap-2 my-2 ">
+            <div class="col-12 col-lg-5 pb-2 rounded-3" 
+                style="
+                    margin: 5px;
+                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
+                                rgba(0, 0, 0, 0.24) 0px 1px 2px;">
                 <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
                         <tr>
@@ -327,8 +338,13 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 col-lg px-2 pb-2 table-border">
-                <table class="table m-0 my-table">
+            <div class="col-12 col-lg pb-2 rounded-3" 
+                style="
+                        margin: 5px;
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
+                                    rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+                    
+                <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
                         <tr>
                             <td class="fs-5 px-0">
@@ -547,9 +563,12 @@
                     </table>
                 </div>
             </div>
-
-            <div class="col-12 col-lg-12 px-2 pb-2 table-border">
-                <table class="table m-0 my-table">
+            <div class="col-12 col-lg pb-2 rounded-3"
+                style="
+                        margin: 5px;
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
+                                    rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+                <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
                         <tr>
                             <td class="fs-5 px-0">
@@ -774,7 +793,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-hidden" >
                     <table id="Project-Table" class="table display " style="width:100%">
                         <thead>
                             <tr>
