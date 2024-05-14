@@ -29,15 +29,11 @@
     </style>
 @endsection
 @section('content')
-
     <div class="row">
         <div class="col-4">
-            <div class="col-3 btn btn-warning text-white mb-3" class="carousel-control-next" type="button"
-                data-bs-target="#carouselExample" data-bs-slide="next" id="btn" onclick="switch_plan()">แผนเงิน</div>
-            {{-- <div class="col-3 btn btn-warning text-white mb-3" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" id="btn">แผนเงิน</div> --}}
-
+            <a href="{{route('activity_money_page')}}" class="col-3 btn btn-warning text-white mb-3" type="button" id="btn" onclick="switch_plan()">แผนเงิน</a>
             <div class="col-3 btn btn-success mb-3" id="btn" onclick="window.print()">PDF</div>
-            <div class="col-3 btn btn-success mb-3" id="btn-csv-money" onclick="exportToCSV()">CSV</div>
+            <div class="col-3 btn btn-success mb-3" id="btn-csv-work" onclick="exportToCSV_W()" >CSV</div>
         </div>
     </div>
     <div class="d-flex justify-content-center w-100">
@@ -50,9 +46,6 @@
         </div>
     </div>
     <div class="overflow-x-hidden" id="table-container">
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
                     <table class="table display" id="tableW">
                         <thead>
                             <tr>
@@ -375,204 +368,6 @@
 
                         </tfoot>
                     </table>
-                </div>
-                <div class="carousel-item ">
-                    <table class="table display" id="tableM">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <a href="#" class="d-flex align-items-center text-decoration-none text-black"
-                                        data-bs-toggle="modal" data-bs-target="#add_plan">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
-                                            viewBox="0 0 48 48">
-                                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                            <g fill="#fff">
-                                                <path d="M21 14h6v20h-6z"></path>
-                                                <path d="M14 21h20v6H14z"></path>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                </th>
-                                <th nowrap>ยุทธศาสตร์/โครงการ/กิจกรรม/</th>
-                                <th nowrap>รวม แผน/ผกพัน/ผล</th>
-                                <th>ต.ค.</th>
-                                <th>พ.ย.</th>
-                                <th>ธ.ค.</th>
-                                <th>ม.ค.</th>
-                                <th>ก.พ.</th>
-                                <th>มี.ค.</th>
-                                <th>เม.ย.</th>
-                                <th>พ.ค.</th>
-                                <th>มิ.ย.</th>
-                                <th>ก.ค.</th>
-                                <th>ส.ค.</th>
-                                <th>ก.ย.</th>
-                                <th nowrap>แผน ผล</th>
-                                <th>%</th>
-                                <th nowrap>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>subtest</td>
-                                <td>subtest</td>
-                                <td>subtest</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-12 border-bottom" contenteditable="true">s</div>
-                                        <div class="col-12" contenteditable="true">s</div>
-                                    </div>
-                                </td>
-                                
-                            </tr>
-                        </tbody>
-                       <tfoot>
-                        <tr class="table-primary">
-                            <th colspan="2">รวม</th>
-                            <td>แผน</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th colspan="2"></th>
-                            <td>ผูกพัน</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th colspan="2"></th>
-                            <td>ผล</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                       </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="d-flex justify-content-center w-100">
         <canvas id="sCurveChart" class="w-100 h-100" style="max-width:1000px;max-height:500px;"></canvas>
@@ -587,33 +382,17 @@
             scrollY: '350px'
 
         });
-
-
-        function switch_plan() {
-            if (document.getElementById('btn').innerHTML === "แผนงาน") {
-                document.getElementById('btn').classList.add('btn-warning');
-                document.getElementById('btn').classList.remove('btn-primary');
-                document.getElementById('btn').innerHTML = 'แผนเงิน';
-                
-            } else {
-                document.getElementById('btn').classList.remove('btn-warning');
-                document.getElementById('btn').classList.add('btn-primary');
-                document.getElementById('btn').innerHTML = 'แผนงาน';
-            }
-        }
-
-        function exportToCSV() {
-            console.log('test');
-            const table = document.getElementById('tableM');
+        function exportToCSV_W() {
+            const table = document.getElementById('tableW');
             const rows = Array.from(table.querySelectorAll('tr'));
             const csvContent = rows.map(row => Array.from(row.children).map(cell => `"${cell.textContent.trim()}"`).join(
                 ',')).join('\n');
             const blob = new Blob(["\ufeff", csvContent], {
                 type: 'text/csv;charset=utf-8;'
-            }); // Set UTF-8 encoding
+            }); 
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.setAttribute('download', 'table-export.csv');
+            link.setAttribute('download', 'table-Work.csv');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);

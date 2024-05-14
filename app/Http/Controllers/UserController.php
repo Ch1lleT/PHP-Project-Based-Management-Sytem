@@ -34,14 +34,14 @@ class UserController extends Controller
     }
 
     public function update(Request $request , $user_id) {
-        // $request->validate([
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'image' => 'image|mimes:jpeg,png,jpg',
-        // ]);
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg',
+        ]);
         
         $path = null;
-        dd($request , $user_id);
+        // dd($request , $user_id);
         
         if($request->image != null)
         {

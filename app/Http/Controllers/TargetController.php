@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FiscalYear;
 use App\Models\Strategy;
 use App\Models\Target;
 use Illuminate\Http\Request;
@@ -79,10 +80,23 @@ class TargetController extends Controller
     
     public static function getAtAll(Request $request){
         $stg_id = $request->stg_id;
+        $fiscalYear = FiscalYear::where('year' , $request->year)->first();
+        
         if(isset($stg_id)) {
             $TargetAtAll = Target::where('stg_id', $stg_id)->where('is_active',true)->get();
+        }else if(isset($fiscalYear)){  
+            $year_code = $fiscalYear->id;
+            $STG = Strategy::where('year_code',$year_code)->first();
+            if (isset($STG)) {
+                $stg_id = $STG->stg_id;
+                $TargetAtAll = Target::where('stg_id', $stg_id)->where('is_active',true)->get();
+            }else {
+                $TargetAtAll = [];
+            }
         }else {
-            $STG = Strategy::first();
+            $currentYear = now()->format('Y');
+            $lastYear = FiscalYear::where('year', $currentYear)->first(); // ใช้ first() เพื่อดึงข้อมูลแรกที่ตรงกับเงื่อนไข
+            $STG = Strategy::where('year_code',$lastYear->id)->first();
             $stg_id = $STG->stg_id;
             $TargetAtAll = Target::where('stg_id', $stg_id)->where('is_active',true)->get();
         }

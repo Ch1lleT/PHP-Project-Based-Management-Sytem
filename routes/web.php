@@ -85,9 +85,21 @@ Route::get('/efficiency', function () {
     return view('executive/efficiency');
 })->name("efficiency");
 
+Route::get('/activity_money_page', function () {
+    return view('user/activity_money_page');
+})->name("activity_money_page");
+
+Route::get('/activity_work_page', function () {
+    return view('user/activity_work_page');
+})->name("activity_work_page");
+
 Route::get('/activity_page', function () {
     return view('user/activity_page');
 })->name("activity_page");
+
+Route::get('/dashboard_nimt', function () {
+    return view('okr_kpi/dashboard_nimt');
+})->name("dashboard_nimt");
 
 Route::post('/STGAdd', [STGController::class, 'Add']);
 Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
@@ -113,6 +125,11 @@ Route::get('/org', function () {
 Route::get('/level', function () {
     return view('admin/level');
 })->name("level");
+
+Route::get('/add_project', function () {
+    return view('staff/addproject/add_project');
+})->name("addproject");
+
 Route::get('/log', function () {
     return view('admin/log');
 })->name("log");
