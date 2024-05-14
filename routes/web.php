@@ -85,9 +85,12 @@ Route::get('/efficiency', function () {
     return view('executive/efficiency');
 })->name("efficiency");
 
-Route::get('/activity_page', function () {
-    return view('user/activity_page');
-})->name("activity_page");
+Route::get('/activity_money_page', function () {
+    return view('user/activity_money_page');
+})->name("activity_money_page");
+Route::get('/activity_work_page', function () {
+    return view('user/activity_work_page');
+})->name("activity_work_page");
 
 Route::post('/STGAdd', [STGController::class, 'Add']);
 Route::post('/TGAdd/{stg_id}', [TargetController::class, 'Add']);
