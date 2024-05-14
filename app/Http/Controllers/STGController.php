@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FiscalYear;
 use App\Models\Strategy;
 use App\Utilities\UUID;
 use Illuminate\Http\Request;
@@ -11,34 +12,42 @@ class STGController extends Controller
 {
     //
 
-    public static function Add(Request $request)
+    public static function Add(Request $request )
     {
 
+        // dd($request);
         $request->validate([
-            'name' => 'required',
+            'nameSTG' => 'required',
+            'year' => 'required',
             // 'desc' => 'required'
         ]);
+
+        $fiscalYear = FiscalYear::where('year' , $request->input('year'))->first();
+        $year_code = $fiscalYear->id;
 
         if ($request) {
             $STG = new Strategy();
             $STG->stg_id = UUID::uuid(Strategy::class);
-            $STG->name = $request->input('name');
+            $STG->name = $request->input('nameSTG');
             $STG->desc = "งานยากมากครับ";
+            $STG->year_code = $year_code;
             $STG->is_active = true;
-
             $STG->save();
             return response()->json(['message' => 'Data Add successfully']);
         }
 
         // return response()->json(['error' => 'Data Add failed']);
 
-        return redirect()->back()->with('success', 'Data Update successfully');
+        return response()->json(['error' => 'ข้อมูลไม่ถูกต้อง'], 400);
     }
 
     public static function getAll(Request $request)
     {
-        $year_code = $request->year;
-        if (isset($year_code)) {
+
+        $fiscalYear = FiscalYear::where('year' , $request->year)->first();
+        
+        if (isset($fiscalYear)) {
+            $year_code = $fiscalYear->id;
             $stgAll = Strategy::where('is_active', true)->where('year_code', $year_code)->get();
             return response()->json(['stgAll' => $stgAll]);
         } else {
