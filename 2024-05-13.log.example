@@ -1,0 +1,33 @@
+Log for The Information System for Monitoring Strategic Plan, Operational Plan, and Budget of the National Institute of Metrology (NIMT)
+Date : 2024-05-13
+
+====================================================
+19:37:03 :
+	type : Warning
+	by : System
+	on : Login
+	message : Login failed from 127.0.0.1 ,try to login in to 01.
+
+19:37:03 :
+	type : Warning
+	by : System
+	on : Login
+	message : Login failed from 127.0.0.1 ,try to login in to 01.
+
+19:37:04 :
+	type : Warning
+	by : System
+	on : Login
+	message : Login failed from 127.0.0.1 ,try to login in to 01.
+
+19:37:04 :
+	type : Info
+	by : System
+	on : Login
+	message : User 01 has login from 127.0.0.1
+
+19:37:04 :
+	type : Info
+	by : 001
+	on : Strategy
+	message : Strategy 001 have been created by 001
