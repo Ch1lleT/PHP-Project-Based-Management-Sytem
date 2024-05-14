@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Support\Carbon;
 
-class LoggerTest extends TestCase
+class Logger_Login_Test extends TestCase
 {
     public function test_file_exist_and_contain_some_init_text(): void
     {

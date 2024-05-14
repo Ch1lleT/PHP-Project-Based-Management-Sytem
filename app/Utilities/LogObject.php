@@ -5,11 +5,11 @@ namespace App\Utilities;
 use Illuminate\Support\Facades\Storage;
 
 // LogObject Version 0.1 
-
+use Illuminate\Support\Carbon;
 class LogObject{
     private string $time;
-    public string $by ;
     public $type ;
+    public string $by ;
     public $on ;
     public $message ;
     
@@ -22,7 +22,7 @@ class LogObject{
 
         if(!isset($this->time))
         {
-            $curr_time = (string)date("H:i:s");
+            $curr_time = Carbon::now()->format('H:i:s');
             $str = $curr_time." :\n";
         }else{
             $str = $this->time." :\n";
@@ -39,5 +39,21 @@ class LogObject{
     
     public function settime(string $time){
         $this->time = $time;
+    }
+
+    public static function to_log(string $log_string) : LogObject
+    {
+        $pattern = "/ : /";
+        $log = new LogObject();
+        
+        $log_string = preg_split("/\n/",$log_string);
+        
+        $log->settime(str_replace(" : ","",$log_string[0]));
+        $log->type = preg_split($pattern,$log_string[1],2)[1];
+        $log->by = preg_split($pattern,$log_string[2],2)[1];
+        $log->on = preg_split($pattern,$log_string[3],2)[1];
+        $log->message = preg_split($pattern,$log_string[4],2)[1];
+
+        return $log;
     }
 }
