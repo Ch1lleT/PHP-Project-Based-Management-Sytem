@@ -7,7 +7,7 @@ use App\Utilities\LogBuilder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
-// Logger Version 0.1
+// Logger Version 0.2
 
 class Logger implements LogBuilder { 
 
@@ -17,8 +17,7 @@ class Logger implements LogBuilder {
     protected $type_allow = ["Info","Warning"];
     protected $allow_created_edited = ["Strategy","Target","Plan","Project","Activity","User"];
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->LogObject = new LogObject(); 
     }
 
@@ -32,10 +31,10 @@ class Logger implements LogBuilder {
         return $this;
     }
     
-    public function byUser() : LogBuilder{
+    public function byUser(string $user_id) : LogBuilder{
         // $this->LogObject->by = auth()->user->first_name." ".auth()->user->last_name;
-        $this->LogObject->by = auth()->user()->user_id;
-        $this->LogObject->message = $this->LogObject->message." by ".auth()->user()->user_id; 
+        $this->LogObject->by = $user_id;
+        $this->LogObject->message = $this->LogObject->message." by ".$user_id; 
         return $this;
     }
 
@@ -62,61 +61,146 @@ class Logger implements LogBuilder {
         return $this;
     }
     
-    public function Delete(): LogBuilder{
+    public function Deactivate(): LogBuilder{
         if($this->LogObject->type != "Warning"){
-            throw new \Exception("Delete must use with log type Warning only!");
+            throw new \Exception("Deactivate must use with log type Warning only!");
         }
-        $this->LogObject->type = "Delete"; 
+        $this->LogObject->type = "Deactivate"; 
         return $this;
     }
     
     public function Strategy(string $stg_id) : LogBuilder{
-        if($this->LogObject->on == "Delete" && $this->LogObject->type == "Warning"){
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
             
             if(isset($stg_id))
             {
-                $this->LogObject->message = "Strategy $stg_id has been deleted";
+                $this->LogObject->message = "Strategy $stg_id has been deactivated";
             }else{
-                throw new \Exception("When delete strategy must provide stg_id as string");
+                throw new \Exception("When Deactivate strategy must provide stg_id as string");
             }         
         
         }
         elseif($this->LogObject->type == "Info"){
                 
+            $this->LogObject->on = "Strategy";
             $this->LogObject->message = "Strategy $stg_id";
 
         }else{
-            throw new \Exception("Strategy must use with Delete or log type Info");
+            throw new \Exception("Strategy must use with Deactivate or log type Info");
         }
 
         return $this;
     }
     
-    public function Target() : LogBuilder{
+    public function Target(string $target_id) : LogBuilder{
         
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
+            
+            if(isset($target_id))
+            {
+                $this->LogObject->message = "Target $target_id has been deactivated";
+            }else{
+                throw new \Exception("When Deactivate traget must provide target_id as string");
+            }         
+        
+        }
+        elseif($this->LogObject->type == "Info"){
+            $this->LogObject->on = "Target";
+            $this->LogObject->message = "Traget $target_id";
+
+        }else{
+            throw new \Exception("Traget must use with Deactivate or log type Info");
+        }
+
+
         return $this;
     }
 
-    public function Plan() : LogBuilder{
+    public function Plan(string $plan_id) : LogBuilder{
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
+            
+            if(isset($plan_id))
+            {
+                $this->LogObject->message = "Plan $plan_id has been deactivated";
+            }else{
+                throw new \Exception("When Deactivate plan must provide plan_id as string");
+            }         
         
-        return $this;
-    }
-    
-    public function Project() : LogBuilder{
-        
-        return $this;
-    }
-    
-    public function Activity() : LogBuilder{
-        
-        return $this;
-    }
-    
-    public function User() : LogBuilder{
-        
-        return $this;
-    }
+        }
+        elseif($this->LogObject->type == "Info"){
+            $this->LogObject->on = "Plan";
+            $this->LogObject->message = "Plan $plan_id";
 
+        }else{
+            throw new \Exception("Plan must use with Deactivate or log type Info");
+        }
+
+        return $this;
+    }
+    
+    public function Project(string $project_id) : LogBuilder{
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
+            
+            if(isset($project_id))
+            {
+                $this->LogObject->message = "Project $project_id has been deactivated";
+            }else{
+                throw new \Exception("When Deactivate Project must provide project_id as string");
+            }         
+        
+        }
+        elseif($this->LogObject->type == "Info"){
+            $this->LogObject->on = "Project";
+            $this->LogObject->message = "Project $project_id";
+
+        }else{
+            throw new \Exception("Project must use with Deactivate or log type Info");
+        }
+
+        return $this;
+    }
+    
+    public function Activity(string $act_id) : LogBuilder{
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
+            
+            if(isset($act_id))
+            {
+                $this->LogObject->message = "Activity $act_id has been deactivated";
+            }else{
+                throw new \Exception("When Deactivate activity must provide act_id as string");
+            }         
+        
+        }
+        elseif($this->LogObject->type == "Info"){
+            $this->LogObject->on = "Activity";
+            $this->LogObject->message = "Activity $act_id";
+
+        }else{
+            throw new \Exception("Activity must use with Deactivate or log type Info");
+        }
+
+        return $this;
+    }
+    
+    public function User(string $user_id) : LogBuilder{
+        if($this->LogObject->on == "Deactivate" && $this->LogObject->type == "Warning"){
+            if(isset($user_id))
+            {
+                $this->LogObject->message = "User $user_id has been deactivated";
+            }else{
+                throw new \Exception("When Deactivate User must provide user_id as string");
+            }         
+        }elseif($this->LogObject->type == "Info"){
+            
+            $this->LogObject->on = "User";
+            $this->LogObject->message = "User $user_id";
+
+        }else{
+            throw new \Exception("User must use with Deactivate or log type Info");
+        }
+
+        return $this;
+    }
     
     public function save() : void {
         $curr_date = Carbon::today()->toDateString();
@@ -147,7 +231,7 @@ class Logger implements LogBuilder {
             $msg = $this->LogObject->message ;
             $this->LogObject->message = $msg.' have been created'; 
         }else{
-            throw new \Exception("Created must use withs : ".implode(',',$this->allow_created_edited)).'';
+            throw new \Exception("Created must use withs : ".implode(',',$this->allow_created_edited));
         }
 
         return $this;
@@ -191,7 +275,7 @@ class Logger implements LogBuilder {
 
         }else{
             
-            $content = Storage::disk('log')->get($log_date);
+            $content = Storage::disk('log')->get($log_date.".log");
         }
 
         try{
