@@ -85,6 +85,10 @@ Route::get('/efficiency', function () {
     return view('executive/efficiency');
 })->name("efficiency");
 
+Route::get('/group_page', function () {
+    return view('executive/group_page');
+})->name("group_page");
+
 Route::get('/activity_money_page', function () {
     return view('user/activity_money_page');
 })->name("activity_money_page");

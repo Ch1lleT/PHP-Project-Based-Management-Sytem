@@ -1,8 +1,8 @@
 @extends('/layout/layout')
-@section('title', 'NIMT Dashboard')
+@section('title', 'NIMT Grouping')
 @section('header')
     <div class="fs-5">
-        NIMT Dashboard
+        NIMT Grouping
     </div>
 @endsection
 @section('style')
@@ -14,7 +14,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-md-12" style="text-align: center;">
-        <span >ใช้สำหรับแสดงภาพ NIMT KR&KPI ของแต่ละยุทธศาสตร์</span> 
+        <span >ใช้สำหรับแสดงภาพ Grouping ยุทธศาสตร์</span> 
     </div>
 </div>
 @endsection

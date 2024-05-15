@@ -232,8 +232,10 @@
                     </div>
                 </a>
                 <ul class="mynav nav nav-pills flex-column mb-auto">
-                    <li>
-                        <div class="profile d-flex align-items-center my-3">
+                    <li class="">
+                        <div class="profile d-flex align-items-center my-3 rounded-3 p-1" 
+                                style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, 
+                                                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
                             <a href="{{ route('fiscal_years') }}"
                                 class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
                                 data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false"
@@ -308,6 +310,10 @@
                                     @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                         <li><a href="{{ route('efficiency') }}"
                                                 class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
+                                    @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                        <li><a href="{{ route('group_page') }}"
+                                                class="rounded">จับกลุ่ม</a></li>
                                     @endif
                                 </ul>
                             </div>
