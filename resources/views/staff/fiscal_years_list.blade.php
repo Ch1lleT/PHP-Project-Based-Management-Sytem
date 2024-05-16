@@ -74,19 +74,19 @@
                 <th>
                     ชื่อยุทธศาสตร์
                 </th>
-                <th>
+                <th style="width: 12%;">
                     งบดำเนินการ/งบลงทุน
                 </th>
-                <th>
+                <th style="width: 5%;">
                     จำนวน
                 </th>
-                <th>
+                <th style="width: 15%;">
                     ผู้ดูแล
                 </th>
-                <th>
+                <th style="width: 40px;">
                     แก้ไข
                 </th>
-                <th>
+                <th style="width: 40px;">
                     ลบ
                 </th>
             </thead>

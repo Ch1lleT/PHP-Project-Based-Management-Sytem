@@ -97,7 +97,7 @@
             <tr>
                 <th>หน่วยงาน</th>
                 <th>หน่วยงานย่อย</th>
-                <th>แก้ไข</th>
+                <th style="width: 40px;">แก้ไข</th>
             </tr>
         </thead>
         <tbody>
@@ -117,7 +117,7 @@
                             @endforeach
                         </ul>
                     </td>
-                    <td class="align-middle text-center">
+                    <td class="">
                         <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_user">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 12 12">
                                 <path fill="#000000"

@@ -4,9 +4,9 @@
 @section('style')
     <style>
         /* *{
-                                                                                                                                                                    padding: 0;
-                                                                                                                                                                    margin: 0;
-                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                            padding: 0;
+                                                                                                                                                                                                                                                                                                                            margin: 0;
+                                                                                                                                                                                                                                                                                                                        } */
         .my-table tbody tr td {
             background-color: #F8F9FA;
             border: none;
@@ -145,36 +145,38 @@
                     margin: 5px;
                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
                                 rgba(0, 0, 0, 0.24) 0px 1px 2px;">
-            <table class="table m-0 my-table" style="padding: 5px;">
-                <tbody>
-                    <tr>
-                        <td class="fs-5 p-0">
-                            <div style="width: 100px">ยุทธศาสตร์ : </div>
-                        </td>
-                        <td class="fs-5 p-0">
-                            {{ isset($STG->name) ? $STG->name : '' }}
-                            {{-- {{$STG[0]->name}} --}}
-                            @if (isset($STG))
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
-                                    <i class='bx bx-pencil text-dark'></i>
-                                </a>
-                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
-                                    <i class='bx bx-trash text-danger'></i>
-                                </a>
-                            @endif
-                        </td>
-                        <td class="px-0 d-flex justify-content-end">
-        
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table m-0 my-table" style="padding: 5px;">
+                    <tbody>
+                        <tr>
+                            <td class="fs-5 p-0">
+                                <div style="width: 100px">ยุทธศาสตร์ : </div>
+                            </td>
+                            <td class="fs-5 p-0">
+                                {{ isset($STG->name) ? $STG->name : '' }}
+                                {{-- {{$STG[0]->name}} --}}
+                                @if (isset($STG))
+                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                        data-bs-target="#edit_stg">
+                                        <i class='bx bx-pencil text-dark'></i>
+                                    </a>
+                                    <a href="#" class="text-decoration-none"
+                                        onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
+                                        <i class='bx bx-trash text-danger'></i>
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="px-0 d-flex justify-content-end">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
     <div class="mx-2">
         <div class="row row-cols-auto gap-2 my-2 ">
-            <div class="col-12 col-lg-5 pb-2 rounded-3" 
+            <div class="col-12 col-lg-5 pb-2 rounded-3"
                 style="
                     margin: 5px;
                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
@@ -288,16 +290,16 @@
                     <table class="table display" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 40px;">
                                     ลำดับ
                                 </th>
-                                <th>
+                                <th style="width:70%">
                                     ชื่อเป้าหมาย
                                 </th>
-                                <th>
+                                <th style="width: 30px;">
                                     แก้ไข
                                 </th>
-                                <th>
+                                <th style="width: 30px;">
                                     ลบ
                                 </th>
                             </tr>
@@ -338,12 +340,12 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 col-lg pb-2 rounded-3" 
+            <div class="col-12 col-lg pb-2 rounded-3"
                 style="
                         margin: 5px;
                         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
                                     rgba(0, 0, 0, 0.24) 0px 1px 2px;">
-                    
+
                 <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
                         <tr>
@@ -505,19 +507,19 @@
                     <table class="table display" style="width: 100%" id="plantable">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 40px;">
                                     ลำดับ
                                 </th>
-                                <th>
+                                <th style="width:58%">
                                     ชื่อแผนการ
                                 </th>
-                                <th>
+                                <th style="width:17%">
                                     ประเภทแผนการ
                                 </th>
-                                <th>
+                                <th style="width: 30px;">
                                     แก้ไข
                                 </th>
-                                <th>
+                                <th style="width: 30px;">
                                     ลบ
                                 </th>
                             </tr>
@@ -793,11 +795,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="overflow-x-hidden" >
+                <div class="overflow-x-hidden">
                     <table id="Project-Table" class="table display " style="width:100%">
                         <thead>
                             <tr>
-                                <th>ชื่อโครงการ</th>
+                                <th style="width: 57%;">ชื่อโครงการ</th>
                                 <th>ผู้ดูแลโครงการ</th>
                                 <th>งบจาก</th>
                                 <th>งบประเภท</th>
@@ -1112,7 +1114,7 @@
                 redirect: "follow"
             };
 
-            fetch(APP_URL+"/api/Strategy/add", requestOptions)
+            fetch(APP_URL + "/api/Strategy/add", requestOptions)
                 .then((response) => response.text())
                 .then((result) => console.log(result))
                 .catch((error) => console.error(error));

@@ -104,7 +104,8 @@
     </div>
 
     @foreach ($UserAll as $index => $user)
-        <div class="modal fade" id="edit_user_{{ $index }}" tabindex="-1" aria-labelledby="edit_userModalLabel" aria-hidden="true">
+        <div class="modal fade" id="edit_user_{{ $index }}" tabindex="-1" aria-labelledby="edit_userModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -112,7 +113,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ url('api/user/update/'. $user->user_id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('api/user/update/' . $user->user_id) }}"
+                            enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="w-100">
@@ -120,14 +122,15 @@
                                     <div class="mb-3 row d-flex align-items-center">
                                         <label class="col-sm-4 col-form-label p-0 text-end">รูปโปรไฟล์</label>
                                         <div class="col-sm-8">
-                                            <input type="file" class="form-control" id="image" name="image" >
+                                            <input type="file" class="form-control" id="image" name="image">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
 
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="name" class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
+                                        <label for="name"
+                                            class="col-sm-4 col-form-label p-0 pt-2 text-end">ชื่อ</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="name" name="first_name"
                                                 value="{{ $user->first_name }}">
@@ -153,7 +156,8 @@
                                         <label for="password"
                                             class="col-sm-4 col-form-label p-0 pt-2 text-end">password</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="password" name="password" placeholder="New password">
+                                            <input type="text" class="form-control" id="password" name="password"
+                                                placeholder="New password">
                                         </div>
                                     </div>
                                     {{-- <div class="mb-3 row">
@@ -167,8 +171,8 @@
                                         <label for="level"
                                             class="col-sm-4 col-form-label p-0 pt-2 text-end">ระดับการใช้งาน</label>
                                         <div class="col-sm-8">
-                                            <select class="form-select form-select-md" aria-label="Large select example" 
-                                                name="level" value='{{$user->role}}'>
+                                            <select class="form-select form-select-md" aria-label="Large select example"
+                                                name="level" value='{{ $user->role }}'>
                                                 <option value="1" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
                                                 </option>
                                                 <option value="2" {{ $user->role == 'powerUser' ? 'selected' : '' }}>
@@ -191,17 +195,19 @@
 
                                         <div id="org_grid">
                                             <div class="col mt-2">
-                                                @foreach($OrgAll as $org)
+                                                @foreach ($OrgAll as $org)
                                                     <ul class="p-0 m-0">
                                                         <li>
-                                                            <input type="checkbox" class="me-2" name="org" value="{{$org->org_id}}" >{{$org->org_name}}
+                                                            <input type="checkbox" class="me-2" name="org"
+                                                                value="{{ $org->org_id }}">{{ $org->org_name }}
                                                         </li>
-                                                        @foreach($org->sub_org as $subOrg)
-                                                        <ul>
-                                                            <li>
-                                                                <input type="checkbox" class="me-2" name="sub_org" value="{{$subOrg->sub_org_id}}">{{$subOrg->org_name}}
-                                                            </li>
-                                                        </ul>
+                                                        @foreach ($org->sub_org as $subOrg)
+                                                            <ul>
+                                                                <li>
+                                                                    <input type="checkbox" class="me-2" name="sub_org"
+                                                                        value="{{ $subOrg->sub_org_id }}">{{ $subOrg->org_name }}
+                                                                </li>
+                                                            </ul>
                                                         @endforeach
                                                     </ul>
                                                 @endforeach
@@ -211,7 +217,8 @@
                                 </div>
                                 <div class="row row-cols-2 p-3 border-top">
                                     <div class="col-12 d-flex gap-2 p-0">
-                                        <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary ms-auto"
+                                            data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </div>
@@ -242,10 +249,10 @@
     <table id="myTable" class="table" style="width:100%">
         <thead>
             <tr>
-                <th>First Name</th>
+                <th style="width: 30%;">First Name</th>
                 <th>Last Name</th>
-                <th>Edit</th>
-                <th>status</th>
+                <th style="width: 30px;">Edit</th>
+                <th style="width: 30px;">status</th>
             </tr>
         </thead>
         <tbody>
@@ -255,7 +262,7 @@
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->last_name }}</td>
                     <td>
-                        <div class="icon col-3 text-end">
+                        <div class="icon col-3 text-center">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal"
                                 data-bs-target="#edit_user_{{ $loop->index }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

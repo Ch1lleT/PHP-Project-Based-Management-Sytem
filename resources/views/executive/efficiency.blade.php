@@ -20,9 +20,8 @@
         <table class="table display " id="table_report">
             <thead>
                 <tr>
-                    <th style="width: 50px">
-                    </th>
-                    <th style="width: 70%">ชือ - นมกุล</th>
+                    <th style="width: 50px">รูปโปรไฟล์</th>
+                    <th style="width: 70%">ชื่อ - นามกุล</th>
                     <th style="width: 50px">รอบที่ 1</th>
                     <th style="width: 50px">รอบที่ 2</th>
                     <th style="width: 50px">ชั่วโมง/ปี</th>
