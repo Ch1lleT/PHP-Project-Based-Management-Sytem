@@ -76,7 +76,7 @@
             /* transform: scale(2);
             transform-origin: 0 0; */
         }
-        
+
 
         .mynav {
             color: #fff;
@@ -187,10 +187,9 @@
 </head>
 
 <body>
-    <div class="container-fluid p-0 d-flex min-vh-100 " >
-        <div id="hide-side" style="background-color: #337ab7;" 
-            >
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-white sticky-top" >
+    <div class="container-fluid p-0 d-flex min-vh-100 ">
+        <div id="hide-side" style="background-color: #337ab7;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white sticky-top">
                 <a href="{{ route('fiscal_years') }}" class="navbar-brand row d-flex align-items-center">
                     <div class="col-3 ps-3">
                         <svg width="50" height="71" viewBox="0 0 50 71" fill="none"
@@ -233,8 +232,8 @@
                 </a>
                 <ul class="mynav nav nav-pills flex-column mb-auto">
                     <li class="">
-                        <div class="profile d-flex align-items-center my-3 rounded-3 p-1" 
-                                style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, 
+                        <div class="profile d-flex align-items-center my-3 rounded-3 p-1"
+                            style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, 
                                                 rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
                             <a href="{{ route('fiscal_years') }}"
                                 class="nav-item rounded collapsed d-flex justify-content-between align-items-center"
@@ -312,8 +311,7 @@
                                                 class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                     @endif
                                     @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                        <li><a href="{{ route('group_page') }}"
-                                                class="rounded">จับกลุ่ม</a></li>
+                                        <li><a href="{{ route('group_page') }}" class="rounded">จับกลุ่ม</a></li>
                                     @endif
                                 </ul>
                             </div>
@@ -362,7 +360,8 @@
                                         <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
                                     @endif
                                     @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                                        <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart</a></li>
+                                        <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR Chart</a>
+                                        </li>
                                     @endif
                                     @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
                                         <li><a href="{{ route('dept') }}" class="rounded">Dept✅</a></li>
@@ -396,6 +395,10 @@
                                         <li><a href="{{ route('report_technic') }}" class="rounded">Summary report
                                                 technic✅</a></li>
                                     @endif
+                                    @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
+                                        <li><a href="{{ route('dashboard_dept') }}" class="rounded">Dashboard
+                                                Dept</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
@@ -409,7 +412,7 @@
 
                     </li>
                     <hr>
-                    <div class="d-flex" >
+                    <div class="d-flex">
                         <span>
                             <h6 class="mt-1 mb-0" id="text">NIMT</h6>
                             <small>NIMT@NIMT.COM</small>
@@ -426,7 +429,7 @@
                 </a>
                 <div class="fs-3 d-flex align-items-center m-0 w-100 ">
                     @yield('header')
-                </div>    
+                </div>
             </div>
             <main class="min-vh-100 p-3">
                 @yield('content')
@@ -436,16 +439,16 @@
     @yield('script')
 
     <script>
-
         let = sideVisible = true;
-        function testbutton(){
+
+        function testbutton() {
             const side = document.getElementById("hide-side");
             if (sideVisible) {
-            side.style.display = "none";
-            sideVisible = false;
+                side.style.display = "none";
+                sideVisible = false;
             } else {
-            side.style.display = "block";
-            sideVisible = true;
+                side.style.display = "block";
+                sideVisible = true;
             }
         }
 

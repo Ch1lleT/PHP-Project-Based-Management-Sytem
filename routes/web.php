@@ -26,12 +26,12 @@ use App\Models\Project;
 */
 
 
-Route::post('/login', [LoginController::class,'authenticate'])->name('login.post');
-Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::group(['middleware' => ['web']],function(){
-    
+Route::group(['middleware' => ['web']], function () {
+
 
     Route::get('/', function () {
         return view('login/login');
@@ -41,7 +41,6 @@ Route::group(['middleware' => ['web']],function(){
         return view('staff/fiscal_years');
         // return view('staff/fiscal_years',['user'=>$user]);
     })->middleware('auth')->name("fiscal_years");
-
 });
 
 // Route::middleware('guest')->
@@ -80,6 +79,10 @@ Route::get('/report_support', function () {
 Route::get('/report_technic', function () {
     return view('okr_kpi/report/report_technic');
 })->name("report_technic");
+
+Route::get('/dashboard_dept', function () {
+    return view('okr_kpi/report/dashboard_dept');
+})->name("dashboard_dept");
 
 Route::get('/efficiency', function () {
     return view('executive/efficiency');
@@ -151,8 +154,7 @@ Route::get('/stg_overview', function () {
 
 Route::get('/stg', [STGController::class, 'get']);
 
-Route::get('/test',function()
-{
+Route::get('/test', function () {
     return UUID::uuid(Project::class);
 });
 
