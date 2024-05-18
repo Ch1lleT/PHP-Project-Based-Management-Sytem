@@ -59,8 +59,8 @@
         }
 
         /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        ::-webkit-scrollbar-track:nth-child(1) {
+            background: #830000;
 
         }
 
@@ -167,7 +167,7 @@
 <body>
 
     <div class="wrapper overflow-y-auto">
-        <aside id="sidebar" class="expand sticky-top" style="height: 100vh;">
+        <aside id="sidebar" class="expand sticky-top overflow-y-scroll" style="height: 100vh;">
             <div class="p-3">
                 <div class="d-flex mb-4">
 
