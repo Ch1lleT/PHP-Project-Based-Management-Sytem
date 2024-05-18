@@ -4,7 +4,7 @@ namespace App\Utilities;
 
 use Illuminate\Support\Facades\Storage;
 
-// LogObject Version 0.2
+// LogObject Version 1.0
 use Illuminate\Support\Carbon;
 class LogObject{
     private string $time;

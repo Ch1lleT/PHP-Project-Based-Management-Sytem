@@ -5,17 +5,20 @@ namespace App\Utilities;
 use App\Utilities\LogObject;
 use App\Utilities\LogBuilder;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
-// Logger Version 0.2
+// Logger Version 1.0
 
 class Logger implements LogBuilder { 
 
     protected LogObject $LogObject;
     protected $builded_Log = "";
 
-    protected $type_allow = ["Info","Warning"];
     protected $allow_created_edited = ["Strategy","Target","Plan","Project","Activity","User"];
+    protected $changeName_allow =["Strategy","Target","Plan","Project" ,"Activity"];
+    protected $changeStrategy_allow = ["Plan","Target"];
+    protected $desc_allow = ["Strategy","Plan","Project","Activity"];
 
     public function __construct(){
         $this->LogObject = new LogObject(); 
@@ -236,11 +239,169 @@ class Logger implements LogBuilder {
 
         return $this;
     }
-    
-    public function edited(): LogBuilder{
+
+    public function fiscalYear(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on,["Strategy"]))
+        {
+            $msg = $this->LogObject->message ;
+            $this->LogObject->message = $msg."has change fiscal yeaer from \"$old\" to \"$new\""; 
+        }else{
+            throw new \Exception("Created must use withs : ".implode(',',$this->allow_created_edited));
+        }
+
+        return $this;
+    }
+
+    public function changeName(string $old_name, string $new_name) : LogBuilder{
+        if(in_array($this->LogObject->on,$this->changeName_allow))
+        {
+            $this->LogObject->message .= "rename from \"$old_name\" to \"$new_name\"";
+        }else{
+            throw new \Exception("changeName only allow to use with ".implode(',',$this->changeName_allow));
+        }
+        return $this;
+    }
+
+    public function desc(string $old, string $new): LogBuilder{
+        if(in_array($this->LogObject->on,$this->desc_allow))
+        {
+            $this->LogObject->message .= "has change description to from \"$old\" to \"$new\" ";
+        }else{
+            throw new \Exception("desc only allow to use with ".implode(',',$this->desc_allow));
+        }     
+
+        return $this;
+    }
+
+    public function changeStrategy(string $old, string $new) : LogBuilder{
+        
+        if(in_array($this->LogObject->on,$this->changeStrategy_allow))
+        {
+            $this->LogObject->message .= "has change strategy from \"$old\" to \"$new\" ";
+        }else{
+            throw new \Exception("changeStrategy only allow to use with ".implode(',',$this->changeStrategy_allow));
+        }
+        
+        return $this;
+    }
+
+    public function changeProject(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on,["Activity"]))
+        {
+            $this->LogObject->message .= "has change project from \"$old\" to \"$new\" ";
+        }else{
+            throw new \Exception("changeProject only allow to use with Activity only");
+        }
+
+        return $this;
+    }
+
+    public function ref(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on,["Activity"]))
+        {
+            $this->LogObject->message .= "has change act_ref from \"$old\" to \"$new\" ";
+        }else{
+            throw new \Exception("ref only allow to use with Activity only");
+        }
+        return $this;
+    }
+
+    public function updateProgress() : LogBuilder{
+        if(in_array($this->LogObject->on,["Activity"]))
+        {
+            $this->LogObject->message .= "has updated";
+        }else{
+            throw new \Exception("updateProgress only allow to use with Activity only");
+        }
+        return $this;
+    }
+
+    public function changePlan(string $old_plan, string $new_plan) : LogBuilder{
+        if(in_array($this->LogObject->on,["Project"]))
+        {
+            $this->LogObject->message .= "has change project from \"$old_plan\" to \"$new_plan\" ";
+        }else{
+            throw new \Exception("changePlan only allow to use with Project only");
+        }
+
+        return $this;
+    }
+
+    public function executive(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on , ["Project"])){
+            $this->LogObject->message .= "has change executive from \"$old\" to \"$new\"";
+        }else{
+            throw new \Exception("executive only allow to use with Project only");
+        }
+        return $this;        
+    }
+
+    public function supervisor(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on , ["Project"])){
+            $this->LogObject->message .= "has change supervisor from \"$old\" to \"$new\"";
+        }else{
+            throw new \Exception("supervisor only allow to use with Project only");
+        }
+        return $this;
+    }
+
+    public function advisor(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on , ["Project"])){
+            $this->LogObject->message .= "has change advisor from \"$old\" to \"$new\"";
+        }else{
+            throw new \Exception("advisor only allow to use with Project only");
+
+        }
+        return $this;
+    }
+
+    public function projectHead(string $old , string $new) : LogBuilder{
+        if(in_array($this->LogObject->on , ["Project"])){
+            $this->LogObject->message .= "has change projectHead from \"$old\" to \"$new\"";
+        }else{
+            throw new \Exception("projectHead only allow to use with Project only");
+        }
         return $this;
     }
     
+
+    public function budgetSource(string $old , string $new) : LogBuilder{
+        throw new \Exception("budgetSource not implement yet");
+        return $this;
+    }
+
+    public function budgetType(string $old , string $new) : LogBuilder{
+        throw new \Exception("budgetType not implement yet");
+        return $this;
+    }
+    
+    
+    public function type(string $oldname, string $newname) : LogBuilder{
+        throw new \Exception("type not implement yet");
+        return $this;
+    }
+    
+
+    public function changePassword() : LogBuilder{
+        if(in_array($this->LogObject->on , ["User"])){
+            $this->LogObject->message .= "have change password";
+        }else{
+            throw new \Exception("changePassword only allow to use with User only");
+        }
+        return $this;
+    }
+
+    public function updateProfile() : LogBuilder{
+        if(in_array($this->LogObject->on , ["User"])){
+            $this->LogObject->message .= "have update user's profile";
+        }else{
+            throw new \Exception("updateProfile only allow to use with User only");
+        }
+        return $this;
+    }
+
+
+
     private function build(){
         $this->builded_Log = $this->LogObject->__toString();
     }
