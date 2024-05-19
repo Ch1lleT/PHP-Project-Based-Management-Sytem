@@ -4,9 +4,9 @@
 @section('style')
     <style>
         /* *{
-                                                                                                                                                                                                                                                                                                                            padding: 0;
-                                                                                                                                                                                                                                                                                                                            margin: 0;
-                                                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                        margin: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                    } */
         .my-table tbody tr td {
             background-color: #F8F9FA;
             border: none;
@@ -176,7 +176,7 @@
     </div>
     <div class="mx-2">
         <div class="row row-cols-auto gap-2 my-2 ">
-            <div class="col-12 col-lg-5 pb-2 rounded-3"
+            <div class="col-12 col-lg-6 pb-2 rounded-3"
                 style="
                     margin: 5px;
                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
@@ -293,7 +293,7 @@
                                 <th style="width: 40px;">
                                     ลำดับ
                                 </th>
-                                <th style="width:70%">
+                                <th style="width: 70%">
                                     ชื่อเป้าหมาย
                                 </th>
                                 <th style="width: 30px;">
