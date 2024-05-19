@@ -3,12 +3,7 @@
 @section('title', 'ปีงบประมาณ')
 @section('style')
     <style>
-        /* *{
-                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                        margin: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                    } */
         .my-table tbody tr td {
-            background-color: #F8F9FA;
             border: none;
         }
 
@@ -575,17 +570,6 @@
                         <tr>
                             <td class="fs-5 px-0">
                                 <div style="width: 120px">โครงการ : @if (request()->has('plan_id'))
-                                        <a href="#" class="" data-bs-toggle="modal"
-                                            data-bs-target="#add_project">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
-                                                viewBox="0 0 48 48">
-                                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                                <g fill="#fff">
-                                                    <path d="M21 14h6v20h-6z"></path>
-                                                    <path d="M14 21h20v6H14z"></path>
-                                                </g>
-                                            </svg>
-                                        </a>
                                         <a href="{{ route('addproject') }}" class="">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
                                                 viewBox="0 0 48 48">
