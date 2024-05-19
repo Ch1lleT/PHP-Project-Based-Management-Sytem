@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Storage;
 
 // LogObject Version 1.0
 use Illuminate\Support\Carbon;
-class LogObject{
+use JsonSerializable;
+
+class LogObject implements JsonSerializable{
     private string $time;
     public $type ;
     public string $by ;
@@ -56,4 +58,17 @@ class LogObject{
 
         return $log;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'time' => $this->time,
+            'type' => $this->type,
+            'by' => $this->by,
+            'on' => $this->on,
+            'message' => $this->message,
+        ];
+    }
+
+
 }

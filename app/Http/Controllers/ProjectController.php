@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FiscalYear;
 use App\Models\Plan;
 use App\Models\Project;
+use App\Models\Strategy;
+use App\Models\Target;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -96,12 +99,24 @@ class ProjectController extends Controller
 
     public static function getAtAll(Request $request)
     {
-        $plan_id = $request->plan_id;
+        $year = $request->year;
         $stg_id = $request->stg_id;
+        $target_id = $request->target_id;
+        $plan_id = $request->plan_id;
+
         if (isset($plan_id)) {
             $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active', true)->get();
-        } 
-        else if (isset($stg_id)) {
+        }else if (isset($target_id)) {
+            try {
+                //code...
+                $Plan = Plan::where('target_id', $target_id)->where('is_active', true)->first();
+                $PlanId = $Plan->plan_id;
+                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
+                // dd($ProjectAtAll);
+            } catch (\Throwable $th) {
+                return response()->json(['ProjectAtAll' => null]);
+            }
+        }else if (isset($stg_id)) {
             try {
                 //code...
                 $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
@@ -110,7 +125,21 @@ class ProjectController extends Controller
             } catch (\Throwable $th) {
                 return response()->json(['ProjectAtAll' => null]);
             }
-        } else {
+        }else if (isset($year)) {
+            try {
+                //code...
+                $Fiscal_year = FiscalYear::where('year', $year)->first();
+                $year_code = $Fiscal_year->id;
+                $STG = Strategy::where('year_code', $year_code)->first();
+                $stg_id = $STG->stg_id;
+                $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
+                $PlanId = $Plan->plan_id;
+                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
+                // dd($ProjectAtAll);
+            } catch (\Throwable $th) {
+                return response()->json(['ProjectAtAll' => null]);
+            }
+        }else {
             return response()->json(['ProjectAtAll' => null]);
             // $Plan = Plan::first();
             // $PlanId = $Plan->plan_id;
