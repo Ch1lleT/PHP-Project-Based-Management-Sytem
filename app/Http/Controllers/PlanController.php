@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FiscalYear;
 use App\Models\Plan;
+use App\Models\Strategy;
 use App\Models\Target;
 use App\Utilities\UUID;
 use Illuminate\Http\Request;
@@ -91,23 +93,39 @@ class PlanController extends Controller
     {
         $target_id = $request->target_id;
         $stg_id = $request->stg_id;
+        $year = $request->year;
+
         if (isset($target_id)) {
             $PlanAtAll = Plan::where('target_id', $target_id)
-                             ->where('is_active',true)
-                             ->get();
+            ->where('is_active',true)
+            ->get();
         } else if (isset($stg_id)) {
             try {
                 //code...
-                $TG = Target::where('stg_id', $stg_id,'is_active',true)->first();
+                $TG = Target::where('stg_id', $stg_id)->where('is_active',true)->first();
                 $target_id = $TG->target_id;
-                $PlanAtAll = Plan::where('target_id', $target_id)
-                                 ->where('is_active'.true)
-                                 ->get();
+                $PlanAtAll = Plan::where('target_id', $target_id)->where('is_active', true)->get();
+                // dd($PlanAtAll);
             } catch (\Throwable $th) {
                 //throw $th;
                 return response()->json(['PlanAtAll' => null]);
             }
-        } else {
+        } else if (isset($year)) {
+            try {
+                //code...
+                $fiscalYear = FiscalYear::where('year' , $year)->first();
+                $year_code = $fiscalYear->id;
+                $STG = Strategy::where('year_code' , $year_code)->where('is_active' , true)->first();
+                // dd($STG);
+                $stg_id = $STG->stg_id;
+                $TG = Target::where('stg_id', $stg_id)->where('is_active',true)->first();
+                $target_id = $TG->target_id;
+                $PlanAtAll = Plan::where('target_id', $target_id)->where('is_active', true)->get();
+            } catch (\Throwable $th) {
+                //throw $th;
+                return response()->json(['PlanAtAll' => null]);
+            }
+        }else {
             $TG = Target::where('is_active',true)->first();
             $target_id = $TG->target_id;
             $PlanAtAll = Plan::where('target_id', $target_id)
