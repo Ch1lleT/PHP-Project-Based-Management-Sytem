@@ -7,24 +7,28 @@
 @endsection
 @section('style')
     <style>
-        body,
-        html {
-            background: #181E24;
-            padding-top: 10px;
-            margin: 0;
-        }
+        /* body,
+                html {
+                    background: #181E24;
+                    padding-top: 10px;
+                    margin: 0;
+                } */
 
-        .wrapper {
-            width: 99%;
-            display: block;
-            overflow: hidden;
-            margin: 0 auto;
-            /* padding: 60px 50px; */
-            border-radius: 4px;
-        }
+        /* .wrapper {
+                    width: 99%;
+                    display: block;
+                    overflow: hidden;
+                    margin: 0 auto;
+                    border-radius: 4px;
+                } */
 
-        canvas {
+        #myChart4 {
             height: 400px;
+
+        }
+
+        .chart-airea {
+            padding: 1.5rem;
         }
 
         h1 {
@@ -44,18 +48,10 @@
             <span>ใช้สำหรับแสดงภาพ Dept Dashboard</span>
         </div>
     </div>
-
-    <div class="mx-2">
-        <div class="row row-cols-auto gap-2 my-2">
-            <div class="col-12 col-lg-12 pb-2 rounded-3"
-                style="
-                    margin: 5px;
-                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
-                                rgba(0, 0, 0, 0.24) 0px 1px 2px;">
-                <div class="wrapper">
-                    <canvas id="myChart4"></canvas>
-                </div>
-            </div>
+    <div class="mx-2 rounded-3"
+        style="margin: 5px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+        <div class="chart-airea">
+            <canvas id="myChart4"></canvas>
         </div>
     </div>
 
