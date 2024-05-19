@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\STGController;
@@ -45,6 +46,9 @@ Route::get('strategy/{stg_id}', [STGController::class, 'get']);
 Route::get('target/{target_id}', [TargetController::class, 'get']);
 Route::get('plan/{plan_id}', [PlanController::class, 'get']);
 Route::get('project/{project_id}', [ProjectController::class, 'get']);
+
+Route::get('log', [LogController::class, 'getAllLog']);
+Route::get('log/{date}', [LogController::class, 'getLog']);
 
 Route::group(['middleware' => ['web']],function(){
     Route::prefix('edit_profile')->group(function(){
