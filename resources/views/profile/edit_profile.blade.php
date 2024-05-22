@@ -120,8 +120,8 @@
                 @else
                     src="{{ asset(auth()->user()->image) }}"
                 @endif
-                
                 >
+                {{ asset(auth()->user()->image) }}
             </div>
         </div>
     </div>

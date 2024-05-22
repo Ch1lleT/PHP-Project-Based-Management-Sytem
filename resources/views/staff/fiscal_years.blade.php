@@ -186,7 +186,7 @@
                                 {{ isset($Target->target_name) ? $Target->target_name : '' }}
                             </td>
                             <td class="px-0 pt-2">
-                                @if (request()->has('stg_id') || request()->get('stg_id') === '#')
+                                @if (request()->has('stg_id'))
                                     <a href="#" class="d-flex align-items-center text-decoration-none text-black"
                                         data-bs-toggle="modal" data-bs-target="#add_target">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
@@ -347,14 +347,13 @@
                             <td class="fs-5 px-0">
                                 <div style="width: 90px">แผนการ :</div>
                             </td>
-                            @if (request()->has('plan_id') && request()->has('plan_id') != '#')
+                            @if (request()->has('plan_id'))
                                 <td class="fs-5">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
                             @else
                                 <td class="fs-5">กรุณาเลือกแผน</td>
                             @endif
                             <td class="px-0 pt-2">
-                                @if (request()->has('stg_id') && request()->has('stg_id') != '#' and
-                                        request()->has('target_id') && request()->has('target_id') != '#')
+                                @if (request()->has('stg_id') && request()->has('target_id'))
                                     <a href="#" class="d-flex align-items-center text-decoration-none text-black"
                                         data-bs-toggle="modal" data-bs-target="#add_plan">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
@@ -506,10 +505,10 @@
                                 <th style="width: 40px;">
                                     ลำดับ
                                 </th>
-                                <th style="width:58%">
+                                <th style="width:56%">
                                     ชื่อแผนการ
                                 </th>
-                                <th style="width:17%">
+                                <th style="width:20%">
                                     ประเภทแผนการ
                                 </th>
                                 <th style="width: 30px;">
@@ -570,7 +569,7 @@
                     <tbody>
                         <tr>
                             <td class="fs-5 px-0">
-                                <div style="width: 120px">โครงการ : @if (request()->has('plan_id') && request()->has('plan_id') != '#')
+                                <div style="width: 120px">โครงการ : @if (request()->has('plan_id'))
                                         <a href="{{ route('addproject') }}" class="">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
                                                 viewBox="0 0 48 48">
