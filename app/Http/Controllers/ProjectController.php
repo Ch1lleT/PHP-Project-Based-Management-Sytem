@@ -103,51 +103,30 @@ class ProjectController extends Controller
         $stg_id = $request->stg_id;
         $target_id = $request->target_id;
         $plan_id = $request->plan_id;
-
-        if (isset($plan_id)) {
-            $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active', true)->get();
-        }else if (isset($target_id)) {
-            try {
-                //code...
-                $Plan = Plan::where('target_id', $target_id)->where('is_active', true)->first();
-                $PlanId = $Plan->plan_id;
-                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
-                // dd($ProjectAtAll);
-            } catch (\Throwable $th) {
-                return response()->json(['ProjectAtAll' => null]);
+    
+        $ProjectAtAll = collect();
+    
+        try {
+            if ($plan_id) {
+                $ProjectAtAll = Project::where('plan_id', $plan_id)->where('is_active', true)->get();
+            } else if ($target_id) {
+                $Plan = Plan::where('target_id', $target_id)->where('is_active', true)->firstOrFail();
+                $ProjectAtAll = Project::where('plan_id', $Plan->plan_id)->where('is_active', true)->get();
+            } else if ($stg_id) {
+                $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->firstOrFail();
+                $ProjectAtAll = Project::where('plan_id', $Plan->plan_id)->where('is_active', true)->get();
+            } else if ($year) {
+                $Fiscal_year = FiscalYear::where('year', $year)->firstOrFail();
+                $STG = Strategy::where('year_code', $Fiscal_year->id)->firstOrFail();
+                $Plan = Plan::where('stg_id', $STG->stg_id)->where('is_active', true)->firstOrFail();
+                $ProjectAtAll = Project::where('plan_id', $Plan->plan_id)->where('is_active', true)->get();
             }
-        }else if (isset($stg_id)) {
-            try {
-                //code...
-                $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
-                $PlanId = $Plan->plan_id;
-                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
-            } catch (\Throwable $th) {
-                return response()->json(['ProjectAtAll' => null]);
-            }
-        }else if (isset($year)) {
-            try {
-                //code...
-                $Fiscal_year = FiscalYear::where('year', $year)->first();
-                $year_code = $Fiscal_year->id;
-                $STG = Strategy::where('year_code', $year_code)->first();
-                $stg_id = $STG->stg_id;
-                $Plan = Plan::where('stg_id', $stg_id)->where('is_active', true)->first();
-                $PlanId = $Plan->plan_id;
-                $ProjectAtAll = Project::where('plan_id', $PlanId)->where('is_active', true)->get();
-                // dd($ProjectAtAll);
-            } catch (\Throwable $th) {
-                return response()->json(['ProjectAtAll' => null]);
-            }
-        }else {
+        } catch (\Throwable $th) {
             return response()->json(['ProjectAtAll' => null]);
-            // $Plan = Plan::first();
-            // $PlanId = $Plan->plan_id;
-            // $ProjectAtAll = Project::where('plan_id', $PlanId)->get();
         }
-
+    
         return response()->json(['ProjectAtAll' => $ProjectAtAll]);
-    }
+    }    
 
     public static function Update(Request $request)
     {

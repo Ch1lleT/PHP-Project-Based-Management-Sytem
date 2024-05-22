@@ -1073,7 +1073,7 @@
 
             if (!year_code) {
                 year_code = new Date().getFullYear();
-                console.log(year_code);
+                console.log("year_code : ", year_code);
             }
 
 
@@ -1100,9 +1100,27 @@
 
             fetch(APP_URL + "/api/Strategy/add", requestOptions)
                 .then((response) => response.text())
-                .then((result) => console.log(result))
+                .then((result) => {
+                    console.log(result)
+                    Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your work has been saved",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        .then(() => {
+                            window.location.reload();
+                        });
+                })
                 .catch((error) => console.error(error));
         };
+
+        const checkURL = (type_params) => {
+            var url = new URL(window.location.href);
+            url.searchParams.set(type_params, "");
+            window.location.href = url.href;
+        }
 
         const checkDel = (type, id) => {
             let data = {
@@ -1144,7 +1162,26 @@
                                 })
                                 .then(() => {
                                     console.log(data);
-                                    window.location.reload();
+                                    // window.location.reload();
+                                    let type_params = ""
+                                    switch (type) {
+                                        case 'Strategy':
+                                            type_params = 'stg_id'
+                                            checkURL(type_params)
+                                            break;
+                                        case 'target':
+                                            type_params = 'target_id'
+                                            checkURL(type_params)
+                                            break;
+                                        case 'plan':
+                                            type_params = 'plan_id'
+                                            checkURL(type_params)
+                                            break;
+                                        default:
+                                            window.location.reload();
+                                            break;
+
+                                    }
                                 })
                         })
                         .catch(error => {

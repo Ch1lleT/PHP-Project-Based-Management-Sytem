@@ -30,7 +30,7 @@ Route::put('user/active', [UserController::class, 'Active']);
 
 Route::put('user/update/{user_id}', [UserController::class, 'update']);
 
-Route::post('Strategy/add', [STGController::class, 'add']);
+Route::post('Strategy/add', [STGController::class, 'Add']);
 
 Route::put('Strategy/active', [STGController::class, 'Active']);
 Route::put('target/active', [TargetController::class, 'Active']);

@@ -21,7 +21,7 @@ class STGController extends Controller
             'year' => 'required',
             // 'desc' => 'required'
         ]);
-
+        // dd($request);
         $fiscalYear = FiscalYear::where('year' , $request->input('year'))->first();
         $year_code = $fiscalYear->id;
 
