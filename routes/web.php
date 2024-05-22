@@ -129,9 +129,9 @@ Route::get('/org', function () {
     return view('admin/org');
 })->name('org');
 
-Route::get('/org_add', function () {
-    return view('admin/org_add');
-})->name('org_add');
+Route::get('/org_manange', function () {
+    return view('admin/org_manange');
+})->name('org_manange');
 
 Route::get('/level', function () {
     return view('admin/level');

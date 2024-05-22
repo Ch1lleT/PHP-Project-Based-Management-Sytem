@@ -13,8 +13,12 @@
 
 @section('content')
     <div class=" text-end my-4">
-        <button class="btn border border-danger text-danger">กลับ / Back</button>
+        <a href="{{route('org')}}" class="text-decoration-none">
+            <button class="btn border border-danger text-danger">กลับ / Back</button>
+        </a>
         <button class="btn btn-primary">บันทึก</button>
+        {{-- Delete org btn will show if user click edit only --}}
+        <button class="btn btn-danger">ลบ</button>
     </div>
 
     <div class="p-3 rounded-3"style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,  rgba(0, 0, 0, 0.24) 0px 1px 2px;">
@@ -69,7 +73,6 @@
                 <button class="btn btn-danger">ลบ</button>
             </div>
         </div>
-
     </div>
 
 @endsection
