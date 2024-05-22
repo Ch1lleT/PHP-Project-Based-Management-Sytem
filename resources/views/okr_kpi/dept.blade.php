@@ -27,6 +27,34 @@
         tr td a {
             color: black;
         }
+
+        .dt-buttons button:nth-child(-n+5) {
+            background-color: var(--bs-primary);
+            color: white;
+            border:none;
+            border-radius: 5px;
+        }
+        .dt-buttons button:hover {
+            background-color: var(--bs-primary) !important;
+            color: white !important;
+            border:none !important;
+            border-radius: 5px !important;
+        }
+        #DataTables_Table_0_paginate .previous, 
+        #DataTables_Table_0_paginate .next{
+            /* color: var(--bs-primary) !important; */
+            border: 1px solid rgb(189, 189, 189);
+            margin: 0;
+            border-radius: 5px;
+        }
+        #DataTables_Table_0_paginate span a{
+            background-color: var(--bs-primary);
+            color: white !important;
+            border:none;
+            border-radius: 5px;
+            padding: 8px 10px;
+            margin:0;
+        }
     </style>
 @endsection
 @section('content')
@@ -99,6 +127,7 @@
             });
         });
     </script>
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
