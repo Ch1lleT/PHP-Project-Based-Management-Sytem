@@ -392,10 +392,12 @@
                                                     id="test">Summary report support✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
-                                            <li><a href="{{ route('report_technic') }}" class="rounded">Summary report technic✅</a></li>
+                                            <li><a href="{{ route('report_technic') }}" class="rounded">Summary
+                                                    report technic✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin']))
-                                            <li><a href="{{ route('dashboard_dept') }}" class="rounded">Dashboard Dept✅</a></li>
+                                            <li><a href="{{ route('dashboard_dept') }}" class="rounded">Dashboard
+                                                    Dept✅</a></li>
                                         @endif
 
                                     </ul>

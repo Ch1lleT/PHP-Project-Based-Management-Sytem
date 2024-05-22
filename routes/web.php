@@ -129,6 +129,10 @@ Route::get('/org', function () {
     return view('admin/org');
 })->name('org');
 
+Route::get('/org_management', function () {
+    return view('admin/org_management');
+})->name('org_management');
+
 Route::get('/level', function () {
     return view('admin/level');
 })->name("level");
