@@ -52,25 +52,27 @@
                 แก้ไขข้อมูลส่วนตัว
             </span>
             <div class="overflow-x-hidden ">
-                <form action="{{route('edit_profile.profile')}}" method="POST" enctype="multipart/form-data" >
+                <form action="{{ route('edit_profile.profile') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input style="display:none" name="id" value="{{auth()->user()->user_id}}">
+                    <input style="display:none" name="id" value="{{ auth()->user()->user_id }}">
                     <div class="my-3 row form">
                         <label for="image" class="col-sm-2 col-form-label p-0 pt-2">รูปโปรไฟล์</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="image" name="image" >
+                            <input type="file" class="form-control" id="image" name="image">
                         </div>
                     </div>
                     <div class="my-3 row form">
                         <label for="first_name" class="col-sm-2 col-form-label p-0 pt-2">ชื่อ</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ auth()->user()->first_name }}">
+                            <input type="text" class="form-control" id="first_name" name="first_name"
+                                value="{{ auth()->user()->first_name }}">
                         </div>
                     </div>
                     <div class="mb-3 row form">
                         <label for="last_name" class="col-sm-2 col-form-label p-0 pt-2 ">นามสกุล</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ auth()->user()->last_name }}">
+                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                value="{{ auth()->user()->last_name }}">
                         </div>
                     </div>
                     {{-- <div class="mb-3 row form">
@@ -82,29 +84,29 @@
                     <div class="text-end">
                         <button class="btn btn-primary text-end" type="submit">Save</button>
                     </div>
-                
+
                 </form>
                 <hr>
                 <span class="fw-bold">
                     เปลี่ยนรหัสผ่าน
                 </span>
-                <form action="{{route('edit_profile.change_password')}}" method="POST">
+                <form action="{{ route('edit_profile.change_password') }}" method="POST">
                     @csrf
                     <div class="my-3 row form">
                         <label for="old_pass" class="col-sm-2 col-form-label p-0 pt-2 ">รหัสเก่า</label>
                         <div class="col-sm-10">
-                        <input type="password" id="password_old" class="form-control" id="old_pass">
+                            <input type="password" id="password_old" class="form-control" id="old_pass">
+                        </div>
                     </div>
-                    </div>
-                        <div class="mb-3 row form">
-                            <label for="new_pass" class="col-sm-2 col-form-label p-0 pt-2 ">รหัสใหม่</label>
-                            <div class="col-sm-10">
-                                <input type="password" name="password" id="password_new" class="form-control" />
-                                <div class="mt-1">
-                                    <input type="checkbox" class="me-2" onclick="show()">Show Password
-                                </div>
+                    <div class="mb-3 row form">
+                        <label for="new_pass" class="col-sm-2 col-form-label p-0 pt-2 ">รหัสใหม่</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password" id="password_new" class="form-control" />
+                            <div class="mt-1">
+                                <input type="checkbox" class="me-2" onclick="show()">Show Password
                             </div>
                         </div>
+                    </div>
                     <div class="text-end">
                         <button class="btn btn-primary text-end" type="submit">Save</button>
                     </div>
@@ -114,14 +116,11 @@
 
         <div class="col-12 col-lg-6 ">
             <div class="img h-100 d-flex align-items-center justify-content-center">
-                <img id="preview-img" class="rounded-circle object-fit-cover" 
-                @if (auth()->user()->image == null)
-                    src="{{ asset('image/defult-profile/profile.svg') }}"
+                <img id="preview-img" class="rounded-circle object-fit-cover"
+                    @if (auth()->user()->image == null) src="{{ asset('image/defult-profile/profile.svg') }}"
                 @else
-                    src="{{ asset(auth()->user()->image) }}"
-                @endif
-                >
-                {{ asset(auth()->user()->image) }}
+                    src="{{ asset(auth()->user()->image) }}" @endif>
+
             </div>
         </div>
     </div>
