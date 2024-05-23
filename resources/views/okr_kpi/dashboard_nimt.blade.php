@@ -6,240 +6,64 @@
     </div>
 @endsection
 @section('style')
-    <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
     <style>
         .strategy-box {
             box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
                 rgba(0, 0, 0, 0.24) 0px 1px 5px;
         }
 
-
-
         tr td a {
             color: black;
         }
 
-        .dt-buttons button:nth-child(-n+5) {
-            background-color: var(--bs-primary);
-            color: white;
-            border: none;
+        .chart-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+        }
+
+        .chart-container .card-chart {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             border-radius: 5px;
+            padding: 1rem;
         }
 
-        .dt-buttons button:hover {
-            background-color: var(--bs-primary) !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 5px !important;
-        }
-
-        #DataTables_Table_0_paginate .previous,
-        #DataTables_Table_0_paginate .next {
-            /* color: var(--bs-primary) !important; */
-            border: 1px solid rgb(189, 189, 189);
-            margin: 0;
-            border-radius: 5px;
-        }
-
-        #DataTables_Table_0_paginate span a {
-            background-color: var(--bs-primary);
-            color: white !important;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 10px;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        .meter {
-            position: relative;
-            width: 600px;
-            height: 50px;
-            display: flex;
-            margin: 0 auto;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .segment {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .below-average {
-            background-color: #d9534f;
-        }
-
-        .average {
-            background-color: #f0ad4e;
-        }
-
-        .high {
-            background-color: #5cb85c;
-        }
-
-        .indicator {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: black;
-            margin-left: -1px;
-        }
-
-        .labels {
-            display: flex;
-            justify-content: space-between;
-            width: 600px;
-            margin: 10px auto 0;
+        @media only screen and (max-width:700px) {
+            .chart-container {
+                grid-template-columns: auto;
+            }
         }
     </style>
 @endsection
 
 @section('content')
-    <div class="row mb-3">
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
+    <div class="chart-container">
+        <div class="card-chart text-center">
+            <label for="chart_div1">STG 1</label>
+            <div id="chart_div1" class="d-flex justify-content-center"></div>
         </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
+        <div class="card-chart text-center">
+            <label for="chart_div2">STG 2</label>
+            <div id="chart_div2" class="d-flex justify-content-center"></div>
         </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
+        <div class="card-chart text-center">
+            <label for="chart_div3">STG 3</label>
+            <div id="chart_div3" class="d-flex justify-content-center"></div>
         </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-3 mx-0">
-            <div class="strategy-box rounded-3 p-3">
-                <p>ยุทธศาสตร์ที่ 2 : ยกระดับความสามารถทางการวัดเพื่อคุณภาพชีวิตและการพัฒนาที่ยั่งยืน</p>
-                <div class="meter">
-                    <div class="segment below-average">Below Average</div>
-                    <div class="segment average">Average</div>
-                    <div class="segment high">High</div>
-                    <div class="indicator" style="left: 50%;">5psi</div>
-                </div>
-                <div class="labels">
-                    <span>0psi</span>
-                    <span>2psi</span>
-                    <span>4psi</span>
-                    <span>6psi</span>
-                    <span>8psi</span>
-                    <span>10psi</span>
-                </div>
-            </div>
-        </div>
-
     </div>
-    {{-- <div class="p-3">
-        <h4>แสดงข้อมูล : ชื่อหน่วยงาน</h4>
-        
-
-    </div> --}}
-    <div class="overflow-x-auto strategy-box p-3 rounded-3">
+    <div class="overflow-x-auto strategy-box p-3 mt-3 rounded-3">
         <P class="fs-4 ">OKR & KPI 2566</P>
-        <table class="table display table-striped" style="width:100%">
+        <table class="table display table-striped" zle="width:100%">
             <thead>
                 <tr>
-                    <th scope="col">STG</th>
-                    <th scope="col">No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Target(KR)</th>
-                    <th scope="col">Actual(KR)</th>
-                    <th scope="col">Target(KPI)</th>
-                    <th scope="col">Actual(KPI)</th>
+                    <th>STG</th>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Target(KR)</th>
+                    <th>Actual(KR)</th>
+                    <th>Target(KPI)</th>
+                    <th>Actual(KPI)</th>
                 </tr>
             </thead>
             <tbody>
@@ -253,56 +77,87 @@
                     <td>0</td>
                     <td>0</td>
                 </tr>
-                <tr>
-                    <th scope="row">stg 2</th>
-                    <td>kpi 1.0</td>
-                    <td><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolorum, quam
-                            placeat eligendi dicta quis possimus enim quia perferendis ipsa!</a></td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th scope="row">stg 3</th>
-                    <td>kpi 1.0</td>
-                    <td><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
-                            consequatur est excepturi nihil? Veniam hic, necessitatibus consequuntur officia facere
-                            possimus, consequatur neque repellendus velit reprehenderit unde sapiente ipsam temporibus
-                            excepturi nam aliquam facilis nemo dicta ea culpa omnis nesciunt assumenda. Eius beatae
-                            aliquam voluptatibus, repellat ea nostrum blanditiis delectus vero?</a></td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
 
 
             </tbody>
         </table>
     </div>
 @endsection
+
 @section('script')
-    <script>
-        $(document).ready(function() {
-            $('table').DataTable({
-                pageLength: 5,
-                lengthMenu: [
-                    [3, 5, 10, 15, 20],
-                    [3, 5, 10, 15, 20]
-                ],
-                dom: 'Blfrtip',
-
-            });
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var table = $('table.display').DataTable({
+            pageLength: 5,
+            lengthMenu: [
+                [3, 5, 10, 15, 20],
+                [3, 5, 10, 15, 20]
+            ]
+        })
+        google.charts.load('current', {
+            'packages': ['gauge']
         });
-    </script>
+        google.charts.setOnLoadCallback(drawChart);
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    {{-- <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script> --}}
+        function drawChart() {
+            var data1 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 55] // Replace with your data value (0-100)
+            ]);
+
+            var options = {
+                width: 400,
+                height: 300,
+                redFrom: 0,
+                redTo: 40,
+                yellowFrom: 40,
+                yellowTo: 80,
+                greenFrom: 80,
+                greenTo: 100,
+                minorTicks: 10
+
+            };
+
+            var data2 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 70]
+            ]);
+            var options2 = {
+                width: 200,
+                height: 200,
+                redFrom: 0,
+                redTo: 70,
+                yellowFrom: 70,
+                yellowTo: 90,
+                greenFrom: 90,
+                greenTo: 100,
+                blueFrom: 100,
+                blueTo: 120,
+            };
+            var data3 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 70]
+            ]);
+            var options2 = {
+                width: 200,
+                height: 200,
+                redFrom: 0,
+                redTo: 70,
+                yellowFrom: 70,
+                yellowTo: 90,
+                greenFrom: 90,
+                greenTo: 100,
+                blueFrom: 100,
+                blueTo: 120,
+            };
+
+
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
+            chart.draw(data1, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
+            chart.draw(data2, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
+            chart.draw(data3, options);
+        }
+    </script>
 @endsection

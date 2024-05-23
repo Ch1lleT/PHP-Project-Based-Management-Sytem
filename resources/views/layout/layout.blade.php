@@ -172,7 +172,7 @@
                 <div class="d-flex mb-4">
 
                     <div class="sidebar-logo w-100 text-end">
-                        <a href="{{ route('fiscal_years') }}" style="color:white;">
+                        <a href="{{ route('fiscal_years') }}" style="color:white;text-decoration:none;">
                             <div class="d-flex align-items-center justify-content-end">
                                 <svg id="logo-hide" width="70" height="71" viewBox="0 0 50 71" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -295,17 +295,17 @@
                                 </a>
                                 <div class="collapse" id="executive-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                        @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                        {{-- @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                             <li><a href="{{ route('stg_overview') }}"
                                                     class="rounded">ภาพรวมยุทธศาสตร์</a>
                                             </li>
-                                        @endif
+                                        @endif --}}
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                             <li><a href="{{ route('efficiency') }}"
                                                     class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('group_page') }}" class="rounded">จับกลุ่ม✅</a>
+                                            <li><a href="{{ route('group_page') }}" class="rounded bg-danger">จับกลุ่ม (รอคุย)</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -354,7 +354,7 @@
                                 <div class="collapse" id="report-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT</a></li>
+                                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
                                             <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR
