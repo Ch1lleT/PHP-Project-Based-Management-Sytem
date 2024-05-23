@@ -50,7 +50,7 @@ class LogObject implements JsonSerializable{
         
         $log_string = preg_split("/\n/",$log_string);
         
-        $log->settime(str_replace(" : ","",$log_string[0]));
+        $log->settime(str_replace(" :","",$log_string[0]));
         $log->type = preg_split($pattern,$log_string[1],2)[1];
         $log->by = preg_split($pattern,$log_string[2],2)[1];
         $log->on = preg_split($pattern,$log_string[3],2)[1];

@@ -13,12 +13,12 @@ class LogController extends Controller
      * @return json_of_LogObject[]
      */
     public function getLog(string $date) {
-        return response()->json(Logger::ReadLog($date));
+        return response()->json(array_reverse(Logger::ReadLog($date)));
     }
 
     public function getAllLog() {
 
-        return response()->json(Logger::ReadLog());
+        return response()->json(array_reverse(Logger::ReadLog()));
     }
 
     
