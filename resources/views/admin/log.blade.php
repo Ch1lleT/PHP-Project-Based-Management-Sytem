@@ -14,28 +14,20 @@
             $.get("/api/log/"+date)
             .done((data) =>{
                 let table = $("#log-table").dataTable().api();
-                        table.clear();
-                        //mapping data from api to <tr> object
-                        $.each(data,function(index,item){
-                            var newRow = $('<tr></tr>');
-                            newRow.append('<td>' + (index + 1) + '</td>');                            
-                            newRow.append('<td>' + item.time + '</td>');                            
-                            newRow.append('<td>' + item.by + '</td>');
-                            (item.type == "Warning") ?  
-                                newRow.append('<td style="color:orange;font-weight:bold;">' + item.type + '</td>')
-                                :
-                                newRow.append('<td style="color:green;font-weight:bold;">' + item.type + '</td>');
+                table.clear();
+                //mapping data from api to <tr> object
+                $.each(data,function(index,item){
+                    table.row.add(map_to_row(index,item));
+                });
 
-                            newRow.append('<td>' + item.on + '</td>');
-                            newRow.append('<td>' + item.message + '</td>');
+                // redraw table
+                table.draw();
+                
 
-                            
-                            table.row.add(newRow);
-                        });
-
-                        // redraw table
-                        table.draw();
+                // let newUrl = "/log/" + date;
+                // history.pushState({},null,newUrl);
             });
+            
         }
     </script>
     
@@ -55,20 +47,7 @@
 
                         //mapping data from api to <tr> object
                         $.each(data,function(index,item){
-                            var newRow = $('<tr></tr>');
-                            newRow.append('<td>' + (index + 1) + '</td>');                            
-                            newRow.append('<td>' + item.time + '</td>');                            
-                            newRow.append('<td>' + item.by + '</td>');
-                            (item.type == "Warning") ?  
-                                newRow.append('<td style="color:orange;font-weight:bold;">' + item.type + '</td>')
-                                :
-                                newRow.append('<td style="color:green;font-weight:bold;">' + item.type + '</td>');
-
-                            newRow.append('<td>' + item.on + '</td>');
-                            newRow.append('<td>' + item.message + '</td>');
-
-                            
-                            table.row.add(newRow);
+                            table.row.add(map_to_row(index,item));
                         });
 
                         // redraw table
@@ -119,6 +98,22 @@
         })
     </script>
 
+    <script>
+        const map_to_row = (index,e) =>{
+            var newRow = $('<tr></tr>');
+            newRow.append('<td>' + (index + 1) + '</td>');                            
+            newRow.append('<td>' + e.time + '</td>');                            
+            newRow.append('<td>' + e.by + '</td>');
+            (e.type == "Warning") ?  
+                newRow.append('<td style="color:orange;font-weight:bold;">' + e.type + '</td>')
+                :
+                newRow.append('<td style="color:green;font-weight:bold;">' + e.type + '</td>');
 
-    
+            newRow.append('<td>' + e.on + '</td>');
+            newRow.append('<td>' + e.message + '</td>');
+            
+            return newRow;    
+        }
+
+    </script>
 @endsection
