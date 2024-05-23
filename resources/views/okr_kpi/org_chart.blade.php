@@ -27,8 +27,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="bg-danger" style="height: 100%;">
-        {{-- ... --}}
+    <div style="height: 100%;">
         <div id="orgchart"></div>
     </div>
     <script>

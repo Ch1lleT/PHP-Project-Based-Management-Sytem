@@ -9,7 +9,7 @@
 @section('style')
     <style>
         .bg tr th,.bg tr td{
-            background-color:#F8F9FA;
+            /* background-color:#F8F9FA; */
             border: #F8F9FA;
         }
     </style>
