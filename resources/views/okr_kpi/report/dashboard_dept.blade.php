@@ -16,10 +16,10 @@
             padding: 1.5rem;
         }
 
-        
+
         .chart-container {
-            display: grid;
-            grid-template-columns: auto auto;
+            display: flex;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
@@ -28,11 +28,18 @@
                 rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             border-radius: 5px;
             padding: 1rem;
+            flex: 1 1 calc(33.333% - 10px);
         }
 
-        @media only screen and (max-width:700px) {
-            .chart-container {
-                grid-template-columns: auto;
+        @media (max-width: 992px) {
+            .chart-container .card-chart {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .chart-container .card-chart {
+                flex: 1 1 100%;
             }
         }
     </style>
@@ -43,14 +50,14 @@
         <h2 class="mb-3">KR & KPI</h2>
         <div class="org-group gap-2 d-flex mb-3">
             <button class="btn btn-secondary">กฟผ</ก>
-            <button class="btn btn-secondary">กฟผ</ก>
-            <button class="btn btn-secondary">กฟผ</ก>
-            <button class="btn btn-secondary">กฟผ</ก>
+                <button class="btn btn-secondary">กฟผ</ก>
+                    <button class="btn btn-secondary">กฟผ</ก>
+                        <button class="btn btn-secondary">กฟผ</ก>
         </div>
         <p>แสดงข้อมูลหน่วยงาน : การไฟฟ้าฝ่ายผลิตแห่งประเทศไทยและยุทธศาสตร์</p>
     </div>
-    <div class="chart-container mb-3">
-        <div class="card-chart text-center">
+    <div class="chart-container ">
+        <div class="card-chart text-center ">
             <label for="chart_div1">STG 1</label>
             <div id="chart_div1" class="d-flex justify-content-center"></div>
         </div>
@@ -62,18 +69,30 @@
             <label for="chart_div3">STG 3</label>
             <div id="chart_div3" class="d-flex justify-content-center"></div>
         </div>
-    </div>
-
-   <div class="h5 text-center mt-5 mb-3">ใช้สำหรับแสดงภาพ Dept Dashboard</div>
-   {{-- After click will go dept page of org selected--}}
-   <a href="{{route('dept')}}"> 
-    <div class="mx-2 rounded-3"
-        style="margin: 5px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
-        <div class="chart-airea">
-            <canvas id="myChart4"></canvas>
+        <div class="card-chart text-center">
+            <label for="chart_div4">STG 4</label>
+            <div id="chart_div4" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="card-chart text-center">
+            <label for="chart_div5">STG 5</label>
+            <div id="chart_div5" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="card-chart text-center">
+            <label for="chart_div6">STG 6</label>
+            <div id="chart_div6" class="d-flex justify-content-center"></div>
         </div>
     </div>
-   </a>
+
+    <div class="h5 text-center mt-5 mb-3">ใช้สำหรับแสดงภาพ Dept Dashboard</div>
+    {{-- After click will go dept page of org selected --}}
+    <a href="{{ route('dept') }}">
+        <div class="mx-2 rounded-3"
+            style="margin: 5px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+            <div class="chart-airea">
+                <canvas id="myChart4"></canvas>
+            </div>
+        </div>
+    </a>
 
 
 @endsection
@@ -136,7 +155,7 @@
                         var index = activeElements[0]._index;
                         var label = myChart.data.labels[index];
                         var datasetLabel = myChart.data.datasets[datasetIndex].label;
-                        
+
                         // Define your URLs here
                         var urls = {
                             'Employee': [
@@ -184,80 +203,88 @@
                                 'https://example.com/political-9'
                             ]
                         };
-                        
+
                         // Redirect to the URL
                         var url = urls[datasetLabel][index];
                         window.location.href = url;
-            }}
-        }});
+                    }
+                }
+            }
+        });
     </script>
 
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['gauge']
-    });
-    google.charts.setOnLoadCallback(drawChart);
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['gauge']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data1 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['', 55] // Replace with your data value (0-100)
-        ]);
+        function drawChart() {
+            var data1 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 55] // Replace with your data value (0-100)
+            ]);
 
-        var options = {
-            width: 400,
-            height: 300,
-            redFrom: 0,
-            redTo: 40,
-            yellowFrom: 40,
-            yellowTo: 80,
-            greenFrom: 80,
-            greenTo: 100,
-            minorTicks: 10
+            var options = {
+                width: 400,
+                height: 300,
+                redFrom: 0,
+                redTo: 40,
+                yellowFrom: 40,
+                yellowTo: 80,
+                greenFrom: 80,
+                greenTo: 100,
+                minorTicks: 10
 
-        };
+            };
 
-        var data2 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['', 70]
-        ]);
-        var options2 = {
-            width: 200,
-            height: 200,
-            redFrom: 0,
-            redTo: 70,
-            yellowFrom: 70,
-            yellowTo: 90,
-            greenFrom: 90,
-            greenTo: 100,
-            blueFrom: 100,
-            blueTo: 120,
-        };
-        var data3 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['', 70]
-        ]);
-        var options2 = {
-            width: 200,
-            height: 200,
-            redFrom: 0,
-            redTo: 70,
-            yellowFrom: 70,
-            yellowTo: 90,
-            greenFrom: 90,
-            greenTo: 100,
-            blueFrom: 100,
-            blueTo: 120,
-        };
+            var data2 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 70]
+            ]);
+            var options2 = {
+                width: 200,
+                height: 200,
+                redFrom: 0,
+                redTo: 70,
+                yellowFrom: 70,
+                yellowTo: 90,
+                greenFrom: 90,
+                greenTo: 100,
+                blueFrom: 100,
+                blueTo: 120,
+            };
+            var data3 = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['', 70]
+            ]);
+            var options2 = {
+                width: 200,
+                height: 200,
+                redFrom: 0,
+                redTo: 70,
+                yellowFrom: 70,
+                yellowTo: 90,
+                greenFrom: 90,
+                greenTo: 100,
+                blueFrom: 100,
+                blueTo: 120,
+            };
 
 
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
-        chart.draw(data1, options);
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
-        chart.draw(data2, options);
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
-        chart.draw(data3, options);
-    }
-</script>
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));
+            chart.draw(data1, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
+            chart.draw(data2, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div5'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div6'));
+            chart.draw(data3, options);
+        }
+    </script>
 @endsection

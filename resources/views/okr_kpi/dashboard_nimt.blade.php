@@ -17,8 +17,8 @@
         }
 
         .chart-container {
-            display: grid;
-            grid-template-columns: auto auto;
+            display: flex;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
@@ -27,19 +27,26 @@
                 rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             border-radius: 5px;
             padding: 1rem;
+            flex: 1 1 calc(33.333% - 10px);
         }
 
-        @media only screen and (max-width:700px) {
-            .chart-container {
-                grid-template-columns: auto;
+        @media (max-width: 992px) {
+            .chart-container .card-chart {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .chart-container .card-chart {
+                flex: 1 1 100%;
             }
         }
     </style>
 @endsection
 
 @section('content')
-    <div class="chart-container">
-        <div class="card-chart text-center">
+    <div class="chart-container ">
+        <div class="card-chart text-center ">
             <label for="chart_div1">STG 1</label>
             <div id="chart_div1" class="d-flex justify-content-center"></div>
         </div>
@@ -50,6 +57,18 @@
         <div class="card-chart text-center">
             <label for="chart_div3">STG 3</label>
             <div id="chart_div3" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="card-chart text-center">
+            <label for="chart_div4">STG 4</label>
+            <div id="chart_div4" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="card-chart text-center">
+            <label for="chart_div5">STG 5</label>
+            <div id="chart_div5" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="card-chart text-center">
+            <label for="chart_div6">STG 6</label>
+            <div id="chart_div6" class="d-flex justify-content-center"></div>
         </div>
     </div>
     <div class="overflow-x-auto strategy-box p-3 mt-3 rounded-3">
@@ -157,6 +176,12 @@
             var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
             chart.draw(data2, options);
             var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div5'));
+            chart.draw(data3, options);
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div6'));
             chart.draw(data3, options);
         }
     </script>
