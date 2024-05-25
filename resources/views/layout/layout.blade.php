@@ -150,7 +150,7 @@
             margin: 17px 0;
         }
 
-        ul li a {
+        ul li .item a {
             width: 100%;
             display: block;
             border-radius: 5px;

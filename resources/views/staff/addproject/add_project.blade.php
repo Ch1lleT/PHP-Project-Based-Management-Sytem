@@ -111,7 +111,6 @@
             </div>
         </div>
     </form>
-    
     <div class="row m-4">
         <div class="col d-flex justify-content-end align-items-center">เพิ่มผู้เข้าร่วมโครงการ</div>
         <div class="col">
@@ -139,14 +138,14 @@
                             <path fill="#FC0005"
                                 d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
                             </path>
-                    </svg></a>
+                        </svg></a>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <script>
-         var table = $('table.display').DataTable({
+        var table = $('table.display').DataTable({
             pageLength: 5,
             lengthMenu: [
                 [3, 5, 10, 15, 20],

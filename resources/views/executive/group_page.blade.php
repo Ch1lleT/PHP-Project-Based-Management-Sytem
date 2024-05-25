@@ -7,513 +7,118 @@
 @endsection
 @section('style')
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        .tree ul {
-            padding-top: 20px;
-            position: relative;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree li {
-            float: left;
-            text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 20px 5px 0 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree li::before,
-        .tree li::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 1px solid #ccc;
-            width: 50%;
-            height: 20px;
-        }
-
-        .tree li:only-child::after,
-        .tree li:only-child::before {
-            display: none;
-        }
-
-        .tree li:only-child {
-            padding-top: 0;
-        }
-
-        .tree ul ul::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            border-left: 1px solid #ccc;
-            width: 0;
-            height: 20px;
-        }
-
-        .tree li a {
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #666;
-            font-family: Arial, Verdana, Tahoma;
-            font-size: 11px;
-            display: inline-block;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree li a:hover,
-        .tree li a:hover+ul li a {
-            background: #c8e4f8;
-            color: #000;
-            border: 1px solid #94a0b4;
-        }
-
-        .tree li a:hover+ul li::after,
-        .tree li a:hover+ul li::before,
-        .tree li a:hover+ul::before,
-        .tree li a:hover+ul ul::before {
-            border-color: #94a0b4;
-        }
-
-        .tree ul ul ul ul li a {
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #666;
-            font-family: Arial, Verdana, Tahoma;
-            font-size: 11px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-            text-orientation: mixed !important;
-            white-space: nowrap;
-        }
-
-        .tree ul ul ul {
-            padding-top: 0;
-        }
-
-        .tree>ul>li>ul>li>ul>li {
-            padding: 0 0 0 20px;
-            display: flex;
-            align-items: center;
-            clear: left;
-            position: relative;
-            left: 50%;
-        }
-
-        .tree>ul>li>ul>li>ul>li::before {
-            height: 100%;
-        }
-
-        .tree>ul>li>ul>li>ul>li:last-child::before {
-            height: 50%;
-        }
-
-        .tree>ul>li>ul>li>ul>li>a {
-            writing-mode: vertical-rl;
-        }
-
-        .tree ul ul ul li::before {
-            width: 20px;
-            left: 0;
-            border-left: 1px solid #ccc;
-            border-top: none;
-        }
-
-        .tree ul ul ul li:last-child::before {
-            border-bottom: 1px solid #ccc;
-            border-radius: 0 0 0 5px;
-            -webkit-border-radius: 0 0 0 5px;
-            -moz-border-radius: 0 0 0 5px;
-        }
-
-        .tree ul ul ul li::after {
-            width: 20px;
-            top: 50%;
-            left: 0;
-            border-left: 1px solid #ccc;
-        }
-
-        .tree ul ul ul ul {
-            display: inline-block;
-            padding: 0 0 0 20px;
-        }
-
-        .tree ul ul ul ul::before {
-            border-left: none;
-            border-top: 1px solid #ccc;
-            width: 20px;
-            left: 0;
-            top: 50%;
-        }
-
-        .tree ul ul ul ul li {
-            float: none;
-            padding: 5px 0 5px 20px;
-        }
-
-        .tree ul ul ul ul li:first-child::before,
-        .tree ul ul ul li:last-child::after {
-            border: 0 none;
-        }
-
-        .tree ul ul ul ul li:first-child::after {
-            border-radius: 5px 0 0 0;
-            -webkit-border-radius: 5px 0 0 0;
-            -moz-border-radius: 5px 0 0 0;
-        }
-
-        .toggle-btn {
-            cursor: pointer;
-            font-size: 0.8em;
-            color: #007bff;
+        .row .item {
+            margin-bottom: 2.5rem;
         }
     </style>
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12 col-md-12" style="text-align: center;">
-            <span>ใช้สำหรับแสดงภาพ Grouping ยุทธศาสตร์</span>
+    <div class="text-center">
+        <span class="fs-5">ใช้สำหรับแสดงภาพ Grouping ยุทธศาสตร์</span>
+
+    </div>
+    <form action="">
+        <div class="text-end w-100">
+            <button class="btn btn-success text-end" type="submit">Save</button>
         </div>
-    </div>
 
 
-
-    <div class="tree">
-        <ul>
-            <li>
-                <div class="node">
-                    <a href="#" onclick="toggleVisibility(this)">Parent</a>
-                    <span class="toggle-btn"></span>
+        <div class="gap-2 ">
+            <div class="row">
+                <div class="col-6">
+                    <div class="item">
+                        <label for="" class="label">ชื่อกลุ่ม</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="item">
+                        <label class="label">เลือก Layer ที่ต้องการ Group</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label class="label">Layer ก่อนหน้า</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label class="label">เลือก {ดึงมาจาก DropDown} เพื่อจัดกลุ่ม</label>
+                        <table class="display">
+                            <thead>
+                                <tr>
+                                    <th>Selected</th>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><input type="checkbox" name="" id=""></td>
+                                    <td>1</td>
+                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod dolorem commodi
+                                        corporis
+                                        non
+                                        ex, sunt voluptas eum tempore vel quo quaerat aspernatur recusandae quasi modi
+                                        exercitationem assumenda excepturi laboriosam hic.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <ul>
-                    <li>
-                        <div class="node">
-                            <a href="#" onclick="toggleVisibility(this)">Child</a>
-                            <span class="toggle-btn"></span>
+                <div class="col-6">
+                    <div class="row m-4">
+                        <div class="col d-flex justify-content-end align-items-center">เพิ่มผู้มองเห็น</div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="search" id="search">
                         </div>
-                        <ul>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="node">
-                                    <a href="#" onclick="toggleVisibility(this)">Grand Child</a>
-                                    <span class="toggle-btn"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="node">
-                                            <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                Rerum
-                                                quam autem voluptatum quas aspernatur. Reprehenderit tempora quis fugiat et
-                                                suscipit.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+                        <div class="col">
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </div>
+                    </div>
+                    <table class="table display">
+                        <thead>
+                            <th>No.</th>
+                            <th>ชื่อ</th>
+                            <th>นามสกุล</th>
+                            <th>edit</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>
+                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            viewBox="0 0 32 32">
+                                            <path fill="#FC0005"
+                                                d="M7.219 5.781L5.78 7.22L14.563 16L5.78 24.781l1.44 1.439L16 17.437l8.781 8.782l1.438-1.438L17.437 16l8.782-8.781L24.78 5.78L16 14.563z">
+                                            </path>
+                                        </svg></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+            </div>
+
+        </div>
+    </form>
     <script>
-        function toggleVisibility(button) {
-            const parentNode = button.closest('li');
-            const subList = parentNode.querySelector('ul');
-            if (subList) {
-                if (subList.style.display === 'none') {
-                    subList.style.display = 'block';
-                    // button.textContent = '[–]';
-                } else {
-                    subList.style.display = 'none';
-                    // button.textContent = '[+]';
-                }
-            }
-        }
-
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            const subList = btn.closest('li').querySelector('ul');
-            if (subList) subList.style.display = 'none';
-        });
+        var table = $('table.display').DataTable({
+            pageLength: 5,
+            lengthMenu: [
+                [3, 5, 10, 15, 20],
+                [3, 5, 10, 15, 20]
+            ]
+        })
     </script>
 @endsection
