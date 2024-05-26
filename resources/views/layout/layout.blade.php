@@ -305,7 +305,7 @@
                                                     class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('group_page') }}" class="rounded bg-danger">จับกลุ่ม (รอคุย)</a>
+                                            <li><a href="{{ route('group_page') }}" class="rounded ">จับกลุ่ม✅</a>
                                             </li>
                                         @endif
                                     </ul>
