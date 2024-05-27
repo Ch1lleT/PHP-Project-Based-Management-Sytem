@@ -220,21 +220,21 @@ return new class extends Migration
             $table->string('user_id', 8);
             $table->string('sub_org_id', 8);
 
-            $table->foreign('user_id')->references('user_id')->on('user');
-            $table->foreign('sub_org_id')->references('sub_org_id')->on('sub_organization');
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete("cascade");
+            $table->foreign('sub_org_id')->references('sub_org_id')->on('sub_organization')->onDelete("cascade");
         });
 
-        Schema::create('log', function (Blueprint $table) {
-            $table->date('date');
-            $table->time('time');
-            $table->string('user_id', 8);
-            $table->string('action');
-            $table->string('desc');
-            $table->string('ip', 15);
-            $table->timestamps();
+        // Schema::create('log', function (Blueprint $table) {
+        //     $table->date('date');
+        //     $table->time('time');
+        //     $table->string('user_id', 8);
+        //     $table->string('action');
+        //     $table->string('desc');
+        //     $table->string('ip', 15);
+        //     $table->timestamps();
 
-            $table->foreign("user_id")->references("user_id")->on('user');
-        });
+        //     $table->foreign("user_id")->references("user_id")->on('user');
+        // });
 
         Schema::create('assign_to', function (Blueprint $table) {
             $table->string('user_id', 8);
@@ -333,7 +333,7 @@ return new class extends Migration
 
         Schema::dropIfExists('organization');
 
-        Schema::dropIfExists('log');
+        // Schema::dropIfExists('log');
 
         Schema::dropIfExists('assign_to');
 
@@ -359,7 +359,7 @@ return new class extends Migration
 
         Schema::dropIfExists("user");
 
-        Schema::dropIfExists("role");
+        // Schema::dropIfExists("role");
 
         Schema::dropIfExists("fiscal_year");
     }
