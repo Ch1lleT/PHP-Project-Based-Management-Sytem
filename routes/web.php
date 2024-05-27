@@ -148,6 +148,10 @@ Route::get('/log', function () {
 Route::get('/edit_profile', function () {
     return view('profile/edit_profile');
 })->name("edit_profile");
+
+Route::get('/my_group', function () {
+    return view('profile/my_group');
+})->name("my_group");
 // Route::get('/edit_profile', [UserController::class, 'get'])->name("edit_profile");
 
 Route::get('/stg_overview', function () {
