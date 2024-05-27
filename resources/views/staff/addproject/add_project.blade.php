@@ -8,7 +8,7 @@
 @section('content')
     <form action="">
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
                 <div class="mb-3 ">
                     <label for="name" class="col-form-label">ชื่อ</label>
                     <input type="text" class="form-control" id="name" name="project_name">
@@ -57,7 +57,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 <div class="mb-3">
                     <label for="name" class=" col-form-label">หน่วยงาน</label>
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
@@ -110,7 +110,6 @@
                 </div>
             </div>
         </div>
-    </form>
     <div class="row m-4">
         <div class="col d-flex justify-content-end align-items-center">เพิ่มผู้เข้าร่วมโครงการ</div>
         <div class="col">
@@ -143,7 +142,11 @@
             </tr>
         </tbody>
     </table>
+    <div class="text-end my-3">
+        <button class="btn btn-success">Save</button>
+    </div>
 
+</form>
     <script>
         var table = $('table.display').DataTable({
             pageLength: 5,

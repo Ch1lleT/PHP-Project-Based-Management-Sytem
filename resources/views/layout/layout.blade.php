@@ -248,6 +248,7 @@
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                     <li><a href="{{ route('edit_profile') }}" class="rounded">แก้ไขข้อมูลส่วนตัว✅</a>
                                     </li>
+                                    <li><a href="{{ route('my_group') }}" class="rounded">กลุ่มของฉัน</a></li>
                                     <li><a href="#" class="rounded">สรุปค่างาน</a></li>
                                 </ul>
                             </div>
@@ -305,7 +306,7 @@
                                                     class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('group_page') }}" class="rounded bg-danger">จับกลุ่ม (รอคุย)</a>
+                                            <li><a href="{{ route('group_page') }}" class="rounded ">จับกลุ่ม✅</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -354,7 +355,8 @@
                                 <div class="collapse" id="report-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT✅</a></li>
+                                            <li><a href="{{ route('dashboard_nimt') }}" class="rounded">NIMT✅</a>
+                                            </li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'powerUser', 'supervisor', 'executive']))
                                             <li><a href="{{ route('org_chart') }}" class="rounded">NIMT OKR
