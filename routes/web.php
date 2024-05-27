@@ -7,12 +7,12 @@ use App\Http\Controllers\STGController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TargetController;
+use App\Models\Organization;
 use App\Utilities\UUID;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Project;
-
-
+use App\Models\Sub_Organization;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,9 +129,18 @@ Route::get('/org', function () {
     return view('admin/org');
 })->name('org');
 
-Route::get('/org_manange', function () {
-    return view('admin/org_manange');
-})->name('org_manange');
+// may be use in future ,So keep it na . 
+// Route::get('/org/add', function () {
+//     return view('admin/org_add');
+// })->name('org.add');
+
+Route::get('/org/{id}', function ($id) {
+    
+    $org = Organization::find($id);
+    $sub_org = Sub_Organization::where('main_org',$org->org_id)->get();
+    
+    return view('admin/org_manange',compact('org','sub_org'));
+})->name('org.manange');
 
 Route::get('/level', function () {
     return view('admin/level');
@@ -158,6 +167,7 @@ Route::get('/stg_overview', function () {
 
 Route::get('/stg', [STGController::class, 'get']);
 
+// will delete  
 Route::get('/test', function () {
     return UUID::uuid(Project::class);
 });

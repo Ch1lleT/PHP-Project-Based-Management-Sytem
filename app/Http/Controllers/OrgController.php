@@ -6,7 +6,10 @@ use App\Models\Have_Sub_Org;
 use App\Models\Organization;
 use App\Models\Project;
 use App\Models\Sub_Organization;
+use Database\Seeders\SubOrganizationSeeder;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\isNull;
 
 class OrgController extends Controller
 {
@@ -48,5 +51,53 @@ class OrgController extends Controller
         return response()->json(['Orgs' => $Orgs]);
         // return view('admin.org')->with('Organizations',$Orgs);
 
+    }
+
+    public function save(Request $request ,string $id){
+        $org = Organization::find($id);
+
+        $req = json_decode($request->getContent(),true);
+        
+        if(isset($req["new_sub_org"])) {
+
+            $this->AddSubOrg($org,$req["new_sub_org"]);
+        }
+        
+        if(isset($req["del_sub_org"])) {
+            
+            $this->delSubOrg($req["del_sub_org"]);
+        }
+
+        return response()->json(["message"=>"save complte"]);
+    }
+
+    public function deact(string $id){
+        $org = Organization::find($id);
+        if($org){
+            $org->is_active = false;
+            $org->save();
+        }
+        return response()->json(["message" => "Deactivate complete."]);
+    }
+
+    private function AddSubOrg(Organization $org , array $sub_org ){
+        
+        foreach($sub_org as $sub)
+        {
+            $New_sub_Org = new Sub_Organization();
+            $New_sub_Org->main_org = $org->org_id;
+            $New_sub_Org->org_name = $sub["org_name"];
+            $New_sub_Org->save();
+        }
+    }
+
+    private function delSubOrg(array $sub_org ){
+        
+        foreach($sub_org as $id){
+            $subOrganize = Sub_Organization::find($id);
+            if($subOrganize){
+                $subOrganize->delete();
+            }
+        }
     }
 }

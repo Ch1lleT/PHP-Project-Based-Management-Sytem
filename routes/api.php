@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\OrgController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\STGController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\UserController;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,9 +52,26 @@ Route::get('project/{project_id}', [ProjectController::class, 'get']);
 Route::get('log', [LogController::class, 'getAllLog']);
 Route::get('log/{date}', [LogController::class, 'getLog']);
 
+Route::post('/org/save/{id}',[OrgController::class,'save']);
+Route::delete('/org/deact/{id}',[OrgController::class,'deact']);
+
 Route::group(['middleware' => ['web']],function(){
     Route::prefix('edit_profile')->group(function(){
         Route::post('/profile',[UserController::class,'editUserProfile'])->name('edit_profile.profile');
         Route::post('/password',[UserController::class,'changePassword'])->name('edit_profile.change_password');
     });
+});
+
+
+
+Route::post("/test/post" , function (Request $req){
+    // dd($req->json());
+    return response()->json(json_decode($req->getContent()));
+});
+Route::post("/test/post/{id}" , function (Request $req,string $id){
+    // dd($req->json());
+    return response()->json([
+        "id"=>$id,
+        "data"=>json_decode($req->getContent())
+    ]);
 });
