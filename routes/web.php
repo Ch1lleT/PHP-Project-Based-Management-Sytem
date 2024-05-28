@@ -60,6 +60,7 @@ Route::get('/okr_kpi_manage', function () {
 Route::get('/dept', function () {
     return view('okr_kpi/dept');
 })->name("dept");
+
 Route::get('/org_chart', function () {
     return view('okr_kpi/org_chart');
 })->name("org_chart");
@@ -149,6 +150,10 @@ Route::get('/level', function () {
 Route::get('/add_project', function () {
     return view('staff/addproject/add_project');
 })->name("addproject");
+
+Route::get('/edit_project', function () {
+    return view('staff/editproject/edit_project');
+})->name("editproject");
 
 Route::get('/log', function () {
     return view('admin/log');

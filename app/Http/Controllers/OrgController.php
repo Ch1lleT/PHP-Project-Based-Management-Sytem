@@ -22,7 +22,7 @@ class OrgController extends Controller
         $Organizations = Organization::all();
         
         foreach($Organizations as $org){
-            $sub_orgs = Sub_Organization::where('main_org','=',$org->org_id)->get();            
+            $sub_orgs = Sub_Organization::where('main_org','=',$org->org_id)->where('is_active',true)->get();            
             $sub_org_list = array();
             
             foreach($sub_orgs as $so)

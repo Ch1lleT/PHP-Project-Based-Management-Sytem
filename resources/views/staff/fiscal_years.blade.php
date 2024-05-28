@@ -806,8 +806,7 @@
                                         <td>มว.</td>
 
                                         <td>
-                                            <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                                data-bs-target="#edit_project_{{ $loop->index }}">
+                                            <a href="{{ route('editproject',['id' => $ProjectAt->project_id])}}" class="text-decoration-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 12 12">
                                                     <path fill="#000000"
