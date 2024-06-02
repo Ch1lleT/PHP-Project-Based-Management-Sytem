@@ -41,13 +41,18 @@
                 height: 250px;
             }
         }
+
+        .profile_data {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
     </style>
 @endsection
 
 @section('content')
-    <div class="row row-cols-auto">
+    <div class="row row-cols-auto px-3 gap-3">
 
-        <div class="col-12 col-lg-6 profile_data">
+        <div class="col-12 col-lg-6 profile_data rounded-3 p-3 ">
             <span class="fw-bolder">
                 แก้ไขข้อมูลส่วนตัว
             </span>
@@ -82,7 +87,7 @@
                         </div>
                     </div> --}}
                     <div class="text-end">
-                        <button class="btn btn-primary text-end" type="submit">Save</button>
+                        <button class="btn btn-primary text-end" type="submit">บันทึก</button>
                     </div>
 
                 </form>
@@ -108,13 +113,13 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <button class="btn btn-primary text-end" type="submit">Save</button>
+                        <button class="btn btn-primary text-end" type="submit">บันทึก</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="col-12 col-lg-6 ">
+        <div class="col-12 col-lg profile_data rounded-3 p-3">
             <div class="img h-100 d-flex align-items-center justify-content-center">
                 <img id="preview-img" class="rounded-circle object-fit-cover"
                     @if (auth()->user()->image == null) src="{{ asset('image/defult-profile/profile.svg') }}"
@@ -124,6 +129,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
         // show and hide password

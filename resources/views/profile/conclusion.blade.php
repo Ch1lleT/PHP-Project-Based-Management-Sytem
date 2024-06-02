@@ -17,7 +17,7 @@
     <div class="overflow-x-auto conclusion-box p-3  rounded-3">
         <div class="w-100 d-flex align-items-center">
             <div class="dropdown fs-6 d-flex align-items-center">
-                <span class="fs-5 my-2 me-2">ปีงบประมาณ</span>
+                <span class="fs-5 mb-2 me-2">ปีงบประมาณ</span>
                 <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;"
                     name="Year">
 
