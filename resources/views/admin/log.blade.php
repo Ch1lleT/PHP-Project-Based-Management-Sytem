@@ -59,7 +59,7 @@
 
         </script>
         <label for="Date-input">Date</label>
-        <input type="date" id="Date-input" name="date" class="form-control" placeholder="Date" onchange="onDateChange()" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
+        <input type="date" id="Date-input" name="date" class="form-control mb-3" placeholder="Date" onchange="onDateChange()" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
         
         <table class="table display" id="log-table">
             <thead>

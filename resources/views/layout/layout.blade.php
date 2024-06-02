@@ -267,10 +267,10 @@
                                 </a>
                                 <div class="collapse" id="admin-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                        @if (in_array(auth()->user()->role, ['admin']))
+                                        {{-- @if (in_array(auth()->user()->role, ['admin']))
                                             <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a>
                                             </li>
-                                        @endif
+                                        @endif --}}
                                         @if (in_array(auth()->user()->role, ['admin', 'powerUser']))
                                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                                         @endif
