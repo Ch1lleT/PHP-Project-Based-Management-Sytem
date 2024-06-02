@@ -15,10 +15,30 @@
 
 <script>
     // var sub_org = <?php echo json_encode($sub_org); ?>;
-
+    var temp_count = 0; 
     var new_sub_org = [];
     var del_sub_org = [];
+    var curr_org_name = "{{$org->org_name}}"
+    
+    $(document).on('click','.delete-btn',function(){
+        const parent = $(this).parent().parent();
+        
+        if($(parent.data('temp_id')) != null)
+        {
+            new_sub_org = new_sub_org.filter((e)=>{
+                e.org_name  != parent.data('org_name')
+            })
+            temp_count = temp_count - 1
 
+            parent.remove();
+        }
+        
+        if(parent.data('sub_org_id') != null){
+            del_sub_org.push(parent.data('sub_org_id'));
+            parent.remove();            
+        }
+
+    })
 
 </script>
 <div class=" text-end my-4">
@@ -53,14 +73,16 @@
         <div id="sub-org-list">
 
             @foreach ($sub_org as $sub)
-            <div class="row" data-sub_org_id="{{$sub->sub_org_id}}">
-                <div class="col-10 m-3 p-0">
-                    <input type="text" class="form-control" placeholder="Sub" value="{{$sub->org_name}}">
+
+                <div class="row" data-sub_org_id="{{$sub->sub_org_id}}" data-org_name="{{$sub->org_name}}">
+                    <div class="col-10 m-3 p-0">
+                        <input type="text" class="form-control" placeholder="Sub" value="{{$sub->org_name}}">
+                    </div>
+                    <div class="col-1 m-3 p-0">
+                        <button class="btn btn-danger delete-btn" >ลบ</button>
+                    </div>
                 </div>
-                <div class="col-1 m-3 p-0">
-                    <button class="btn btn-danger delete-btn" >ลบ</button>
-                </div>
-            </div>
+
             @endforeach
 
         </div>
@@ -70,17 +92,19 @@
     
         $("#add-btn").on("click",function(){
             let sub_org_name = $("#add-sub-org").val();
-            console.log(sub_org_name);
-            $('<div class="row" id="temp'+ new_sub_org.length + '">' +
+            // console.log(sub_org_name);
+            $('<div class="row" data-temp_id="temp'+ temp_count + '" data-org_name="'+sub_org_name +'">' +
                 '<div class="col-10 m-3 p-0">' +
                     '<input type="text" class="form-control" placeholder="Sub" value="'+ sub_org_name + '" >'  +
                     '</div>' +
                     '<div class="col-1 m-3 p-0">' +
-                        '<button class="btn btn-danger">ลบ</button>' +
+                        '<button class="btn btn-danger delete-btn">ลบ</button>' +
                 '</div>' +
                 '</div>').appendTo('#sub-org-list');
                 
-                new_sub_org.push({"main_org":$("#org-id").val(),"org_name":sub_org_name});
+            new_sub_org.push({"main_org":$("#org-id").val(),"org_name":sub_org_name});
+            temp_count = temp_count + 1
+            // console.log(new_sub_org);
         });
 
         
@@ -89,16 +113,7 @@
     
     </script>
     <script>
-    
-        $(".delete-btn").on("click",function(){
-            const parent = $(this).parent().parent();
-            
-            if(parent.data('sub_org_id') != null){
-                del_sub_org.push(parent.data('sub_org_id'));
-            }
-            parent.remove();            
-            
-        });
+       
 
 
         $("#org-del-btn").on("click",function(){
@@ -112,7 +127,6 @@
         })
 
         
-
         
     
     </script>
@@ -120,6 +134,9 @@
         
         function save(){
             var data = {};
+            var name = $('#org-primary').val()
+
+            if(curr_org_name != name) {data.new_name = name}
             if(new_sub_org.length != 0) {data.new_sub_org = new_sub_org}
             if(del_sub_org.length != 0) {data.del_sub_org = del_sub_org}
 
