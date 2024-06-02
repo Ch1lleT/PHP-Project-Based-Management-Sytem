@@ -83,13 +83,13 @@ class PlanController extends Controller
             return redirect()->back()->with('error', 'Not Found target'); 
         }
     }
-    public static function getAll()
-    {
-        $PlanAll = Plan::where('is_active',true)->get();
-        return response()->json(['PlanAll' => $PlanAll]);
-    }
+    // public static function getAll()
+    // {
+    //     $PlanAll = Plan::where('is_active',true)->get();
+    //     return response()->json(['PlanAll' => $PlanAll]);
+    // }
 
-    public static function getAtAll(Request $request)
+    public static function getAll(Request $request)
     {
         $target_id = $request->target_id;
         $stg_id = $request->stg_id;
@@ -108,7 +108,7 @@ class PlanController extends Controller
                 // dd($PlanAtAll);
             } catch (\Throwable $th) {
                 //throw $th;
-                return response()->json(['PlanAtAll' => null]);
+                return response()->json(null);
             }
         } else if (isset($year)) {
             try {
@@ -123,7 +123,7 @@ class PlanController extends Controller
                 $PlanAtAll = Plan::where('target_id', $target_id)->where('is_active', true)->get();
             } catch (\Throwable $th) {
                 //throw $th;
-                return response()->json(['PlanAtAll' => null]);
+                return response()->json(null);
             }
         }else {
             $TG = Target::where('is_active',true)->first();
@@ -132,6 +132,6 @@ class PlanController extends Controller
                              ->where('is_active' , true)
                              ->get();
         }
-        return response()->json(['PlanAtAll' => $PlanAtAll]);
+        return response()->json($PlanAtAll);
     }
 }

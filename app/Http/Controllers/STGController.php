@@ -49,12 +49,12 @@ class STGController extends Controller
         if (isset($fiscalYear)) {
             $year_code = $fiscalYear->id;
             $stgAll = Strategy::where('is_active', true)->where('year_code', $year_code)->get();
-            return response()->json(['stgAll' => $stgAll]);
+            return response()->json($stgAll);
         } else {
             $stgAll = Strategy::where('is_active', true)->orderBy('year_code', 'desc')->get();
-            return response()->json(['stgAll' => $stgAll]);
+            return response()->json($stgAll);
         }
-        return response()->json(['stgAll' => null]);
+        return response()->json(null);
 
         // return view('staff/fiscal_years', compact('stgAll'));
     }
@@ -79,13 +79,13 @@ class STGController extends Controller
             if (!$STG) {
                 return response()->json(['error' => 'No Strategy found'], 404);
             }
-            return response()->json(['STG' => $STG]);
+            return response()->json($STG);
         } else {
             $STG = Strategy::where('is_active', true)->first();
             if (!$STG) {
                 return response()->json(['error' => 'No active Strategy found'], 404);
             }
-            return response()->json(['STG' => $STG]);
+            return response()->json($STG);
         }
     }
 

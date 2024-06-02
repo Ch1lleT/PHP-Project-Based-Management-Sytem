@@ -68,7 +68,7 @@
                     <form onsubmit="event.preventDefault(); Add('Strategy', this.nameSTG.value)">
                         @csrf
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : 2567</h1>
+                            <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : {{ request()->query('year') }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
@@ -91,23 +91,9 @@
     </div>
 
     <div class="row row-cols-3 gap-2 px-3">
-        @if ($STGAll != null)
-            @foreach ($STGAll as $strategy)
-                <a href="{{ route('fiscal_years', ['year' => request()->query('year'), 'stg_id' => $strategy->stg_id]) }}"
-                    class="col-xl-2 col btn btn-secondary text-white">{{ $strategy->name }}</a>
-            @endforeach
-        @else
-            No data
-        @endif
-        <a href="#" class="col-xl-1" data-bs-toggle="modal" data-bs-target="#add_stg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                <g fill="#fff">
-                    <path d="M21 14h6v20h-6z"></path>
-                    <path d="M14 21h20v6H14z"></path>
-                </g>
-            </svg>
-        </a>
+        <div class="col">
+            <div id="STGAll" class="row row-cols-3 gap-2 px-3"></div>
+        </div>
     </div>
 
     <div class="modal fade" id="edit_stg" tabindex="-1" aria-labelledby="edit_stgLabel" aria-hidden="true">
@@ -144,10 +130,11 @@
                     <tbody>
                         <tr>
                             <td class="fs-5 p-0">
-                                <div style="width: 100px">ยุทธศาสตร์ : </div>
+                                {{-- <div style="width: 100px">ยุทธศาสตร์ : </div> --}}
+                                <div id="STGName" class="p-0 mp-0"> </div>
                             </td>
                             <td class="fs-5 p-0">
-                                {{ isset($STG->name) ? $STG->name : '' }}
+
                                 {{-- {{$STG[0]->name}} --}}
                                 @if (isset($STG))
                                     <a href="#" class="text-decoration-none" data-bs-toggle="modal"
@@ -182,8 +169,7 @@
                             <td class="fs-5 px-0">
                                 <div style="width: 90px">เป้าหมาย :</div>
                             </td>
-                            <td class="fs-5">
-                                {{ isset($Target->target_name) ? $Target->target_name : '' }}
+                            <td class="fs-5" id="TargetName">
                             </td>
                             <td class="px-0 pt-2">
                                 @if (request()->has('stg_id'))
@@ -240,49 +226,46 @@
                         </div>
                     </div>
                 </div>
-                @foreach ($TargetAtAll as $index => $target)
-                    <div class="modal fade " id="edit_target_{{ $index }}" tabindex="-1"
-                        aria-labelledby="edit_target_label_{{ $index }}" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <form method="POST" action="{{ url('/targets/update/' . $target->target_id) }}">
-                                    @method('PUT')
-                                    @csrf
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="edit_target_label">แก้ไขเป้าหมาย</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body row">
-                                        <div class="mb-3 row ">
-                                            <label for="name"
-                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
-                                                :</label>
-                                            <div class="col-sm-10 d-flex align-items-end">
-                                                <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row ">
-                                            <label for="name"
-                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="name"
-                                                    name="target_name" value="{{ $target->target_name }}">
-                                            </div>
+                <div class="modal fade " id="edit_target_" tabindex="-1" aria-labelledby="edit_target_label_"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form method="POST" action="">
+                                @method('PUT')
+                                @csrf
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="edit_target_label">แก้ไขเป้าหมาย</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="mb-3 row ">
+                                        <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
+                                            :</label>
+                                        <div class="col-sm-10 d-flex align-items-end">
+                                            <p class="m-0">test</p>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Save changes</button>
+                                    <div class="mb-3 row ">
+                                        <label for="name"
+                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" name="target_name"
+                                                value="test">
+                                        </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                @endforeach
+                </div>
                 <div class="content">
-                    <table class="table display" style="width: 100%">
+                    <table id="TargetAtAll" class="table display" style="width: 100%">
                         <thead>
                             <tr>
                                 <th style="width: 40px;">
@@ -300,37 +283,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (isset($TargetAtAll))
-                                @foreach ($TargetAtAll as $TargetAt)
-                                    <tr>
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            {{ $loop->index + 1 }}
-                                        </td>
-                                        <td class="select">
-                                            <a href="{{ route('fiscal_years', ['year' => request()->query('year'), 'stg_id' => request()->query('stg_id'), 'target_id' => $TargetAt->target_id]) }}"
-                                                class="text-black text-wrap w-100">
-                                                {{ $TargetAt->target_name }}
-                                            </a>
-                                        </td>
-                                        <td class="edit">
-                                            <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                                data-bs-target="#edit_target_{{ $loop->index }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 12 12">
-                                                    <path fill="#000000"
-                                                        d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </td>
-                                        <td onclick="checkDel('target','{{ $TargetAt->target_id }}')" class="del">
-                                            <a href="#">
-                                                <i class='bx bx-trash text-danger'></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -347,11 +299,8 @@
                             <td class="fs-5 px-0">
                                 <div style="width: 90px">แผนการ :</div>
                             </td>
-                            @if (request()->has('plan_id'))
-                                <td class="fs-5">{{ isset($Plan->plan_name) ? $Plan->plan_name : '' }}</td>
-                            @else
-                                <td class="fs-5">กรุณาเลือกแผน</td>
-                            @endif
+                            <td class="fs-5" id="PlanName"></td>
+                            <td class="fs-5">กรุณาเลือกแผน</td>
                             <td class="px-0 pt-2">
                                 @if (request()->has('stg_id') && request()->has('target_id'))
                                     <a href="#" class="d-flex align-items-center text-decoration-none text-black"
@@ -499,7 +448,7 @@
                     @endforeach
                 @endif
                 <div class="overflow-x-hidden plan">
-                    <table class="table display" style="width: 100%" id="plantable">
+                    <table class="table display" style="width: 100%" id="PlanAll">
                         <thead>
                             <tr>
                                 <th style="width: 40px;">
@@ -520,7 +469,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (isset($PlanAtAll) || isset($stg_id))
+                            {{-- @if (isset($PlanAtAll) || isset($stg_id))
                                 @foreach ($PlanAtAll as $PlanAt)
                                     @if (is_object($PlanAt))
                                         <tr>
@@ -555,7 +504,7 @@
                                         </tr>
                                     @endif
                                 @endforeach
-                            @endif
+                            @endif --}}
                         </tbody>
                     </table>
                 </div>
@@ -1043,15 +992,352 @@
                 [3, 5, 10, 15, 20]
             ]
         })
+        const d = new Date();
+        var year = d.getFullYear();
+
 
 
         $(document).ready(function() {
             $("#Year").change(function() {
                 var selectedValue = $(this).val();
-                window.location = 'fiscal_years?year=' + selectedValue
+                // window.location = 'fiscal_years?year=' + selectedValue
+                getAllSTG(selectedValue)
                 // console.log(selectedValue);
             });
         });
+        const getParamValue = (param) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        };
+        const updateURL = (paramName, paramValue) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set(paramName, paramValue);
+            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+            window.history.pushState({}, '', newUrl);
+        }
+
+        const getAllSTG = (data) => {
+            // console.log(data);
+
+            let settings = {
+                "url": APP_URL + "/api/strategy",
+                "method": "GET",
+                "timeout": 0,
+                "data": {
+                    "year": data
+                }
+            };
+
+            // console.log(settings);
+
+            $.ajax(settings).done(function(response) {
+                updateURL("year", data);
+                const jsonDataDiv = document.getElementById('STGAll');
+                const STGName = document.getElementById('STGName');
+                jsonDataDiv.innerHTML = ''; // Clear previous content
+                console.log(response);
+
+                if (response.length > 0) {
+                    // console.log(response);
+                    const stg_id = getParamValue('stg_id');
+                    if (stg_id !== null) {
+                        getAllTarget(stg_id);
+                        const data = response.find(element => element.stg_id === stg_id);
+                        // console.table(data);
+                        STGName.innerHTML = `
+                                ยุทธศาสตร์ : ${data.name}
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                                    <i class='bx bx-pencil text-dark'></i>
+                                </a>
+                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${data.stg_id}')">
+                                    <i class='bx bx-trash text-danger'></i>
+                                </a>
+                            `;
+                    } else {
+                        getAllTarget(response[0].stg_id);
+                        STGName.innerHTML = `
+                                ยุทธศาสตร์ : ${response[0].name}
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                                    <i class='bx bx-pencil text-dark'></i>
+                                </a>
+                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${response[0].stg_id}')">
+                                    <i class='bx bx-trash text-danger'></i>
+                                </a>
+                            `;
+                    }
+                    response.forEach(strategy => {
+                        const strategyLink = document.createElement('a');
+                        strategyLink.className = 'col-xl-2 col btn btn-secondary text-white';
+                        strategyLink.textContent = strategy.name;
+                        strategyLink.onclick = function(e) {
+                            STGName.innerHTML = `
+                                ยุทธศาสตร์ : ${strategy.name}
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                                    <i class='bx bx-pencil text-dark'></i>
+                                </a>
+                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${strategy.stg_id}')">
+                                    <i class='bx bx-trash text-danger'></i>
+                                </a>
+                            `;
+                            getAllTarget(strategy.stg_id)
+                        };
+                        jsonDataDiv.appendChild(strategyLink);
+                    });
+                    // สร้างลิงก์ใหม่พร้อม SVG
+                    const newLink = document.createElement('a');
+                    newLink.href = "#";
+                    newLink.className = "col-xl-1";
+                    newLink.setAttribute("data-bs-toggle", "modal");
+                    newLink.setAttribute("data-bs-target", "#add_stg");
+
+                    // สร้าง SVG และเพิ่มเข้าไปในลิงก์ใหม่
+                    const svg = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                <g fill="#fff">
+                                    <path d="M21 14h6v20h-6z"></path>
+                                    <path d="M14 21h20v6H14z"></path>
+                                </g>
+                            </svg>
+                            `;
+                    newLink.innerHTML = svg;
+
+                    // เพิ่มลิงก์ใหม่ที่มี SVG ลงท้ายใน jsonDataDiv
+                    jsonDataDiv.appendChild(newLink);
+
+
+                } else {
+                    // สร้างลิงก์ใหม่พร้อม SVG
+                    const newLink = document.createElement('a');
+                    newLink.href = "#";
+                    newLink.className = "col-xl-1";
+                    newLink.setAttribute("data-bs-toggle", "modal");
+                    newLink.setAttribute("data-bs-target", "#add_stg");
+
+                    // สร้าง SVG และเพิ่มเข้าไปในลิงก์ใหม่
+                    const svg = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                        <g fill="#fff">
+                            <path d="M21 14h6v20h-6z"></path>
+                            <path d="M14 21h20v6H14z"></path>
+                        </g>
+                    </svg>
+                    `;
+                    newLink.innerHTML = svg;
+
+                    // เพิ่มลิงก์ใหม่ที่มี SVG ลงท้ายใน jsonDataDiv
+                    const strategyLink = document.createElement('a');
+                    strategyLink.className = 'col-xl-2 col btn btn-outline-danger';
+                    // newLink.setAttribute('aria-disabled'. true);
+                    strategyLink.textContent = "No Data";
+                    jsonDataDiv.appendChild(strategyLink);
+
+                    jsonDataDiv.appendChild(newLink);
+                    // jsonDataDiv.innerHTML = "No data";
+                    STGName.innerHTML = "No data";
+                }
+
+
+            });
+        }
+
+
+        const getAllTarget = (id) => {
+
+            let settings = {
+                "url": APP_URL + "/api/target",
+                "method": "GET",
+                "timeout": 0,
+                "data": {
+                    "stg_id": id
+                },
+            };
+
+            // console.log("settings : " + settings);
+            $.ajax(settings).done(function(response) {
+                updateURL("stg_id", id)
+                // console.log("getAllTarget : " + response);
+                // getAllPlan(response);
+                const TargetName = document.getElementById("TargetName");
+
+                const target_id = getParamValue('target_id');
+                if (target_id !== null && response.length > 0) {
+                    const data = response.find(element => element.target_id === target_id);
+                    // console.table(data);
+                    getAllPlan(data);
+                    TargetName.innerHTML = data.target_name;
+                } else {
+                    if (response.length > 0) {
+                        getAllPlan(response[0]);
+                        TargetName.innerHTML = response[0].target_name;
+                    } else {
+                        TargetName.innerHTML = "No data";
+                    }
+                }
+
+                let table = $("#TargetAtAll").dataTable().api();
+                table.clear();
+                $.each(response, function(index, item) {
+                    table.row.add(Target_row(index, item));
+                    // console.log(index, item);
+                });
+                table.draw();
+
+            });
+        }
+
+        const Target_row = (index, e) => {
+            let newRow = $('<tr></tr>');
+            newRow.append('<td>' + (index + 1) + '</td>');
+
+            let TargetLink = $('<td>' + e.target_name + '</td>');
+            TargetLink.click(function() {
+                // console.log("target_name : " + e);
+                updateURL("target_id", e.target_id);
+                getAllPlan(e);
+            });
+            newRow.append(TargetLink);
+
+            // สร้างลิงก์แก้ไข
+            let editCell = $('<td></td>');
+            let editLink = $('<a href="#" class="text-decoration-none"></a>');
+            let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+            editLink.append(editIcon);
+            editLink.click(function() {
+                $(this).attr('data-bs-toggle', 'modal');
+                $(this).attr('data-bs-target', '#edit_target_');
+                // console.log("edit_target_");
+                // $("#myBtn").click(function() {
+                //     $("#edit_target_").modal();
+                // });
+                // $("#edit_target_").modal();
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
+            });
+            editCell.append(editLink);
+            newRow.append(editCell);
+
+            // สร้างลิงก์ลบ
+            let deleteCell = $('<td></td>');
+            let deleteLink = $('<a href="#" class="text-decoration-none"></a>');
+            let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+            deleteLink.append(deleteIcon);
+            deleteLink.click(function() {
+                // console.log("Click on delete link");
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+            });
+            deleteCell.append(deleteLink);
+            newRow.append(deleteCell);
+
+            return newRow;
+        }
+
+        const getAllPlan = (data) => {
+            // console.table(data);
+            const TargetName = document.getElementById("TargetName");
+            const target_id = getParamValue('target_id');
+            let id = ''; // ประกาศตัวแปร id ไว้นอกเหนือจากเงื่อนไข
+
+            if (target_id !== null) {
+                // console.log('Year parameter value:', target_id);
+                TargetName.innerHTML = data.target_name;
+                id = {
+                    "target_id": target_id
+                }
+            } else {
+                // console.log('Year parameter does not exist in the URL.');
+                id = {
+                    "target_id": data.target_id
+                }
+            }
+
+            var settings = {
+                "url": APP_URL + "/api/plan",
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": id
+            };
+            // console.table(settings);
+
+            $.ajax(settings).done(function(response) {
+                // console.table(response);
+
+                const PlanName = document.getElementById("PlanName");
+
+                const plan_id = getParamValue('plan_id');
+                if (plan_id !== null && response.length > 0) {
+                    const data = response.find(element => element.plan_id === plan_id);
+                    // console.table(data);
+                    PlanName.innerHTML = data.plan_name;
+                    getAllPlan(data);
+                } else {
+                    if (response.length > 0) {
+                        getAllPlan(response[0]);
+                        PlanName.innerHTML = response[0].plan_name;
+                    } else {
+                        PlanName.innerHTML = "No data";
+                    }
+                }
+
+                let table = $("#PlanAll").dataTable().api();
+                table.clear();
+                $.each(response, function(index, item) {
+                    table.row.add(Plan_row(index, item));
+                    // console.log(index, item);
+                });
+                table.draw();
+            });
+        }
+
+        const Plan_row = (index, e) => {
+            let newRow = $('<tr></tr>');
+            newRow.append('<td>' + (index + 1) + '</td>');
+
+            let TargetLink = $('<td>' + e.plan_name + '</td>');
+            TargetLink.click(function() {
+                // console.log("target_name : " + e);
+                updateURL("plan_id", e.plan_id);
+                // getAllPlan(e);
+            });
+            newRow.append(TargetLink);
+
+            newRow.append('<td>' + e.type + '</td>');
+            // สร้างลิงก์แก้ไข
+            let editCell = $('<td></td>');
+            let editLink = $('<a href="#" class="text-decoration-none"></a>');
+            let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+            editLink.append(editIcon);
+            editLink.click(function() {
+                $(this).attr('data-bs-toggle', 'modal');
+                $(this).attr('data-bs-target', '#edit_target_');
+                // console.log("edit_target_");
+                // $("#myBtn").click(function() {
+                //     $("#edit_target_").modal();
+                // });
+                // $("#edit_target_").modal();
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
+            });
+            editCell.append(editLink);
+            newRow.append(editCell);
+
+            // สร้างลิงก์ลบ
+            let deleteCell = $('<td></td>');
+            let deleteLink = $('<a href="#" class="text-decoration-none"></a>');
+            let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+            deleteLink.append(deleteIcon);
+            deleteLink.click(function() {
+                // console.log("Click on delete link");
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+            });
+            deleteCell.append(deleteLink);
+            newRow.append(deleteCell);
+
+            return newRow;
+        }
+
 
         const groupSTG = (event) => {
             let data = {
@@ -1073,13 +1359,8 @@
 
             if (!year_code) {
                 year_code = new Date().getFullYear();
-                console.log("year_code : ", year_code);
+                // console.log("year_code : ", year_code);
             }
-
-
-
-
-
 
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -1089,7 +1370,7 @@
                 "year": year_code
             });
 
-            console.log("raw : " + raw);
+            // console.table(raw);
 
             const requestOptions = {
                 method: "POST",
@@ -1098,22 +1379,48 @@
                 redirect: "follow"
             };
 
-            fetch(APP_URL + "/api/Strategy/add", requestOptions)
-                .then((response) => response.text())
-                .then((result) => {
-                    console.log(result)
-                    Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Your work has been saved",
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        .then(() => {
-                            window.location.reload();
-                        });
-                })
-                .catch((error) => console.error(error));
+            var settings = {
+                "url": APP_URL + "/api/Strategy/add",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": raw,
+            };
+
+            $.ajax(settings).done(function(response) {
+                // console.log(response);
+                $('#add_stg').modal('hide')
+                Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    .then(() => {
+                        getAllSTG(year_code);
+                        // window.location.reload();
+                    });
+            });
+
+            // fetch(APP_URL + "/api/Strategy/add", requestOptions)
+            //     .then((response) => response.text())
+            //     .then((result) => {
+            //         console.log(result)
+            //         Swal.fire({
+            //                 position: "top-end",
+            //                 icon: "success",
+            //                 title: "Your work has been saved",
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             })
+            //             .then(() => {
+            //                 window.location.reload();
+            //             });
+            //     })
+            //     .catch((error) => console.error(error));
         };
 
         const checkURL = (type_params) => {
@@ -1126,7 +1433,7 @@
             let data = {
                 "id": id
             };
-            console.log(data);
+            // console.log(data);
 
 
             Swal.fire({
@@ -1161,7 +1468,7 @@
                                     timer: 1500
                                 })
                                 .then(() => {
-                                    console.log(data);
+                                    // console.log(data);
                                     // window.location.reload();
                                     let type_params = ""
                                     switch (type) {
@@ -1185,11 +1492,21 @@
                                 })
                         })
                         .catch(error => {
-                            console.error('There was a problem with your fetch operation:', error);
+                            // console.error('There was a problem with your fetch operation:', error);
                         });
                 }
             });
         };
+
+        // ตัวอย่างการใช้งาน
+        const yearValue = getParamValue('year');
+        if (yearValue !== null) {
+            // console.log('Year parameter value:', yearValue);
+            getAllSTG(yearValue);
+        } else {
+            getAllSTG(year);
+            // console.log('Year parameter does not exist in the URL.');
+        }
     </script>
 
 @endsection
