@@ -173,20 +173,7 @@
                             </td>
                             <td class="fs-5" id="TargetName">
                             </td>
-                            <td class="px-0 pt-2">
-                                @if (request()->has('stg_id'))
-                                    <a href="#" class="d-flex align-items-center text-decoration-none text-black"
-                                        data-bs-toggle="modal" data-bs-target="#add_target">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
-                                            viewBox="0 0 48 48">
-                                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                            <g fill="#fff">
-                                                <path d="M21 14h6v20h-6z"></path>
-                                                <path d="M14 21h20v6H14z"></path>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                @endif
+                            <td class="px-0 pt-2" id="AddTarget">
                             </td>
                         </tr>
                     </tbody>
@@ -1039,7 +1026,7 @@
                 jsonDataDiv.innerHTML = ''; // Clear previous content
                 // console.log(response['STG']);
 
-                if (response['STG']) {
+                if (response['STG'] != []) {
                     console.log(response['STG']);
                     const stg_id = getParamValue('stg_id');
                     if (stg_id !== null) {
@@ -1143,9 +1130,19 @@
                 if (response['targets']) {
                     const TargetName = document.getElementById("TargetName");
                     TargetName.innerHTML = response['targets'][0].target_name;
+                    const AddTarget = document.getElementById("AddTarget");
+                    AddTarget.innerHTML = `                    
+                        <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_target">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                <g fill="#fff">
+                                    <path d="M21 14h6v20h-6z"></path>
+                                    <path d="M14 21h20v6H14z"></path>
+                                </g>
+                            </svg>
+                        </a>`;
                     updateURL("target_id", response['targets'][0].target_id)
                     let TableTarget = $("#TargetAtAll").dataTable().api();
-                    TargetName.innerHTML = response['targets'][0].target_name;
                     TableTarget.clear();
                     $.each(response['targets'], function(index, item) {
                         TableTarget.row.add(Target_row(index, item));
@@ -1185,8 +1182,8 @@
                 const TargetName = document.getElementById("TargetName");
 
                 const target_id = getParamValue('target_id');
-                if (target_id) {
-                    const data = response['targets'].find(element => element.target_id === target_id);
+                if (target_id && response['targets']) {
+                    var data = response['targets'].find(element => element.target_id === target_id);
                 }
                 if (data && response['targets']) {
                     // console.log('targets',data);
@@ -1553,14 +1550,14 @@
         };
 
         // ตัวอย่างการใช้งาน
-        
+
         const CurrentYear = function() {
             var settings = {
                 "url": APP_URL + "/api/current/year",
                 "method": "GET",
                 "timeout": 0,
             };
-            
+
             $.ajax(settings).done(function(response) {
                 console.log(response);
                 getAllSTG(response[0].id);
