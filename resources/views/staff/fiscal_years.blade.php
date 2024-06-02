@@ -797,14 +797,13 @@
                             @if (isset($ProjectAtAll))
                                 @foreach ($ProjectAtAll as $ProjectAt)
                                     <tr>
-                                        <td><a class="text-black">{{ $ProjectAt->project_name }}</a></td>
+                                        <td><a href="{{ route('activity_work_page',['id' => $ProjectAt->project_id])}}" class="text-black">{{ $ProjectAt->project_name }}</a></td>
                                         <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
                                         <td>{{ $ProjectAt->budget_source }}</td>
                                         <td>{{ $ProjectAt->budget_type }}</td>
                                         <td>{{ number_format($ProjectAt->balance) }}</td>
                                         {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
                                         <td>มว.</td>
-
                                         <td>
                                             <a href="{{ route('editproject',['id' => $ProjectAt->project_id])}}" class="text-decoration-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
