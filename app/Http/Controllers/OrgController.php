@@ -67,6 +67,12 @@ class OrgController extends Controller
             
             $this->delSubOrg($req["del_sub_org"]);
         }
+        
+        if(isset($req["new_name"]))
+        {
+            $org->org_name = $req["new_name"];
+            $org->save();
+        }
 
         return response()->json(["message"=>"save complte"]);
     }
