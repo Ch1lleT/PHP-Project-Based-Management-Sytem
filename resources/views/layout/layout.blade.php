@@ -249,7 +249,11 @@
                                     <li><a href="{{ route('edit_profile') }}" class="rounded">แก้ไขข้อมูลส่วนตัว✅</a>
                                     </li>
                                     <li><a href="{{ route('my_group') }}" class="rounded">กลุ่มของฉัน✅</a></li>
-                                    <li><a href="{{route('conclusion')}}" class="rounded">สรุปค่างาน✅</a></li>
+                                    <li><a href="{{ route('conclusion') }}" class="rounded">สรุปค่างาน✅</a></li>
+                                    @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                        <li><a href="{{ route('accept') }}" class="rounded ">อนุมัติปิด✅</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -267,10 +271,6 @@
                                 </a>
                                 <div class="collapse" id="admin-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                        {{-- @if (in_array(auth()->user()->role, ['admin']))
-                                            <li><a href="{{ route('level') }}" class="rounded">ระดับผู้ใช้งาน✅</a>
-                                            </li>
-                                        @endif --}}
                                         @if (in_array(auth()->user()->role, ['admin', 'powerUser']))
                                             <li><a href="{{ route('org') }}" class="rounded">หน่วยงาน✅</a></li>
                                         @endif
@@ -304,10 +304,7 @@
                                             <li><a href="{{ route('group_page') }}" class="rounded ">จับกลุ่ม✅</a>
                                             </li>
                                         @endif
-                                        @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('accept') }}" class="rounded ">อนุมัติปิด✅</a>
-                                            </li>
-                                        @endif
+
                                     </ul>
                                 </div>
                             </div>

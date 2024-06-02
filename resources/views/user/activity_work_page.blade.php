@@ -90,7 +90,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>subtest</td>
+                    <td>1</td>
                     <td>subtest</td>
                     <td>subtest</td>
                     <td>subtest</td>
@@ -185,7 +185,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>subtest</td>
+                    <td>2</td>
                     <td>subtest</td>
                     <td>subtest</td>
                     <td>subtest</td>
@@ -384,7 +384,8 @@
         new DataTable('table.display', {
             paging: false,
             scrollCollapse: true,
-            scrollY: '350px'
+            scrollY: '350px',
+            ordering: false
 
         });
 

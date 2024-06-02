@@ -378,7 +378,8 @@
         new DataTable('table.display', {
             paging: false,
             scrollCollapse: true,
-            scrollY: '350px'
+            scrollY: '350px',
+            ordering: false
 
         });
 
