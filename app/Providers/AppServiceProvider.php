@@ -44,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
             $YearAllData = Fiscal_yearsController::getAll()->getData();
             $YearAll = $YearAllData->Year;
 
-            $STGAllData = STGController::getAll(request())->getData();
-            $STGAll = $STGAllData->stgAll;
+            // $STGAllData = STGController::getAll(request())->getData();
+            // $STGAll = $STGAllData->stgAll;
 
             // $PlanAll = PlanController::getAll()->getData()['PlanAll'];
             // $ProjectAll = ProjectController::getAll()->getData()['ProjectAll'];
@@ -56,8 +56,8 @@ class AppServiceProvider extends ServiceProvider
             // }
 
 
-            $STGData = STGController::get(request())->getData();
-            $STG = $STGData->STG;
+            // $STGData = STGController::get(request())->getData();
+            // $STG = $STGData->STG;
 
             // dd($STG);
             $TargetData = TargetController::get(request())->getData();
@@ -65,18 +65,18 @@ class AppServiceProvider extends ServiceProvider
             $PlanData = PlanController::get(request())->getData();
             $Plan = $PlanData->Plan;
 
-            $TargetAtAllData = TargetController::getAtAll(request())->getData();
-            $TargetAtAll = $TargetAtAllData->TargetAtAll;
+            // $TargetAtAllData = TargetController::getAtAll(request())->getData();
+            // $TargetAtAll = $TargetAtAllData->TargetAtAll;
 
-            $PlanAtAllData = PlanController::getAtAll(request())->getData();
-            $PlanAtAll = $PlanAtAllData->PlanAtAll;
+            // $PlanAtAllData = PlanController::getAtAll(request())->getData();
+            // $PlanAtAll = $PlanAtAllData->PlanAtAll;
 
             $ProjectAtAllData = ProjectController::getAtAll(request())->getData();
             $ProjectAtAll = $ProjectAtAllData->ProjectAtAll;               
 
 
             // Passing data to the view
-            $view->with(compact('STGAll', 'STG','Target','Plan','TargetAtAll', 'PlanAtAll', 'ProjectAtAll', 'YearAll'));
+            $view->with(compact('Target','Plan','TargetAtAll', 'ProjectAtAll', 'YearAll'));
         });
 
         view::composer('admin/user_list' , function ($view) {

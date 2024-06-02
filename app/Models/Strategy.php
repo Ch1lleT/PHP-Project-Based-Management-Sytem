@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Strategy extends Model
 {
@@ -22,5 +23,9 @@ class Strategy extends Model
         'desc',
         'year_code',
     ];
+
+    public function Target(): HasMany {
+        return $this->hasMany(Target::class , 'stg_id');
+    }
 
 }

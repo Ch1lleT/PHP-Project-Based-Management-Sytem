@@ -13,4 +13,9 @@ class Fiscal_yearsController extends Controller
         $Year = FiscalYear::get();
         return response()->json(['Year' => $Year]);
     }
+
+    public static function getcurrent() {
+        $year = FiscalYear::where('year',date("Y"))->get(); 
+        return response()->json($year);
+    }
 }

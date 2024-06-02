@@ -56,19 +56,7 @@ class STGController extends Controller
         }
         return response()->json(null);
 
-        // return view('staff/fiscal_years', compact('stgAll'));
     }
-
-    // public static function get(Request $request) {
-    //     $stg_id = $request->stg_id;
-
-    //     if(isset($stg_id)) {
-    //         $STG = Strategy::where('stg_id', $stg_id)->where('is_active',true)->first();
-    //         return response()->json(['STG' => $STG ],200);
-    //     } else {
-    //         return response()->json(['error' => 'Not found STG' ],404);
-    //     }
-    // }
 
     public static function get(Request $request)
     {

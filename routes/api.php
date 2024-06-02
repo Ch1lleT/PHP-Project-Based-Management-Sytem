@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AllController;
+use App\Http\Controllers\Fiscal_yearsController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProjectController;
@@ -49,6 +51,14 @@ Route::get('project/{project_id}', [ProjectController::class, 'get']);
 
 Route::get('log', [LogController::class, 'getAllLog']);
 Route::get('log/{date}', [LogController::class, 'getLog']);
+
+// Get all levels
+Route::get('All/levels/strategy', [AllController::class, 'LevelYear']);
+Route::get('All/levels/target', [AllController::class, 'LevelSTG']);
+Route::get('All/levels/plan', [AllController::class, 'LevelTarget']);
+Route::get('All/levels/project', [AllController::class, 'LevelPlan']);
+
+Route::get('current/year', [Fiscal_yearsController::class, 'getcurrent']);
 
 Route::group(['middleware' => ['web']],function(){
     Route::prefix('edit_profile')->group(function(){

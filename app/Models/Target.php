@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Target extends Model
 {
@@ -21,4 +22,8 @@ class Target extends Model
         'target_name',
         'stg_id',
     ];
+
+    public function Plan(): HasMany {
+        return $this->hasMany(Plan::class , 'target_id');
+    }
 }

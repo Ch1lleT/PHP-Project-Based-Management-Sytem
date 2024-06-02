@@ -46,15 +46,16 @@
                 name="Year">
                 @foreach ($YearAll as $Year)
                     @if (request()->query('year'))
-                        <option value="{{ $Year->year }}" {{ $Year->year == request()->query('year') ? 'selected' : '' }}>
+                        <option value="{{ $Year->id }}" {{ $Year->id == request()->query('year') ? 'selected' : '' }}>
                             {{ $Year->year + 543 }}</option>
                     @else
-                        <option value="{{ $Year->year }}" {{ $Year->year == date('Y') ? 'selected' : '' }}>
+                        <option value="{{ $Year->id }}" {{ $Year->id == date('Y') ? 'selected' : '' }}>
                             {{ $Year->year + 543 }}</option>
                     @endif
                 @endforeach
             </select>
             {{-- <label for="floatingSelect">ปีงบประมาณ</label> --}}
+
         </div>
 
     </div>
@@ -68,7 +69,8 @@
                     <form onsubmit="event.preventDefault(); Add('Strategy', this.nameSTG.value)">
                         @csrf
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ : {{ request()->query('year') }}</h1>
+                            <h1 class="modal-title fs-5" id="add_stg_label">เพิ่มยุทธศาสตร์ ปีงบประมาณ :
+                                {{ request()->query('year') }}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body row">
@@ -300,7 +302,7 @@
                                 <div style="width: 90px">แผนการ :</div>
                             </td>
                             <td class="fs-5" id="PlanName"></td>
-                            <td class="fs-5">กรุณาเลือกแผน</td>
+                            {{-- <td class="fs-5">กรุณาเลือกแผน</td> --}}
                             <td class="px-0 pt-2">
                                 @if (request()->has('stg_id') && request()->has('target_id'))
                                     <a href="#" class="d-flex align-items-center text-decoration-none text-black"
@@ -996,10 +998,10 @@
         var year = d.getFullYear();
 
 
-
         $(document).ready(function() {
             $("#Year").change(function() {
                 var selectedValue = $(this).val();
+
                 // window.location = 'fiscal_years?year=' + selectedValue
                 getAllSTG(selectedValue)
                 // console.log(selectedValue);
@@ -1020,11 +1022,11 @@
             // console.log(data);
 
             let settings = {
-                "url": APP_URL + "/api/strategy",
+                "url": APP_URL + "/api/All/levels/strategy",
                 "method": "GET",
                 "timeout": 0,
                 "data": {
-                    "year": data
+                    "year_code": data
                 }
             };
 
@@ -1035,14 +1037,13 @@
                 const jsonDataDiv = document.getElementById('STGAll');
                 const STGName = document.getElementById('STGName');
                 jsonDataDiv.innerHTML = ''; // Clear previous content
-                console.log(response);
+                // console.log(response['STG']);
 
-                if (response.length > 0) {
-                    // console.log(response);
+                if (response['STG']) {
+                    console.log(response['STG']);
                     const stg_id = getParamValue('stg_id');
                     if (stg_id !== null) {
-                        getAllTarget(stg_id);
-                        const data = response.find(element => element.stg_id === stg_id);
+                        const data = response['STG'].find(element => element.stg_id === stg_id);
                         // console.table(data);
                         STGName.innerHTML = `
                                 ยุทธศาสตร์ : ${data.name}
@@ -1054,22 +1055,23 @@
                                 </a>
                             `;
                     } else {
-                        getAllTarget(response[0].stg_id);
                         STGName.innerHTML = `
-                                ยุทธศาสตร์ : ${response[0].name}
+                                ยุทธศาสตร์ : ${response['STG'][0].name}
                                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
                                     <i class='bx bx-pencil text-dark'></i>
                                 </a>
-                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${response[0].stg_id}')">
+                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${response['STG'][0].stg_id}')">
                                     <i class='bx bx-trash text-danger'></i>
                                 </a>
                             `;
                     }
-                    response.forEach(strategy => {
+                    response['STG'].forEach(strategy => {
                         const strategyLink = document.createElement('a');
                         strategyLink.className = 'col-xl-2 col btn btn-secondary text-white';
                         strategyLink.textContent = strategy.name;
                         strategyLink.onclick = function(e) {
+                            // console.log(strategy);
+                            getAllTarget(strategy.stg_id);
                             STGName.innerHTML = `
                                 ยุทธศาสตร์ : ${strategy.name}
                                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
@@ -1079,7 +1081,6 @@
                                     <i class='bx bx-trash text-danger'></i>
                                 </a>
                             `;
-                            getAllTarget(strategy.stg_id)
                         };
                         jsonDataDiv.appendChild(strategyLink);
                     });
@@ -1139,6 +1140,28 @@
                 }
 
 
+                if (response['targets']) {
+                    const TargetName = document.getElementById("TargetName");
+                    TargetName.innerHTML = response['targets'][0].target_name;
+                    updateURL("target_id", response['targets'][0].target_id)
+                    let TableTarget = $("#TargetAtAll").dataTable().api();
+                    TargetName.innerHTML = response['targets'][0].target_name;
+                    TableTarget.clear();
+                    $.each(response['targets'], function(index, item) {
+                        TableTarget.row.add(Target_row(index, item));
+                        // console.log(index, item);
+                    });
+                    TableTarget.draw();
+                }
+
+                let TablePlan = $("#PlanAll").dataTable().api();
+                TablePlan.clear();
+                $.each(response['Plans'], function(index, item) {
+                    TablePlan.row.add(Plan_row(index, item));
+                    // console.log(index, item);
+                });
+                TablePlan.draw();
+
             });
         }
 
@@ -1146,7 +1169,7 @@
         const getAllTarget = (id) => {
 
             let settings = {
-                "url": APP_URL + "/api/target",
+                "url": APP_URL + "/api/All/levels/target",
                 "method": "GET",
                 "timeout": 0,
                 "data": {
@@ -1157,32 +1180,63 @@
             // console.log("settings : " + settings);
             $.ajax(settings).done(function(response) {
                 updateURL("stg_id", id)
-                // console.log("getAllTarget : " + response);
+                console.log(response);
                 // getAllPlan(response);
                 const TargetName = document.getElementById("TargetName");
 
                 const target_id = getParamValue('target_id');
-                if (target_id !== null && response.length > 0) {
-                    const data = response.find(element => element.target_id === target_id);
-                    // console.table(data);
-                    getAllPlan(data);
-                    TargetName.innerHTML = data.target_name;
+                if (target_id) {
+                    const data = response['targets'].find(element => element.target_id === target_id);
+                }
+                if (data && response['targets']) {
+                    // console.log('targets',data);
+                    // getAllPlan(data);
+                    if (data) {
+                        TargetName.innerHTML = data.target_name;
+                        updateURL("stg_id", data.target_id)
+                    }
                 } else {
-                    if (response.length > 0) {
-                        getAllPlan(response[0]);
-                        TargetName.innerHTML = response[0].target_name;
+                    if (response['targets']) {
+                        // getAllPlan(response[0]);
+                        TargetName.innerHTML = response['targets'][0].target_name;
                     } else {
                         TargetName.innerHTML = "No data";
                     }
                 }
 
-                let table = $("#TargetAtAll").dataTable().api();
-                table.clear();
-                $.each(response, function(index, item) {
-                    table.row.add(Target_row(index, item));
-                    // console.log(index, item);
-                });
-                table.draw();
+                if (response['targets']) {
+                    TargetName.innerHTML = response['targets'][0].target_name;
+                    updateURL("stg_id", response['targets'][0].target_id)
+                    let TableTarget = $("#TargetAtAll").dataTable().api();
+                    TableTarget.clear();
+                    $.each(response['targets'], function(index, item) {
+                        TableTarget.row.add(Target_row(index, item));
+                        // console.log(index, item);
+                    });
+                    TableTarget.draw();
+                } else {
+                    let TableTarget = $("#TargetAtAll").dataTable().api();
+                    TableTarget.clear();
+                    TableTarget.draw();
+                }
+
+                if (response['Plans']) {
+                    const PlanName = document.getElementById("PlanName");
+                    PlanName.innerHTML = response['Plans'][0].plan_name;
+                    let TablePlan = $("#PlanAll").dataTable().api();
+                    TablePlan.clear();
+                    $.each(response['Plans'], function(index, item) {
+                        TablePlan.row.add(Plan_row(index, item));
+                        // console.log(index, item);
+                    });
+                    TablePlan.draw();
+                } else {
+                    const PlanName = document.getElementById("PlanName");
+                    PlanName.innerHTML = "No Data";
+                    let TablePlan = $("#PlanAll").dataTable().api();
+                    TablePlan.clear();
+                    TablePlan.draw();
+                }
 
             });
         }
@@ -1252,7 +1306,7 @@
             }
 
             var settings = {
-                "url": APP_URL + "/api/plan",
+                "url": APP_URL + "/api/All/levels/plan",
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
@@ -1268,15 +1322,15 @@
                 const PlanName = document.getElementById("PlanName");
 
                 const plan_id = getParamValue('plan_id');
-                if (plan_id !== null && response.length > 0) {
-                    const data = response.find(element => element.plan_id === plan_id);
+                if (plan_id && response['Plans']) {
+                    const data = response['Plans'].find(element => element.plan_id === plan_id);
                     // console.table(data);
                     PlanName.innerHTML = data.plan_name;
-                    getAllPlan(data);
+                    // getAllPlan(data);
                 } else {
-                    if (response.length > 0) {
-                        getAllPlan(response[0]);
-                        PlanName.innerHTML = response[0].plan_name;
+                    if (response['Plans']) {
+                        // getAllPlan(response[0]);
+                        PlanName.innerHTML = response['Plans'][0].plan_name;
                     } else {
                         PlanName.innerHTML = "No data";
                     }
@@ -1284,7 +1338,7 @@
 
                 let table = $("#PlanAll").dataTable().api();
                 table.clear();
-                $.each(response, function(index, item) {
+                $.each(response['Plans'], function(index, item) {
                     table.row.add(Plan_row(index, item));
                     // console.log(index, item);
                 });
@@ -1499,12 +1553,25 @@
         };
 
         // ตัวอย่างการใช้งาน
+        
+        const CurrentYear = function() {
+            var settings = {
+                "url": APP_URL + "/api/current/year",
+                "method": "GET",
+                "timeout": 0,
+            };
+            
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+                getAllSTG(response[0].id);
+            });
+        }
         const yearValue = getParamValue('year');
         if (yearValue !== null) {
             // console.log('Year parameter value:', yearValue);
             getAllSTG(yearValue);
         } else {
-            getAllSTG(year);
+            CurrentYear()
             // console.log('Year parameter does not exist in the URL.');
         }
     </script>
