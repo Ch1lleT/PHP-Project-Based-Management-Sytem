@@ -248,8 +248,8 @@
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                                     <li><a href="{{ route('edit_profile') }}" class="rounded">แก้ไขข้อมูลส่วนตัว✅</a>
                                     </li>
-                                    <li><a href="{{ route('my_group') }}" class="rounded">กลุ่มของฉัน</a></li>
-                                    <li><a href="#" class="rounded">สรุปค่างาน</a></li>
+                                    <li><a href="{{ route('my_group') }}" class="rounded">กลุ่มของฉัน✅</a></li>
+                                    <li><a href="{{route('conclusion')}}" class="rounded">สรุปค่างาน✅</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -296,17 +296,16 @@
                                 </a>
                                 <div class="collapse" id="executive-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
-                                        {{-- @if (in_array(auth()->user()->role, ['admin', 'executive']))
-                                            <li><a href="{{ route('stg_overview') }}"
-                                                    class="rounded">ภาพรวมยุทธศาสตร์</a>
-                                            </li>
-                                        @endif --}}
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                             <li><a href="{{ route('efficiency') }}"
                                                     class="rounded">สรุปประสิทธิภาพการทำงาน✅</a></li>
                                         @endif
                                         @if (in_array(auth()->user()->role, ['admin', 'executive']))
                                             <li><a href="{{ route('group_page') }}" class="rounded ">จับกลุ่ม✅</a>
+                                            </li>
+                                        @endif
+                                        @if (in_array(auth()->user()->role, ['admin', 'executive']))
+                                            <li><a href="{{ route('accept') }}" class="rounded ">อนุมัติปิด✅</a>
                                             </li>
                                         @endif
                                     </ul>

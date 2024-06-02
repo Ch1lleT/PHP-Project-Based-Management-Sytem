@@ -147,6 +147,14 @@ Route::get('/level', function () {
     return view('admin/level');
 })->name("level");
 
+Route::get('/accept', function () {
+    return view('executive/accept');
+})->name("accept");
+
+Route::get('/conclusion', function () {
+    return view('profile/conclusion');
+})->name("conclusion");
+
 Route::get('/add_project', function () {
     return view('staff/addproject/add_project');
 })->name("addproject");
