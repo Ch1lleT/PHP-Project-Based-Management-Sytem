@@ -87,7 +87,7 @@
                         </div>
                     </div> --}}
                     <div class="text-end">
-                        <button class="btn btn-primary text-end" type="submit">บันทึก</button>
+                        <button class="btn custom-button text-end" type="submit">บันทึก</button>
                     </div>
 
                 </form>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <button class="btn btn-primary text-end" type="submit">บันทึก</button>
+                        <button class="btn custom-button text-end" type="submit">บันทึก</button>
                     </div>
                 </form>
             </div>

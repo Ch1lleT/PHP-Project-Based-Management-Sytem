@@ -55,28 +55,33 @@
         .content {
             height: 50%;
         }
-        #error{
-            list-style-type:none;
+
+        #error {
+            list-style-type: none;
             margin: 0;
             padding: 0;
             color: red
         }
+
         .btn-primary {
             background-color: #164863;
             border: none;
         }
-        @media (min-width: 992px){
-            .btn{
+
+        @media (min-width: 992px) {
+            .btn {
                 /* display: block; */
             }
         }
-        @media (min-width: 100px){
-            .left-area{
+
+        @media (min-width: 100px) {
+            .left-area {
                 display: none;
             }
         }
-        @media (max-width: 993px){
-            .right-area{
+
+        @media (max-width: 993px) {
+            .right-area {
                 border-radius: 5px;
             }
         }
@@ -162,33 +167,35 @@
             </div>
             <div class="col p-4 right-area">
                 <div class="header text-center row align-items-center">
-                    <h1 class="col display-1">Login</h1>
+                    <h1 class="col display-1" style="font-weight: bold">LOGIN</h1>
                 </div>
                 <div class="row align-items-start content">
                     <div class="col-12">
-                        <form action="{{route('login.post')}}" method="post">
+                        <form action="{{ route('login.post') }}" method="post">
                             @csrf
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                            <input type="text" class="form-control" placeholder="Username" id="username"
+                                name="username">
                             @error('username')
-                                <p id="error">{{$message}}</p>
+                                <p id="error">{{ $message }}</p>
                             @enderror
                             <label for="password" class="form-label input-group">Password</label>
-                            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
-                                <div class="row row-cols-2 align-items-start">
-                                    <div class="col">
-                                        @error('password')
-                                            <p id="error">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                    <div class="col text-end mt-2">
-                                        <button type="submit" class="btn btn-primary text-end">Login</button>
-                                    </div>
+                            <input type="password" class="form-control" placeholder="Password" id="password"
+                                name="password">
+                            <div class="row row-cols-2 align-items-start">
+                                <div class="col">
+                                    @error('password')
+                                        <p id="error">{{ $message }}</p>
+                                    @enderror
                                 </div>
+                                <div class="col text-end mt-2">
+                                    <button type="submit" class="btn btn-primary text-end">Login</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
 
-                
+
 
                 </div>
             </div>

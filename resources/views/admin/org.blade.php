@@ -18,7 +18,7 @@
                 rgba(0, 0, 0, 0.24) 0px 1px 5px;">
         <div class="d-flex justify-content-between mb-3">
             {{-- <p class="">หน่วยงาน</p> --}}
-            <a class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">เพิ่มหน่วยงาน</a>
+            <a class="btn custom-button text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">เพิ่มหน่วยงาน</a>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -65,7 +65,7 @@
                         <td>
                             <div class="d-flex gap-2">
                                 @foreach ($org->sub_org as $so)
-                                    <div class="bg-primary px-3 text-white rounded">
+                                    <div class="custom-button px-3 text-white rounded">
                                         {{ $so->org_name }}
                                     </div>
                                 @endforeach

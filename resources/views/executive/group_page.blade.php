@@ -79,7 +79,7 @@
                         <input type="text" class="form-control" name="search" id="search">
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary" type="submit">Add</button>
+                        <button class="btn custom-button" type="submit">Add</button>
                     </div>
                 </div>
                 <div class="row">

@@ -160,6 +160,11 @@
         ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
+
+        .custom-button {
+            background-color: #337ab7;
+            color: #ffffff;
+        }
     </style>
 
 </head>
