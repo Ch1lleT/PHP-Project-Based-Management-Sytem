@@ -28,6 +28,52 @@
     </style>
 @endsection
 @section('content')
+    {{-- Modal Secsion --}}
+    <div class="modal fade" id="add_activity" tabindex="-1" aria-labelledby="add_activity" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="add_activity">เพิ่มกิจกรรม สำหรับรายงานเดือนมกราคม</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div class="row">
+                            <label for="activity_modal" class="col-3 text-end">กิจกรรม :</label>
+                            <textarea type="text" id="activity_modal" name="activity_modal" class="form-control d-inline-block col-8"></textarea>
+                        </div>
+                        <div class="row mt-3">
+                            <label for="sub_activity" class="col-3 text-end">ภายใต้ :</label>
+                            <select name="sub_activity" id="" class="form-select col-8">
+                                <option value="" selected>--ไม่มี--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="row mt-3">
+                            <label for="weight" class="col-3 text-end">น้ำหนัก :</label>
+                            <div class="col-8 p-0">
+                                <input type="text" class="form-control">
+                                <div class="form-check m-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="Procurement">
+                                    <label class="form-check-label" for="Procurement">
+                                        จัดซื้อจัดจ้าง
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {{-- Modal Secsion --}}
+
     <div class="row">
         <div class="col-4">
             <a href="{{ route('activity_money_page') }}" class="col-3 btn btn-warning text-white mb-3" type="button"
@@ -39,7 +85,8 @@
     <div class="w-100 text-center d-flex justify-content-center my-3 fs-5">
         <div style="width:80%;">
             ตาราง แผน / ผลการดำเนินงานตามแผนปฏิบัติการ ประจำปีงบประมาณ พ.ศ. 2567
-            โครงการ ผลผลิตการพัฒนาระบบมาตรวิทยา (การเป็นหน่วยงานหลักในการเปรียบเทียบผลการวัดภายในประเทศ/การสนับสนุนกิจกรรมของชมรมมาตรวิทยาสาขาต่างๆ) 6702201
+            โครงการ ผลผลิตการพัฒนาระบบมาตรวิทยา
+            (การเป็นหน่วยงานหลักในการเปรียบเทียบผลการวัดภายในประเทศ/การสนับสนุนกิจกรรมของชมรมมาตรวิทยาสาขาต่างๆ) 6702201
         </div>
     </div>
     <div class="d-flex justify-content-center w-100">
@@ -57,7 +104,7 @@
                 <tr>
                     <th>
                         <a href="#" class="d-flex align-items-center text-decoration-none text-black"
-                            data-bs-toggle="modal" data-bs-target="#add_plan">
+                            data-bs-toggle="modal" data-bs-target="#add_activity">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 48 48">
                                 <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
                                 <g fill="#fff">
