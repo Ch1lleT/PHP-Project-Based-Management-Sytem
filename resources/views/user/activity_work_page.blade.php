@@ -29,6 +29,7 @@
 @endsection
 @section('content')
     {{-- Modal Secsion --}}
+        {{-- Add Activity --}}
     <div class="modal fade" id="add_activity" tabindex="-1" aria-labelledby="add_activity" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -62,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success">Add</button>
@@ -72,6 +73,29 @@
             </div>
         </div>
     </div>
+        {{-- Show Detail --}}
+        <div class="modal fade" id="show_detail" tabindex="-1" aria-labelledby="show_detail" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="show_detail">คำชี้แจง</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="">
+                        <div class="modal-body">
+                            <p name="detail" id="detail" contenteditable="true">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dolore perspiciatis eaque reprehenderit nisi cumque enim quia pariatur, facere mollitia.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+    
+                </div>
+            </div>
+        </div>
     {{-- Modal Secsion --}}
 
     <div class="row">
@@ -228,7 +252,10 @@
                     <td>
                         lorem
                     </td>
-                    <td contenteditable="true">
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#show_detail">
+                            <i class='bx bxs-comment-detail'></i>
+                        </a>
                     </td>
                 </tr>
                 <tr>
@@ -323,12 +350,10 @@
                     <td>
                         lorem
                     </td>
-                    <td contenteditable="true" style="white-space: normal;">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam placeat nobis vero
-                        officiis quo voluptatibus, modi assumenda asperiores aliquid, ipsum sunt labore
-                        excepturi. Ut, reprehenderit impedit? Fugiat facere temporibus error laborum eveniet
-                        deserunt fuga. Cum consequuntur doloremque, explicabo voluptatibus pariatur numquam
-                        earum aspernatur aliquam ipsa error hic quas natus reprehenderit?
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#show_detail">
+                            <i class='bx bxs-comment-detail'></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
