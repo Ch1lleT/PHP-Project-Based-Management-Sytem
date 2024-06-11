@@ -25,11 +25,18 @@
                 top: 0;
             }
         }
+
+        .activity_title,
+        .activity_table,
+        .graph {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
     </style>
 @endsection
 @section('content')
     {{-- Modal Secsion --}}
-        {{-- Add Activity --}}
+    {{-- Add Activity --}}
     <div class="modal fade" id="add_activity" tabindex="-1" aria-labelledby="add_activity" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -73,56 +80,55 @@
             </div>
         </div>
     </div>
-        {{-- Show Detail --}}
-        <div class="modal fade" id="show_detail" tabindex="-1" aria-labelledby="show_detail" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="show_detail">คำชี้แจง</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="">
-                        <div class="modal-body">
-                            <p name="detail" id="detail" contenteditable="true">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dolore perspiciatis eaque reprehenderit nisi cumque enim quia pariatur, facere mollitia.
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Save</button>
-                        </div>
-                    </form>
-    
+    {{-- Show Detail --}}
+    <div class="modal fade" id="show_detail" tabindex="-1" aria-labelledby="show_detail" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="show_detail">คำชี้แจง</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="">
+                    <div class="modal-body">
+                        <p name="detail" id="detail" contenteditable="true">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dolore perspiciatis eaque
+                            reprehenderit nisi cumque enim quia pariatur, facere mollitia.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-    {{-- Modal Secsion --}}
-
-    <div class="row">
-        <div class="col-4">
-            <a href="{{ route('activity_money_page') }}" class="col-3 btn btn-warning text-white mb-3" type="button"
-                id="btn" onclick="switch_plan()">แผนเงิน</a>
-            <div class="col-3 btn btn-success mb-3" id="btn" onclick="window.print()">PDF</div>
-            <div class="col-3 btn btn-success mb-3" id="btn-csv-work" onclick="exportToCSV_W()">CSV</div>
-        </div>
     </div>
-    <div class="w-100 text-center d-flex justify-content-center my-3 fs-5">
-        <div style="width:80%;">
+    {{-- Modal Secsion --}}
+    <div class="w-100  fs-5 activity_title rounded-3 p-3">
+        <div style="width:100%;">
             ตาราง แผน / ผลการดำเนินงานตามแผนปฏิบัติการ ประจำปีงบประมาณ พ.ศ. 2567
             โครงการ ผลผลิตการพัฒนาระบบมาตรวิทยา
             (การเป็นหน่วยงานหลักในการเปรียบเทียบผลการวัดภายในประเทศ/การสนับสนุนกิจกรรมของชมรมมาตรวิทยาสาขาต่างๆ) 6702201
         </div>
-    </div>
-    <div class="d-flex justify-content-center w-100">
-        <div style="width: 20%;height:58px;">
-            <select class="form-select p-0 px-3" style="height: 70%;">
-                <option value="1" selected>มกราคม</option>
-                <option value="2">กุมภาพันธ์</option>
-                <option value="3">มีนาคม</option>
-            </select>
+        <div class="row mt-2">
+            <div class="col-12 d-flex align-items-center">
+                <a href="{{ route('activity_money_page') }}" class="btn btn-warning text-white  me-2 btn-custom"
+                    type="button" id="btn" onclick="switch_plan()">แผนเงิน</a>
+                <button class="btn btn-success  me-2 btn-custom" id="btn" onclick="window.print()">PDF</button>
+                <button class="btn btn-success  me-2 btn-custom" id="btn-csv-work" onclick="exportToCSV_W()">CSV</button>
+                <div class="" style="width: auto;">
+                    <select class="form-select" style="height: 100%;">
+                        <option value="1" selected>มกราคม</option>
+                        <option value="2">กุมภาพันธ์</option>
+                        <option value="3">มีนาคม</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="overflow-x-hidden" id="table-container">
+
+    <div class="overflow-x-hidden activity_table rounded-3 p-3 mt-3" id="table-container">
         <table class="table display" id="tableW">
             <thead>
                 <tr>
@@ -446,7 +452,7 @@
             </tfoot>
         </table>
     </div>
-    <div class="d-flex justify-content-center w-100">
+    <div class="d-flex justify-content-center graph  rounded-3 p-3 mt-3">
         <canvas id="sCurveChart" class="w-100 h-100" style="max-width:1000px;max-height:500px;"></canvas>
     </div>
 

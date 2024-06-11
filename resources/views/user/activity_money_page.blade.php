@@ -25,27 +25,40 @@
                 top: 0;
             }
         }
+
+        .activity_title,
+        .activity_table,
+        .graph {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
     </style>
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-4">
-            <a href="{{ route('activity_work_page') }}" class="col-3 btn btn-primary text-white mb-3" type="button"
-                id="btn" onclick="switch_plan()">แผนงาน</a>
-            <div class="col-3 btn btn-success mb-3" id="btn" onclick="window.print()">PDF</div>
-            <div class="col-3 btn btn-success mb-3" id="btn-csv-money" onclick="exportToCSV_M()">CSV</div>
+    <div class="w-100  fs-5 activity_title rounded-3 p-3">
+        <div style="width:100%;">
+            ตาราง แผน / ผลการดำเนินงานตามแผนปฏิบัติการ ประจำปีงบประมาณ พ.ศ. 2567
+            โครงการ ผลผลิตการพัฒนาระบบมาตรวิทยา
+            (การเป็นหน่วยงานหลักในการเปรียบเทียบผลการวัดภายในประเทศ/การสนับสนุนกิจกรรมของชมรมมาตรวิทยาสาขาต่างๆ) 6702201
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 d-flex align-item-conter">
+                <a href="{{ route('activity_work_page') }}" class="btn btn-primary me-2 text-white " type="button"
+                    id="btn" onclick="switch_plan()">แผนงาน</a>
+                <div class="btn btn-success me-2 " id="btn" onclick="window.print()">PDF</div>
+                <div class="btn btn-success me-2 " id="btn-csv-money" onclick="exportToCSV_M()">CSV</div>
+                <div class="" style="width: auto;">
+                    <select class="form-select" style="height: 100%;">
+                        <option value="1" selected>มกราคม</option>
+                        <option value="2">กุมภาพันธ์</option>
+                        <option value="3">มีนาคม</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center w-100">
-        <div style="width: 20%;height:58px;">
-            <select class="form-select p-0 px-3" style="height: 70%;">
-                <option value="1" selected>มกราคม</option>
-                <option value="2">กุมภาพันธ์</option>
-                <option value="3">มีนาคม</option>
-            </select>
-        </div>
-    </div>
-    <div class="overflow-x-hidden" id="table-container">
+
+    <div class="overflow-x-hidden activity_table rounded-3 p-3 mt-3" id="table-container">
         <table class="table display" id="tableM">
             <thead>
                 <tr>
@@ -359,7 +372,7 @@
             </tfoot>
         </table>
     </div>
-    <div class="d-flex justify-content-center w-100">
+    <div class="d-flex justify-content-center w-100 graph rounded-3 p-3 mt-3">
         <canvas id="sCurveChart" class="w-100 h-100" style="max-width:1000px;max-height:500px;"></canvas>
     </div>
 

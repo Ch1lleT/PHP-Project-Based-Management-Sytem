@@ -63,7 +63,7 @@
 @section('content')
     <div class="mb-3">
         <div class="modal fade" id="add_stg" tabindex="-1" aria-labelledby="add_stg_label" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg ">
                 <div class="modal-content">
                     <form onsubmit="event.preventDefault(); Add('Strategy', this.nameSTG.value)">
                         @csrf
@@ -81,8 +81,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="submit" class="btn btn-success">บันทัก</button>
                         </div>
                     </form>
                 </div>
@@ -233,8 +233,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                        data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="submit" class="btn btn-success">บันทึก</button>
                                 </div>
                             </form>
                         </div>
@@ -797,7 +797,8 @@
                             @if (isset($ProjectAtAll))
                                 @foreach ($ProjectAtAll as $ProjectAt)
                                     <tr>
-                                        <td><a href="{{ route('activity_work_page',['id' => $ProjectAt->project_id])}}" class="text-black">{{ $ProjectAt->project_name }}</a></td>
+                                        <td><a href="{{ route('activity_work_page', ['id' => $ProjectAt->project_id]) }}"
+                                                class="text-black">{{ $ProjectAt->project_name }}</a></td>
                                         <td><a href="#" class="text-black">{{ $ProjectAt->project_head }}</a></td>
                                         <td>{{ $ProjectAt->budget_source }}</td>
                                         <td>{{ $ProjectAt->budget_type }}</td>
@@ -805,7 +806,8 @@
                                         {{-- <td>{{ $ProjectAt->org_name }}</td> --}}
                                         <td>มว.</td>
                                         <td>
-                                            <a href="{{ route('editproject',['id' => $ProjectAt->project_id])}}" class="text-decoration-none">
+                                            <a href="{{ route('editproject', ['id' => $ProjectAt->project_id]) }}"
+                                                class="text-decoration-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 12 12">
                                                     <path fill="#000000"
