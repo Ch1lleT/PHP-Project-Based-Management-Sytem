@@ -37,13 +37,19 @@
             padding: 8px 10px !important;
             margin: 0 !important;
         }
-        .dataTables_paginate span{
+
+        .dataTables_paginate span {
             color: white !important;
+        }
+
+        .head {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
         }
     </style>
 @endsection
 @section('content')
-    <div class="">
+    <div class="head rounded-3 p-3">
         <h4 class="mx-2">แสดงข้อมูล : ฝ่ายนโยบายและยุทธสาสตร์</h4>
         <div class="w-100 d-flex align-items-center my-3">
             <div class="dropdown fs-6 d-flex align-items-center" style="width: 200px">
@@ -57,9 +63,10 @@
             </div>
         </div>
         <div class="overflow-x-auto">
-            <table class="table display " style="width:100%;.dataTables_paginate {color: white !important;}" id="table_report">
+            <table class="table display " style="width:100%;.dataTables_paginate {color: white !important;}"
+                id="table_report">
                 <thead>
-                    
+
                     <tr>
                         <th scope="col">Catagory</th>
                         <th scope="col">No.</th>
