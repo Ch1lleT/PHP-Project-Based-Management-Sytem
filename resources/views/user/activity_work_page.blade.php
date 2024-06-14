@@ -128,8 +128,8 @@
         </div>
     </div>
 
-    <div class="overflow-x-hidden activity_table rounded-3 p-3 mt-3" id="table-container">
-        <table class="table display" id="tableW">
+    <div class="activity_table rounded-3 p-3 mt-3 overflow-x-auto" id="table-container">
+        <table class="table display " id="tableW" style="width: 100%;">
             <thead>
                 <tr>
                     <th>
@@ -144,7 +144,7 @@
                             </svg>
                         </a>
                     </th>
-                    <th> ยุทธศาสตร์/โครงการ/กิจกรรม/</th>
+                    <th nowrap>ยุทธศาสตร์/โครงการ/กิจกรรม/</th>
                     <th>WF(sum)</th>
                     <th>WF(sub)</th>
                     <th>ต.ค.</th>
@@ -172,85 +172,85 @@
                     <td>subtest</td>
                     <td>subtest</td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
@@ -265,90 +265,90 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
+                    <td>1</td>
                     <td>subtest</td>
                     <td>subtest</td>
                     <td>subtest</td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
                     </td>
                     <td>
-                        <div class="row align-items-top">
+                         <div class="row">
                             <div class="col-12 border-bottom" contenteditable="true">s</div>
                             <div class="col-12" contenteditable="true">s</div>
                         </div>
@@ -362,6 +362,7 @@
                         </a>
                     </td>
                 </tr>
+                
             </tbody>
             <tfoot>
                 <tr class="table-primary">
@@ -448,7 +449,6 @@
                     <td></td>
                     <td></td>
                 </tr>
-
             </tfoot>
         </table>
     </div>
@@ -462,7 +462,7 @@
         new DataTable('table.display', {
             paging: false,
             scrollCollapse: true,
-            scrollY: '350px',
+            // scrollY: '350px',
             ordering: false
 
         });

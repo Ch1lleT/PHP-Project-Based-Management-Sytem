@@ -58,14 +58,14 @@
         </div>
     </div>
 
-    <div class="overflow-x-hidden activity_table rounded-3 p-3 mt-3" id="table-container">
-        <table class="table display" id="tableM">
+    <div class="activity_table rounded-3 p-3 mt-3 overflow-x-auto" id="table-container">
+        <table class="table display" id="tableM" style="width: 100%;">
             <thead>
                 <tr>
                     <th>
                         No.
                     </th>
-                    <th nowrap>ยุทธศาสตร์/โครงการ/กิจกรรม/</th>
+                    <th nowrap >ยุทธศาสตร์/โครงการ/กิจกรรม/</th>
                     <th nowrap>รวม แผน/ผกพัน/ผล</th>
                     <th>ต.ค.</th>
                     <th>พ.ย.</th>
@@ -81,7 +81,7 @@
                     <th>ก.ย.</th>
                     <th nowrap>แผน ผล</th>
                     <th>%</th>
-                    <th nowrap>Edit</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -382,7 +382,7 @@
         new DataTable('table.display', {
             paging: false,
             scrollCollapse: true,
-            scrollY: '350px',
+            // scrollY: '350px',
             ordering: false
 
         });
