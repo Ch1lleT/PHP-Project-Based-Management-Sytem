@@ -22,9 +22,7 @@ class STGController extends Controller
             // 'desc' => 'required'
         ]);
         // dd($request);
-        $fiscalYear = FiscalYear::where('year' , $request->input('year'))->first();
-        $year_code = $fiscalYear->id;
-
+        $year_code = $request->input('year');
         if ($request) {
             $STG = new Strategy();
             $STG->stg_id = UUID::uuid(Strategy::class);

@@ -182,7 +182,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST" action="{{ url('/TGAdd/' . request('stg_id')) }}">
+                            <form onsubmit="event.preventDefault(); Add('Target', this.target_name.value)">
                                 @csrf
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="add_target_label">เพิ่มเป้า ปีงบประมาณ : 2567</h1>
@@ -194,7 +194,7 @@
                                         <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
                                             :</label>
                                         <div class="col-sm-10 d-flex align-items-end">
-                                            <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
+                                            <p class="m-0" id="STG_name">test</p>
                                         </div>
                                     </div>
                                     <div class="mb-3 row ">
@@ -215,11 +215,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade " id="edit_target_" tabindex="-1" aria-labelledby="edit_target_label_"
+                <div class="modal fade " id="edit_target" tabindex="-1" aria-labelledby="edit_target_label"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST" action="">
+                            <form onsubmit="event.preventDefault(); Add('Strategy', this.nameSTG.value)">
                                 @method('PUT')
                                 @csrf
                                 <div class="modal-header">
@@ -1021,6 +1021,7 @@
 
             $.ajax(settings).done(function(response) {
                 updateURL("year", data);
+                updateURL("stg_id", response['STG'][0].stg_id)
                 const jsonDataDiv = document.getElementById('STGAll');
                 const STGName = document.getElementById('STGName');
                 jsonDataDiv.innerHTML = ''; // Clear previous content
@@ -1363,7 +1364,7 @@
             editLink.append(editIcon);
             editLink.click(function() {
                 $(this).attr('data-bs-toggle', 'modal');
-                $(this).attr('data-bs-target', '#edit_target_');
+                $(this).attr('data-bs-target', '#edit_target');
                 // console.log("edit_target_");
                 // $("#myBtn").click(function() {
                 //     $("#edit_target_").modal();
@@ -1401,27 +1402,46 @@
         };
 
         const Add = (type, data) => {
+            console.log("type : " + type);
+            console.log('data:', data);
 
-            // console.log("type : " + type);
-            // console.log('data:', data);
-            const urlParams = new URLSearchParams(window.location.search);
-            let year_code = urlParams.get('year');
-            console.log(year_code);
-
-            if (!year_code) {
-                year_code = new Date().getFullYear();
-                // console.log("year_code : ", year_code);
-            }
-
+            let url;
+            let raw;
+            let modal;
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
-            const raw = JSON.stringify({
-                "nameSTG": data,
-                "year": year_code
-            });
+            switch (type) {
+                case 'Strategy':
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let year_code = urlParams.get('year');
+                    console.log(year_code);
 
-            // console.table(raw);
+                    if (!year_code) {
+                        year_code = new Date().getFullYear();
+                        console.log("year_code : ", year_code);
+                    }
+
+                    url = APP_URL + "/api/" + type + "/add";
+                    raw = JSON.stringify({
+                        "nameSTG": data,
+                        "year": year_code
+                    });
+                    modal = '#add_stg';
+                    break;
+
+                case 'Target':
+                    url = APP_URL + "/api/" + type + "/add" + data.id;
+                    raw = JSON.stringify({
+                        "target_name": data.name
+                    });
+                    modal = '#add_target';
+                    break;
+
+                default:
+                    console.log("Unknown type");
+                    return; // Exit the function if the type is unknown
+            }
 
             const requestOptions = {
                 method: "POST",
@@ -1431,48 +1451,32 @@
             };
 
             var settings = {
-                "url": APP_URL + "/api/Strategy/add",
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
+                url,
+                method: "POST",
+                timeout: 0,
+                headers: {
                     "Content-Type": "application/json"
                 },
-                "data": raw,
+                data: raw,
             };
 
             $.ajax(settings).done(function(response) {
-                // console.log(response);
-                $('#add_stg').modal('hide')
+                console.log(response);
+                $(modal).modal('hide');
                 Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your work has been saved",
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    .then(() => {
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    if (type === "Strategy") {
                         getAllSTG(year_code);
-                        // window.location.reload();
-                    });
+                    }
+                });
             });
-
-            // fetch(APP_URL + "/api/Strategy/add", requestOptions)
-            //     .then((response) => response.text())
-            //     .then((result) => {
-            //         console.log(result)
-            //         Swal.fire({
-            //                 position: "top-end",
-            //                 icon: "success",
-            //                 title: "Your work has been saved",
-            //                 showConfirmButton: false,
-            //                 timer: 1500
-            //             })
-            //             .then(() => {
-            //                 window.location.reload();
-            //             });
-            //     })
-            //     .catch((error) => console.error(error));
         };
+
 
         const checkURL = (type_params) => {
             var url = new URL(window.location.href);

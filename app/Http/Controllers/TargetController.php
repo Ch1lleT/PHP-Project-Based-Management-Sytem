@@ -54,10 +54,12 @@ class TargetController extends Controller
 
     public static function Add(Request $request, $stg_id)
     {
-        $request->validate([
-            $request->target_name => 'request'
-        ]);
 
+        $request->validate([
+            'target_name' => 'required',
+            // 'desc' => 'required'
+        ]);
+        // dd($request , $stg_id);
         if (isset($stg_id)) {
             // $uuid = Str::uuid()->toString();
 
@@ -69,7 +71,7 @@ class TargetController extends Controller
 
             $TG->save();
 
-            return redirect()->back()->with('success', 'Data added successfully');
+            return response()->json(['message' => 'Data Add successfully']);
         } else if ($stg_id == '') {
             return response()->json(['error' => null]);
         }
