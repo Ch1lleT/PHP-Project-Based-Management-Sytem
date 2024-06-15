@@ -1009,7 +1009,7 @@
             // console.log(data);
 
             let settings = {
-                "url": APP_URL + "/api/All/levels/strategy",
+                "url": "/api/All/levels/strategy",
                 "method": "GET",
                 "timeout": 0,
                 "data": {
@@ -1167,7 +1167,7 @@
         const getAllTarget = (id) => {
 
             let settings = {
-                "url": APP_URL + "/api/All/levels/target",
+                "url": "/api/All/levels/target",
                 "method": "GET",
                 "timeout": 0,
                 "data": {
@@ -1304,7 +1304,7 @@
             }
 
             var settings = {
-                "url": APP_URL + "/api/All/levels/plan",
+                "url": "/api/All/levels/plan",
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
@@ -1557,7 +1557,7 @@
 
         const CurrentYear = function() {
             var settings = {
-                "url": APP_URL + "/api/current/year",
+                "url":"/api/current/year",
                 "method": "GET",
                 "timeout": 0,
             };
