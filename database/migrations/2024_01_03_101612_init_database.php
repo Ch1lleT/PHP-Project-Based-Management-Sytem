@@ -19,13 +19,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Schema::create("role", function (Blueprint $table) {
-        //     $table->string("role_id");
-        //     $table->string("role_name");
-
-        //     $table->primary(["role_id"]);
-        // });
-
         Schema::create("user", function (Blueprint $table) {
             $table->string("user_id", 8);
             // $table->string("email");
@@ -224,18 +217,6 @@ return new class extends Migration
             $table->foreign('sub_org_id')->references('sub_org_id')->on('sub_organization')->onDelete("cascade");
         });
 
-        // Schema::create('log', function (Blueprint $table) {
-        //     $table->date('date');
-        //     $table->time('time');
-        //     $table->string('user_id', 8);
-        //     $table->string('action');
-        //     $table->string('desc');
-        //     $table->string('ip', 15);
-        //     $table->timestamps();
-
-        //     $table->foreign("user_id")->references("user_id")->on('user');
-        // });
-
         Schema::create('assign_to', function (Blueprint $table) {
             $table->string('user_id', 8);
             $table->string('project_id', 8);
@@ -262,16 +243,6 @@ return new class extends Migration
 
             $table->foreign("user_id", 8)->references("user_id")->on("user");
         });
-
-        // Schema::create("have_role", function (Blueprint $table) {
-        //     $table->string('user_id', 8);
-        //     $table->string('role_id');
-
-        //     $table->foreign("user_id")->references("user_id")->on("user");
-        //     $table->foreign("role_id")->references("role_id")->on("role");
-        // });
-
-
 
         Schema::create("target_kpi", function (Blueprint $table) {
             $table->string("targetkpi_id");
@@ -307,6 +278,39 @@ return new class extends Migration
             $table->foreign("act_id")->references("act_id")->on("activity");
             $table->primary(["req_id"]);
         });
+
+
+
+        Schema::create("okr",function (Blueprint $table){
+            $table->string('okr_id',8);
+            $table->string('okr_name');
+            $table->string('create_by',8);
+            
+            $table->primary(['okr_id']);
+        });
+
+
+        Schema::create("kpi",function (Blueprint $table){
+            $table->string('kpi_id',8);
+            $table->string('kpi_name');
+            $table->timestamps();
+            $table->date('due');
+            $table->string('create_by',8);
+            
+            
+            $table->primary(['kpi_id']);
+        });
+
+        Schema::create("kpi_snapshot",function (Blueprint $table){
+            $table->string('kpi_snap',8);
+            $table->string('kpi_id');
+
+            $table->primary(['kpi_snap']);
+            $table->foreign('kpi_id')->references('kpi_id')->on('kpi');
+        });
+
+
+
     }
 
     /**
@@ -333,15 +337,11 @@ return new class extends Migration
 
         Schema::dropIfExists('organization');
 
-        // Schema::dropIfExists('log');
-
         Schema::dropIfExists('assign_to');
 
         Schema::dropIfExists("group");
 
         Schema::dropIfExists("setting");
-
-        // Schema::dropIfExists("have_role");
 
         Schema::dropIfExists("target_kpi");
 
@@ -359,8 +359,12 @@ return new class extends Migration
 
         Schema::dropIfExists("user");
 
-        // Schema::dropIfExists("role");
-
         Schema::dropIfExists("fiscal_year");
+
+        Schema::dropIfExists("kpi_snapshot");
+
+        Schema::dropIfExists("kpi");
+
+        Schema::dropIfExists("okr");
     }
 };
