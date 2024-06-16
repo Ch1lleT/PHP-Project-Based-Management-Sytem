@@ -137,12 +137,10 @@
 
                                 {{-- {{$STG[0]->name}} --}}
                                 @if (isset($STG))
-                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                        data-bs-target="#edit_stg">
+                                    <a class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
                                         <i class='bx bx-pencil text-dark'></i>
                                     </a>
-                                    <a href="#" class="text-decoration-none"
-                                        onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
+                                    <a class="text-decoration-none" onclick="checkDel('Strategy','{{ $STG->stg_id }}')">
                                         <i class='bx bx-trash text-danger'></i>
                                     </a>
                                 @endif
@@ -289,7 +287,8 @@
                             <td class="fs-5" id="PlanName"></td>
                             {{-- <td class="fs-5">กรุณาเลือกแผน</td> --}}
                             <td class="px-0 pt-2">
-                                <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_plan">
+                                <a href="#" class="d-flex align-items-center text-decoration-none text-black"
+                                    data-bs-toggle="modal" data-bs-target="#add_plan">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
                                         viewBox="0 0 48 48">
                                         <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
@@ -874,14 +873,14 @@
                         });
                         TableTarget.draw();
                     }
-                    if (response['Plans'] && response['Plans'].length > 0) 
-                    {   
+                    if (response['Plans'] && response['Plans'].length > 0) {
                         const plan_id = getParamValue('plan_id');
                         const PlanName = document.getElementById("PlanName");
                         if (plan_id) {
                             // PlanName.innerHTML = response['Plans']['plan_id'] == plan_id
-                            PlanName.innerHTML = response['Plans'].find(plan => plan.plan_id === plan_id)['plan_name'];
-                        }else {
+                            PlanName.innerHTML = response['Plans'].find(plan => plan.plan_id === plan_id)[
+                                'plan_name'];
+                        } else {
                             PlanName.innerHTML = response['Plans'][0]['plan_name']
                         }
                         let TablePlan = $("#PlanAll").dataTable().api();
@@ -1006,50 +1005,95 @@
             });
         }
 
+        // const Target_row = (index, e) => {
+        //     let newRow = $('<tr></tr>');
+        //     newRow.append('<td>' + (index + 1) + '</td>');
+
+        //     let TargetLink = $('<td>' + e.target_name + '</td>');
+        //     TargetLink.click(function() {
+        //         // console.log("target_name : " + e);
+        //         updateURL("target_id", e.target_id);
+        //         getAllPlan(e);
+        //     });
+        //     newRow.append(TargetLink);
+
+        //     // สร้างลิงก์แก้ไข
+        //     let editCell = $('<td></td>');
+        //     let editLink = $('<a class="text-decoration-none"></a>');
+        //     let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+        //     editLink.append(editIcon);
+        //     editLink.click(function() {
+        //         // $(this).attr('data-bs-toggle', 'modal');
+        //         console.log($(this).attr('data-bs-toggle', 'modal'));
+        //         $(this).attr('data-bs-target', '#edit_target');
+        //         console.log("edit_target : " + e.target_id);
+        //         $("#edit_target").modal();
+        //         // $("#myBtn").click(function() {
+        //         // });
+        //         // $("#edit_target_").modal();
+        //         // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
+        //     });
+        //     editCell.append(editLink);
+        //     newRow.append(editCell);
+
+        //     // สร้างลิงก์ลบ
+        //     let deleteCell = $('<td></td>');
+        //     let deleteLink = $('<a class="text-decoration-none"></a>');
+        //     let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+        //     deleteLink.append(deleteIcon);
+        //     deleteLink.click(function() {
+        //         console.log("Click on delete link");
+        //         // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+        //     });
+        //     deleteCell.append(deleteLink);
+        //     newRow.append(deleteCell);
+
+        //     return newRow;
+        // }
         const Target_row = (index, e) => {
-            let newRow = $('<tr></tr>');
-            newRow.append('<td>' + (index + 1) + '</td>');
+    let newRow = $('<tr></tr>');
+    newRow.append('<td>' + (index + 1) + '</td>');
 
-            let TargetLink = $('<td>' + e.target_name + '</td>');
-            TargetLink.click(function() {
-                // console.log("target_name : " + e);
-                updateURL("target_id", e.target_id);
-                getAllPlan(e);
-            });
-            newRow.append(TargetLink);
+    let TargetLink = $('<td>' + e.target_name + '</td>');
+    TargetLink.click(function() {
+        updateURL("target_id", e.target_id);
+        getAllPlan(e);
+    });
+    newRow.append(TargetLink);
 
-            // สร้างลิงก์แก้ไข
-            let editCell = $('<td></td>');
-            let editLink = $('<a href="#" class="text-decoration-none"></a>');
-            let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
-            editLink.append(editIcon);
-            editLink.click(function() {
-                $(this).attr('data-bs-toggle', 'modal');
-                $(this).attr('data-bs-target', '#edit_target');
-                console.log("edit_target : " + e.target_id);
-                $("#edit_target").modal();
-                // $("#myBtn").click(function() {
-                // });
-                // $("#edit_target_").modal();
-                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
-            });
-            editCell.append(editLink);
-            newRow.append(editCell);
+    // Create the edit link
+    let editCell = $('<td></td>');
+    let editLink = $('<a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#edit_target"></a>');
+    let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+    editLink.append(editIcon);
+    editLink.click(function() {
+        console.log("edit_target : " + e.target_id);
 
-            // สร้างลิงก์ลบ
-            let deleteCell = $('<td></td>');
-            let deleteLink = $('<a href="#" class="text-decoration-none"></a>');
-            let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
-            deleteLink.append(deleteIcon);
-            deleteLink.click(function() {
-                console.log("Click on delete link");
-                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
-            });
-            deleteCell.append(deleteLink);
-            newRow.append(deleteCell);
+        // Set the modal fields with the data
+        $('#edit_target #name').val(e.target_name);  // Assuming you have an input with id 'recipient-name'
+        $('#edit_target .modal-title').text('Edit Target: ' + e.target_name);
 
-            return newRow;
-        }
+        // Show the modal
+        $('#edit_target').modal('show');
+    });
+    editCell.append(editLink);
+    newRow.append(editCell);
+
+    // Create the delete link
+    let deleteCell = $('<td></td>');
+    let deleteLink = $('<a class="text-decoration-none" href="#"></a>');
+    let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+    deleteLink.append(deleteIcon);
+    deleteLink.click(function() {
+        console.log("Click on delete link");
+        // Perform delete action here
+    });
+    deleteCell.append(deleteLink);
+    newRow.append(deleteCell);
+
+    return newRow;
+}
+
 
         const getAllPlan = (data) => {
             // console.table(data);
@@ -1126,7 +1170,7 @@
             newRow.append('<td>' + e.type + '</td>');
             // สร้างลิงก์แก้ไข
             let editCell = $('<td></td>');
-            let editLink = $('<a href="#" class="text-decoration-none"></a>');
+            let editLink = $('<a class="text-decoration-none"></a>');
             let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
             editLink.append(editIcon);
             editLink.click(function() {
