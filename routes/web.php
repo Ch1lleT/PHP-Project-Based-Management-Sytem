@@ -101,6 +101,10 @@ Route::get('/activity_work_page', function () {
     return view('user/activity_work_page');
 })->name("activity_work_page");
 
+Route::get('/budget', function () {
+    return view('staff/budget');
+})->name("budget");
+
 Route::get('/activity_page', function () {
     return view('user/activity_page');
 })->name("activity_page");
