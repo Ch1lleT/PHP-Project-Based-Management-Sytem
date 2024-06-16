@@ -60,6 +60,7 @@ Route::get('All/levels/plan', [AllController::class, 'LevelTarget']);
 Route::get('All/levels/project', [AllController::class, 'LevelPlan']);
 
 Route::get('current/year', [Fiscal_yearsController::class, 'getcurrent']);
+Route::get('year', [Fiscal_yearsController::class, 'getAll']);
 
 Route::group(['middleware' => ['web']],function(){
     Route::prefix('edit_profile')->group(function(){

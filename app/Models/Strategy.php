@@ -25,7 +25,7 @@ class Strategy extends Model
     ];
 
     public function Target(): HasMany {
-        return $this->hasMany(Target::class , 'stg_id');
+        return $this->hasMany(Target::class , 'stg_id')->where("is_active" , true);
     }
 
 }

@@ -8,6 +8,7 @@ use App\Models\Strategy;
 use App\Models\Target;
 use Illuminate\Http\Request;
 
+
 class AllController extends Controller
 {
     //

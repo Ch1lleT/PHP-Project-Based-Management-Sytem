@@ -42,8 +42,8 @@
     <div class="w-100 d-flex align-items-center">
         <div class="dropdown fs-6 d-flex align-items-center">
             <span class="fs-5 mx-2">ปีงบประมาณ</span>
-            <select class="form-select p-0 px-5 h-50" id="Year" style="padding: 0rem 1.7rem 0rem 1rem !important;"
-                name="Year">
+            <select onchange="Fis_Year(this.value)" class="form-select p-0 px-5 h-50" id="Year"
+                style="padding: 0rem 1.7rem 0rem 1rem !important;" name="Year">
                 @foreach ($YearAll as $Year)
                     @if (request()->query('year'))
                         <option value="{{ $Year->id }}" {{ $Year->id == request()->query('year') ? 'selected' : '' }}>
@@ -55,9 +55,7 @@
                 @endforeach
             </select>
             {{-- <label for="floatingSelect">ปีงบประมาณ</label> --}}
-
         </div>
-
     </div>
 @endsection
 
@@ -1006,162 +1004,147 @@
         }
 
         const getAllSTG = (data) => {
-            // console.log(data);
-
             let settings = {
-                "url": "/api/All/levels/strategy",
-                "method": "GET",
-                "timeout": 0,
-                "data": {
-                    "year_code": data
+                url: "/api/All/levels/strategy",
+                method: "GET",
+                timeout: 0,
+                data: {
+                    year_code: data
                 }
             };
 
-            // console.log(settings);
-
             $.ajax(settings).done(function(response) {
                 updateURL("year", data);
-                updateURL("stg_id", response['STG'][0].stg_id)
                 const jsonDataDiv = document.getElementById('STGAll');
                 const STGName = document.getElementById('STGName');
                 jsonDataDiv.innerHTML = ''; // Clear previous content
-                // console.log(response['STG']);
 
-                if (response['STG'] != []) {
+                if (response['STG'] && response['STG'].length > 0) {
                     console.log(response['STG']);
-                    const stg_id = getParamValue('stg_id');
-                    if (stg_id !== null) {
-                        const data = response['STG'].find(element => element.stg_id === stg_id);
-                        // console.table(data);
-                        STGName.innerHTML = `
-                                ยุทธศาสตร์ : ${data.name}
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
-                                    <i class='bx bx-pencil text-dark'></i>
-                                </a>
-                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${data.stg_id}')">
-                                    <i class='bx bx-trash text-danger'></i>
-                                </a>
-                            `;
-                    } else {
-                        STGName.innerHTML = `
-                                ยุทธศาสตร์ : ${response['STG'][0].name}
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
-                                    <i class='bx bx-pencil text-dark'></i>
-                                </a>
-                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${response['STG'][0].stg_id}')">
-                                    <i class='bx bx-trash text-danger'></i>
-                                </a>
-                            `;
-                    }
+                    const stg_id = getParamValue('stg_id') || response['STG'][0].stg_id;
+                    const selectedStrategy = response['STG'].find(element => element.stg_id === stg_id) ||
+                        response['STG'][0];
+                    updateURL("stg_id", selectedStrategy.stg_id);
+
+                    STGName.innerHTML = `
+                        ยุทธศาสตร์ : ${selectedStrategy.name}
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                            <i class='bx bx-pencil text-dark'></i>
+                        </a>
+                        <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${selectedStrategy.stg_id}')">
+                            <i class='bx bx-trash text-danger'></i>
+                        </a>
+                    `;
+
+                    // const STG_Name = document.getElementById('STG_Name');
+                    // STG_Name.innerHTML = `${selectedStrategy.name}`;
+
+                    let fragment = document.createDocumentFragment();
                     response['STG'].forEach(strategy => {
                         const strategyLink = document.createElement('a');
                         strategyLink.className = 'col-xl-2 col btn btn-secondary text-white';
                         strategyLink.textContent = strategy.name;
                         strategyLink.onclick = function(e) {
-                            // console.log(strategy);
                             getAllTarget(strategy.stg_id);
                             STGName.innerHTML = `
-                                ยุทธศาสตร์ : ${strategy.name}
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
-                                    <i class='bx bx-pencil text-dark'></i>
-                                </a>
-                                <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${strategy.stg_id}')">
-                                    <i class='bx bx-trash text-danger'></i>
-                                </a>
-                            `;
+                        ยุทธศาสตร์ : ${strategy.name}
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit_stg">
+                            <i class='bx bx-pencil text-dark'></i>
+                        </a>
+                        <a href="#" class="text-decoration-none" onclick="checkDel('Strategy', '${strategy.stg_id}')">
+                            <i class='bx bx-trash text-danger'></i>
+                        </a>
+                    `;
                         };
-                        jsonDataDiv.appendChild(strategyLink);
+                        fragment.appendChild(strategyLink);
                     });
-                    // สร้างลิงก์ใหม่พร้อม SVG
+
                     const newLink = document.createElement('a');
                     newLink.href = "#";
                     newLink.className = "col-xl-1";
                     newLink.setAttribute("data-bs-toggle", "modal");
                     newLink.setAttribute("data-bs-target", "#add_stg");
+                    newLink.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    `;
+                    fragment.appendChild(newLink);
 
-                    // สร้าง SVG และเพิ่มเข้าไปในลิงก์ใหม่
-                    const svg = `
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                <g fill="#fff">
-                                    <path d="M21 14h6v20h-6z"></path>
-                                    <path d="M14 21h20v6H14z"></path>
-                                </g>
-                            </svg>
-                            `;
-                    newLink.innerHTML = svg;
+                    jsonDataDiv.appendChild(fragment);
 
-                    // เพิ่มลิงก์ใหม่ที่มี SVG ลงท้ายใน jsonDataDiv
-                    jsonDataDiv.appendChild(newLink);
+                    if (response['targets'] && response['targets'].length > 0) {
+                        const TargetName = document.getElementById("TargetName");
+                        TargetName.innerHTML = response['targets'][0].target_name;
+                        const AddTarget = document.getElementById("AddTarget");
+                        AddTarget.innerHTML = `                    
+                    <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_target">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
+                    </a>`;
+                        updateURL("target_id", response['targets'][0].target_id);
 
+                        let TableTarget = $("#TargetAtAll").dataTable().api();
+                        TableTarget.clear();
+                        response['targets'].forEach((item, index) => {
+                            TableTarget.row.add(Target_row(index, item));
+                        });
+                        TableTarget.draw();
+                    }
+                    if (response['Plans'] && response['Plans'].length > 0) {
+                        let TablePlan = $("#PlanAll").dataTable().api();
+                        TablePlan.clear();
+                        response['Plans'].forEach((item, index) => {
+                            TablePlan.row.add(Plan_row(index, item));
+                        });
+                        TablePlan.draw();
+                    }
 
                 } else {
-                    // สร้างลิงก์ใหม่พร้อม SVG
+                    const noDataLink = document.createElement('a');
+                    noDataLink.className = 'col-xl-2 col btn btn-outline-danger';
+                    noDataLink.textContent = "No Data";
+                    jsonDataDiv.appendChild(noDataLink);
+
                     const newLink = document.createElement('a');
                     newLink.href = "#";
                     newLink.className = "col-xl-1";
                     newLink.setAttribute("data-bs-toggle", "modal");
                     newLink.setAttribute("data-bs-target", "#add_stg");
-
-                    // สร้าง SVG และเพิ่มเข้าไปในลิงก์ใหม่
-                    const svg = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                        <g fill="#fff">
-                            <path d="M21 14h6v20h-6z"></path>
-                            <path d="M14 21h20v6H14z"></path>
-                        </g>
-                    </svg>
+                    newLink.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                            <g fill="#fff">
+                                <path d="M21 14h6v20h-6z"></path>
+                                <path d="M14 21h20v6H14z"></path>
+                            </g>
+                        </svg>
                     `;
-                    newLink.innerHTML = svg;
-
-                    // เพิ่มลิงก์ใหม่ที่มี SVG ลงท้ายใน jsonDataDiv
-                    const strategyLink = document.createElement('a');
-                    strategyLink.className = 'col-xl-2 col btn btn-outline-danger';
-                    // newLink.setAttribute('aria-disabled'. true);
-                    strategyLink.textContent = "No Data";
-                    jsonDataDiv.appendChild(strategyLink);
-
                     jsonDataDiv.appendChild(newLink);
-                    // jsonDataDiv.innerHTML = "No data";
+
                     STGName.innerHTML = "No data";
-                }
 
-
-                if (response['targets']) {
-                    const TargetName = document.getElementById("TargetName");
-                    TargetName.innerHTML = response['targets'][0].target_name;
-                    const AddTarget = document.getElementById("AddTarget");
-                    AddTarget.innerHTML = `                    
-                        <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_target">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                                <g fill="#fff">
-                                    <path d="M21 14h6v20h-6z"></path>
-                                    <path d="M14 21h20v6H14z"></path>
-                                </g>
-                            </svg>
-                        </a>`;
-                    updateURL("target_id", response['targets'][0].target_id)
                     let TableTarget = $("#TargetAtAll").dataTable().api();
                     TableTarget.clear();
-                    $.each(response['targets'], function(index, item) {
-                        TableTarget.row.add(Target_row(index, item));
-                        // console.log(index, item);
-                    });
                     TableTarget.draw();
+
+                    let TablePlan = $("#PlanAll").dataTable().api();
+                    TablePlan.clear();
+                    TablePlan.draw();
                 }
 
-                let TablePlan = $("#PlanAll").dataTable().api();
-                TablePlan.clear();
-                $.each(response['Plans'], function(index, item) {
-                    TablePlan.row.add(Plan_row(index, item));
-                    // console.log(index, item);
-                });
-                TablePlan.draw();
-
             });
-        }
+        };
+
 
 
         const getAllTarget = (id) => {
@@ -1181,6 +1164,7 @@
                 console.log(response);
                 // getAllPlan(response);
                 const TargetName = document.getElementById("TargetName");
+
 
                 const target_id = getParamValue('target_id');
                 if (target_id && response['targets']) {
@@ -1258,10 +1242,10 @@
             editLink.append(editIcon);
             editLink.click(function() {
                 $(this).attr('data-bs-toggle', 'modal');
-                $(this).attr('data-bs-target', '#edit_target_');
-                // console.log("edit_target_");
+                $(this).attr('data-bs-target', '#edit_target');
+                console.log("edit_target : " + e.target_id);
+                $("#edit_target").modal();
                 // $("#myBtn").click(function() {
-                //     $("#edit_target_").modal();
                 // });
                 // $("#edit_target_").modal();
                 // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
@@ -1275,7 +1259,7 @@
             let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
             deleteLink.append(deleteIcon);
             deleteLink.click(function() {
-                // console.log("Click on delete link");
+                console.log("Click on delete link");
                 // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
             });
             deleteCell.append(deleteLink);
@@ -1488,7 +1472,7 @@
             let data = {
                 "id": id
             };
-            // console.log(data);
+            console.log(type, id);
 
 
             Swal.fire({
@@ -1501,63 +1485,117 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(APP_URL + '/api/' + type + '/active', {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(data)
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                                .then(() => {
-                                    // console.log(data);
-                                    // window.location.reload();
-                                    let type_params = ""
-                                    switch (type) {
-                                        case 'Strategy':
-                                            type_params = 'stg_id'
-                                            checkURL(type_params)
-                                            break;
-                                        case 'target':
-                                            type_params = 'target_id'
-                                            checkURL(type_params)
-                                            break;
-                                        case 'plan':
-                                            type_params = 'plan_id'
-                                            checkURL(type_params)
-                                            break;
-                                        default:
-                                            window.location.reload();
-                                            break;
 
-                                    }
-                                })
-                        })
-                        .catch(error => {
-                            // console.error('There was a problem with your fetch operation:', error);
-                        });
+                    var settings = {
+                        "url": "/api/" + type + "/active",
+                        "method": "PUT",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": JSON.stringify({
+                            "id": id
+                        }),
+                    };
+
+                    $.ajax(settings).done(function(response) {
+                        console.log(response);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        Swal.fire({
+                                title: "Deleted!",
+                                text: "Your " + type + " has been deleted.",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            .then(() => {
+                                // console.log(data);
+                                // window.location.reload();
+                                let type_params = ""
+                                switch (type) {
+                                    case 'Strategy':
+                                        type_params = 'stg_id'
+                                        checkURL(type_params)
+                                        break;
+                                    case 'target':
+                                        type_params = 'target_id'
+                                        checkURL(type_params)
+                                        break;
+                                    case 'plan':
+                                        type_params = 'plan_id'
+                                        checkURL(type_params)
+                                        break;
+                                    default:
+                                        // window.location.reload();
+                                        break;
+
+                                }
+                            })
+                    });
+                    // fetch('/api/' + type + '/active', {
+                    //         method: 'PUT',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //         },
+                    //         body: JSON.stringify({
+                    //             "id": id
+                    //         })
+                    //     })
+                    // .then(response => {
+                    //         if (!response.ok) {
+                    //             throw new Error('Network response was not ok');
+                    //         }
+                    //         return response.json();
+                    //     })
+                    //     .then(data => {
+                    //         Swal.fire({
+                    //                 title: "Deleted!",
+                    //                 text: "Your " + type + " has been deleted.",
+                    //                 icon: "success",
+                    //                 showConfirmButton: false,
+                    //                 timer: 1500
+                    //             })
+                    //             .then(() => {
+                    //                 // console.log(data);
+                    //                 // window.location.reload();
+                    //                 let type_params = ""
+                    //                 switch (type) {
+                    //                     case 'Strategy':
+                    //                         type_params = 'stg_id'
+                    //                         checkURL(type_params)
+                    //                         break;
+                    //                     case 'target':
+                    //                         type_params = 'target_id'
+                    //                         checkURL(type_params)
+                    //                         break;
+                    //                     case 'plan':
+                    //                         type_params = 'plan_id'
+                    //                         checkURL(type_params)
+                    //                         break;
+                    //                     default:
+                    //                         // window.location.reload();
+                    //                         break;
+
+                    //                 }
+                    //             })
+                    //     })
+                    // .catch(error => {
+                    //     // console.error('There was a problem with your fetch operation:', error);
+                    // });
                 }
             });
         };
 
-        // ตัวอย่างการใช้งาน
+        const Fis_Year = function(year) {
+            console.log(year);
+            getAllSTG(year);
+        }
 
         const CurrentYear = function() {
             var settings = {
-                "url":"/api/current/year",
+                "url": "/api/current/year",
                 "method": "GET",
                 "timeout": 0,
             };
