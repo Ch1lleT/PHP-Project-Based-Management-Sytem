@@ -24,6 +24,6 @@ class Target extends Model
     ];
 
     public function Plan(): HasMany {
-        return $this->hasMany(Plan::class , 'target_id');
+        return $this->hasMany(Plan::class , 'target_id')->where("is_active" , true);
     }
 }

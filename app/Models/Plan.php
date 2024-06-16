@@ -26,6 +26,6 @@ class Plan extends Model
     ];
 
     public function Project(): HasMany {
-        return $this->hasMany(Project::class , 'plan_id');
+        return $this->hasMany(Project::class , 'plan_id')->where("is_active" , true);
     }
 }

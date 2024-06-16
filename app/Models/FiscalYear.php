@@ -18,6 +18,6 @@ class FiscalYear extends Model
     ];
 
     public function Strategy(): HasMany {
-        return $this->hasMany(Strategy::class , 'year_code');
+        return $this->hasMany(Strategy::class , 'year_code')->where("is_active" , true);
     }
 }
