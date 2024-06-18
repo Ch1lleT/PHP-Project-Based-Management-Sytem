@@ -22,31 +22,34 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="STG-Select">เลือกยุทธศาสตร์</label>
-                    <select name="STG-Select" id="STG-Select" class="form-select">
-                        <option value="">STG1</option>
-                        <option value="">STG2</option>
-                        <option value="">STG3</option>
-                    </select>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <label for="operate-budget">งบดำเนินงาน</label>
-                            <input id="operate-budget" name="operate-budget" type="number" class="form-control"
-                                value="0">
+                    <form action="">
+                        <label for="STG-Select">เลือกยุทธศาสตร์</label>
+                        <select name="STG-Select" id="STG-Select" class="form-select">
+                            <option value="">STG1</option>
+                            <option value="">STG2</option>
+                            <option value="">STG3</option>
+                        </select>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="operate-budget">งบดำเนินงาน</label>
+                                <input id="operate-budget" name="operate-budget" type="number" class="form-control"
+                                    value="0">
+                            </div>
+                            <div class="col">
+                                <label for="investment-budget">งบลงทุน</label>
+                                <input id="investment-budget" name="investment-budget" type="number" class="form-control"
+                                    value="0">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="investment-budget">งบลงทุน</label>
-                            <input id="investment-budget" name="investment-budget" type="number" class="form-control"
-                                value="0">
-                        </div>
-                    </div>
-                    {{-- <label for="advisor">ผู้ดูแล</label>
+                        {{-- <label for="advisor">ผู้ดูแล</label>
                     <input type="text" class="form-control"> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success">Add</button>
                 </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -60,24 +63,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="STG-Select">เลือกยุทธศาสตร์</label>
-                    <select name="STG-Select" id="STG-Select" class="form-select">
-                        <option value="">STG1</option>
-                        <option value="">STG2</option>
-                        <option value="">STG3</option>
-                    </select>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <label for="operate-budget">งบดำเนินงาน</label>
-                            <input id="operate-budget" name="operate-budget" type="number" class="form-control"
-                                value="0">
+                    <form action="">
+
+                        <label for="STG-Select">เลือกยุทธศาสตร์</label>
+                        <select name="STG-Select" id="STG-Select" class="form-select">
+                            <option value="">STG1</option>
+                            <option value="">STG2</option>
+                            <option value="">STG3</option>
+                        </select>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="operate-budget">งบดำเนินงาน</label>
+                                <input id="operate-budget" name="operate-budget" type="number" class="form-control"
+                                    value="0">
+                            </div>
+                            <div class="col">
+                                <label for="investment-budget">งบลงทุน</label>
+                                <input id="investment-budget" name="investment-budget" type="number" class="form-control"
+                                    value="0">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="investment-budget">งบลงทุน</label>
-                            <input id="investment-budget" name="investment-budget" type="number" class="form-control"
-                                value="0">
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-between w-100">
@@ -88,6 +93,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
