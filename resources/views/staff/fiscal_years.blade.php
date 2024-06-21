@@ -98,24 +98,25 @@
 
     <div class="modal fade" id="edit_stg" tabindex="-1" aria-labelledby="edit_stgLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="edit_stgLabel">แก้ไขชื่อยุทธศาสตร์</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
+            <form onsubmit="event.preventDefault(); update('Strategy' , this.name.value)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="edit_stgLabel">แก้ไขชื่อยุทธศาสตร์</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">ชื่อยุทธศาสตร์ ใหม่ :</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="name" class="col-form-label">ชื่อยุทธศาสตร์ ใหม่ :</label>
+                            <input type="text" class="form-control" id="name">
                         </div>
-                    </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save Changes</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -236,7 +237,7 @@
                                             class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อเป้าหมาย</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="name" name="target_name"
-                                                value="test">
+                                                value="">
                                         </div>
                                     </div>
                                 </div>
@@ -810,7 +811,7 @@
                     `;
 
                     // const STG_Name = document.getElementById('STG_Name');
-                    // STG_Name.innerHTML = `${selectedStrategy.name}`;
+                    // STG_Name.innerHTML = selectedStrategy.name;
 
                     let fragment = document.createDocumentFragment();
                     response['STG'].forEach(strategy => {
@@ -855,15 +856,15 @@
                         TargetName.innerHTML = response['targets'][0].target_name;
                         const AddTarget = document.getElementById("AddTarget");
                         AddTarget.innerHTML = `                    
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_target">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                            <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                            <g fill="#fff">
-                                <path d="M21 14h6v20h-6z"></path>
-                                <path d="M14 21h20v6H14z"></path>
-                            </g>
-                        </svg>
-                    </a>`;
+                            <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_target">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                                    <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                                    <g fill="#fff">
+                                        <path d="M21 14h6v20h-6z"></path>
+                                        <path d="M14 21h20v6H14z"></path>
+                                    </g>
+                                </svg>
+                            </a>`;
                         updateURL("target_id", response['targets'][0].target_id);
 
                         let TableTarget = $("#TargetAtAll").dataTable().api();
@@ -1050,49 +1051,54 @@
 
         //     return newRow;
         // }
+
         const Target_row = (index, e) => {
-    let newRow = $('<tr></tr>');
-    newRow.append('<td>' + (index + 1) + '</td>');
+            let newRow = $('<tr></tr>');
+            newRow.append('<td>' + (index + 1) + '</td>');
 
-    let TargetLink = $('<td>' + e.target_name + '</td>');
-    TargetLink.click(function() {
-        updateURL("target_id", e.target_id);
-        getAllPlan(e);
-    });
-    newRow.append(TargetLink);
+            let TargetLink = $('<td>' + e.target_name + '</td>');
+            TargetLink.click(function() {
+                updateURL("target_id", e.target_id);
+                getAllPlan(e);
+            });
+            newRow.append(TargetLink);
 
-    // Create the edit link
-    let editCell = $('<td></td>');
-    let editLink = $('<a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#edit_target"></a>');
-    let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
-    editLink.append(editIcon);
-    editLink.click(function() {
-        console.log("edit_target : " + e.target_id);
+            // Create the edit link
+            let editCell = $('<td></td>');
+            let editLink = $(
+                '<a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#edit_target"></a>'
+            );
+            let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+            editLink.append(editIcon);
+            editLink.click(function() {
+                console.log("edit_target : " + e.target_id);
 
-        // Set the modal fields with the data
-        $('#edit_target #name').val(e.target_name);  // Assuming you have an input with id 'recipient-name'
-        $('#edit_target .modal-title').text('Edit Target: ' + e.target_name);
+                // Set the modal fields with the data
+                $('#edit_target #name').val(e
+                    .target_name); // Assuming you have an input with id 'recipient-name'
+                $('#edit_target .modal-title').text('Edit Target: ' + e.target_name);
 
-        // Show the modal
-        $('#edit_target').modal('show');
-    });
-    editCell.append(editLink);
-    newRow.append(editCell);
+                // Show the modal
+                $('#edit_target').modal('show');
+            });
+            editCell.append(editLink);
+            newRow.append(editCell);
 
-    // Create the delete link
-    let deleteCell = $('<td></td>');
-    let deleteLink = $('<a class="text-decoration-none" href="#"></a>');
-    let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
-    deleteLink.append(deleteIcon);
-    deleteLink.click(function() {
-        console.log("Click on delete link");
-        // Perform delete action here
-    });
-    deleteCell.append(deleteLink);
-    newRow.append(deleteCell);
+            // Create the delete link
+            let deleteCell = $('<td></td>');
+            let deleteLink = $('<a class="text-decoration-none" href="#"></a>');
+            let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+            deleteLink.append(deleteIcon);
+            deleteLink.click(function() {
+                console.log("Click on delete link");
+                checkDel("target", e.target_id);
+                // Perform delete action here
+            });
+            deleteCell.append(deleteLink);
+            newRow.append(deleteCell);
 
-    return newRow;
-}
+            return newRow;
+        }
 
 
         const getAllPlan = (data) => {
@@ -1219,19 +1225,21 @@
             let url;
             let raw;
             let modal;
+            let year_code; // Declare year_code outside of the switch statement
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
             switch (type) {
                 case 'Strategy':
                     const urlParams = new URLSearchParams(window.location.search);
-                    let year_code = urlParams.get('year');
+                    year_code = urlParams.get('year');
                     console.log(year_code);
 
                     if (!year_code) {
                         year_code = new Date().getFullYear();
                         console.log("year_code : ", year_code);
                     }
+                    console.log("year_code : ", year_code);
 
                     url = APP_URL + "/api/" + type + "/add";
                     raw = JSON.stringify({
@@ -1282,17 +1290,61 @@
                     timer: 1500
                 }).then(() => {
                     if (type === "Strategy") {
-                        getAllSTG(year_code);
+                        getAllSTG(year_code); // Now year_code is defined in this scope
                     }
                 });
             });
         };
 
+        const update = (type, data) => {
+            console.log(type, data);
+            let id; // Declare id outside the if block
+
+            if (type === "Strategy") {
+                id = getParamValue('stg_id');
+                console.log(id);
+            }
+
+            var settings = {
+                "url": "/api/" + type + "/update",
+                "method": "PUT",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({ // Convert data to JSON string
+                    "name": data,
+                    "stg_id": id // Ensure id is defined and used
+                }),
+            };
+
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    switch (type) {
+                        case "Strategy":
+                            CurrentYear();
+                            $('#edit_stg').modal('hide');
+                            break;
+                    }
+                });
+
+            });
+        };
+
+
 
         const checkURL = (type_params) => {
             var url = new URL(window.location.href);
             url.searchParams.delete(type_params);
-            window.location.href = url.href;
+            // window.location.href = url.href;
+            window.history.replaceState({}, '', url.href);
         }
 
         const checkDel = (type, id) => {
@@ -1300,7 +1352,6 @@
                 "id": id
             };
             console.log(type, id);
-
 
             Swal.fire({
                 title: "Are you sure?",
@@ -1325,92 +1376,51 @@
                         }),
                     };
 
-                    $.ajax(settings).done(function(response) {
-                        console.log(response);
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        Swal.fire({
+                    $.ajax(settings)
+                        .done(function(response) {
+                            console.log(response);
+                            Swal.fire({
                                 title: "Deleted!",
                                 text: "Your " + type + " has been deleted.",
                                 icon: "success",
                                 showConfirmButton: false,
                                 timer: 1500
-                            })
-                            .then(() => {
-                                // console.log(data);
-                                // window.location.reload();
-                                let type_params = ""
+                            }).then(() => {
+                                let type_params = "";
                                 switch (type) {
                                     case 'Strategy':
-                                        type_params = 'stg_id'
-                                        checkURL(type_params)
+                                        type_params = 'stg_id';
+                                        checkURL(type_params);
+                                        CurrentYear();
                                         break;
                                     case 'target':
-                                        type_params = 'target_id'
-                                        checkURL(type_params)
+                                        type_params = 'target_id';
+                                        checkURL(type_params);
+                                        let stg_id = getParamValue('stg_id')
+                                        getAllTarget(stg_id);
                                         break;
                                     case 'plan':
-                                        type_params = 'plan_id'
-                                        checkURL(type_params)
+                                        type_params = 'plan_id';
+                                        checkURL(type_params);
                                         break;
                                     default:
                                         // window.location.reload();
                                         break;
-
                                 }
-                            })
-                    });
-                    // fetch('/api/' + type + '/active', {
-                    //         method: 'PUT',
-                    //         headers: {
-                    //             'Content-Type': 'application/json',
-                    //         },
-                    //         body: JSON.stringify({
-                    //             "id": id
-                    //         })
-                    //     })
-                    // .then(response => {
-                    //         if (!response.ok) {
-                    //             throw new Error('Network response was not ok');
-                    //         }
-                    //         return response.json();
-                    //     })
-                    //     .then(data => {
-                    //         Swal.fire({
-                    //                 title: "Deleted!",
-                    //                 text: "Your " + type + " has been deleted.",
-                    //                 icon: "success",
-                    //                 showConfirmButton: false,
-                    //                 timer: 1500
-                    //             })
-                    //             .then(() => {
-                    //                 // console.log(data);
-                    //                 // window.location.reload();
-                    //                 let type_params = ""
-                    //                 switch (type) {
-                    //                     case 'Strategy':
-                    //                         type_params = 'stg_id'
-                    //                         checkURL(type_params)
-                    //                         break;
-                    //                     case 'target':
-                    //                         type_params = 'target_id'
-                    //                         checkURL(type_params)
-                    //                         break;
-                    //                     case 'plan':
-                    //                         type_params = 'plan_id'
-                    //                         checkURL(type_params)
-                    //                         break;
-                    //                     default:
-                    //                         // window.location.reload();
-                    //                         break;
-
-                    //                 }
-                    //             })
-                    //     })
-                    // .catch(error => {
-                    //     // console.error('There was a problem with your fetch operation:', error);
-                    // });
+                            });
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error:', textStatus, errorThrown);
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred while deleting the ' + type +
+                                    '. Please try again later.',
+                                icon: 'error',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'OK'
+                            });
+                        });
                 }
             });
         };

@@ -91,4 +91,22 @@ class STGController extends Controller
 
         return response()->json(['error' => 'STG ID is missing'], 400);
     }
+
+    public static function update(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'stg_id' => 'required',
+            // 'desc' => 'required'
+        ]);
+
+        $STG = Strategy::find($request->stg_id);
+
+        if ($STG) {
+            $STG->name = $request->name;
+            $STG->save();
+            return response()->json(['success' => 'Data updated successfully', 'is_active' => $STG->is_active, 'status' => 'https://http.cat/200'], 200);
+        } else {
+            return response()->json(['error' => 'STG not found', 'status' => 'https://http.cat/404'], 404);
+        }
+    }
 }

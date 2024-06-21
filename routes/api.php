@@ -35,6 +35,8 @@ Route::put('user/update/{user_id}', [UserController::class, 'update']);
 Route::post('Strategy/add', [STGController::class, 'Add']);
 Route::post('Target/add/{stg_id}', [TargetController::class, 'Add']);
 
+Route::put('Strategy/update', [STGController::class, 'update']);
+
 Route::put('Strategy/active', [STGController::class, 'Active']);
 Route::put('target/active', [TargetController::class, 'Active']);
 Route::put('plan/active', [PlanController::class, 'Active']);
