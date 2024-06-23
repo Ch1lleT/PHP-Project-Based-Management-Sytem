@@ -4,6 +4,14 @@
 
 @section('header')
     <div class="fs-5">Log</div>
+    <style>
+        .log-container{
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+            rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
+    </style>
 @endsection
 @section('content')
     <script>
@@ -32,7 +40,7 @@
     </script>
     
 
-    <div>
+    <div class="log-container">
         {{-- init load data from log api --}}
         <script>
             $(document).ready(function() {
@@ -58,6 +66,7 @@
             });
 
         </script>
+
         <label for="Date-input">Date</label>
         <input type="date" id="Date-input" name="date" class="form-control mb-3" placeholder="Date" onchange="onDateChange()" value="{{Carbon\Carbon::now()->format('Y-m-d')}}">
         

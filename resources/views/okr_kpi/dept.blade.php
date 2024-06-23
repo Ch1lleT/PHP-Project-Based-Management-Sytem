@@ -31,34 +31,44 @@
         .dt-buttons button:nth-child(-n+5) {
             background-color: var(--bs-primary);
             color: white;
-            border:none;
+            border: none;
             border-radius: 5px;
         }
+
         .dt-buttons button:hover {
             background-color: var(--bs-primary) !important;
             color: white !important;
-            border:none !important;
+            border: none !important;
             border-radius: 5px !important;
         }
-        #DataTables_Table_0_paginate .previous, 
-        #DataTables_Table_0_paginate .next{
+
+        #DataTables_Table_0_paginate .previous,
+        #DataTables_Table_0_paginate .next {
             /* color: var(--bs-primary) !important; */
             border: 1px solid rgb(189, 189, 189);
             margin: 0;
             border-radius: 5px;
         }
-        #DataTables_Table_0_paginate span a{
+
+        #DataTables_Table_0_paginate span a {
             background-color: var(--bs-primary);
             color: white !important;
-            border:none;
+            border: none;
             border-radius: 5px;
             padding: 8px 10px;
-            margin:0;
+            margin: 0;
+        }
+
+        .dept-container {
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
         }
     </style>
 @endsection
 @section('content')
-    <div class="p-3">
+    <div class="p-3 dept-container">
         <h4>แสดงข้อมูล : ชื่อหน่วยงาน</h4>
         <div class="overflow-x-auto">
             <table class="table display table-striped" style="width:100%">

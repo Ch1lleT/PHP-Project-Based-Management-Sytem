@@ -12,6 +12,13 @@
             display: grid;
             grid-template-columns: auto auto auto auto auto;
         }
+
+        .userlist-container {
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
     </style>
 @endsection
 @section('content')
@@ -234,62 +241,65 @@
         </div>
     @endforeach
 
-    <div class="bg-secondary p-2 text-white d-flex align-items-center w-100 justify-content-between mb-3">
-        <p class="m-0 fs-5">รายชื่อผู้ใช้งาน</p>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#add_user">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
-                <g fill="#fff">
-                    <path d="M21 14h6v20h-6z"></path>
-                    <path d="M14 21h20v6H14z"></path>
-                </g>
-            </svg>
-        </a>
-    </div>
-    <table id="myTable" class="table" style="width:100%">
-        <thead>
-            <tr>
-                <th style="width: 30%;">First Name</th>
-                <th>Last Name</th>
-                <th style="width: 30px;">Edit</th>
-                <th style="width: 30px;">status</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach ($UserAll as $user)
+    <div class="userlist-container">
+        <div class="rounded bg-secondary p-2 text-white d-flex align-items-center w-100 justify-content-between mb-3">
+            <p class="m-0 fs-5">รายชื่อผู้ใช้งาน</p>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#add_user">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">
+                    <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
+                    <g fill="#fff">
+                        <path d="M21 14h6v20h-6z"></path>
+                        <path d="M14 21h20v6H14z"></path>
+                    </g>
+                </svg>
+            </a>
+        </div>
+        <table id="myTable" class="table" style="width:100%">
+            <thead>
                 <tr>
-                    <td>{{ $user->first_name }}</td>
-                    <td>{{ $user->last_name }}</td>
-                    <td>
-                        <div class="icon col-3 text-center">
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#edit_user_{{ $loop->index }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 12 12">
-                                    <path fill="#000000"
-                                        d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
-                                    </path>
-                                </svg>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        @if ($user->is_active)
-                            <button type="submit" class="border border-0" id="circle"
-                                onclick="checkDel('{{ $user->user_id }}')"
-                                style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
-                        @else
-                            <button type="submit" class="border border-0" id="circle"
-                                onclick="checkDel('{{ $user->user_id }}')"
-                                style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
-                        @endif
-                    </td>
+                    <th style="width: 30%;">First Name</th>
+                    <th>Last Name</th>
+                    <th style="width: 30px;">Edit</th>
+                    <th style="width: 30px;">status</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+
+                @foreach ($UserAll as $user)
+                    <tr>
+                        <td>{{ $user->first_name }}</td>
+                        <td>{{ $user->last_name }}</td>
+                        <td>
+                            <div class="icon col-3 text-center">
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#edit_user_{{ $loop->index }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 12 12">
+                                        <path fill="#000000"
+                                            d="M10.443 1.56a1.914 1.914 0 0 0-2.707 0l-.55.551a.506.506 0 0 0-.075.074l-5.46 5.461a.5.5 0 0 0-.137.255l-.504 2.5a.5.5 0 0 0 .588.59l2.504-.5a.5.5 0 0 0 .255-.137l6.086-6.086a1.914 1.914 0 0 0 0-2.707M7.502 3.21l1.293 1.293L3.757 9.54l-1.618.324l.325-1.616zm2 .586L8.209 2.502l.234-.234A.914.914 0 1 1 9.736 3.56z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            @if ($user->is_active)
+                                <button type="submit" class="border border-0" id="circle"
+                                    onclick="checkDel('{{ $user->user_id }}')"
+                                    style="width: 30px; height: 30px; border-radius: 100%; background-color: green;border: 1px black solid;color:green">.</button>
+                            @else
+                                <button type="submit" class="border border-0" id="circle"
+                                    onclick="checkDel('{{ $user->user_id }}')"
+                                    style="width: 30px; height: 30px; border-radius: 100%; background-color: red;border: 1px black solid;"></button>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+    </div>
+
     <script>
         new DataTable('#myTable');
         const APP_URL = "{{ env('APP_URL') }}";
