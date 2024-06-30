@@ -216,7 +216,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form onsubmit="event.preventDefault(); Add('Strategy', this.nameSTG.value)">
+                            <form onsubmit="event.preventDefault(); update('Target', [this.target_name.value , this.id.value])">
                                 @method('PUT')
                                 @csrf
                                 <div class="modal-header">
@@ -229,7 +229,7 @@
                                         <label for="name" class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
                                             :</label>
                                         <div class="col-sm-10 d-flex align-items-end">
-                                            <p class="m-0">test</p>
+                                            <p class="m-0" id="nameSTG"></p>
                                         </div>
                                     </div>
                                     <div class="mb-3 row ">
@@ -307,8 +307,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST"
-                                action="{{ url('/PlanAdd/' . request('stg_id') . '/' . request('target_id')) }}">
+                            <form method="POST" onsubmit="event.preventDefault(); update('Plan', this.target_name.value)">
                                 @csrf
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="add_plan_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
@@ -364,73 +363,69 @@
                         </div>
                     </div>
                 </div>
-                @if (isset($PlanAtAll))
-                    @foreach ($PlanAtAll as $index => $plan)
-                        <div class="modal fade" id="edit_plan_{{ $index }}" tabindex="-1"
-                            aria-labelledby="edit_plan_label_{{ $index }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <form method="POST" action="{{ url('/plan/update/' . $plan->plan_id) }}">
-                                        @method('PUT')
-                                        @csrf
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="edit_plan_label">แก้ไขแผนงาน</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body row">
-                                            <div class="mb-3 row ">
-                                                <div class="mb-3 row ">
-                                                    <label for="name"
-                                                        class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
-                                                        :</label>
-                                                    <div class="col-sm-10 d-flex align-items-end">
-                                                        <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row ">
-                                                    <label for="name"
-                                                        class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
-                                                        :</label>
-                                                    <div class="col-sm-10 d-flex align-items-end">
-                                                        <p class="m-0">
-                                                            {{ isset($Target->target_name) ? $Target->target_name : '' }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <label for="name"
-                                                    class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="name"
-                                                        name="plan_name" value="{{ $plan->plan_name }}">
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label for="plan"
-                                                    class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
-                                                <div class="col-sm-10">
-                                                    <select class="form-select" id="floatingSelect"
-                                                        aria-label="Floating label select" name="type">
-                                                        <option selected>เลือกแผนการ</option>
-                                                        <option value="ผลผลิต">ผลผลิต</option>
-                                                        <option value="ผลลัพธ์">ผลลัพธ์</option>
-                                                        <option value="ผลกระทบ">ผลกระทบ</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success">Save changes</button>
-                                        </div>
-                                    </form>
+                <div class="modal fade" id="edit_plan" tabindex="-1" aria-labelledby="edit_plan_label"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form method="POST">
+                                @method('PUT')
+                                @csrf
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="edit_plan_label">แก้ไขแผนงาน</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                            </div>
+                                <div class="modal-body row">
+                                    <div class="mb-3 row ">
+                                        <div class="mb-3 row ">
+                                            <label for="name"
+                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
+                                                :</label>
+                                            <div class="col-sm-10 d-flex align-items-end">
+                                                <p class="m-0"></p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row ">
+                                            <label for="name"
+                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
+                                                :</label>
+                                            <div class="col-sm-10 d-flex align-items-end">
+                                                <p class="m-0">
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <label for="name"
+                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ชื่อแผนการ</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" name="plan_name"
+                                                value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="plan"
+                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Floating label select" name="type">
+                                                <option selected>เลือกแผนการ</option>
+                                                <option value="ผลผลิต">ผลผลิต</option>
+                                                <option value="ผลลัพธ์">ผลลัพธ์</option>
+                                                <option value="ผลกระทบ">ผลกระทบ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                </div>
+                            </form>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                </div>
                 <div class="overflow-x-hidden plan">
                     <table class="table display" style="width: 100%" id="PlanAll">
                         <thead>
@@ -524,7 +519,7 @@
                     </tbody>
                 </table>
                 <div class="overflow-x-hidden">
-                    <table id="Project-Table" class="table display " style="width:100%">
+                    <table id="ProjectAll" class="table display " style="width:100%">
                         <thead>
                             <tr>
                                 <th style="width: 57%;">ชื่อโครงการ</th>
@@ -762,8 +757,8 @@
                 var selectedValue = $(this).val();
 
                 // window.location = 'fiscal_years?year=' + selectedValue
+                console.log("selectedValue : " + selectedValue);
                 getAllSTG(selectedValue)
-                // console.log(selectedValue);
             });
         });
         const getParamValue = (param) => {
@@ -778,6 +773,7 @@
         }
 
         const getAllSTG = (data) => {
+            console.log("getAllSTG : " + data)
             let settings = {
                 url: "/api/All/levels/strategy",
                 method: "GET",
@@ -798,7 +794,7 @@
                     const stg_id = getParamValue('stg_id') || response['STG'][0].stg_id;
                     const selectedStrategy = response['STG'].find(element => element.stg_id === stg_id) ||
                         response['STG'][0];
-                    updateURL("stg_id", selectedStrategy.stg_id);
+                    updateURL("stg_id", String(selectedStrategy.stg_id));
 
                     STGName.innerHTML = `
                         ยุทธศาสตร์ : ${selectedStrategy.name}
@@ -943,7 +939,7 @@
 
             // console.log("settings : " + settings);
             $.ajax(settings).done(function(response) {
-                updateURL("stg_id", id)
+                updateURL("stg_id", String(id))
                 console.log(response);
                 // getAllPlan(response);
                 const TargetName = document.getElementById("TargetName");
@@ -958,7 +954,7 @@
                     // getAllPlan(data);
                     if (data) {
                         TargetName.innerHTML = data.target_name;
-                        updateURL("stg_id", data.target_id)
+                        updateURL("target_id", data.target_id)
                     }
                 } else {
                     if (response['targets']) {
@@ -971,7 +967,7 @@
 
                 if (response['targets']) {
                     TargetName.innerHTML = response['targets'][0].target_name;
-                    updateURL("stg_id", response['targets'][0].target_id)
+                    updateURL("target_id", response['targets'][0].target_id)
                     let TableTarget = $("#TargetAtAll").dataTable().api();
                     TableTarget.clear();
                     $.each(response['targets'], function(index, item) {
@@ -1006,52 +1002,6 @@
             });
         }
 
-        // const Target_row = (index, e) => {
-        //     let newRow = $('<tr></tr>');
-        //     newRow.append('<td>' + (index + 1) + '</td>');
-
-        //     let TargetLink = $('<td>' + e.target_name + '</td>');
-        //     TargetLink.click(function() {
-        //         // console.log("target_name : " + e);
-        //         updateURL("target_id", e.target_id);
-        //         getAllPlan(e);
-        //     });
-        //     newRow.append(TargetLink);
-
-        //     // สร้างลิงก์แก้ไข
-        //     let editCell = $('<td></td>');
-        //     let editLink = $('<a class="text-decoration-none"></a>');
-        //     let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
-        //     editLink.append(editIcon);
-        //     editLink.click(function() {
-        //         // $(this).attr('data-bs-toggle', 'modal');
-        //         console.log($(this).attr('data-bs-toggle', 'modal'));
-        //         $(this).attr('data-bs-target', '#edit_target');
-        //         console.log("edit_target : " + e.target_id);
-        //         $("#edit_target").modal();
-        //         // $("#myBtn").click(function() {
-        //         // });
-        //         // $("#edit_target_").modal();
-        //         // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
-        //     });
-        //     editCell.append(editLink);
-        //     newRow.append(editCell);
-
-        //     // สร้างลิงก์ลบ
-        //     let deleteCell = $('<td></td>');
-        //     let deleteLink = $('<a class="text-decoration-none"></a>');
-        //     let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
-        //     deleteLink.append(deleteIcon);
-        //     deleteLink.click(function() {
-        //         console.log("Click on delete link");
-        //         // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
-        //     });
-        //     deleteCell.append(deleteLink);
-        //     newRow.append(deleteCell);
-
-        //     return newRow;
-        // }
-
         const Target_row = (index, e) => {
             let newRow = $('<tr></tr>');
             newRow.append('<td>' + (index + 1) + '</td>');
@@ -1074,8 +1024,7 @@
                 console.log("edit_target : " + e.target_id);
 
                 // Set the modal fields with the data
-                $('#edit_target #name').val(e
-                    .target_name); // Assuming you have an input with id 'recipient-name'
+                $('#edit_target #name').val(e.target_name);
                 $('#edit_target .modal-title').text('Edit Target: ' + e.target_name);
 
                 // Show the modal
@@ -1169,6 +1118,7 @@
             TargetLink.click(function() {
                 // console.log("target_name : " + e);
                 updateURL("plan_id", e.plan_id);
+                getAllProject(e.plan_id);
                 // getAllPlan(e);
             });
             newRow.append(TargetLink);
@@ -1180,6 +1130,16 @@
             let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
             editLink.append(editIcon);
             editLink.click(function() {
+
+                console.log("edit_plan : " + e.plan_id);
+
+                // Set the modal fields with the data
+                $('#edit_plan #name').val(e.plan_name); // Assuming you have an input with id 'recipient-name'
+                $('#edit_plan .modal-title').text('Edit plan: ' + e.plan_name);
+
+                // Show the modal
+                $('#edit_plan').modal('show');
+
                 $(this).attr('data-bs-toggle', 'modal');
                 $(this).attr('data-bs-target', '#edit_target');
                 // console.log("edit_target_");
@@ -1187,6 +1147,81 @@
                 //     $("#edit_target_").modal();
                 // });
                 // $("#edit_target_").modal();
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
+            });
+            editCell.append(editLink);
+            newRow.append(editCell);
+
+            // สร้างลิงก์ลบ
+            let deleteCell = $('<td></td>');
+            let deleteLink = $('<a href="#" class="text-decoration-none"></a>');
+            let deleteIcon = $('<i class="bx bx-trash text-danger"></i>');
+            deleteLink.append(deleteIcon);
+            deleteLink.click(function() {
+                // console.log("Click on delete link");
+                // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+            });
+            deleteCell.append(deleteLink);
+            newRow.append(deleteCell);
+
+            return newRow;
+        }
+
+        const getAllProject = (plan_id) => {
+            var settings = {
+                "url": "/api/All/levels/project",
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": {
+                    "plan_id": plan_id
+                },
+            };
+
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+                let table = $("#ProjectAll").dataTable().api();
+                table.clear();
+                $.each(response['Projects'], function(index, item) {
+                    table.row.add(Project_row(index, item));
+                    // console.log(index, item);
+                });
+                table.draw();
+            });
+        }
+
+        const Project_row = (index, e) => {
+            let newRow = $('<tr></tr>');
+            // newRow.append('<td>' + (index + 1) + '</td>');
+
+            let ProjectLink = $('<td>' + e.project_name + '</td>');
+            ProjectLink.click(function() {
+                // console.log("Project_name : " + e.project_name);
+                // updateURL("plan_id", e.plan_id);
+                // getAllPlan(e);
+            });
+            newRow.append(ProjectLink);
+
+            newRow.append('<td>' + e.supervisor + '</td>');
+            newRow.append('<td>' + e.budget_source + '</td>');
+            newRow.append('<td>' + e.budget_type + '</td>');
+            newRow.append('<td>' + e.balance + '</td>');
+            newRow.append('<td>' + e.org.org_name + '</td>');
+            // สร้างลิงก์แก้ไข
+            let editCell = $('<td></td>');
+            let editLink = $('<a class="text-decoration-none"></a>');
+            let editIcon = $('<i class="bx bx-pencil text-dark"></i>');
+            editLink.append(editIcon);
+            editLink.click(function() {
+                $(this).attr('data-bs-toggle', 'modal');
+                $(this).attr('data-bs-target', '#edit_target');
+                // console.log("edit_Project_");
+                // $("#myBtn").click(function() {
+                //     $("#edit_Project_").modal();
+                // });
+                // $("#edit_Project_").modal();
                 // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์แก้ไข
             });
             editCell.append(editLink);
@@ -1241,7 +1276,7 @@
                     }
                     console.log("year_code : ", year_code);
 
-                    url = APP_URL + "/api/" + type + "/add";
+                    url = "/api/" + type + "/add";
                     raw = JSON.stringify({
                         "nameSTG": data,
                         "year": year_code
@@ -1250,9 +1285,11 @@
                     break;
 
                 case 'Target':
-                    url = APP_URL + "/api/" + type + "/add" + data.id;
+                    let id = getParamValue('stg_id'); 
+                    url = "/api/" + type + "/add";
                     raw = JSON.stringify({
-                        "target_name": data.name
+                        "target_name": data ,
+                        "stg_id" : id
                     });
                     modal = '#add_target';
                     break;
@@ -1261,13 +1298,6 @@
                     console.log("Unknown type");
                     return; // Exit the function if the type is unknown
             }
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
 
             var settings = {
                 url,
@@ -1289,8 +1319,15 @@
                     showConfirmButton: false,
                     timer: 1500
                 }).then(() => {
-                    if (type === "Strategy") {
-                        getAllSTG(year_code); // Now year_code is defined in this scope
+                    switch (type) {
+                        case "Strategy":
+                            console.log("year_code : " + year_code);
+                            getAllSTG(year_code); // Now year_code is defined in this scope
+                            break;
+                        case "Target":
+                            let id = getParamValue('stg_id'); 
+                            getAllTarget(id);
+                            break;
                     }
                 });
             });
@@ -1299,43 +1336,57 @@
         const update = (type, data) => {
             console.log(type, data);
             let id; // Declare id outside the if block
+            let obj = [];
 
-            if (type === "Strategy") {
-                id = getParamValue('stg_id');
-                console.log(id);
+            switch (type) {
+                case "Strategy":
+                    id = getParamValue('stg_id');
+                    console.log(id);
+                    obj = JSON.stringify({ // Convert data to JSON string
+                        "name": data,
+                    })
+                    break;
+                case "Target":
+                    id = data.id;
+                    console.log(id);
+                    obj = JSON.stringify({ // Convert data to JSON string
+                        "target_name": data.target_name,
+                    })
+                    break;
             }
 
             var settings = {
-                "url": "/api/" + type + "/update",
+                "url": "/api/" + type + "/update/" + id,
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
                     "Content-Type": "application/json"
                 },
-                "data": JSON.stringify({ // Convert data to JSON string
-                    "name": data,
-                    "stg_id": id // Ensure id is defined and used
-                }),
+                "data": obj
             };
 
-            $.ajax(settings).done(function(response) {
-                console.log(response);
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your work has been saved",
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    switch (type) {
-                        case "Strategy":
-                            CurrentYear();
-                            $('#edit_stg').modal('hide');
-                            break;
-                    }
-                });
+            // $.ajax(settings).done(function(response) {
+            //     console.log(response);
+            //     Swal.fire({
+            //         position: "top-end",
+            //         icon: "success",
+            //         title: "Your work has been saved",
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     }).then(() => {
+            //         switch (type) {
+            //             case "Strategy":
+            //                 CurrentYear();
+            //                 break;
+            //             case "Target":
+            //                 let stg_id = getParamValue('stg_id');
+            //                 getAllTarget(stg_id);
+            //                 break;
+            //         }
+            //         $('#edit_target').modal('hide');
+            //     });
 
-            });
+            // });
         };
 
 
@@ -1426,7 +1477,7 @@
         };
 
         const Fis_Year = function(year) {
-            console.log(year);
+            console.log("year : " + year);
             getAllSTG(year);
         }
 
@@ -1438,13 +1489,14 @@
             };
 
             $.ajax(settings).done(function(response) {
-                console.log(response);
+                console.log("response : " + response);
                 getAllSTG(response[0].id);
             });
         }
         const yearValue = getParamValue('year');
-        if (yearValue !== null) {
-            // console.log('Year parameter value:', yearValue);
+
+        if (yearValue != null) {
+            console.log('Year parameter value:', yearValue);
             getAllSTG(yearValue);
         } else {
             CurrentYear()

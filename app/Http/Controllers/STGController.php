@@ -93,13 +93,16 @@ class STGController extends Controller
     }
 
     public static function update(Request $request) {
-        $request->validate([
-            'name' => 'required',
-            'stg_id' => 'required',
-            // 'desc' => 'required'
-        ]);
+        $stg_id = $request->stg_id;
 
-        $STG = Strategy::find($request->stg_id);
+        if (isset($stg_id)) {
+            $request->validate([
+                'name' => 'required',
+                // 'desc' => 'required'
+            ]);
+        }
+
+        $STG = Strategy::find($stg_id);
 
         if ($STG) {
             $STG->name = $request->name;

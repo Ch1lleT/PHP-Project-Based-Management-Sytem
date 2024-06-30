@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FiscalYear;
+use App\Models\Organization;
 use App\Models\Plan;
 use App\Models\Strategy;
 use App\Models\Target;
@@ -46,6 +47,14 @@ class AllController extends Controller
 
                                 if ($Projects->isNotEmpty()) {
                                     $response["Projects"] = $Projects;
+                                    foreach ($Projects as $index => $Project) {
+                                        $org = Organization::where("org_id" , $Project["org_id"])->where('is_active', true)->first();
+                                        if ($org) {
+                                            $response["Projects"][$index]["org"] = $org;
+                                        } else {
+                                            $response["Projects"][$index]["org"] = null; // or handle as appropriate
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -85,6 +94,14 @@ class AllController extends Controller
 
                         if ($Projects->isNotEmpty()) {
                             $response["Projects"] = $Projects;
+                            foreach ($Projects as $index => $Project) {
+                                $org = Organization::where("org_id" , $Project["org_id"])->where('is_active', true)->first();
+                                if ($org) {
+                                    $response["Projects"][$index]["org"] = $org;
+                                } else {
+                                    $response["Projects"][$index]["org"] = null; // or handle as appropriate
+                                }
+                            }
                         }
                     }
                 }
@@ -116,6 +133,14 @@ class AllController extends Controller
 
                     if ($Projects->isNotEmpty()) {
                         $response["Projects"] = $Projects;
+                        foreach ($Projects as $index => $Project) {
+                            $org = Organization::where("org_id" , $Project["org_id"])->where('is_active', true)->first();
+                            if ($org) {
+                                $response["Projects"][$index]["org"] = $org;
+                            } else {
+                                $response["Projects"][$index]["org"] = null; // or handle as appropriate
+                            }
+                        }
                     }
                 }
             }
@@ -140,6 +165,14 @@ class AllController extends Controller
 
                 if ($Projects->isNotEmpty()) {
                     $response["Projects"] = $Projects;
+                    foreach ($Projects as $index => $Project) {
+                        $org = Organization::where("org_id" , $Project["org_id"])->where('is_active', true)->first();
+                        if ($org) {
+                            $response["Projects"][$index]["org"] = $org;
+                        } else {
+                            $response["Projects"][$index]["org"] = null; // or handle as appropriate
+                        }
+                    }
                 }
             }
         } catch (\Throwable $th) {

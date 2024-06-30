@@ -13,7 +13,7 @@ use App\Utilities\UUID;
 class TargetController extends Controller
 {
     //
-    public static function Update(Request $request)
+    public static function update(Request $request)
     {
         $target_id = $request->target_id;
 
@@ -21,15 +21,17 @@ class TargetController extends Controller
             $request->validate([
                 'target_name' => 'required'
             ]);
-
-            $target = Target::find($target_id);
-            $target->target_name = $request->input('target_name');
-            $target->save();
-
-            return redirect()->back()->with('success', 'Data Update successfully');
         }
 
-        return redirect()->back()->with('error', 'Target ID is missing');
+        $target = Target::find($target_id);
+
+        if ($target) {
+            $target->target_name = $request->input('target_name');
+            $target->save();
+            return response()->json(['success' => 'Data updated successfully', 'is_active' => $target->is_active, 'status' => 'https://http.cat/200'], 200);
+        } else {
+            return response()->json(['error' => 'Target ID is missing']);
+        }
     }
 
     public static function get(Request $request)
@@ -52,29 +54,30 @@ class TargetController extends Controller
     }
 
 
-    public static function Add(Request $request, $stg_id)
+    public static function Add(Request $request)
     {
+        // $stg_id = $request->stg_id;
 
         $request->validate([
             'target_name' => 'required',
+            'stg_id' => 'required',
             // 'desc' => 'required'
         ]);
-        // dd($request , $stg_id);
-        if (isset($stg_id)) {
+        if ($request) {
+            // dd($request , $stg_id);
             // $uuid = Str::uuid()->toString();
 
             $TG = new Target();
             $TG->target_id = UUID::uuid(Target::class);
             $TG->target_name = $request->input('target_name');
-            $TG->stg_id = $stg_id;
+            $TG->stg_id = $request->input('stg_id');
             // $TG->is_active = true;
 
             $TG->save();
 
             return response()->json(['message' => 'Data Add successfully']);
-        } else if ($stg_id == '') {
-            return response()->json(['error' => null]);
         }
+        return response()->json(['error' => null]);
     }
 
     // public static function getAll() {
