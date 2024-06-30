@@ -45,6 +45,7 @@
 @endsection
 
 @section('content')
+<h1>เพิ่มเกจเป็นแต่ละ ยุทธ ให้มี 2 เกจ</h1>
     <div class="chart-container ">
         <div class="card-chart text-center ">
             <label for="chart_div1">STG 1</label>

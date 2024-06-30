@@ -9,6 +9,14 @@
         <option value="2557">2557</option>
         <option value="2558">2558</option>
     </select>
+    <style>
+        .budget-container {
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -98,61 +106,65 @@
         </div>
     </div>
     {{-- Modal --}}
-    <div class="text-end mb-2">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#Add_budget">เพิ่ม</button>
-    </div>
-    <table class="table display">
-        <thead>
-            <th class="text-center" style="width:5%;">
-                No.
-            </th>
-            <th class="w-50">
-                ยุทธศาสตร์
-            </th>
-            <th>
-                งบดำเนินงาน
-            </th>
-            <th>
-                งบลงทุน
-            </th>
-            <th>
-                ผู้ดูแล
-            </th>
-            <th>
-                ลบ / แก้ไข
-            </th>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="text-center">
-                    1
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dolorum aliquid eius eveniet veritatis
-                    distinctio facilis cumque unde, ullam, eos fugiat deleniti quidem illum officia totam obcaecati hic
-                    culpa facere?
-                </td>
-                <td>
-                    50000
-                </td>
-                <td>
-                    50000
-                </td>
-                <td>
-                    <span class="btn btn-success">
-                        P'Tik
-                    </span>
-                </td>
-                <td>
+    <div class="budget-container">
+        <div class="text-end mb-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#Add_budget">เพิ่ม</button>
+        </div>
+        <table class="table display">
+            <thead>
+                <th class="text-center" style="width:5%;">
+                    No.
+                </th>
+                <th class="w-50">
+                    ยุทธศาสตร์
+                </th>
+                <th>
+                    งบดำเนินงาน
+                </th>
+                <th>
+                    งบลงทุน
+                </th>
+                <th>
+                    ผู้ดูแล
+                </th>
+                <th>
+                    ลบ / แก้ไข
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        1
+                    </td>
+                    <td>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dolorum aliquid eius eveniet
+                        veritatis
+                        distinctio facilis cumque unde, ullam, eos fugiat deleniti quidem illum officia totam obcaecati hic
+                        culpa facere?
+                    </td>
+                    <td>
+                        50000
+                    </td>
+                    <td>
+                        50000
+                    </td>
+                    <td>
+                        <span class="btn btn-success">
+                            P'Tik
+                        </span>
+                    </td>
+                    <td>
 
-                    <span class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit_budget">
-                        edit
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <span class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit_budget">
+                            edit
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <script>
         var table = $('table.display').DataTable({
             pageLength: 5,

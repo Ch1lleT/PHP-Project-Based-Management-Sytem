@@ -59,26 +59,37 @@
     <div class="chart-container ">
         <div class="card-chart text-center ">
             <label for="chart_div1">STG 1</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
             <div id="chart_div1" class="d-flex justify-content-center"></div>
         </div>
         <div class="card-chart text-center">
             <label for="chart_div2">STG 2</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
+            
             <div id="chart_div2" class="d-flex justify-content-center"></div>
         </div>
         <div class="card-chart text-center">
             <label for="chart_div3">STG 3</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
+            
             <div id="chart_div3" class="d-flex justify-content-center"></div>
         </div>
         <div class="card-chart text-center">
             <label for="chart_div4">STG 4</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
+            
             <div id="chart_div4" class="d-flex justify-content-center"></div>
         </div>
         <div class="card-chart text-center">
             <label for="chart_div5">STG 5</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
+            
             <div id="chart_div5" class="d-flex justify-content-center"></div>
         </div>
         <div class="card-chart text-center">
             <label for="chart_div6">STG 6</label>
+            <label for="chart_div1" class="d-block">กลุ่มงานสารบัญการประชุม</label>
+            
             <div id="chart_div6" class="d-flex justify-content-center"></div>
         </div>
     </div>
