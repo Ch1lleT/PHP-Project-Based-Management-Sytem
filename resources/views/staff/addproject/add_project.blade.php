@@ -54,7 +54,7 @@
                     </select>
                 </div>
                 <div class="mb-1">
-                    <label for="budget_source" class=" col-form-label">งบจาก</label>
+                    <label for="budget_source" class=" col-form-label">แหล่งทุน</label>
 
                     <select class="form-select" id="budget_source" name="budget_source"
                         aria-label="Floating label select example">
