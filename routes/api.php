@@ -38,6 +38,7 @@ Route::post('Plan/add', [PlanController::class, 'Add']);
 
 Route::put('Strategy/update/{stg_id}', [STGController::class, 'update']);
 Route::put('Target/update/{target_id}', [TargetController::class, 'update']);
+Route::put('Plan/update/{plan_id}', [PlanController::class, 'update']);
 
 Route::put('Strategy/active', [STGController::class, 'Active']);
 Route::put('target/active', [TargetController::class, 'Active']);

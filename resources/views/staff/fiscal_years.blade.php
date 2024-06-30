@@ -216,7 +216,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form onsubmit="event.preventDefault(); update('Target', [this.target_name.value , $('#edit_target').data('target_id')])">
+                            <form onsubmit="event.preventDefault(); update('Target', [this.target_name.value , $('#edit_target').data('target_id')] )">
                                 @method('PUT')
                                 @csrf
                                 <div class="modal-header">
@@ -273,11 +273,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 col-lg pb-2 rounded-3"
-                style="
-                        margin: 5px;
-                        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, 
-                                    rgba(0, 0, 0, 0.24) 0px 1px 2px;">
+            <div class="col-12 col-lg pb-2 rounded-3" style=" margin: 5px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;">
 
                 <table class="table m-0 my-table" style="padding: 5px;">
                     <tbody>
@@ -288,8 +284,7 @@
                             <td class="fs-5" id="PlanName"></td>
                             {{-- <td class="fs-5">กรุณาเลือกแผน</td> --}}
                             <td class="px-0 pt-2">
-                                <a href="#" class="d-flex align-items-center text-decoration-none text-black"
-                                    data-bs-toggle="modal" data-bs-target="#add_plan">
+                                <a href="#" class="d-flex align-items-center text-decoration-none text-black" data-bs-toggle="modal" data-bs-target="#add_plan">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40"
                                         viewBox="0 0 48 48">
                                         <circle cx="24" cy="24" r="21" fill="#4CAF50"></circle>
@@ -307,7 +302,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST" onsubmit="event.preventDefault(); update('Plan', this.target_name.value)">
+                            <form method="POST" onsubmit="event.preventDefault(); Add('Plan', this.plan_name.value)">
                                 @csrf
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="add_plan_label">เพิ่มแผนงาน ปีงบประมาณ : 2567</h1>
@@ -321,16 +316,14 @@
                                                 class="col-sm-2 col-form-label p-0 pt-2 text-end">ยุทธศาสตร์
                                                 :</label>
                                             <div class="col-sm-10 d-flex align-items-end">
-                                                <p class="m-0">{{ isset($STG->name) ? $STG->name : '' }}</p>
+                                                <p class="m-0"></p>
                                             </div>
                                         </div>
                                         <div class="mb-3 row ">
                                             <label for="name"
-                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย
-                                                :</label>
+                                                class="col-sm-2 col-form-label p-0 pt-2 text-end">เป้าหมาย :</label>
                                             <div class="col-sm-10 d-flex align-items-end">
-                                                <p class="m-0">
-                                                    {{ isset($Target->target_name) ? $Target->target_name : '' }}</p>
+                                                <p class="m-0"></p>
                                             </div>
                                         </div>
                                         <label for="name"
@@ -339,9 +332,8 @@
                                             <input type="text" class="form-control" id="name" name="plan_name">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="type"
-                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                    {{-- <div class="mb-3 row">
+                                        <label for="type" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
                                         <div class="col-sm-10">
                                             <select class="form-select" id="type" aria-label="Floating label select"
                                                 name="type">
@@ -351,7 +343,7 @@
                                                 <option value="ผลกระทบ">ผลกระทบ</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="modal-footer">
@@ -367,7 +359,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST">
+                            <form method="POST" onsubmit="event.preventDefault(); update('Plan', [this.plan_name.value , $('#edit_plan').data('plan_id')] )">
                                 @method('PUT')
                                 @csrf
                                 <div class="modal-header">
@@ -402,9 +394,8 @@
                                                 value="">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="plan"
-                                            class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
+                                    {{-- <div class="mb-3 row">
+                                        <label for="plan" class="col-sm-2 col-form-label p-0 pt-2 text-end">ประเภทแผนการ</label>
                                         <div class="col-sm-10">
                                             <select class="form-select" id="floatingSelect"
                                                 aria-label="Floating label select" name="type">
@@ -414,7 +405,7 @@
                                                 <option value="ผลกระทบ">ผลกระทบ</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="modal-footer">
@@ -436,9 +427,9 @@
                                 <th style="width:56%">
                                     ชื่อแผนการ
                                 </th>
-                                <th style="width:20%">
+                                {{-- <th style="width:20%">
                                     ประเภทแผนการ
-                                </th>
+                                </th> --}}
                                 <th style="width: 30px;">
                                     แก้ไข
                                 </th>
@@ -1123,7 +1114,6 @@
             });
             newRow.append(TargetLink);
 
-            newRow.append('<td>' + e.type + '</td>');
             // สร้างลิงก์แก้ไข
             let editCell = $('<td></td>');
             let editLink = $('<a class="text-decoration-none"></a>');
@@ -1136,7 +1126,7 @@
                 // Set the modal fields with the data
                 $('#edit_plan #name').val(e.plan_name); // Assuming you have an input with id 'recipient-name'
                 $('#edit_plan .modal-title').text('Edit plan: ' + e.plan_name);
-
+                $('#edit_plan ').data('plan_id',e.plan_id)
                 // Show the modal
                 $('#edit_plan').modal('show');
 
@@ -1160,6 +1150,8 @@
             deleteLink.click(function() {
                 // console.log("Click on delete link");
                 // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+
+                checkDel('plan' , e.plan_id);
             });
             deleteCell.append(deleteLink);
             newRow.append(deleteCell);
@@ -1208,7 +1200,11 @@
             newRow.append('<td>' + e.budget_source + '</td>');
             newRow.append('<td>' + e.budget_type + '</td>');
             newRow.append('<td>' + e.balance + '</td>');
-            newRow.append('<td>' + e.org.org_name + '</td>');
+            if(e.org != null) {
+                newRow.append('<td>' + e.org.org_name + '</td>');
+            }else {
+                newRow.append('<td>null</td>');
+            }
             // สร้างลิงก์แก้ไข
             let editCell = $('<td></td>');
             let editLink = $('<a class="text-decoration-none"></a>');
@@ -1293,6 +1289,17 @@
                     });
                     modal = '#add_target';
                     break;
+                case 'Plan':
+                    let stg_id = getParamValue('stg_id'); 
+                    let target_id = getParamValue('target_id'); 
+                    url = "/api/" + type + "/add";
+                    raw = JSON.stringify({
+                        "plan_name": data ,
+                        "stg_id" : stg_id,
+                        "target_id" : target_id
+                    });
+                    modal = '#add_plan';
+                    break;
 
                 default:
                     console.log("Unknown type");
@@ -1325,8 +1332,12 @@
                             getAllSTG(year_code); // Now year_code is defined in this scope
                             break;
                         case "Target":
-                            let id = getParamValue('stg_id'); 
-                            getAllTarget(id);
+                            let stg_id = getParamValue('stg_id'); 
+                            getAllTarget(stg_id);
+                            break;
+                        case "Plan":
+                            let target_id = getParamValue('target_id'); 
+                            getAllPlan(target_id);
                             break;
                     }
                 });
@@ -1335,7 +1346,7 @@
 
         const update = (type, data) => {
             console.log(type, data);
-            let id; // Declare id outside the if block
+            let id ; // Declare id outside the if block
             let obj = [];
 
             switch (type) {
@@ -1347,10 +1358,17 @@
                     })
                     break;
                 case "Target":
-                    id = data.id;
+                    id = data[1];
                     console.log(id);
                     obj = JSON.stringify({ // Convert data to JSON string
-                        "target_name": data.target_name,
+                        "target_name": data[0],
+                    })
+                    break;
+                case "Plan":
+                    id = data[1];
+                    console.log(id);
+                    obj = JSON.stringify({ // Convert data to JSON string
+                        "plan_name": data[0],
                     })
                     break;
             }
@@ -1365,28 +1383,35 @@
                 "data": obj
             };
 
-            // $.ajax(settings).done(function(response) {
-            //     console.log(response);
-            //     Swal.fire({
-            //         position: "top-end",
-            //         icon: "success",
-            //         title: "Your work has been saved",
-            //         showConfirmButton: false,
-            //         timer: 1500
-            //     }).then(() => {
-            //         switch (type) {
-            //             case "Strategy":
-            //                 CurrentYear();
-            //                 break;
-            //             case "Target":
-            //                 let stg_id = getParamValue('stg_id');
-            //                 getAllTarget(stg_id);
-            //                 break;
-            //         }
-            //         $('#edit_target').modal('hide');
-            //     });
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    switch (type) {
+                        case "Strategy":
+                            CurrentYear();
+                            $('#edit_stg').modal('hide');
+                            break;
+                        case "Target":
+                            let stg_id = getParamValue('stg_id');
+                            getAllTarget(stg_id);
+                            $('#edit_target').modal('hide');
+                            break;
+                        case "Plan":
+                            let target_id = getParamValue('target_id');
+                            getAllPlan(target_id);
+                            $('#edit_plan').modal('hide');
+                            break;
+                    }
+                    
+                });
 
-            // });
+            });
         };
 
 
@@ -1453,6 +1478,8 @@
                                     case 'plan':
                                         type_params = 'plan_id';
                                         checkURL(type_params);
+                                        let target_id = getParamValue('target_id')
+                                        getAllPlan(target_id);
                                         break;
                                     default:
                                         // window.location.reload();

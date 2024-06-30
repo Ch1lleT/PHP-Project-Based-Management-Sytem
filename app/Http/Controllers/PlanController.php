@@ -34,19 +34,18 @@ class PlanController extends Controller
 
         $request->validate([
             'plan_name' => 'required',
-            'type' => 'required'
         ]);
         // return dd($request);
         if (isset($plan_id)) {
             $plan = Plan::find($plan_id);
             $plan->plan_name = $request->input('plan_name');
-            $plan->type = $request->input('type');
+            // $plan->type = $request->input('type');
             $plan->save();
 
-            return redirect()->back()->with('success', 'Data Update successfully');
+            return response()->json(['success' => 'Data updated successfully', 'is_active' => $plan->is_active, 'status' => 'https://http.cat/200'], 200);
         }
 
-        return redirect()->back()->with('error', 'plan ID is missing');
+        return response()->json(['error' => 'Plan ID is missing']);
     }
 
     public static function get(Request $request)
