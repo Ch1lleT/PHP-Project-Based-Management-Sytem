@@ -112,6 +112,10 @@ Route::get('/activity_page', function () {
     return view('user/activity_page');
 })->name("activity_page");
 
+Route::get('/overview-org', function () {
+    return view('user/overview-org');
+})->name("overview-org");
+
 Route::get('/dashboard_nimt', function () {
     return view('okr_kpi/dashboard_nimt');
 })->name("dashboard_nimt");

@@ -72,36 +72,7 @@
             <div id="chart_div6" class="d-flex justify-content-center"></div>
         </div>
     </div>
-    <div class="overflow-x-auto strategy-box p-3 mt-3 rounded-3">
-        <P class="fs-4 ">OKR & KPI 2566</P>
-        <table class="table display table-striped" zle="width:100%">
-            <thead>
-                <tr>
-                    <th>STG</th>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Target(KR)</th>
-                    <th>Actual(KR)</th>
-                    <th>Target(KPI)</th>
-                    <th>Actual(KPI)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">stg 1</th>
-                    <td>kpi 1.0</td>
-                    <td><a href="{{ route('report') }}">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Laboriosam nulla voluptas adipisci cupiditate sit dolores.</a></td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-
-
-            </tbody>
-        </table>
-    </div>
+    
 @endsection
 
 @section('script')

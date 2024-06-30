@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <div class="w-100 overflow-x-auto table_okr_kpi rounded-3 p-3 mt-3">
+    <div class="overflow-x-auto table_okr_kpi rounded-3 p-3 mt-3">
         <table class="table border-top">
             <thead class="">
                 <tr>
