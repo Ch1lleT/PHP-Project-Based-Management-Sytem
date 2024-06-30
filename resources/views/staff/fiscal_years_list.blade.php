@@ -4,6 +4,14 @@
 
 @section('header')
     <div class="fs-5">รายการงบประมาณ</div>
+    <style>
+        .fislist-container{
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -56,8 +64,8 @@
         </div>
     </div>
     {{-- end modal section --}}
-    <div>
-        <div class="bg-secondary p-2 text-white d-flex align-items-center w-100 justify-content-between mb-3">
+    <div class="fislist-container">
+        <div class="rounded bg-secondary p-2 text-white d-flex align-items-center w-100 justify-content-between mb-3">
             <p class="m-0 fs-5">รายการงบประมาณ</p>
             <a href="#" data-bs-toggle="modal" data-bs-target="#add_fiscal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 48 48">

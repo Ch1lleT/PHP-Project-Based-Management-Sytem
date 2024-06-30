@@ -12,11 +12,17 @@
                 overflow: auto !important;
             }
         }
+        .effic-container{
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px,
+                rgba(0, 0, 0, 0.24) 0px 1px 5px;
+        }
     </style>
 @endsection
 @section('content')
 
-    <div class="overflow-x-hidden" id="table-flow">
+    <div class="effic-container overflow-x-hidden" id="table-flow">
         <table class="table display " id="table_report">
             <thead>
                 <tr>
