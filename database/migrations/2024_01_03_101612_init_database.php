@@ -21,79 +21,18 @@ return new class extends Migration
 
         Schema::create("user", function (Blueprint $table) {
             $table->string("user_id", 8);
-            // $table->string("email");
             $table->string("prefix");
             $table->string("username")->unique();
             $table->string("password");
             $table->string("first_name");
             $table->string("last_name");
-            // $table->string("citizen_id", 13);
-            // $table->string("position");
             $table->enum("gender", ['ชาย', 'หญิง', 'ไม่ระบุ']);
-            // $table->date("birth_date");
             $table->string("card_code");
-            // $table->string("phone",10);
-            // $table->string("address");
             $table->string("image")->nullable();
             $table->enum("role", ['admin', 'powerUser', 'supervisor', 'executive', 'user']);
             $table->boolean("is_active")->default(true);
 
-
-            // $table->foreign("role_")->references("role_")->on("role");
-            // $table->index("user_id");
             $table->primary(['user_id']);
-        });
-
-        Schema::create('actual_target', function (Blueprint $table) {
-            $table->string('acttarget_id', 8);
-            $table->string('acttarget_type');
-
-            $table->primary(['acttarget_id']);
-        });
-
-        Schema::create('actual_target_snapshot', function (Blueprint $table) {
-            $table->string('snap_id');
-            $table->integer('month');
-            $table->integer('acttar1')->nullable()->default(null);
-            $table->integer('acttar2')->nullable()->default(null);
-            $table->integer('acttar3')->nullable()->default(null);
-            $table->integer('acttar4')->nullable()->default(null);
-            $table->integer('acttar5')->nullable()->default(null);
-            $table->integer('acttar6')->nullable()->default(null);
-            $table->integer('acttar7')->nullable()->default(null);
-            $table->integer('acttar8')->nullable()->default(null);
-            $table->integer('acttar9')->nullable()->default(null);
-            $table->integer('acttar10')->nullable()->default(null);
-            $table->integer('acttar11')->nullable()->default(null);
-            $table->integer('acttar12')->nullable()->default(null);
-
-            $table->primary(['snap_id']);
-        });
-
-        Schema::create('balance', function (Blueprint $table) {
-            $table->string('balance_id');
-            $table->string('balance_type');
-
-            // $table->primary(['balance_id']);
-        });
-
-        Schema::create('balance_snapshot', function (Blueprint $table) {
-            $table->string('snap_id');
-            $table->integer('month');
-            $table->integer('balance1')->nullable()->default(null);
-            $table->integer('balance2')->nullable()->default(null);
-            $table->integer('balance3')->nullable()->default(null);
-            $table->integer('balance4')->nullable()->default(null);
-            $table->integer('balance5')->nullable()->default(null);
-            $table->integer('balance6')->nullable()->default(null);
-            $table->integer('balance7')->nullable()->default(null);
-            $table->integer('balance8')->nullable()->default(null);
-            $table->integer('balance9')->nullable()->default(null);
-            $table->integer('balance10')->nullable()->default(null);
-            $table->integer('balance11')->nullable()->default(null);
-            $table->integer('balance12')->nullable()->default(null);
-
-            $table->primary(['snap_id']);
         });
 
         Schema::create('organization', function (Blueprint $table) {
@@ -123,6 +62,26 @@ return new class extends Migration
 
             $table->foreign('year_code')->references('id')->on('fiscal_year');
             $table->primary(['stg_id']);
+        });
+
+        Schema::create('budget',function (Blueprint $table) {
+            $table->string('budget_id');
+            $table->string('stg_id');
+            $table->string('name');
+            $table->integer('amount');
+            
+            $table->primary('budget_id');
+            $table->foreign('stg_id')->references('stg_id')->on('strategy');
+        });
+ 
+        Schema::create('budget_source',function (Blueprint $table) {
+            $table->string('budget_source_id');
+            $table->string('stg_id');
+            $table->string('name');
+            $table->integer('amount');
+            
+            $table->primary('budget_source_id');
+            $table->foreign('stg_id')->references('stg_id')->on('strategy');
         });
 
         Schema::create('target', function (Blueprint $table) {
@@ -191,7 +150,71 @@ return new class extends Migration
             $table->primary(["act_id"]);
         });
 
-        Schema::create('comments', function (Blueprint $table) {
+        
+        Schema::create('balance', function (Blueprint $table) {
+            $table->string('balance_id',8);
+            $table->enum('type',['ACTIVITY','PROJECT']);
+            $table->string('project_id')->nullable();
+            $table->string('act_id')->nullable();
+
+            $table->foreign('project_id')->references('project_id')->on('project');
+            $table->foreign('act_id')->references('act_id')->on('activity');
+            $table->primary('balance_id');
+        });
+
+        Schema::create('balance_snapshot', function (Blueprint $table) {
+            $table->string('snap_id');
+            $table->string('balance_id');
+            $table->unsignedInteger('month');
+            $table->integer('total')->nullable()->default(null);
+            $table->integer('balance1')->nullable()->default(null);
+            $table->integer('balance2')->nullable()->default(null);
+            $table->integer('balance3')->nullable()->default(null);
+            $table->integer('balance4')->nullable()->default(null);
+            $table->integer('balance5')->nullable()->default(null);
+            $table->integer('balance6')->nullable()->default(null);
+            $table->integer('balance7')->nullable()->default(null);
+            $table->integer('balance8')->nullable()->default(null);
+            $table->integer('balance9')->nullable()->default(null);
+            $table->integer('balance10')->nullable()->default(null);
+            $table->integer('balance11')->nullable()->default(null);
+            $table->integer('balance12')->nullable()->default(null);
+
+            $table->foreign('balance_id')->references('balance_id')->on('balance');
+        });
+
+
+        Schema::create('kpi', function (Blueprint $table) {
+            $table->string('kpi_id', 8);
+            $table->string('act_id');
+            $table->integer('target');
+            
+            $table->primary(['kpi_id']);
+            $table->foreign('act_id')->references('act_id')->on('activity');
+        });
+
+        Schema::create('kpi_actual_snapshot', function (Blueprint $table) {
+            $table->string('snap_id');
+            $table->string('kpi_id');
+            $table->unsignedInteger('month');
+            $table->integer('acttar1')->nullable()->default(null);
+            $table->integer('acttar2')->nullable()->default(null);
+            $table->integer('acttar3')->nullable()->default(null);
+            $table->integer('acttar4')->nullable()->default(null);
+            $table->integer('acttar5')->nullable()->default(null);
+            $table->integer('acttar6')->nullable()->default(null);
+            $table->integer('acttar7')->nullable()->default(null);
+            $table->integer('acttar8')->nullable()->default(null);
+            $table->integer('acttar9')->nullable()->default(null);
+            $table->integer('acttar10')->nullable()->default(null);
+            $table->integer('acttar11')->nullable()->default(null);
+            $table->integer('acttar12')->nullable()->default(null);
+
+            $table->primary(['snap_id']);
+            $table->foreign('kpi_id')->references('kpi_id')->on('kpi');
+        });
+
+        Schema::create('act_comments', function (Blueprint $table) {
             $table->string('act_id', 8)->unique();
             $table->string('comment1')->nullable()->default(null);
             $table->string('comment2')->nullable()->default(null);
@@ -207,6 +230,14 @@ return new class extends Migration
             $table->string('comment12')->nullable()->default(null);
 
             $table->foreign(['act_id'])->references("act_id")->on('activity');
+        });
+
+        Schema::create('project_comments', function (Blueprint $table) {
+            $table->string('project_id', 8)->unique();
+            $table->string('comment',2000)->nullable()->default(null);
+            $table->timestamp('commented_on')->useCurrent();
+
+            $table->foreign(['project_id'])->references("project_id")->on('project');
         });
 
         Schema::create('have_sub_org', function (Blueprint $table) {
@@ -244,73 +275,14 @@ return new class extends Migration
             $table->foreign("user_id", 8)->references("user_id")->on("user");
         });
 
-        Schema::create("target_kpi", function (Blueprint $table) {
-            $table->string("targetkpi_id");
-            $table->string("targetkpi_type");
-
-            $table->primary(["targetkpi_id"]);
-        });
-
-        Schema::create("target_snapshot", function (Blueprint $table) {
-            $table->string("snap_id"); // composit key from targetkpi_type + targetkpi_id
-            $table->integer("month", false, true);
-            $table->integer("target1")->nullable()->default(null);
-            $table->integer("target2")->nullable()->default(null);
-            $table->integer("target3")->nullable()->default(null);
-            $table->integer("target4")->nullable()->default(null);
-            $table->integer("target5")->nullable()->default(null);
-            $table->integer("target6")->nullable()->default(null);
-            $table->integer("target7")->nullable()->default(null);
-            $table->integer("target8")->nullable()->default(null);
-            $table->integer("target9")->nullable()->default(null);
-            $table->integer("target10")->nullable()->default(null);
-            $table->integer("target11")->nullable()->default(null);
-            $table->integer("target12")->nullable()->default(null);
-
-            $table->primary(["snap_id"]);
-        });
-
-        Schema::create("request_close_activity", function (Blueprint $table) {
+        Schema::create("request_close_project", function (Blueprint $table) {
             $table->string("req_id", 8);
-            $table->string("act_id", 8);
-            $table->string("approvedby");
+            $table->string("project_id", 8);
+            $table->string("status");
 
-            $table->foreign("act_id")->references("act_id")->on("activity");
+            $table->foreign("project_id")->references("project_id")->on("project");
             $table->primary(["req_id"]);
         });
-
-
-
-        Schema::create("okr",function (Blueprint $table){
-            $table->string('okr_id',8);
-            $table->string('okr_name');
-            $table->string('create_by',8);
-            
-            $table->primary(['okr_id']);
-        });
-
-
-        Schema::create("kpi",function (Blueprint $table){
-            $table->string('kpi_id',8);
-            $table->string('kpi_name');
-            $table->timestamps();
-            $table->date('due');
-            $table->string('create_by',8);
-            
-            
-            $table->primary(['kpi_id']);
-        });
-
-        Schema::create("kpi_snapshot",function (Blueprint $table){
-            $table->string('kpi_snap',8);
-            $table->string('kpi_id');
-
-            $table->primary(['kpi_snap']);
-            $table->foreign('kpi_id')->references('kpi_id')->on('kpi');
-        });
-
-
-
     }
 
     /**
@@ -319,52 +291,52 @@ return new class extends Migration
     public function down(): void
     {
 
-        Schema::dropIfExists('comments');
-
-        Schema::dropIfExists("request_close_activity");
+        Schema::dropIfExists('act_comments');
+        
+        Schema::dropIfExists('project_comments');
+        
+        Schema::dropIfExists("request_close_project");
 
         Schema::dropIfExists('actual_target');
 
         Schema::dropIfExists('actual_target_snapshot');
 
-        Schema::dropIfExists('balance');
-
-        Schema::dropIfExists('balance_snapshot');
-
         Schema::dropIfExists('have_sub_org');
-
+        
         Schema::dropIfExists('sub_organization');
-
+        
         Schema::dropIfExists('organization');
-
+        
         Schema::dropIfExists('assign_to');
-
+        
         Schema::dropIfExists("group");
 
         Schema::dropIfExists("setting");
 
-        Schema::dropIfExists("target_kpi");
+        Schema::dropIfExists('balance_snapshot');
+        
+        Schema::dropIfExists('balance');
 
-        Schema::dropIfExists("target_snapshot");
-
+        Schema::dropIfExists("kpi_actual_snapshot");
+        
+        Schema::dropIfExists("kpi");
+                
         Schema::dropIfExists("activity");
-
+        
         Schema::dropIfExists("project");
-
+        
         Schema::dropIfExists("plan");
 
         Schema::dropIfExists('target');
+        
+        Schema::dropIfExists('budget');
+        
+        Schema::dropIfExists('budget_source');
 
         Schema::dropIfExists("strategy");
-
+        
         Schema::dropIfExists("user");
-
+        
         Schema::dropIfExists("fiscal_year");
-
-        Schema::dropIfExists("kpi_snapshot");
-
-        Schema::dropIfExists("kpi");
-
-        Schema::dropIfExists("okr");
     }
 };
