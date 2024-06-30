@@ -15,7 +15,6 @@ class Balance extends Model
 
     protected $fillable = [
         'balance_id',
-        'balance_type',
     ];
     // use HasFactory;
 }
