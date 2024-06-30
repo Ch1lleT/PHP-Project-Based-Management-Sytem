@@ -216,7 +216,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form onsubmit="event.preventDefault(); update('Target', [this.target_name.value , this.id.value])">
+                            <form onsubmit="event.preventDefault(); update('Target', [this.target_name.value , $('#edit_target').data('target_id')])">
                                 @method('PUT')
                                 @csrf
                                 <div class="modal-header">
@@ -1026,7 +1026,7 @@
                 // Set the modal fields with the data
                 $('#edit_target #name').val(e.target_name);
                 $('#edit_target .modal-title').text('Edit Target: ' + e.target_name);
-
+                $('#edit_target ').data('target_id',e.target_id)
                 // Show the modal
                 $('#edit_target').modal('show');
             });
