@@ -1231,6 +1231,7 @@
             deleteLink.click(function() {
                 // console.log("Click on delete link");
                 // ทำงานเพิ่มเติมเมื่อคลิกที่ลิงก์ลบ
+                checkDel();
             });
             deleteCell.append(deleteLink);
             newRow.append(deleteCell);
@@ -1480,6 +1481,12 @@
                                         checkURL(type_params);
                                         let target_id = getParamValue('target_id')
                                         getAllPlan(target_id);
+                                        break;
+                                    case 'project':
+                                        // type_params = 'project';
+                                        // checkURL(type_params);
+                                        let plan_id = getParamValue('plan_id');
+                                        getAllProject(plan_id);
                                         break;
                                     default:
                                         // window.location.reload();
